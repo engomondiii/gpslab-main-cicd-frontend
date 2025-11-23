@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ============================================
+   GPS LAB - Index Styles
+   Root-level application styles
+   ============================================ */
+
+/* Import global styles */
+@import './styles/global.css';
+
+/* ==========================================
+   ROOT STYLES
+   ========================================== */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ==========================================
+   APP-LEVEL STYLES
+   ========================================== */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
 }
+
+/* ==========================================
+   MAIN CONTENT WRAPPER
+   ========================================== */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================
+   PAGE WRAPPER
+   ========================================== */
+
+.page-wrapper {
+  flex: 1;
+  padding: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .page-wrapper {
+    padding: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-wrapper {
+    padding: var(--space-12);
+  }
+}
+
+/* ==========================================
+   END OF INDEX STYLES
+   ========================================== */

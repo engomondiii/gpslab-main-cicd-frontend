@@ -1,0 +1,31 @@
+/* ============================================
+   GPS LAB - Email Validator Styles
+   ============================================ */
+
+.email-validation-error {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--error);
+  margin-top: var(--space-1);
+}
+
+.email-suggestion {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--info);
+  margin-top: var(--space-1);
+  cursor: pointer;
+}
+
+.email-suggestion:hover {
+  text-decoration: underline;
+}
+
+.masked-email {
+  font-family: var(--font-mono);
+  color: var(--neutral-600);
+}
+
+/* ==========================================
+   END OF EMAIL VALIDATOR STYLES
+   ========================================== */

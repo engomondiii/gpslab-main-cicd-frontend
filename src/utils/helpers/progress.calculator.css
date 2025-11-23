@@ -1,0 +1,155 @@
+/* ============================================
+   GPS LAB - Progress Calculator Styles
+   ============================================ */
+
+.progress-display {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary) 0%, var(--gps-accent) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-out);
+  position: relative;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+}
+
+.progress-percentage {
+  font-family: var(--font-mono);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
+}
+
+.checkpoint-score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-6);
+  background: var(--neutral-50);
+  border-radius: var(--radius-2xl);
+  border: var(--border-default) solid var(--neutral-300);
+}
+
+.checkpoint-score-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  color: var(--gps-primary);
+  line-height: 1;
+}
+
+.checkpoint-grade {
+  font-family: var(--font-accent);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  margin-top: var(--space-2);
+}
+
+.checkpoint-status {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-600);
+  margin-top: var(--space-1);
+}
+
+.time-remaining-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--warning-pale);
+  border-radius: var(--radius-lg);
+  border: var(--border-default) solid var(--warning);
+}
+
+.time-remaining-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--warning-dark);
+}
+
+.time-remaining-overdue {
+  background: var(--error-pale);
+  border-color: var(--error);
+}
+
+.time-remaining-overdue .time-remaining-value {
+  color: var(--error-dark);
+}
+
+.streak-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--xp-gold) 0%, var(--warning) 100%);
+  border-radius: var(--radius-xl);
+  color: var(--neutral-0);
+}
+
+.streak-icon {
+  font-size: var(--text-4xl);
+}
+
+.streak-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-extrabold);
+}
+
+.streak-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+/* ==========================================
+   END OF PROGRESS CALCULATOR STYLES
+   ========================================== */

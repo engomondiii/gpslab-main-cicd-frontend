@@ -1,0 +1,105 @@
+/* ============================================
+   GPS LAB - Baraka Calculator Styles
+   ============================================ */
+
+.baraka-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+}
+
+.baraka-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.baraka-breakdown-label {
+  color: var(--neutral-600);
+}
+
+.baraka-breakdown-value {
+  color: var(--neutral-900);
+  font-weight: var(--font-semibold);
+}
+
+.baraka-breakdown-total {
+  padding-top: var(--space-2);
+  border-top: var(--border-default) solid var(--neutral-300);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+}
+
+.baraka-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.baraka-tier-base {
+  background: var(--baraka-base);
+  color: var(--neutral-900);
+}
+
+.baraka-tier-green {
+  background: var(--baraka-green);
+  color: var(--neutral-0);
+}
+
+.baraka-tier-blue {
+  background: var(--baraka-blue);
+  color: var(--neutral-0);
+}
+
+.baraka-tier-indigo {
+  background: var(--baraka-indigo);
+  color: var(--neutral-0);
+}
+
+.baraka-tier-purple {
+  background: var(--baraka-purple);
+  color: var(--neutral-0);
+}
+
+.baraka-tier-black {
+  background: var(--baraka-black);
+  color: var(--neutral-0);
+}
+
+.covenant-return-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--success-pale) 0%, var(--gps-primary-pale) 100%);
+  border-radius: var(--radius-lg);
+  border: var(--border-default) solid var(--success);
+}
+
+.covenant-return-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+}
+
+.covenant-return-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--success-dark);
+}
+
+/* ==========================================
+   END OF BARAKA CALCULATOR STYLES
+   ========================================== */

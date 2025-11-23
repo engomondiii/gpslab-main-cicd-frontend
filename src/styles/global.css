@@ -1,0 +1,313 @@
+/* ============================================
+   GPS LAB - Global Styles
+   Import all stylesheets and set global rules
+   ============================================ */
+
+/* ==========================================
+   IMPORT ORDER (CRITICAL - DO NOT CHANGE)
+   ========================================== */
+
+/* 1. Reset first - clears browser defaults */
+@import './reset.css';
+
+/* 2. Variables - all CSS custom properties */
+@import './variables.css';
+
+/* 3. Typography - fonts and text styles */
+@import './typography.css';
+
+/* 4. Animations - keyframes and transitions */
+@import './animations.css';
+
+/* 5. Utilities - helper classes */
+@import './utilities.css';
+
+/* 6. Responsive - breakpoint-specific styles */
+@import './responsive.css';
+
+/* 7. Themes - color scheme variants */
+@import './themes/light-theme.css';
+@import './themes/dark-theme.css';
+@import './themes/high-contrast.css';
+
+/* ==========================================
+   GLOBAL HTML & BODY STYLES
+   ========================================== */
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--neutral-900);
+  background-color: var(--neutral-100);
+  overflow-x: hidden;
+  transition: background-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out);
+}
+
+/* ==========================================
+   GLOBAL SELECTION STYLES
+   ========================================== */
+
+::selection {
+  background-color: var(--gps-primary);
+  color: var(--neutral-0);
+}
+
+::-moz-selection {
+  background-color: var(--gps-primary);
+  color: var(--neutral-0);
+}
+
+/* ==========================================
+   FOCUS VISIBLE STYLES
+   ========================================== */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: var(--border-thick) solid var(--gps-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   SMOOTH SCROLL BEHAVIOR
+   ========================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR STYLES
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-400);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--neutral-200);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-500);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-400) var(--neutral-200);
+}
+
+/* ==========================================
+   SKIP TO MAIN CONTENT LINK
+   ========================================== */
+
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--neutral-900);
+  color: var(--neutral-0);
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  z-index: var(--z-notification);
+  font-weight: var(--font-semibold);
+  border-radius: 0 0 var(--radius-md) 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 3px solid var(--gps-primary);
+}
+
+/* ==========================================
+   SCREEN READER ONLY CLASS
+   ========================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ==========================================
+   GLOBAL APP CONTAINER
+   ========================================== */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================
+   LOADING STATE
+   ========================================== */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+/* ==========================================
+   GLOBAL BACKDROP
+   ========================================== */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-dark);
+  z-index: var(--z-modal-backdrop);
+  animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+/* ==========================================
+   NO SCROLL (for modals)
+   ========================================== */
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  * {
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE DETECTION
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  * {
+    border-width: var(--border-thick);
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    border: var(--border-thick) solid currentColor;
+  }
+}
+
+/* ==========================================
+   REDUCED TRANSPARENCY
+   ========================================== */
+
+@media (prefers-reduced-transparency: reduce) {
+  * {
+    backdrop-filter: none !important;
+  }
+}
+
+/* ==========================================
+   FORCED COLORS MODE (Windows High Contrast)
+   ========================================== */
+
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: auto;
+  }
+
+  .card,
+  .modal,
+  .button {
+    border: 2px solid;
+  }
+}
+
+/* ==========================================
+   END OF GLOBAL STYLES
+   ========================================== */

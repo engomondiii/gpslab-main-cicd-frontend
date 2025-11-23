@@ -1,0 +1,91 @@
+/* ============================================
+   GPS LAB - Currency Formatter Styles
+   ============================================ */
+
+.currency-display {
+  font-family: var(--font-mono);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+}
+
+.baraka-display {
+  font-family: var(--font-mono);
+  font-weight: var(--font-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.baraka-base {
+  color: var(--baraka-base);
+}
+
+.baraka-green {
+  color: var(--baraka-green);
+}
+
+.baraka-blue {
+  color: var(--baraka-blue);
+}
+
+.baraka-indigo {
+  color: var(--baraka-indigo);
+}
+
+.baraka-purple {
+  color: var(--baraka-purple);
+}
+
+.baraka-black {
+  color: var(--baraka-black);
+}
+
+.psb-display {
+  font-family: var(--font-mono);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.xp-display {
+  font-family: var(--font-mono);
+  font-weight: var(--font-bold);
+  color: var(--xp-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.covenant-return {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.covenant-original {
+  color: var(--neutral-600);
+}
+
+.covenant-plus {
+  color: var(--neutral-500);
+  font-weight: var(--font-regular);
+}
+
+.covenant-returned {
+  color: var(--success);
+  font-weight: var(--font-bold);
+}
+
+.covenant-total {
+  color: var(--neutral-900);
+  font-weight: var(--font-extrabold);
+  font-size: var(--text-lg);
+}
+
+/* ==========================================
+   END OF CURRENCY FORMATTER STYLES
+   ========================================== */

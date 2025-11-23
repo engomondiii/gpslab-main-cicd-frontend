@@ -1,0 +1,35 @@
+/* ============================================
+   GPS LAB - Number Formatter Styles
+   ============================================ */
+
+.formatted-number {
+  font-family: var(--font-mono);
+  font-weight: var(--font-medium);
+  color: var(--neutral-900);
+}
+
+.percentage-display {
+  font-family: var(--font-mono);
+  font-weight: var(--font-semibold);
+  color: var(--gps-primary);
+}
+
+.compact-number {
+  font-family: var(--font-mono);
+  font-weight: var(--font-medium);
+}
+
+.file-size {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+}
+
+.ordinal-number {
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+}
+
+/* ==========================================
+   END OF NUMBER FORMATTER STYLES
+   ========================================== */

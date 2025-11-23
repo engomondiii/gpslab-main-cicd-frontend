@@ -1,0 +1,149 @@
+/* ============================================
+   GPS LAB - Tiers Constants Styles
+   ============================================ */
+
+.tier-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.tier-card-popular {
+  border-color: var(--gps-primary);
+  border-width: var(--border-thick);
+}
+
+.tier-card-popular::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: var(--space-4);
+  right: -30px;
+  background: var(--gps-primary);
+  color: var(--neutral-900);
+  font-family: var(--font-accent);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-widest);
+  padding: var(--space-1) var(--space-12);
+  transform: rotate(45deg);
+}
+
+.tier-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-4);
+}
+
+.tier-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-extrabold);
+  color: var(--neutral-900);
+  margin-bottom: var(--space-2);
+}
+
+.tier-description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  margin-bottom: var(--space-6);
+}
+
+.tier-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.tier-price-amount {
+  font-family: var(--font-mono);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  color: var(--neutral-900);
+}
+
+.tier-price-period {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-600);
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+
+.tier-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+}
+
+.tier-feature-icon {
+  color: var(--success);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tier-cta {
+  width: 100%;
+}
+
+.tier-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-8);
+}
+
+.tier-comparison-table th,
+.tier-comparison-table td {
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-thin) solid var(--neutral-300);
+  text-align: left;
+}
+
+.tier-comparison-table th {
+  background: var(--neutral-100);
+  font-family: var(--font-accent);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-size: var(--text-sm);
+}
+
+.tier-comparison-table td {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.tier-comparison-category {
+  background: var(--neutral-50);
+  font-family: var(--font-subheading);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  padding: var(--space-4);
+}
+
+/* ==========================================
+   END OF TIERS CONSTANTS STYLES
+   ========================================== */

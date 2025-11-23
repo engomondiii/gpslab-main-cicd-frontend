@@ -1,0 +1,54 @@
+/* ============================================
+   GPS LAB - Form Validator Styles
+   ============================================ */
+
+.form-field-error {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--error);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form-field-valid {
+  border-color: var(--success) !important;
+}
+
+.form-field-invalid {
+  border-color: var(--error) !important;
+}
+
+.form-validation-summary {
+  padding: var(--space-4);
+  background: var(--error-pale);
+  border: var(--border-default) solid var(--error);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-6);
+}
+
+.form-validation-summary-title {
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--error-dark);
+  margin-bottom: var(--space-2);
+}
+
+.form-validation-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-validation-summary-item {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--error);
+  margin-bottom: var(--space-1);
+}
+
+/* ==========================================
+   END OF FORM VALIDATOR STYLES
+   ========================================== */

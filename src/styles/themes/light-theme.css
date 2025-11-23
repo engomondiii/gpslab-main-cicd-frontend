@@ -1,0 +1,42 @@
+/* ============================================
+   GPS LAB - Light Theme (Default)
+   All light theme variables (already in variables.css)
+   ============================================ */
+
+/* Light theme is the default and all variables are 
+   already defined in variables.css */
+
+:root,
+[data-theme="light"] {
+  /* This file serves as a reference that light theme
+     is the default. All color variables in variables.css
+     represent the light theme values. */
+  
+  /* If you need to override any specific values for
+     light theme, add them here */
+}
+
+/* ==========================================
+   LIGHT THEME SPECIFIC STYLES
+   ========================================== */
+
+[data-theme="light"] body {
+  background-color: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+[data-theme="light"] .theme-aware-bg {
+  background-color: var(--neutral-0);
+}
+
+[data-theme="light"] .theme-aware-text {
+  color: var(--neutral-900);
+}
+
+[data-theme="light"] .theme-aware-border {
+  border-color: var(--neutral-300);
+}
+
+/* ==========================================
+   END OF LIGHT THEME
+   ========================================== */

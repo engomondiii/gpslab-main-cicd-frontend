@@ -1,0 +1,120 @@
+/* ============================================
+   GPS LAB - Character Calculator Styles
+   ============================================ */
+
+.character-badge-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-xl);
+  border: var(--border-default) solid var(--neutral-300);
+  transition: var(--transition-all);
+}
+
+.character-badge-display:hover {
+  border-color: var(--gps-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.character-badge-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-3);
+}
+
+.character-badge-name {
+  font-family: var(--font-accent);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-1);
+}
+
+.character-badge-description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
+.character-badge-progress {
+  width: 100%;
+}
+
+.character-badge-earned {
+  border-color: var(--success);
+  background: var(--success-pale);
+}
+
+.character-badge-earned .character-badge-name {
+  color: var(--success-dark);
+}
+
+.character-strengths-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.character-strength-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+  border: var(--border-default) solid var(--neutral-300);
+}
+
+.character-strength-name {
+  font-family: var(--font-accent);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+}
+
+.character-strength-points {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
+}
+
+.character-completeness-chart {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.completeness-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+}
+
+.completeness-stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-extrabold);
+  color: var(--gps-primary);
+}
+
+.completeness-stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  margin-top: var(--space-1);
+}
+
+/* ==========================================
+   END OF CHARACTER CALCULATOR STYLES
+   ========================================== */
