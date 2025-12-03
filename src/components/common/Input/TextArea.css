@@ -1,0 +1,240 @@
+/**
+ * GPS Lab Platform - TextArea Component Styles
+ * 
+ * Multi-line text input with resize options and theming support.
+ */
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 0.25rem);
+}
+
+.textarea-container--full-width {
+  width: 100%;
+}
+
+/* =============================================================================
+   LABEL
+   ============================================================================= */
+
+.textarea-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-700, #374151);
+}
+
+.textarea-label__required {
+  color: var(--color-danger, #dc2626);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* =============================================================================
+   WRAPPER
+   ============================================================================= */
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* =============================================================================
+   TEXTAREA FIELD
+   ============================================================================= */
+
+.textarea-field {
+  width: 100%;
+  min-height: 5rem;
+  padding: var(--spacing-3, 0.75rem);
+  font-family: inherit;
+  color: var(--color-gray-900, #111827);
+  background-color: var(--color-white, #ffffff);
+  border: 2px solid var(--color-gray-300, #d1d5db);
+  border-radius: var(--radius-md, 0.5rem);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textarea-field::placeholder {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.textarea-field:focus {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.textarea-field:disabled {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-200, #e5e7eb);
+  color: var(--color-gray-500, #6b7280);
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+.textarea-wrapper--sm .textarea-field {
+  padding: var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  min-height: 4rem;
+}
+
+.textarea-wrapper--md .textarea-field {
+  padding: var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-base, 1rem);
+  min-height: 5rem;
+}
+
+.textarea-wrapper--lg .textarea-field {
+  padding: var(--spacing-4, 1rem);
+  font-size: var(--font-size-lg, 1.125rem);
+  min-height: 6rem;
+}
+
+/* =============================================================================
+   RESIZE VARIANTS
+   ============================================================================= */
+
+.textarea-field--resize-none {
+  resize: none;
+}
+
+.textarea-field--resize-vertical {
+  resize: vertical;
+}
+
+.textarea-field--resize-horizontal {
+  resize: horizontal;
+}
+
+.textarea-field--resize-both {
+  resize: both;
+}
+
+/* =============================================================================
+   ERROR STATE
+   ============================================================================= */
+
+.textarea-wrapper--error .textarea-field {
+  border-color: var(--color-danger, #dc2626);
+}
+
+.textarea-wrapper--error .textarea-field:focus {
+  border-color: var(--color-danger, #dc2626);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* =============================================================================
+   DISABLED STATE
+   ============================================================================= */
+
+.textarea-wrapper--disabled .textarea-field {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-200, #e5e7eb);
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   FOOTER (Helper text & Char count)
+   ============================================================================= */
+
+.textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-2, 0.5rem);
+  min-height: 1.25rem;
+}
+
+.textarea-helper {
+  flex: 1;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-500, #6b7280);
+}
+
+.textarea-helper--error {
+  color: var(--color-danger, #dc2626);
+}
+
+.textarea-char-count {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-400, #9ca3af);
+  font-variant-numeric: tabular-nums;
+}
+
+.textarea-char-count--warning {
+  color: var(--color-warning, #f59e0b);
+}
+
+.textarea-char-count--limit {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .textarea-label {
+  color: var(--color-gray-300, #d1d5db);
+}
+
+[data-theme="dark"] .textarea-field {
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-600, #4b5563);
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .textarea-field::placeholder {
+  color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .textarea-field:focus {
+  border-color: var(--color-primary-light, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .textarea-field:disabled {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .textarea-helper {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .textarea-char-count {
+  color: var(--color-gray-500, #6b7280);
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME
+   ============================================================================= */
+
+[data-theme="high-contrast"] .textarea-field {
+  border-width: 3px;
+  border-color: var(--color-white, #ffffff);
+}
+
+[data-theme="high-contrast"] .textarea-field:focus {
+  box-shadow: 0 0 0 4px var(--color-primary, #2563eb);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea-field {
+    transition: none;
+  }
+}

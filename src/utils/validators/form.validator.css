@@ -1,54 +1,654 @@
-/* ============================================
-   GPS LAB - Form Validator Styles
-   ============================================ */
+/**
+ * GPS Lab Platform - Form Validator Styles
+ * 
+ * CSS classes for form validation UI components including
+ * input states, error messages, and validation feedback.
+ * 
+ * @module utils/validators/form.validator.css
+ * @version 1.0.0
+ */
 
-.form-field-error {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--error);
-  margin-top: var(--space-1);
+/* =============================================================================
+   FORM CONTAINER STYLES
+   ============================================================================= */
+
+/**
+ * Form container
+ */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 1rem);
+}
+
+/**
+ * Form group (field container)
+ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 0.25rem);
+}
+
+/**
+ * Form row (horizontal layout)
+ */
+.form-row {
+  display: flex;
+  gap: var(--spacing-md, 0.75rem);
+}
+
+.form-row > .form-group {
+  flex: 1;
+}
+
+/* =============================================================================
+   LABEL STYLES
+   ============================================================================= */
+
+/**
+ * Form label
+ */
+.form-label {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #111827);
 }
 
-.form-field-valid {
-  border-color: var(--success) !important;
+/**
+ * Required indicator
+ */
+.form-label__required {
+  color: var(--color-danger, #dc2626);
+  font-weight: var(--font-weight-normal, 400);
 }
 
-.form-field-invalid {
-  border-color: var(--error) !important;
+/**
+ * Optional indicator
+ */
+.form-label__optional {
+  color: var(--color-text-muted, #9ca3af);
+  font-weight: var(--font-weight-normal, 400);
+  font-size: var(--font-size-xs, 0.75rem);
 }
 
-.form-validation-summary {
-  padding: var(--space-4);
-  background: var(--error-pale);
-  border: var(--border-default) solid var(--error);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--space-6);
+/**
+ * Help tooltip icon
+ */
+.form-label__help {
+  width: 14px;
+  height: 14px;
+  color: var(--color-gray-400, #9ca3af);
+  cursor: help;
 }
 
-.form-validation-summary-title {
-  font-family: var(--font-subheading);
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  color: var(--error-dark);
-  margin-bottom: var(--space-2);
+/* =============================================================================
+   INPUT BASE STYLES
+   ============================================================================= */
+
+/**
+ * Base input styling
+ */
+.form-input {
+  width: 100%;
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  font-size: var(--font-size-base, 1rem);
+  font-family: var(--font-family-primary, 'Inter', sans-serif);
+  color: var(--color-text-primary, #111827);
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: var(--border-radius-md, 0.375rem);
+  outline: none;
+  transition: all var(--transition-fast, 150ms) ease;
 }
 
-.form-validation-summary-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.form-input::placeholder {
+  color: var(--color-gray-400, #9ca3af);
 }
 
-.form-validation-summary-item {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--error);
-  margin-bottom: var(--space-1);
+.form-input:focus {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* ==========================================
-   END OF FORM VALIDATOR STYLES
-   ========================================== */
+.form-input:disabled {
+  background-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-500, #6b7280);
+  cursor: not-allowed;
+}
+
+/**
+ * Textarea styling
+ */
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/**
+ * Select styling
+ */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* =============================================================================
+   VALIDATION STATES
+   ============================================================================= */
+
+/**
+ * Valid input state
+ */
+.form-input--valid {
+  border-color: var(--color-success, #059669);
+}
+
+.form-input--valid:focus {
+  border-color: var(--color-success, #059669);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/**
+ * Invalid input state
+ */
+.form-input--invalid {
+  border-color: var(--color-danger, #dc2626);
+}
+
+.form-input--invalid:focus {
+  border-color: var(--color-danger, #dc2626);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/**
+ * Warning input state
+ */
+.form-input--warning {
+  border-color: var(--color-warning, #d97706);
+}
+
+.form-input--warning:focus {
+  border-color: var(--color-warning, #d97706);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+/**
+ * Touched state (for showing errors only after interaction)
+ */
+.form-group--touched .form-input--invalid {
+  border-color: var(--color-danger, #dc2626);
+}
+
+.form-group--untouched .form-input--invalid {
+  border-color: var(--color-gray-300, #d1d5db);
+}
+
+/* =============================================================================
+   ERROR MESSAGE STYLES
+   ============================================================================= */
+
+/**
+ * Error message container
+ */
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-danger, #dc2626);
+  animation: form-error-slide 0.2s ease-out;
+}
+
+.form-error__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.form-error__text {
+  line-height: var(--line-height-tight, 1.25);
+}
+
+@keyframes form-error-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Multiple errors list
+ */
+.form-errors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs, 0.125rem);
+}
+
+/**
+ * Warning message
+ */
+.form-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-warning, #d97706);
+}
+
+/**
+ * Success message
+ */
+.form-success {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-success, #059669);
+}
+
+/**
+ * Help text / hint
+ */
+.form-hint {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+  line-height: var(--line-height-normal, 1.5);
+}
+
+/* =============================================================================
+   CHARACTER COUNT
+   ============================================================================= */
+
+/**
+ * Character count display
+ */
+.form-char-count {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+.form-char-count--warning {
+  color: var(--color-warning, #d97706);
+}
+
+.form-char-count--error {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   INPUT WITH ICON
+   ============================================================================= */
+
+/**
+ * Input with icon container
+ */
+.form-input-icon {
+  position: relative;
+}
+
+.form-input-icon .form-input {
+  padding-left: 40px;
+}
+
+.form-input-icon__icon {
+  position: absolute;
+  left: var(--spacing-sm, 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--color-gray-400, #9ca3af);
+  pointer-events: none;
+}
+
+.form-input-icon--right .form-input {
+  padding-left: var(--spacing-md, 0.75rem);
+  padding-right: 40px;
+}
+
+.form-input-icon--right .form-input-icon__icon {
+  left: auto;
+  right: var(--spacing-sm, 0.5rem);
+}
+
+/* =============================================================================
+   INPUT ADDONS
+   ============================================================================= */
+
+/**
+ * Input group with addons
+ */
+.form-input-group {
+  display: flex;
+}
+
+.form-input-group .form-input {
+  border-radius: 0;
+}
+
+.form-input-group .form-input:first-child {
+  border-top-left-radius: var(--border-radius-md, 0.375rem);
+  border-bottom-left-radius: var(--border-radius-md, 0.375rem);
+}
+
+.form-input-group .form-input:last-child {
+  border-top-right-radius: var(--border-radius-md, 0.375rem);
+  border-bottom-right-radius: var(--border-radius-md, 0.375rem);
+}
+
+/**
+ * Input addon (prepend/append)
+ */
+.form-input-addon {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-text-secondary, #6b7280);
+  background-color: var(--color-gray-100, #f3f4f6);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  white-space: nowrap;
+}
+
+.form-input-addon:first-child {
+  border-right: none;
+  border-top-left-radius: var(--border-radius-md, 0.375rem);
+  border-bottom-left-radius: var(--border-radius-md, 0.375rem);
+}
+
+.form-input-addon:last-child {
+  border-left: none;
+  border-top-right-radius: var(--border-radius-md, 0.375rem);
+  border-bottom-right-radius: var(--border-radius-md, 0.375rem);
+}
+
+/* =============================================================================
+   CHECKBOX AND RADIO
+   ============================================================================= */
+
+/**
+ * Checkbox/radio container
+ */
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm, 0.5rem);
+}
+
+.form-check__input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-primary, #2563eb);
+  cursor: pointer;
+}
+
+.form-check__label {
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-text-primary, #111827);
+  cursor: pointer;
+}
+
+.form-check--invalid .form-check__label {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   FILE INPUT
+   ============================================================================= */
+
+/**
+ * File input container
+ */
+.form-file {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 0.25rem);
+}
+
+.form-file__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl, 1.5rem);
+  border: 2px dashed var(--color-gray-300, #d1d5db);
+  border-radius: var(--border-radius-lg, 0.5rem);
+  background-color: var(--color-gray-50, #f9fafb);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms) ease;
+}
+
+.form-file__dropzone:hover {
+  border-color: var(--color-primary, #2563eb);
+  background-color: var(--color-primary-bg, #dbeafe);
+}
+
+.form-file__dropzone--active {
+  border-color: var(--color-primary, #2563eb);
+  background-color: var(--color-primary-bg, #dbeafe);
+}
+
+.form-file__dropzone--invalid {
+  border-color: var(--color-danger, #dc2626);
+  background-color: var(--color-danger-bg, #fee2e2);
+}
+
+.form-file__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-gray-400, #9ca3af);
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+.form-file__text {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+  text-align: center;
+}
+
+.form-file__text strong {
+  color: var(--color-primary, #2563eb);
+}
+
+.form-file__constraints {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+/* =============================================================================
+   FORM ACTIONS
+   ============================================================================= */
+
+/**
+ * Form actions container
+ */
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md, 0.75rem);
+  padding-top: var(--spacing-md, 0.75rem);
+  border-top: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.form-actions--right {
+  justify-content: flex-end;
+}
+
+.form-actions--between {
+  justify-content: space-between;
+}
+
+.form-actions--center {
+  justify-content: center;
+}
+
+/* =============================================================================
+   FORM SUMMARY (VALIDATION ERRORS)
+   ============================================================================= */
+
+/**
+ * Form errors summary box
+ */
+.form-summary {
+  padding: var(--spacing-md, 0.75rem);
+  border-radius: var(--border-radius-md, 0.375rem);
+  margin-bottom: var(--spacing-lg, 1rem);
+}
+
+.form-summary--error {
+  background-color: var(--color-danger-bg, #fee2e2);
+  border: 1px solid var(--color-danger-light, #fca5a5);
+}
+
+.form-summary--success {
+  background-color: var(--color-success-bg, #dcfce7);
+  border: 1px solid var(--color-success-light, #86efac);
+}
+
+.form-summary__title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  margin-bottom: var(--spacing-xs, 0.25rem);
+}
+
+.form-summary--error .form-summary__title {
+  color: var(--color-danger-dark, #991b1b);
+}
+
+.form-summary--success .form-summary__title {
+  color: var(--color-success-dark, #166534);
+}
+
+.form-summary__list {
+  list-style: disc;
+  padding-left: var(--spacing-lg, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.form-summary--error .form-summary__list {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="dark"] .form-label {
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .form-input {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-dark-gray-600, #4b5563);
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .form-input::placeholder {
+  color: var(--color-dark-text-muted, #6b7280);
+}
+
+[data-theme="dark"] .form-input:disabled {
+  background-color: var(--color-dark-gray-700, #374151);
+  color: var(--color-dark-text-muted, #6b7280);
+}
+
+[data-theme="dark"] .form-hint {
+  color: var(--color-dark-text-secondary, #9ca3af);
+}
+
+[data-theme="dark"] .form-input-addon {
+  background-color: var(--color-dark-gray-700, #374151);
+  border-color: var(--color-dark-gray-600, #4b5563);
+  color: var(--color-dark-text-secondary, #9ca3af);
+}
+
+[data-theme="dark"] .form-file__dropzone {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-dark-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .form-actions {
+  border-color: var(--color-dark-gray-700, #374151);
+}
+
+[data-theme="dark"] .form-summary--error {
+  background-color: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+[data-theme="dark"] .form-summary--success {
+  background-color: rgba(5, 150, 105, 0.1);
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="high-contrast"] .form-input {
+  border-width: 2px;
+}
+
+[data-theme="high-contrast"] .form-input--invalid {
+  border-color: var(--color-hc-danger, #ff0000);
+}
+
+[data-theme="high-contrast"] .form-error {
+  color: var(--color-hc-danger, #ff0000);
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+
+@media print {
+  .form-input,
+  .form-select,
+  .form-textarea {
+    border: 1px solid #000000 !important;
+    background: none !important;
+  }
+  
+  .form-error,
+  .form-warning,
+  .form-hint {
+    display: none !important;
+  }
+}

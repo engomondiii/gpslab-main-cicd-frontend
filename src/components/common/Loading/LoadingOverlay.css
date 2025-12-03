@@ -1,0 +1,104 @@
+/**
+ * GPS Lab Platform - LoadingOverlay Component Styles
+ * 
+ * Full-page and container loading overlay styles.
+ */
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+.loading-overlay__container {
+  position: relative;
+}
+
+/* =============================================================================
+   OVERLAY
+   ============================================================================= */
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-loading, 500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  animation: loading-overlay-enter 0.2s ease-out;
+}
+
+@keyframes loading-overlay-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =============================================================================
+   VARIANTS
+   ============================================================================= */
+
+/* Full screen */
+.loading-overlay--fullscreen {
+  position: fixed;
+  z-index: var(--z-modal, 1000);
+}
+
+/* Blur background */
+.loading-overlay--blur {
+  backdrop-filter: blur(4px);
+}
+
+/* Transparent */
+.loading-overlay--transparent {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* =============================================================================
+   CONTENT
+   ============================================================================= */
+
+.loading-overlay__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4, 1rem);
+  padding: var(--spacing-6, 1.5rem);
+}
+
+.loading-overlay__message {
+  margin: 0;
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-600, #4b5563);
+  text-align: center;
+  max-width: 20rem;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .loading-overlay {
+  background-color: rgba(17, 24, 39, 0.9);
+}
+
+[data-theme="dark"] .loading-overlay--transparent {
+  background-color: rgba(17, 24, 39, 0.7);
+}
+
+[data-theme="dark"] .loading-overlay__message {
+  color: var(--color-gray-300, #d1d5db);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-overlay {
+    animation: none;
+  }
+}

@@ -1,35 +1,757 @@
-/* ============================================
-   GPS LAB - Number Formatter Styles
-   ============================================ */
+/**
+ * GPS Lab Platform - Number Formatter Styles
+ * 
+ * CSS classes for number display components that use the number formatter utilities.
+ * These classes provide consistent visual styling for numeric data across the platform.
+ * 
+ * @module utils/formatters/number.formatter.css
+ * @version 1.0.0
+ */
 
-.formatted-number {
-  font-family: var(--font-mono);
-  font-weight: var(--font-medium);
-  color: var(--neutral-900);
+/* =============================================================================
+   BASE NUMBER DISPLAY STYLES
+   ============================================================================= */
+
+/**
+ * Base class for number display elements
+ */
+.number-display {
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-text-primary, #111827);
+  line-height: var(--line-height-tight, 1.25);
 }
 
+/**
+ * Large number display
+ */
+.number-display--large {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/**
+ * Extra large number display (for hero stats)
+ */
+.number-display--hero {
+  font-size: var(--font-size-4xl, 2.25rem);
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: -0.02em;
+}
+
+/**
+ * Small number display
+ */
+.number-display--small {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/**
+ * Extra small number display
+ */
+.number-display--xs {
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+/**
+ * Compact number display
+ */
+.number-display--compact {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* =============================================================================
+   XP (EXPERIENCE POINTS) STYLES
+   ============================================================================= */
+
+/**
+ * XP display container
+ */
+.xp-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+/**
+ * XP value
+ */
+.xp-display__value {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-xp, #8b5cf6);
+}
+
+/**
+ * XP label
+ */
+.xp-display__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-xp-light, #a78bfa);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/**
+ * XP gain animation
+ */
+.xp-gain {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  color: var(--color-xp, #8b5cf6);
+  font-weight: var(--font-weight-bold, 700);
+  animation: xp-pop 0.5s ease-out;
+}
+
+.xp-gain--positive {
+  color: var(--color-success, #059669);
+}
+
+.xp-gain--checkpoint {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.xp-gain--mission {
+  font-size: var(--font-size-base, 1rem);
+}
+
+.xp-gain--level-up {
+  font-size: var(--font-size-lg, 1.125rem);
+  animation: xp-level-up 1s ease-out;
+}
+
+@keyframes xp-pop {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes xp-level-up {
+  0% {
+    transform: scale(0.5) translateY(10px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) translateY(-5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =============================================================================
+   BARAKA CURRENCY STYLES
+   ============================================================================= */
+
+/**
+ * Baraka display container
+ */
+.baraka-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+/**
+ * Baraka symbol
+ */
+.baraka-display__symbol {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-baraka, #f59e0b);
+}
+
+/**
+ * Baraka value
+ */
+.baraka-display__value {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-primary, #111827);
+}
+
+/**
+ * Baraka wallet display (larger, for sidebar)
+ */
+.baraka-wallet {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md, 0.75rem);
+  background: linear-gradient(135deg, var(--color-amber-50, #fffbeb), var(--color-amber-100, #fef3c7));
+  border-radius: var(--border-radius-lg, 0.5rem);
+  border: 1px solid var(--color-amber-200, #fde68a);
+}
+
+.baraka-wallet__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-amber-700, #b45309);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs, 0.25rem);
+}
+
+.baraka-wallet__amount {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-amber-800, #92400e);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/**
+ * Baraka change indicators
+ */
+.baraka-gain {
+  color: var(--color-success, #059669);
+}
+
+.baraka-loss {
+  color: var(--color-danger, #dc2626);
+}
+
+.baraka-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  animation: baraka-change 0.3s ease-out;
+}
+
+@keyframes baraka-change {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================================================
+   PSB (PROJECT-SPECIFIC BARAKA) STYLES
+   ============================================================================= */
+
+/**
+ * PSB display
+ */
+.psb-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-xs, 0.25rem);
+  background-color: var(--color-blue-50, #eff6ff);
+  border-radius: var(--border-radius-sm, 0.25rem);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.psb-display__value {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-blue-700, #1d4ed8);
+}
+
+.psb-display__code {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-blue-500, #3b82f6);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* =============================================================================
+   PERCENTAGE STYLES
+   ============================================================================= */
+
+/**
+ * Percentage display
+ */
 .percentage-display {
-  font-family: var(--font-mono);
-  font-weight: var(--font-semibold);
-  color: var(--gps-primary);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-variant-numeric: tabular-nums;
 }
 
-.compact-number {
-  font-family: var(--font-mono);
-  font-weight: var(--font-medium);
+/**
+ * Progress percentage with visual indicator
+ */
+.progress-percentage {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
 }
 
-.file-size {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--neutral-600);
+.progress-percentage__bar {
+  flex: 1;
+  height: 8px;
+  background-color: var(--color-gray-200, #e5e7eb);
+  border-radius: var(--border-radius-full, 9999px);
+  overflow: hidden;
 }
 
-.ordinal-number {
-  font-family: var(--font-body);
-  font-weight: var(--font-semibold);
+.progress-percentage__fill {
+  height: 100%;
+  border-radius: var(--border-radius-full, 9999px);
+  transition: width var(--transition-normal, 300ms) ease-out;
 }
 
-/* ==========================================
-   END OF NUMBER FORMATTER STYLES
-   ========================================== */
+/* Progress fill colors by completion level */
+.progress-percentage__fill--low {
+  background-color: var(--color-red-500, #ef4444);
+}
+
+.progress-percentage__fill--medium {
+  background-color: var(--color-yellow-500, #eab308);
+}
+
+.progress-percentage__fill--high {
+  background-color: var(--color-green-500, #22c55e);
+}
+
+.progress-percentage__fill--complete {
+  background-color: var(--color-success, #059669);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-success, #059669),
+    var(--color-success-light, #34d399)
+  );
+}
+
+.progress-percentage__value {
+  min-width: 48px;
+  text-align: right;
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* =============================================================================
+   RANK STYLES
+   ============================================================================= */
+
+/**
+ * Rank display container
+ */
+.rank-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/**
+ * Rank tiers
+ */
+.rank-gold {
+  color: var(--color-gold, #f59e0b);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.rank-silver {
+  color: var(--color-silver, #9ca3af);
+  text-shadow: 0 0 10px rgba(156, 163, 175, 0.3);
+}
+
+.rank-bronze {
+  color: var(--color-bronze, #cd7f32);
+  text-shadow: 0 0 10px rgba(205, 127, 50, 0.3);
+}
+
+.rank-top10 {
+  color: var(--color-primary, #2563eb);
+}
+
+.rank-top100 {
+  color: var(--color-indigo-600, #4f46e5);
+}
+
+.rank-standard {
+  color: var(--color-text-secondary, #6b7280);
+}
+
+/**
+ * Rank icon (medal emoji or custom)
+ */
+.rank-display__icon {
+  font-size: 1.25em;
+}
+
+/**
+ * Rank number
+ */
+.rank-display__number {
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/* =============================================================================
+   STAGE NUMBER STYLES
+   ============================================================================= */
+
+/**
+ * Stage number display
+ */
+.stage-number {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/**
+ * Stage beacon indicator
+ */
+.stage-number__beacon {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+/* Beacon colors by adventure */
+.beacon-red {
+  background-color: var(--color-beacon-red, #ef4444);
+  box-shadow: 0 0 8px var(--color-beacon-red, #ef4444);
+}
+
+.beacon-orange {
+  background-color: var(--color-beacon-orange, #f97316);
+  box-shadow: 0 0 8px var(--color-beacon-orange, #f97316);
+}
+
+.beacon-yellow {
+  background-color: var(--color-beacon-yellow, #eab308);
+  box-shadow: 0 0 8px var(--color-beacon-yellow, #eab308);
+}
+
+.beacon-green {
+  background-color: var(--color-beacon-green, #22c55e);
+  box-shadow: 0 0 8px var(--color-beacon-green, #22c55e);
+}
+
+.beacon-blue {
+  background-color: var(--color-beacon-blue, #3b82f6);
+  box-shadow: 0 0 8px var(--color-beacon-blue, #3b82f6);
+}
+
+.beacon-indigo {
+  background-color: var(--color-beacon-indigo, #6366f1);
+  box-shadow: 0 0 8px var(--color-beacon-indigo, #6366f1);
+}
+
+.beacon-purple {
+  background-color: var(--color-beacon-purple, #a855f7);
+  box-shadow: 0 0 8px var(--color-beacon-purple, #a855f7);
+}
+
+.beacon-light {
+  background: linear-gradient(135deg, #fef3c7, #ffffff, #fef3c7);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+}
+
+/* =============================================================================
+   HONOR POINTS STYLES
+   ============================================================================= */
+
+/**
+ * Honor points display
+ */
+.honor-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  background: linear-gradient(135deg, var(--color-purple-50, #faf5ff), var(--color-pink-50, #fdf2f8));
+  border-radius: var(--border-radius-full, 9999px);
+  border: 1px solid var(--color-purple-200, #e9d5ff);
+}
+
+.honor-display__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-purple-500, #a855f7);
+}
+
+.honor-display__value {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-purple-700, #7e22ce);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.honor-display__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-purple-500, #a855f7);
+}
+
+/* =============================================================================
+   COVENANT RETURN STYLES
+   ============================================================================= */
+
+/**
+ * Covenant return breakdown
+ */
+.covenant-return {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-sm, 0.5rem);
+  background-color: var(--color-green-50, #f0fdf4);
+  border-radius: var(--border-radius-md, 0.375rem);
+  border: 1px solid var(--color-green-200, #bbf7d0);
+}
+
+.covenant-return__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.covenant-return__label {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.covenant-return__value {
+  font-weight: var(--font-weight-semibold, 600);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.covenant-return__highlight {
+  color: var(--color-success, #059669);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.covenant-return__divider {
+  height: 1px;
+  background-color: var(--color-green-200, #bbf7d0);
+  margin: var(--spacing-xs, 0.25rem) 0;
+}
+
+/* =============================================================================
+   CHECKPOINT PROGRESS STYLES
+   ============================================================================= */
+
+/**
+ * Checkpoint progress display
+ */
+.checkpoint-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.checkpoint-progress__completed {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-success, #059669);
+}
+
+.checkpoint-progress__separator {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.checkpoint-progress__total {
+  color: var(--color-text-secondary, #6b7280);
+}
+
+/* =============================================================================
+   STATISTIC DISPLAY STYLES
+   ============================================================================= */
+
+/**
+ * Statistic card
+ */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md, 0.75rem);
+  background-color: var(--color-white, #ffffff);
+  border-radius: var(--border-radius-lg, 0.5rem);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.stat-card__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs, 0.25rem);
+}
+
+.stat-card__value {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-text-primary, #111827);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.stat-card__change {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  margin-top: var(--spacing-xs, 0.25rem);
+}
+
+.stat-card__change--positive {
+  color: var(--color-success, #059669);
+}
+
+.stat-card__change--negative {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="dark"] .number-display {
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .baraka-wallet {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+  border-color: var(--color-dark-amber-700, #b45309);
+}
+
+[data-theme="dark"] .baraka-wallet__label {
+  color: var(--color-amber-400, #fbbf24);
+}
+
+[data-theme="dark"] .baraka-wallet__amount {
+  color: var(--color-amber-300, #fcd34d);
+}
+
+[data-theme="dark"] .psb-display {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .progress-percentage__bar {
+  background-color: var(--color-dark-gray-700, #374151);
+}
+
+[data-theme="dark"] .honor-display {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  border-color: var(--color-dark-purple-700, #7e22ce);
+}
+
+[data-theme="dark"] .covenant-return {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-color: var(--color-dark-green-700, #15803d);
+}
+
+[data-theme="dark"] .stat-card {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  box-shadow: var(--shadow-dark-sm, 0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="high-contrast"] .baraka-wallet,
+[data-theme="high-contrast"] .psb-display,
+[data-theme="high-contrast"] .honor-display,
+[data-theme="high-contrast"] .covenant-return {
+  border-width: 2px;
+}
+
+[data-theme="high-contrast"] .progress-percentage__bar {
+  border: 1px solid var(--color-hc-border, #000000);
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .number-display--hero {
+    font-size: var(--font-size-3xl, 1.875rem);
+  }
+  
+  .number-display--large {
+    font-size: var(--font-size-xl, 1.25rem);
+  }
+  
+  .baraka-wallet__amount {
+    font-size: var(--font-size-xl, 1.25rem);
+  }
+  
+  .stat-card__value {
+    font-size: var(--font-size-xl, 1.25rem);
+  }
+}
+
+/* =============================================================================
+   ANIMATION UTILITIES
+   ============================================================================= */
+
+/**
+ * Number count up animation
+ */
+.number-count-up {
+  animation: count-up 0.5s ease-out;
+}
+
+@keyframes count-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Number highlight pulse
+ */
+.number-highlight {
+  animation: number-pulse 0.8s ease-in-out;
+}
+
+@keyframes number-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    color: var(--color-primary, #2563eb);
+  }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+
+@media print {
+  .baraka-wallet,
+  .psb-display,
+  .honor-display,
+  .covenant-return {
+    background: none !important;
+    border: 1px solid #000000 !important;
+  }
+  
+  .beacon-red,
+  .beacon-orange,
+  .beacon-yellow,
+  .beacon-green,
+  .beacon-blue,
+  .beacon-indigo,
+  .beacon-purple,
+  .beacon-light {
+    box-shadow: none !important;
+    border: 1px solid currentColor;
+  }
+}

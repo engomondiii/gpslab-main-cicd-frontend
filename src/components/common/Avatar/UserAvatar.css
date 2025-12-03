@@ -1,0 +1,187 @@
+/**
+ * GPS Lab Platform - UserAvatar Component Styles
+ * 
+ * User avatar with level badge, XP ring, and role indicator.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.user-avatar {
+  position: relative;
+  display: inline-flex;
+}
+
+/* =============================================================================
+   SIZES
+   ============================================================================= */
+
+.user-avatar--xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.user-avatar--sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.user-avatar--md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.user-avatar--lg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-avatar--xl {
+  width: 4rem;
+  height: 4rem;
+}
+
+.user-avatar--xxl {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* With XP ring - slightly larger */
+.user-avatar--with-xp {
+  padding: 4px;
+}
+
+.user-avatar--with-xp.user-avatar--xs { width: 2rem; height: 2rem; }
+.user-avatar--with-xp.user-avatar--sm { width: 2.5rem; height: 2.5rem; }
+.user-avatar--with-xp.user-avatar--md { width: 3rem; height: 3rem; }
+.user-avatar--with-xp.user-avatar--lg { width: 3.5rem; height: 3.5rem; }
+.user-avatar--with-xp.user-avatar--xl { width: 4.5rem; height: 4.5rem; }
+.user-avatar--with-xp.user-avatar--xxl { width: 7rem; height: 7rem; }
+
+/* =============================================================================
+   XP RING
+   ============================================================================= */
+
+.user-avatar__xp-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.user-avatar__xp-track {
+  stroke: var(--color-gray-200, #e5e7eb);
+}
+
+.user-avatar__xp-progress {
+  stroke: var(--color-primary, #2563eb);
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+/* =============================================================================
+   LEVEL BADGE
+   ============================================================================= */
+
+.user-avatar__level {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--spacing-1, 0.25rem);
+  background: linear-gradient(135deg, var(--color-primary, #2563eb), var(--color-primary-dark, #1d4ed8));
+  color: var(--color-white, #ffffff);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-bold, 700);
+  border-radius: var(--radius-full, 9999px);
+  border: 2px solid var(--color-white, #ffffff);
+  line-height: 1;
+}
+
+/* Level badge sizes */
+.user-avatar--xs .user-avatar__level,
+.user-avatar--sm .user-avatar__level {
+  min-width: 1rem;
+  height: 1rem;
+  font-size: 0.625rem;
+}
+
+.user-avatar--lg .user-avatar__level,
+.user-avatar--xl .user-avatar__level {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.user-avatar--xxl .user-avatar__level {
+  min-width: 2rem;
+  height: 2rem;
+  font-size: var(--font-size-base, 1rem);
+}
+
+/* =============================================================================
+   ROLE INDICATOR
+   ============================================================================= */
+
+.user-avatar__role {
+  position: absolute;
+  top: -0.125rem;
+  left: -0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-white, #ffffff);
+}
+
+/* Role indicator sizes */
+.user-avatar--xs .user-avatar__role,
+.user-avatar--sm .user-avatar__role {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.user-avatar--lg .user-avatar__role,
+.user-avatar--xl .user-avatar__role {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.user-avatar--xxl .user-avatar__role {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .user-avatar__xp-track {
+  stroke: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .user-avatar__xp-progress {
+  stroke: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .user-avatar__level {
+  border-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .user-avatar__role {
+  border-color: var(--color-gray-800, #1f2937);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .user-avatar__xp-progress {
+    transition: none;
+  }
+}

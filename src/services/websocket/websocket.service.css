@@ -1,0 +1,313 @@
+/**
+ * GPS Lab Platform - WebSocket Service Styles
+ * 
+ * CSS for WebSocket connection status and real-time indicators.
+ * 
+ * @module services/websocket/websocket.service.css
+ * @version 1.0.0
+ */
+
+/* =============================================================================
+   CONNECTION STATUS
+   ============================================================================= */
+
+/**
+ * Connection status indicator
+ */
+.ws-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+.ws-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+.ws-status--connected {
+  color: var(--color-success, #059669);
+  background-color: var(--color-success-bg, #dcfce7);
+}
+
+.ws-status--connected .ws-status__dot {
+  background-color: var(--color-success, #059669);
+}
+
+.ws-status--disconnected {
+  color: var(--color-danger, #dc2626);
+  background-color: var(--color-danger-bg, #fee2e2);
+}
+
+.ws-status--disconnected .ws-status__dot {
+  background-color: var(--color-danger, #dc2626);
+}
+
+.ws-status--connecting,
+.ws-status--reconnecting {
+  color: var(--color-warning, #d97706);
+  background-color: var(--color-warning-bg, #fef3c7);
+}
+
+.ws-status--connecting .ws-status__dot,
+.ws-status--reconnecting .ws-status__dot {
+  background-color: var(--color-warning, #d97706);
+  animation: ws-pulse 1s ease-in-out infinite;
+}
+
+@keyframes ws-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* =============================================================================
+   RECONNECTING OVERLAY
+   ============================================================================= */
+
+/**
+ * Reconnecting overlay
+ */
+.ws-reconnecting-overlay {
+  position: fixed;
+  bottom: var(--spacing-lg, 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  background-color: var(--color-warning-bg, #fef3c7);
+  border: 1px solid var(--color-warning-light, #fcd34d);
+  border-radius: var(--border-radius-lg, 0.5rem);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  z-index: var(--z-index-toast, 80);
+  animation: ws-slide-up 0.3s ease-out;
+}
+
+@keyframes ws-slide-up {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.ws-reconnecting-overlay__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-warning-light, #fcd34d);
+  border-top-color: var(--color-warning, #d97706);
+  border-radius: var(--border-radius-full, 9999px);
+  animation: ws-spin 1s linear infinite;
+}
+
+@keyframes ws-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ws-reconnecting-overlay__text {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-warning-dark, #b45309);
+}
+
+.ws-reconnecting-overlay__attempt {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-warning, #d97706);
+}
+
+/* =============================================================================
+   REAL-TIME INDICATORS
+   ============================================================================= */
+
+/**
+ * Live indicator
+ */
+.ws-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-danger, #dc2626);
+}
+
+.ws-live-indicator__dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-danger, #dc2626);
+  border-radius: var(--border-radius-full, 9999px);
+  animation: ws-live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ws-live-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, 0);
+  }
+}
+
+/**
+ * Typing indicator
+ */
+.ws-typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+.ws-typing-indicator__dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gray-400, #9ca3af);
+  border-radius: var(--border-radius-full, 9999px);
+  animation: ws-typing 1.4s ease-in-out infinite;
+}
+
+.ws-typing-indicator__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ws-typing-indicator__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes ws-typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+/**
+ * Online users count
+ */
+.ws-online-count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-success, #059669);
+}
+
+.ws-online-count__dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-success, #059669);
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+/* =============================================================================
+   MESSAGE INDICATORS
+   ============================================================================= */
+
+/**
+ * New message indicator
+ */
+.ws-new-message {
+  position: relative;
+}
+
+.ws-new-message__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-white, #ffffff);
+  background-color: var(--color-danger, #dc2626);
+  border-radius: var(--border-radius-full, 9999px);
+  animation: ws-badge-pop 0.3s ease-out;
+}
+
+@keyframes ws-badge-pop {
+  from {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/**
+ * Message delivery status
+ */
+.ws-delivery-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+.ws-delivery-status__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.ws-delivery-status--sent .ws-delivery-status__icon {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.ws-delivery-status--delivered .ws-delivery-status__icon {
+  color: var(--color-primary, #2563eb);
+}
+
+.ws-delivery-status--read .ws-delivery-status__icon {
+  color: var(--color-success, #059669);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .ws-reconnecting-overlay {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-warning, #d97706);
+}
+
+[data-theme="dark"] .ws-typing-indicator {
+  background-color: var(--color-dark-gray-700, #374151);
+}
+
+[data-theme="dark"] .ws-typing-indicator__dot {
+  background-color: var(--color-gray-500, #6b7280);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ws-status--connecting .ws-status__dot,
+  .ws-status--reconnecting .ws-status__dot,
+  .ws-reconnecting-overlay__spinner,
+  .ws-live-indicator__dot,
+  .ws-typing-indicator__dot,
+  .ws-new-message__badge {
+    animation: none;
+  }
+}

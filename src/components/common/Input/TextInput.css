@@ -1,0 +1,134 @@
+/**
+ * GPS Lab Platform - TextInput Component Styles
+ * 
+ * Extended text input styling with prefix, suffix, clear button,
+ * password toggle, and character count.
+ */
+
+/* =============================================================================
+   TEXT INPUT CONTAINER
+   ============================================================================= */
+
+.text-input {
+  position: relative;
+  width: 100%;
+}
+
+/* =============================================================================
+   PREFIX & SUFFIX
+   ============================================================================= */
+
+.text-input__prefix,
+.text-input__suffix {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-500, #6b7280);
+  user-select: none;
+}
+
+.text-input__prefix {
+  padding-right: var(--spacing-1, 0.25rem);
+}
+
+.text-input__suffix {
+  padding-left: var(--spacing-1, 0.25rem);
+}
+
+/* =============================================================================
+   ACTION BUTTONS (Clear, Password Toggle)
+   ============================================================================= */
+
+.text-input__clear,
+.text-input__toggle-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-gray-400, #9ca3af);
+  cursor: pointer;
+  border-radius: var(--radius-sm, 0.25rem);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.text-input__clear:hover,
+.text-input__toggle-password:hover {
+  color: var(--color-gray-600, #4b5563);
+  background-color: var(--color-gray-100, #f3f4f6);
+}
+
+.text-input__clear:focus,
+.text-input__toggle-password:focus {
+  outline: none;
+  color: var(--color-primary, #2563eb);
+}
+
+.text-input__clear svg,
+.text-input__toggle-password svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* =============================================================================
+   CHARACTER COUNT
+   ============================================================================= */
+
+.text-input__char-count {
+  position: absolute;
+  right: 0;
+  bottom: -1.25rem;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-400, #9ca3af);
+}
+
+/* Adjust when helper text is present */
+.text-input .input-helper ~ .text-input__char-count {
+  bottom: -2.5rem;
+}
+
+/* Warning state when close to limit */
+.text-input__char-count--warning {
+  color: var(--color-warning, #f59e0b);
+}
+
+/* Error state when at limit */
+.text-input__char-count--limit {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .text-input__prefix,
+[data-theme="dark"] .text-input__suffix {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .text-input__clear,
+[data-theme="dark"] .text-input__toggle-password {
+  color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .text-input__clear:hover,
+[data-theme="dark"] .text-input__toggle-password:hover {
+  color: var(--color-gray-300, #d1d5db);
+  background-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .text-input__char-count {
+  color: var(--color-gray-500, #6b7280);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-input__clear,
+  .text-input__toggle-password {
+    transition: none;
+  }
+}

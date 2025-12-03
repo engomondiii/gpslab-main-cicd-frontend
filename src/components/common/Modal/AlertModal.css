@@ -1,0 +1,168 @@
+/**
+ * GPS Lab Platform - AlertModal Component Styles
+ * 
+ * Alert/notification modal styling with type variants.
+ */
+
+/* =============================================================================
+   CONTENT
+   ============================================================================= */
+
+.alert-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-2, 0.5rem) 0;
+}
+
+/* =============================================================================
+   ICON
+   ============================================================================= */
+
+.alert-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--spacing-4, 1rem);
+  border-radius: 50%;
+}
+
+.alert-modal__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Icon variants */
+.alert-modal__icon--info {
+  background-color: var(--color-primary-light, #dbeafe);
+  color: var(--color-primary, #2563eb);
+}
+
+.alert-modal__icon--success {
+  background-color: var(--color-success-light, #dcfce7);
+  color: var(--color-success, #16a34a);
+}
+
+.alert-modal__icon--warning {
+  background-color: var(--color-warning-light, #fef3c7);
+  color: var(--color-warning-dark, #b45309);
+}
+
+.alert-modal__icon--error {
+  background-color: var(--color-danger-light, #fee2e2);
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   TITLE & MESSAGE
+   ============================================================================= */
+
+.alert-modal__title {
+  margin: 0 0 var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-900, #111827);
+}
+
+.alert-modal__message {
+  margin: 0 0 var(--spacing-6, 1.5rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-600, #4b5563);
+  line-height: 1.5;
+}
+
+/* =============================================================================
+   BUTTON
+   ============================================================================= */
+
+.alert-modal__btn {
+  width: 100%;
+  padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  border: none;
+  border-radius: var(--radius-md, 0.5rem);
+  color: var(--color-white, #ffffff);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.alert-modal__btn--info {
+  background-color: var(--color-primary, #2563eb);
+}
+
+.alert-modal__btn--info:hover {
+  background-color: var(--color-primary-dark, #1d4ed8);
+}
+
+.alert-modal__btn--success {
+  background-color: var(--color-success, #16a34a);
+}
+
+.alert-modal__btn--success:hover {
+  background-color: var(--color-success-dark, #15803d);
+}
+
+.alert-modal__btn--warning {
+  background-color: var(--color-warning, #f59e0b);
+  color: var(--color-gray-900, #111827);
+}
+
+.alert-modal__btn--warning:hover {
+  background-color: var(--color-warning-dark, #d97706);
+}
+
+.alert-modal__btn--error {
+  background-color: var(--color-danger, #dc2626);
+}
+
+.alert-modal__btn--error:hover {
+  background-color: var(--color-danger-dark, #b91c1c);
+}
+
+.alert-modal__btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .alert-modal__title {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .alert-modal__message {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .alert-modal__icon--info {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .alert-modal__icon--success {
+  background-color: rgba(22, 163, 74, 0.2);
+}
+
+[data-theme="dark"] .alert-modal__icon--warning {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+[data-theme="dark"] .alert-modal__icon--error {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .alert-modal__btn {
+    transition: none;
+  }
+}

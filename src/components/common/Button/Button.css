@@ -1,0 +1,456 @@
+/**
+ * GPS Lab Platform - Button Component Styles
+ * 
+ * Comprehensive button styling with variants, sizes, and states.
+ * Uses CSS custom properties for theming support.
+ */
+
+/* =============================================================================
+   BASE BUTTON
+   ============================================================================= */
+
+.btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 0.5rem);
+  
+  /* Typography */
+  font-family: var(--font-family-sans, system-ui, sans-serif);
+  font-weight: var(--font-weight-medium, 500);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Box model */
+  border: 2px solid transparent;
+  border-radius: var(--radius-md, 0.5rem);
+  
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Transitions */
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+  
+  /* Focus */
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+.btn--xs {
+  height: 1.75rem;
+  padding: 0 var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  border-radius: var(--radius-sm, 0.25rem);
+}
+
+.btn--sm {
+  height: 2rem;
+  padding: 0 var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.btn--md {
+  height: 2.5rem;
+  padding: 0 var(--spacing-4, 1rem);
+  font-size: var(--font-size-base, 1rem);
+}
+
+.btn--lg {
+  height: 3rem;
+  padding: 0 var(--spacing-6, 1.5rem);
+  font-size: var(--font-size-lg, 1.125rem);
+}
+
+.btn--xl {
+  height: 3.5rem;
+  padding: 0 var(--spacing-8, 2rem);
+  font-size: var(--font-size-xl, 1.25rem);
+  border-radius: var(--radius-lg, 0.75rem);
+}
+
+/* =============================================================================
+   COLOR VARIANTS
+   ============================================================================= */
+
+/* Primary */
+.btn--primary {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-white, #ffffff);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #1d4ed8);
+  border-color: var(--color-primary-dark, #1d4ed8);
+}
+
+.btn--primary:active:not(:disabled) {
+  background-color: var(--color-primary-darker, #1e40af);
+  transform: translateY(1px);
+}
+
+/* Secondary */
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-primary, #2563eb);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #dbeafe);
+}
+
+.btn--secondary:active:not(:disabled) {
+  background-color: var(--color-primary-lighter, #bfdbfe);
+  transform: translateY(1px);
+}
+
+/* Tertiary */
+.btn--tertiary {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-700, #374151);
+}
+
+.btn--tertiary:hover:not(:disabled) {
+  background-color: var(--color-gray-200, #e5e7eb);
+  border-color: var(--color-gray-200, #e5e7eb);
+}
+
+.btn--tertiary:active:not(:disabled) {
+  background-color: var(--color-gray-300, #d1d5db);
+  transform: translateY(1px);
+}
+
+/* Ghost */
+.btn--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-primary, #2563eb);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #dbeafe);
+}
+
+.btn--ghost:active:not(:disabled) {
+  background-color: var(--color-primary-lighter, #bfdbfe);
+}
+
+/* Danger */
+.btn--danger {
+  background-color: var(--color-danger, #dc2626);
+  border-color: var(--color-danger, #dc2626);
+  color: var(--color-white, #ffffff);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background-color: var(--color-danger-dark, #b91c1c);
+  border-color: var(--color-danger-dark, #b91c1c);
+}
+
+.btn--danger:active:not(:disabled) {
+  background-color: var(--color-danger-darker, #991b1b);
+  transform: translateY(1px);
+}
+
+/* Success */
+.btn--success {
+  background-color: var(--color-success, #16a34a);
+  border-color: var(--color-success, #16a34a);
+  color: var(--color-white, #ffffff);
+}
+
+.btn--success:hover:not(:disabled) {
+  background-color: var(--color-success-dark, #15803d);
+  border-color: var(--color-success-dark, #15803d);
+}
+
+.btn--success:active:not(:disabled) {
+  background-color: var(--color-success-darker, #166534);
+  transform: translateY(1px);
+}
+
+/* Warning */
+.btn--warning {
+  background-color: var(--color-warning, #f59e0b);
+  border-color: var(--color-warning, #f59e0b);
+  color: var(--color-gray-900, #111827);
+}
+
+.btn--warning:hover:not(:disabled) {
+  background-color: var(--color-warning-dark, #d97706);
+  border-color: var(--color-warning-dark, #d97706);
+}
+
+.btn--warning:active:not(:disabled) {
+  background-color: var(--color-warning-darker, #b45309);
+  transform: translateY(1px);
+}
+
+/* Baraka (Special GPS currency variant) */
+.btn--baraka {
+  background: linear-gradient(135deg, var(--color-baraka, #f59e0b) 0%, var(--color-baraka-dark, #d97706) 100%);
+  border-color: var(--color-baraka, #f59e0b);
+  color: var(--color-white, #ffffff);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.btn--baraka:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-baraka-dark, #d97706) 0%, var(--color-baraka-darker, #b45309) 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn--baraka:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(245, 158, 11, 0.3);
+}
+
+/* =============================================================================
+   STATES
+   ============================================================================= */
+
+/* Disabled */
+.btn--disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading */
+.btn--loading {
+  position: relative;
+  cursor: wait;
+}
+
+.btn--loading .btn__content {
+  opacity: 0.7;
+}
+
+/* Full Width */
+.btn--full-width {
+  width: 100%;
+}
+
+/* =============================================================================
+   BUTTON CONTENT
+   ============================================================================= */
+
+.btn__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn__icon--left {
+  margin-right: var(--spacing-1, 0.25rem);
+}
+
+.btn__icon--right {
+  margin-left: var(--spacing-1, 0.25rem);
+}
+
+/* Icon sizing */
+.btn--xs .btn__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.btn--sm .btn__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn--md .btn__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.btn--lg .btn__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btn--xl .btn__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* =============================================================================
+   SPINNER
+   ============================================================================= */
+
+.btn__spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn__spinner-svg {
+  animation: btn-spin 1s linear infinite;
+}
+
+.btn--xs .btn__spinner-svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.btn--sm .btn__spinner-svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn--md .btn__spinner-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btn--lg .btn__spinner-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.btn--xl .btn__spinner-svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.btn__spinner-circle {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 45;
+}
+
+@keyframes btn-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .btn--primary {
+  background-color: var(--color-primary-light, #3b82f6);
+  border-color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .btn--primary:hover:not(:disabled) {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+}
+
+[data-theme="dark"] .btn--secondary {
+  border-color: var(--color-primary-light, #3b82f6);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .btn--secondary:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .btn--tertiary {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-700, #374151);
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .btn--tertiary:hover:not(:disabled) {
+  background-color: var(--color-gray-600, #4b5563);
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .btn--ghost {
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .btn--ghost:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME
+   ============================================================================= */
+
+[data-theme="high-contrast"] .btn {
+  border-width: 3px;
+}
+
+[data-theme="high-contrast"] .btn--primary {
+  background-color: var(--color-primary-dark, #1d4ed8);
+  border-color: var(--color-white, #ffffff);
+}
+
+[data-theme="high-contrast"] .btn--secondary {
+  border-color: var(--color-white, #ffffff);
+  color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  
+  .btn__spinner-svg {
+    animation-duration: 1.5s;
+  }
+  
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+  
+  .btn--baraka:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .btn--lg {
+    height: 2.75rem;
+    padding: 0 var(--spacing-4, 1rem);
+    font-size: var(--font-size-base, 1rem);
+  }
+  
+  .btn--xl {
+    height: 3rem;
+    padding: 0 var(--spacing-6, 1.5rem);
+    font-size: var(--font-size-lg, 1.125rem);
+  }
+}

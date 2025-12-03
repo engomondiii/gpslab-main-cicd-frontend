@@ -1,0 +1,179 @@
+/**
+ * GPS Lab Platform - Pagination Component Styles
+ * 
+ * Page navigation styling.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   LIST
+   ============================================================================= */
+
+.pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+
+.pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-700, #374151);
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: var(--radius-md, 0.5rem);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pagination__btn:hover:not(:disabled) {
+  background-color: var(--color-gray-50, #f9fafb);
+  border-color: var(--color-gray-400, #9ca3af);
+}
+
+.pagination__btn:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+.pagination__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Active state */
+.pagination__btn--active {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-white, #ffffff);
+}
+
+.pagination__btn--active:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #1d4ed8);
+  border-color: var(--color-primary-dark, #1d4ed8);
+}
+
+/* Nav buttons */
+.pagination__btn--nav {
+  padding: 0;
+}
+
+.pagination__btn--nav svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* =============================================================================
+   ELLIPSIS
+   ============================================================================= */
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  color: var(--color-gray-400, #9ca3af);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* =============================================================================
+   SIZES
+   ============================================================================= */
+
+/* Small */
+.pagination--sm .pagination__btn {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.pagination--sm .pagination__btn--nav svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.pagination--sm .pagination__ellipsis {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+/* Large */
+.pagination--lg .pagination__btn {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--font-size-base, 1rem);
+}
+
+.pagination--lg .pagination__btn--nav svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.pagination--lg .pagination__ellipsis {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--font-size-base, 1rem);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .pagination__btn {
+  color: var(--color-gray-300, #d1d5db);
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .pagination__btn:hover:not(:disabled) {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .pagination__btn--active {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-white, #ffffff);
+}
+
+[data-theme="dark"] .pagination__ellipsis {
+  color: var(--color-gray-500, #6b7280);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination__btn {
+    transition: none;
+  }
+}

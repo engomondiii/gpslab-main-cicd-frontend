@@ -1,0 +1,158 @@
+/**
+ * GPS Lab Platform - CircularProgress Component Styles
+ * 
+ * Circular progress indicator with variants and animations.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.circular-progress {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress__svg {
+  transform: rotate(0deg);
+}
+
+/* =============================================================================
+   TRACK
+   ============================================================================= */
+
+.circular-progress__track {
+  stroke: var(--color-gray-200, #e5e7eb);
+}
+
+/* =============================================================================
+   CIRCLE
+   ============================================================================= */
+
+.circular-progress__circle {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+/* =============================================================================
+   VARIANTS
+   ============================================================================= */
+
+.circular-progress--default .circular-progress__circle {
+  stroke: var(--color-gray-500, #6b7280);
+}
+
+.circular-progress--primary .circular-progress__circle {
+  stroke: var(--color-primary, #2563eb);
+}
+
+.circular-progress--success .circular-progress__circle {
+  stroke: var(--color-success, #16a34a);
+}
+
+.circular-progress--warning .circular-progress__circle {
+  stroke: var(--color-warning, #f59e0b);
+}
+
+.circular-progress--danger .circular-progress__circle {
+  stroke: var(--color-danger, #dc2626);
+}
+
+.circular-progress--baraka .circular-progress__circle {
+  stroke: var(--color-baraka, #f59e0b);
+}
+
+/* =============================================================================
+   CONTENT
+   ============================================================================= */
+
+.circular-progress__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress__value {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-700, #374151);
+}
+
+/* Size-specific value font sizes */
+.circular-progress--sm .circular-progress__value {
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.circular-progress--md .circular-progress__value {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.circular-progress--lg .circular-progress__value {
+  font-size: var(--font-size-lg, 1.125rem);
+}
+
+.circular-progress--xl .circular-progress__value {
+  font-size: var(--font-size-xl, 1.25rem);
+}
+
+/* =============================================================================
+   INDETERMINATE
+   ============================================================================= */
+
+.circular-progress--indeterminate .circular-progress__svg {
+  animation: circular-rotate 2s linear infinite;
+}
+
+.circular-progress--indeterminate .circular-progress__circle {
+  animation: circular-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circular-dash {
+  0% {
+    stroke-dashoffset: 251;
+  }
+  50% {
+    stroke-dashoffset: 63;
+  }
+  100% {
+    stroke-dashoffset: 251;
+  }
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .circular-progress__track {
+  stroke: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .circular-progress__value {
+  color: var(--color-gray-200, #e5e7eb);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .circular-progress__circle {
+    transition: none;
+  }
+  
+  .circular-progress--indeterminate .circular-progress__svg {
+    animation-duration: 4s;
+  }
+  
+  .circular-progress--indeterminate .circular-progress__circle {
+    animation-duration: 3s;
+  }
+}

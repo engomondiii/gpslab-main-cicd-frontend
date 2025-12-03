@@ -1,0 +1,143 @@
+/**
+ * GPS Lab Platform - Skeleton Component Styles
+ * 
+ * Skeleton loading placeholder styles with animation.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.skeleton {
+  background-color: var(--color-gray-200, #e5e7eb);
+  position: relative;
+  overflow: hidden;
+}
+
+/* =============================================================================
+   VARIANTS
+   ============================================================================= */
+
+/* Text */
+.skeleton--text {
+  height: 1rem;
+  border-radius: var(--radius-sm, 0.25rem);
+  width: 100%;
+}
+
+/* Circular */
+.skeleton--circular {
+  border-radius: 50%;
+}
+
+/* Rectangular */
+.skeleton--rectangular {
+  border-radius: 0;
+}
+
+/* Rounded */
+.skeleton--rounded {
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+/* =============================================================================
+   ANIMATION
+   ============================================================================= */
+
+.skeleton--animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =============================================================================
+   LINES
+   ============================================================================= */
+
+.skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+/* =============================================================================
+   PRESET: CARD
+   ============================================================================= */
+
+.skeleton-card {
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-lg, 0.75rem);
+  overflow: hidden;
+}
+
+.skeleton-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3, 0.75rem);
+  padding: var(--spacing-4, 1rem);
+}
+
+.skeleton-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 0.5rem);
+  margin-top: var(--spacing-2, 0.5rem);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .skeleton {
+  background-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .skeleton--animated::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+[data-theme="dark"] .skeleton-card {
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-700, #374151);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton--animated::after {
+    animation: skeleton-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,0 +1,239 @@
+/**
+ * GPS Lab Platform - useAuth Hook Styles
+ * 
+ * CSS for auth-related components using the useAuth hook.
+ * 
+ * @module hooks/useAuth.css
+ * @version 1.0.0
+ */
+
+/* =============================================================================
+   AUTH STATES
+   ============================================================================= */
+
+/**
+ * Auth loading state
+ */
+.auth-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: var(--spacing-md, 0.75rem);
+}
+
+.auth-loading__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-gray-200, #e5e7eb);
+  border-top-color: var(--color-primary, #2563eb);
+  border-radius: var(--border-radius-full, 9999px);
+  animation: auth-spin 0.8s linear infinite;
+}
+
+@keyframes auth-spin {
+  to { transform: rotate(360deg); }
+}
+
+.auth-loading__text {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #4b5563);
+}
+
+/**
+ * Auth error state
+ */
+.auth-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-md, 0.75rem);
+  background-color: var(--color-danger-bg, #fee2e2);
+  border: 1px solid var(--color-danger-light, #fca5a5);
+  border-radius: var(--border-radius-md, 0.375rem);
+}
+
+.auth-error__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-danger, #dc2626);
+}
+
+.auth-error__content {
+  flex: 1;
+}
+
+.auth-error__message {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-danger-dark, #b91c1c);
+}
+
+.auth-error__dismiss {
+  padding: var(--spacing-xs, 0.25rem);
+  color: var(--color-danger, #dc2626);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-sm, 0.25rem);
+}
+
+.auth-error__dismiss:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* =============================================================================
+   AUTH GUARD
+   ============================================================================= */
+
+/**
+ * Protected content wrapper
+ */
+.auth-guard {
+  min-height: 100vh;
+}
+
+.auth-guard--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-guard--unauthenticated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg, 1rem);
+  padding: var(--spacing-xl, 1.25rem);
+  text-align: center;
+}
+
+.auth-guard__message {
+  font-size: var(--font-size-lg, 1.125rem);
+  color: var(--color-text-secondary, #4b5563);
+}
+
+/* =============================================================================
+   USER DISPLAY
+   ============================================================================= */
+
+/**
+ * Current user display
+ */
+.auth-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+}
+
+.auth-user__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-full, 9999px);
+  object-fit: cover;
+}
+
+.auth-user__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-user__name {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #111827);
+}
+
+.auth-user__email {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+/* =============================================================================
+   SUBSCRIPTION BADGE
+   ============================================================================= */
+
+/**
+ * Subscription tier badge
+ */
+.auth-subscription-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+.auth-subscription-badge--free {
+  color: var(--color-gray-600, #4b5563);
+  background-color: var(--color-gray-100, #f3f4f6);
+}
+
+.auth-subscription-badge--contender {
+  color: #ea580c;
+  background-color: #fff7ed;
+}
+
+.auth-subscription-badge--pathfinder {
+  color: var(--color-success, #059669);
+  background-color: var(--color-success-bg, #dcfce7);
+}
+
+.auth-subscription-badge--navigators-circle {
+  color: var(--color-secondary, #8b5cf6);
+  background-color: var(--color-secondary-bg, #f3e8ff);
+}
+
+/* =============================================================================
+   VERIFICATION STATUS
+   ============================================================================= */
+
+/**
+ * Email verification indicator
+ */
+.auth-verification-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.auth-verification-status--verified {
+  color: var(--color-success, #059669);
+}
+
+.auth-verification-status--unverified {
+  color: var(--color-warning, #d97706);
+}
+
+.auth-verification-status__icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .auth-loading__spinner {
+  border-color: var(--color-dark-gray-600, #4b5563);
+  border-top-color: var(--color-primary, #2563eb);
+}
+
+[data-theme="dark"] .auth-user__name {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-loading__spinner {
+    animation: none;
+  }
+}

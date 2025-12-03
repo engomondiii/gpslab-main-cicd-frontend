@@ -1,0 +1,129 @@
+/**
+ * GPS Lab Platform - SecondaryButton Component Styles
+ * 
+ * Outlined secondary button with multiple style variants.
+ */
+
+/* =============================================================================
+   SECONDARY BUTTON BASE
+   ============================================================================= */
+
+.btn-secondary {
+  background-color: transparent;
+  border-width: 2px;
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* =============================================================================
+   DEFAULT VARIANT
+   ============================================================================= */
+
+.btn-secondary--default {
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-primary, #2563eb);
+}
+
+.btn-secondary--default:hover:not(:disabled) {
+  background-color: var(--color-primary, #2563eb);
+  color: var(--color-white, #ffffff);
+}
+
+.btn-secondary--default:active:not(:disabled) {
+  background-color: var(--color-primary-dark, #1d4ed8);
+  border-color: var(--color-primary-dark, #1d4ed8);
+}
+
+/* =============================================================================
+   SUBTLE VARIANT
+   ============================================================================= */
+
+.btn-secondary--subtle {
+  border-color: var(--color-gray-300, #d1d5db);
+  color: var(--color-gray-700, #374151);
+}
+
+.btn-secondary--subtle:hover:not(:disabled) {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-400, #9ca3af);
+}
+
+.btn-secondary--subtle:active:not(:disabled) {
+  background-color: var(--color-gray-200, #e5e7eb);
+}
+
+/* =============================================================================
+   CONTRAST VARIANT (for dark backgrounds)
+   ============================================================================= */
+
+.btn-secondary--contrast {
+  border-color: var(--color-white, #ffffff);
+  color: var(--color-white, #ffffff);
+}
+
+.btn-secondary--contrast:hover:not(:disabled) {
+  background-color: var(--color-white, #ffffff);
+  color: var(--color-primary, #2563eb);
+}
+
+.btn-secondary--contrast:active:not(:disabled) {
+  background-color: var(--color-gray-100, #f3f4f6);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .btn-secondary--default {
+  border-color: var(--color-primary-light, #3b82f6);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .btn-secondary--default:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #3b82f6);
+  color: var(--color-white, #ffffff);
+}
+
+[data-theme="dark"] .btn-secondary--subtle {
+  border-color: var(--color-gray-600, #4b5563);
+  color: var(--color-gray-300, #d1d5db);
+}
+
+[data-theme="dark"] .btn-secondary--subtle:hover:not(:disabled) {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .btn-secondary--contrast {
+  border-color: var(--color-white, #ffffff);
+  color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   FOCUS STATES
+   ============================================================================= */
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+.btn-secondary--subtle:focus-visible {
+  outline-color: var(--color-gray-500, #6b7280);
+}
+
+.btn-secondary--contrast:focus-visible {
+  outline-color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-secondary {
+    transition: none;
+  }
+}

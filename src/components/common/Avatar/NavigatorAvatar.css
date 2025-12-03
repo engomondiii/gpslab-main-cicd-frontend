@@ -1,0 +1,254 @@
+/**
+ * GPS Lab Platform - NavigatorAvatar Component Styles
+ * 
+ * AI character avatar with animated states.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.navigator-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================================================================
+   SIZES
+   ============================================================================= */
+
+.navigator-avatar--sm {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.navigator-avatar--md {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.navigator-avatar--lg {
+  width: 5rem;
+  height: 5rem;
+}
+
+.navigator-avatar--xl {
+  width: 7rem;
+  height: 7rem;
+}
+
+/* =============================================================================
+   RING
+   ============================================================================= */
+
+.navigator-avatar__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 3px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.navigator-avatar__ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--character-color);
+  opacity: 0.3;
+}
+
+/* Speaking ring animation */
+.navigator-avatar--speaking .navigator-avatar__ring {
+  animation: navigator-pulse 1.5s ease-in-out infinite;
+}
+
+.navigator-avatar--speaking .navigator-avatar__ring-inner {
+  opacity: 1;
+  border-width: 3px;
+}
+
+@keyframes navigator-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* =============================================================================
+   MAIN AVATAR
+   ============================================================================= */
+
+.navigator-avatar__main {
+  position: relative;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navigator-avatar__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.navigator-avatar--sm .navigator-avatar__icon { font-size: 1rem; }
+.navigator-avatar--lg .navigator-avatar__icon { font-size: 2rem; }
+.navigator-avatar--xl .navigator-avatar__icon { font-size: 3rem; }
+
+.navigator-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =============================================================================
+   THINKING ANIMATION
+   ============================================================================= */
+
+.navigator-avatar__thinking {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-white, #ffffff);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+}
+
+.navigator-avatar__dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: var(--character-color);
+  border-radius: 50%;
+  animation: thinking-bounce 1.4s ease-in-out infinite;
+}
+
+.navigator-avatar__dot:nth-child(1) { animation-delay: 0s; }
+.navigator-avatar__dot:nth-child(2) { animation-delay: 0.2s; }
+.navigator-avatar__dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes thinking-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-0.25rem);
+  }
+}
+
+/* =============================================================================
+   LISTENING ANIMATION
+   ============================================================================= */
+
+.navigator-avatar__listening {
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 0.125rem;
+  height: 1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-white, #ffffff);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+}
+
+.navigator-avatar__wave {
+  width: 0.1875rem;
+  background-color: var(--character-color);
+  border-radius: var(--radius-full, 9999px);
+  animation: listening-wave 1s ease-in-out infinite;
+}
+
+.navigator-avatar__wave:nth-child(1) {
+  height: 0.375rem;
+  animation-delay: 0s;
+}
+
+.navigator-avatar__wave:nth-child(2) {
+  height: 0.625rem;
+  animation-delay: 0.15s;
+}
+
+.navigator-avatar__wave:nth-child(3) {
+  height: 0.375rem;
+  animation-delay: 0.3s;
+}
+
+@keyframes listening-wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+
+/* =============================================================================
+   CLICKABLE
+   ============================================================================= */
+
+.navigator-avatar--clickable {
+  cursor: pointer;
+}
+
+.navigator-avatar--clickable:hover .navigator-avatar__main {
+  transform: scale(1.05);
+}
+
+.navigator-avatar--clickable:focus-visible {
+  outline: 2px solid var(--character-color);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.navigator-avatar__main {
+  transition: transform 0.2s ease;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .navigator-avatar__thinking,
+[data-theme="dark"] .navigator-avatar__listening {
+  background-color: var(--color-gray-800, #1f2937);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .navigator-avatar--speaking .navigator-avatar__ring {
+    animation: none;
+  }
+  
+  .navigator-avatar__dot {
+    animation: none;
+  }
+  
+  .navigator-avatar__wave {
+    animation: none;
+  }
+  
+  .navigator-avatar__main {
+    transition: none;
+  }
+}

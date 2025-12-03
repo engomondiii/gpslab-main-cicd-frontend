@@ -1,0 +1,144 @@
+/**
+ * GPS Lab Platform - EmptyState Component Styles
+ * 
+ * Empty state placeholder styling.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8, 2rem);
+  text-align: center;
+}
+
+/* =============================================================================
+   ICON
+   ============================================================================= */
+
+.empty-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-4, 1rem);
+  color: var(--color-gray-300, #d1d5db);
+}
+
+.empty-state__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   TITLE
+   ============================================================================= */
+
+.empty-state__title {
+  margin: 0 0 var(--spacing-2, 0.5rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-900, #111827);
+}
+
+/* =============================================================================
+   DESCRIPTION
+   ============================================================================= */
+
+.empty-state__description {
+  margin: 0;
+  color: var(--color-gray-500, #6b7280);
+  line-height: 1.5;
+  max-width: 24rem;
+}
+
+/* =============================================================================
+   ACTION
+   ============================================================================= */
+
+.empty-state__action {
+  margin-top: var(--spacing-6, 1.5rem);
+}
+
+/* =============================================================================
+   SIZES
+   ============================================================================= */
+
+/* Small */
+.empty-state--sm {
+  padding: var(--spacing-4, 1rem);
+}
+
+.empty-state--sm .empty-state__icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--spacing-2, 0.5rem);
+}
+
+.empty-state--sm .empty-state__title {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.empty-state--sm .empty-state__description {
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.empty-state--sm .empty-state__action {
+  margin-top: var(--spacing-3, 0.75rem);
+}
+
+/* Medium (default) */
+.empty-state--md .empty-state__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.empty-state--md .empty-state__title {
+  font-size: var(--font-size-lg, 1.125rem);
+}
+
+.empty-state--md .empty-state__description {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Large */
+.empty-state--lg {
+  padding: var(--spacing-12, 3rem);
+}
+
+.empty-state--lg .empty-state__icon {
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: var(--spacing-6, 1.5rem);
+}
+
+.empty-state--lg .empty-state__title {
+  font-size: var(--font-size-xl, 1.25rem);
+}
+
+.empty-state--lg .empty-state__description {
+  font-size: var(--font-size-base, 1rem);
+}
+
+.empty-state--lg .empty-state__action {
+  margin-top: var(--spacing-8, 2rem);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .empty-state__icon {
+  color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .empty-state__title {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .empty-state__description {
+  color: var(--color-gray-400, #9ca3af);
+}

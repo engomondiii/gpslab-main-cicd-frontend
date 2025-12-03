@@ -1,31 +1,531 @@
-/* ============================================
-   GPS LAB - Email Validator Styles
-   ============================================ */
+/**
+ * GPS Lab Platform - Email Validator Styles
+ * 
+ * CSS classes for email validation UI components.
+ * Provides visual feedback for email input validation states.
+ * 
+ * @module utils/validators/email.validator.css
+ * @version 1.0.0
+ */
 
-.email-validation-error {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--error);
-  margin-top: var(--space-1);
+/* =============================================================================
+   EMAIL INPUT BASE STYLES
+   ============================================================================= */
+
+/**
+ * Email input field container
+ */
+.email-input-container {
+  position: relative;
+  width: 100%;
 }
 
-.email-suggestion {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--info);
-  margin-top: var(--space-1);
-  cursor: pointer;
+/**
+ * Base email input styling
+ */
+.email-input {
+  width: 100%;
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  padding-right: 40px; /* Space for status icon */
+  font-size: var(--font-size-base, 1rem);
+  font-family: var(--font-family-primary, 'Inter', sans-serif);
+  color: var(--color-text-primary, #111827);
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: var(--border-radius-md, 0.375rem);
+  outline: none;
+  transition: all var(--transition-fast, 150ms) ease;
 }
 
-.email-suggestion:hover {
-  text-decoration: underline;
+.email-input::placeholder {
+  color: var(--color-gray-400, #9ca3af);
 }
 
-.masked-email {
-  font-family: var(--font-mono);
-  color: var(--neutral-600);
+.email-input:focus {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* ==========================================
-   END OF EMAIL VALIDATOR STYLES
-   ========================================== */
+/* =============================================================================
+   VALIDATION STATES
+   ============================================================================= */
+
+/**
+ * Valid email state
+ */
+.email-input--valid {
+  border-color: var(--color-success, #059669);
+}
+
+.email-input--valid:focus {
+  border-color: var(--color-success, #059669);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/**
+ * Invalid email state
+ */
+.email-input--invalid {
+  border-color: var(--color-danger, #dc2626);
+}
+
+.email-input--invalid:focus {
+  border-color: var(--color-danger, #dc2626);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/**
+ * Warning state (e.g., disposable email detected)
+ */
+.email-input--warning {
+  border-color: var(--color-warning, #d97706);
+}
+
+.email-input--warning:focus {
+  border-color: var(--color-warning, #d97706);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+/**
+ * Validating state (checking in progress)
+ */
+.email-input--validating {
+  border-color: var(--color-primary, #2563eb);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Cpath d='M12 2v4m0 12v4m10-10h-4M6 12H2m15.5-7.5l-3 3m-9 9l-3 3m15-3l3 3m-15-15l-3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  animation: email-validating 1s linear infinite;
+}
+
+@keyframes email-validating {
+  from {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' style='transform: rotate(0deg)'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");
+  }
+  to {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' style='transform: rotate(360deg)'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");
+  }
+}
+
+/* =============================================================================
+   STATUS ICONS
+   ============================================================================= */
+
+/**
+ * Status icon container
+ */
+.email-input-status {
+  position: absolute;
+  right: var(--spacing-sm, 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * Valid status icon
+ */
+.email-input-status--valid {
+  color: var(--color-success, #059669);
+}
+
+.email-input-status--valid::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23059669'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
+  background-size: contain;
+  animation: status-pop 0.3s ease-out;
+}
+
+/**
+ * Invalid status icon
+ */
+.email-input-status--invalid {
+  color: var(--color-danger, #dc2626);
+}
+
+.email-input-status--invalid::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+  background-size: contain;
+  animation: status-shake 0.4s ease-out;
+}
+
+/**
+ * Warning status icon
+ */
+.email-input-status--warning {
+  color: var(--color-warning, #d97706);
+}
+
+.email-input-status--warning::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d97706'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'/%3E%3C/svg%3E");
+  background-size: contain;
+}
+
+/**
+ * Validating spinner icon
+ */
+.email-input-status--validating {
+  color: var(--color-primary, #2563eb);
+}
+
+.email-input-status--validating::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-gray-200, #e5e7eb);
+  border-top-color: var(--color-primary, #2563eb);
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes status-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes status-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-3px);
+  }
+  40%, 80% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   ERROR MESSAGE STYLES
+   ============================================================================= */
+
+/**
+ * Error message container
+ */
+.email-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  margin-top: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-danger, #dc2626);
+  animation: error-slide-in 0.2s ease-out;
+}
+
+.email-error__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.email-error__text {
+  line-height: var(--line-height-tight, 1.25);
+}
+
+@keyframes error-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Warning message
+ */
+.email-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  margin-top: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-warning, #d97706);
+}
+
+/**
+ * Success/hint message
+ */
+.email-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs, 0.25rem);
+  margin-top: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.email-hint--success {
+  color: var(--color-success, #059669);
+}
+
+/* =============================================================================
+   EMAIL TYPE BADGES
+   ============================================================================= */
+
+/**
+ * Email type badge (educational, corporate, etc.)
+ */
+.email-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  border-radius: var(--border-radius-full, 9999px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.email-type-badge--educational {
+  background-color: var(--color-blue-100, #dbeafe);
+  color: var(--color-blue-700, #1d4ed8);
+}
+
+.email-type-badge--corporate {
+  background-color: var(--color-purple-100, #f3e8ff);
+  color: var(--color-purple-700, #7e22ce);
+}
+
+.email-type-badge--free {
+  background-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-600, #4b5563);
+}
+
+.email-type-badge--disposable {
+  background-color: var(--color-red-100, #fee2e2);
+  color: var(--color-red-700, #b91c1c);
+}
+
+.email-type-badge__icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* =============================================================================
+   MASKED EMAIL DISPLAY
+   ============================================================================= */
+
+/**
+ * Masked email display
+ */
+.email-masked {
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+  letter-spacing: 0.05em;
+}
+
+.email-masked__visible {
+  color: var(--color-text-primary, #111827);
+}
+
+.email-masked__hidden {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+/* =============================================================================
+   EMAIL LIST VALIDATION
+   ============================================================================= */
+
+/**
+ * Email list validation summary
+ */
+.email-list-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 0.75rem);
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  background-color: var(--color-gray-50, #f9fafb);
+  border-radius: var(--border-radius-md, 0.375rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.email-list-summary__count {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+}
+
+.email-list-summary__count--valid {
+  color: var(--color-success, #059669);
+}
+
+.email-list-summary__count--invalid {
+  color: var(--color-danger, #dc2626);
+}
+
+/**
+ * Email list item
+ */
+.email-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
+  border-bottom: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+.email-list-item:last-child {
+  border-bottom: none;
+}
+
+.email-list-item--valid {
+  background-color: var(--color-green-50, #f0fdf4);
+}
+
+.email-list-item--invalid {
+  background-color: var(--color-red-50, #fef2f2);
+}
+
+.email-list-item__email {
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.email-list-item__status {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* =============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="dark"] .email-input {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-dark-gray-600, #4b5563);
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .email-input::placeholder {
+  color: var(--color-dark-text-muted, #6b7280);
+}
+
+[data-theme="dark"] .email-input:focus {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+[data-theme="dark"] .email-input--valid {
+  border-color: var(--color-success, #059669);
+}
+
+[data-theme="dark"] .email-input--invalid {
+  border-color: var(--color-danger, #dc2626);
+}
+
+[data-theme="dark"] .email-list-summary {
+  background-color: var(--color-dark-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .email-list-item {
+  border-color: var(--color-dark-gray-700, #374151);
+}
+
+[data-theme="dark"] .email-list-item--valid {
+  background-color: rgba(5, 150, 105, 0.1);
+}
+
+[data-theme="dark"] .email-list-item--invalid {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+[data-theme="dark"] .email-type-badge--educational {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .email-type-badge--corporate {
+  background-color: rgba(168, 85, 247, 0.2);
+}
+
+[data-theme="dark"] .email-type-badge--free {
+  background-color: var(--color-dark-gray-700, #374151);
+}
+
+[data-theme="dark"] .email-type-badge--disposable {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="high-contrast"] .email-input {
+  border-width: 2px;
+}
+
+[data-theme="high-contrast"] .email-input--valid {
+  border-color: var(--color-hc-success, #00ff00);
+}
+
+[data-theme="high-contrast"] .email-input--invalid {
+  border-color: var(--color-hc-danger, #ff0000);
+}
+
+[data-theme="high-contrast"] .email-error {
+  color: var(--color-hc-danger, #ff0000);
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .email-input {
+    padding: var(--spacing-sm, 0.5rem);
+    font-size: var(--font-size-base, 1rem);
+  }
+  
+  .email-list-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs, 0.25rem);
+  }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+
+@media print {
+  .email-input-status,
+  .email-input--validating {
+    display: none !important;
+    animation: none !important;
+  }
+  
+  .email-input {
+    border: 1px solid #000000 !important;
+    background: none !important;
+  }
+}

@@ -1,91 +1,793 @@
-/* ============================================
-   GPS LAB - Currency Formatter Styles
-   ============================================ */
+/**
+ * GPS Lab Platform - Currency Formatter Styles
+ * 
+ * CSS classes for currency display components that use the currency formatter utilities.
+ * These classes provide consistent visual styling for Baraka, PSB, and fiat currencies.
+ * 
+ * @module utils/formatters/currency.formatter.css
+ * @version 1.0.0
+ */
 
+/* =============================================================================
+   BASE CURRENCY DISPLAY STYLES
+   ============================================================================= */
+
+/**
+ * Base class for currency display elements
+ */
 .currency-display {
-  font-family: var(--font-mono);
-  font-weight: var(--font-semibold);
-  color: var(--neutral-900);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-text-primary, #111827);
+  line-height: var(--line-height-tight, 1.25);
+  white-space: nowrap;
 }
 
-.baraka-display {
-  font-family: var(--font-mono);
-  font-weight: var(--font-bold);
+/**
+ * Currency symbol styling
+ */
+.currency-symbol {
+  font-weight: var(--font-weight-bold, 700);
+  margin-right: var(--spacing-2xs, 0.125rem);
+}
+
+/**
+ * Currency value styling
+ */
+.currency-value {
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/**
+ * Currency code label
+ */
+.currency-code {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-secondary, #6b7280);
+  margin-left: var(--spacing-xs, 0.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =============================================================================
+   CURRENCY CHANGE INDICATORS
+   ============================================================================= */
+
+/**
+ * Positive currency change (gain)
+ */
+.currency-positive {
+  color: var(--color-success, #059669);
+}
+
+.currency-positive::before {
+  content: '+';
+}
+
+/**
+ * Negative currency change (loss)
+ */
+.currency-negative {
+  color: var(--color-danger, #dc2626);
+}
+
+/**
+ * Neutral currency (no change)
+ */
+.currency-neutral {
+  color: var(--color-text-secondary, #6b7280);
+}
+
+/**
+ * Currency change animation
+ */
+.currency-change {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--spacing-2xs, 0.125rem);
+  animation: currency-change-pop 0.4s ease-out;
 }
 
-.baraka-base {
-  color: var(--baraka-base);
+@keyframes currency-change-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.9);
+  }
+  50% {
+    transform: translateY(2px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.baraka-green {
-  color: var(--baraka-green);
-}
+/* =============================================================================
+   BARAKA CURRENCY STYLES
+   ============================================================================= */
 
-.baraka-blue {
-  color: var(--baraka-blue);
-}
-
-.baraka-indigo {
-  color: var(--baraka-indigo);
-}
-
-.baraka-purple {
-  color: var(--baraka-purple);
-}
-
-.baraka-black {
-  color: var(--baraka-black);
-}
-
-.psb-display {
-  font-family: var(--font-mono);
-  font-weight: var(--font-bold);
-  color: var(--gps-primary);
+/**
+ * Baraka display container
+ */
+.baraka {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--spacing-xs, 0.25rem);
 }
 
-.xp-display {
-  font-family: var(--font-mono);
-  font-weight: var(--font-bold);
-  color: var(--xp-gold);
+/**
+ * Baraka symbol (₿)
+ */
+.baraka__symbol {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-baraka, #f59e0b);
+  font-size: 1.1em;
+}
+
+/**
+ * Baraka amount
+ */
+.baraka__amount {
+  font-weight: var(--font-weight-semibold, 600);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/**
+ * Baraka name label
+ */
+.baraka__name {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-amber-600, #d97706);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Baraka Wallet Component */
+.baraka-wallet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-md, 0.75rem) var(--spacing-lg, 1rem);
+  background: linear-gradient(135deg, 
+    var(--color-amber-50, #fffbeb) 0%, 
+    var(--color-amber-100, #fef3c7) 100%
+  );
+  border-radius: var(--border-radius-xl, 0.75rem);
+  border: 1px solid var(--color-amber-200, #fde68a);
+  box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1);
+}
+
+.baraka-wallet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.baraka-wallet__label {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-amber-700, #b45309);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.baraka-wallet__balance {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs, 0.25rem);
+}
+
+.baraka-wallet__amount {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-amber-900, #78350f);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+.baraka-wallet__symbol {
+  font-size: var(--font-size-xl, 1.25rem);
+  color: var(--color-amber-600, #d97706);
+}
+
+.baraka-wallet__tier {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--spacing-2xs, 0.125rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  border-radius: var(--border-radius-full, 9999px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
+/* Baraka Tier Colors */
+.baraka-tier--starter {
+  color: var(--color-gray-600, #4b5563);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+}
+
+.baraka-tier--beginner {
+  color: var(--color-orange-600, #ea580c);
+  border: 1px solid var(--color-orange-300, #fdba74);
+}
+
+.baraka-tier--intermediate {
+  color: var(--color-yellow-600, #ca8a04);
+  border: 1px solid var(--color-yellow-300, #fde047);
+}
+
+.baraka-tier--advanced {
+  color: var(--color-green-600, #16a34a);
+  border: 1px solid var(--color-green-300, #86efac);
+}
+
+.baraka-tier--expert {
+  color: var(--color-blue-600, #2563eb);
+  border: 1px solid var(--color-blue-300, #93c5fd);
+}
+
+.baraka-tier--master {
+  color: var(--color-purple-600, #9333ea);
+  border: 1px solid var(--color-purple-300, #d8b4fe);
+}
+
+.baraka-tier--legendary {
+  color: var(--color-gold, #f59e0b);
+  border: 1px solid var(--color-gold, #f59e0b);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.2));
+}
+
+/* =============================================================================
+   PSB (PROJECT-SPECIFIC BARAKA) STYLES
+   ============================================================================= */
+
+/**
+ * PSB display container
+ */
+.psb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  background-color: var(--color-blue-50, #eff6ff);
+  border-radius: var(--border-radius-md, 0.375rem);
+  border: 1px solid var(--color-blue-200, #bfdbfe);
+}
+
+/**
+ * PSB symbol (◈)
+ */
+.psb__symbol {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-blue-600, #2563eb);
+}
+
+/**
+ * PSB amount
+ */
+.psb__amount {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-blue-700, #1d4ed8);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/**
+ * PSB project code
+ */
+.psb__code {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-blue-500, #3b82f6);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* PSB Wallet Component */
+.psb-wallet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-md, 0.75rem) var(--spacing-lg, 1rem);
+  background: linear-gradient(135deg, 
+    var(--color-blue-50, #eff6ff) 0%, 
+    var(--color-indigo-50, #eef2ff) 100%
+  );
+  border-radius: var(--border-radius-xl, 0.75rem);
+  border: 1px solid var(--color-blue-200, #bfdbfe);
+}
+
+.psb-wallet__project {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-blue-600, #2563eb);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* =============================================================================
+   FIAT CURRENCY STYLES
+   ============================================================================= */
+
+/**
+ * USD display
+ */
+.currency-usd {
+  color: var(--color-green-700, #15803d);
+}
+
+.currency-usd .currency-symbol {
+  color: var(--color-green-600, #16a34a);
+}
+
+/**
+ * KRW display
+ */
+.currency-krw {
+  color: var(--color-blue-700, #1d4ed8);
+}
+
+.currency-krw .currency-symbol {
+  color: var(--color-blue-600, #2563eb);
+}
+
+/**
+ * KES display
+ */
+.currency-kes {
+  color: var(--color-red-700, #b91c1c);
+}
+
+.currency-kes .currency-symbol {
+  color: var(--color-red-600, #dc2626);
+}
+
+/* =============================================================================
+   COVENANT RETURN STYLES
+   ============================================================================= */
+
+/**
+ * Covenant return breakdown container
+ */
 .covenant-return {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-md, 0.75rem);
+  background: linear-gradient(135deg, 
+    var(--color-green-50, #f0fdf4) 0%, 
+    var(--color-emerald-50, #ecfdf5) 100%
+  );
+  border-radius: var(--border-radius-lg, 0.5rem);
+  border: 1px solid var(--color-green-200, #bbf7d0);
+}
+
+.covenant-return__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-green-700, #15803d);
+}
+
+.covenant-return__header-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.covenant-return__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xs, 0.25rem) 0;
+}
+
+.covenant-return__label {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.covenant-return__value {
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.covenant-return__value--total {
+  color: var(--color-text-primary, #111827);
+}
+
+.covenant-return__value--return {
+  color: var(--color-success, #059669);
+}
+
+.covenant-return__value--net {
+  color: var(--color-text-primary, #111827);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.covenant-return__divider {
+  height: 1px;
+  background-color: var(--color-green-200, #bbf7d0);
+}
+
+.covenant-return__percentage {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-xs, 0.25rem);
+  background-color: var(--color-green-100, #dcfce7);
+  border-radius: var(--border-radius-sm, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-green-700, #15803d);
 }
 
-.covenant-original {
-  color: var(--neutral-600);
+/* Covenant return breakdown categories */
+.covenant-return__breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xs, 0.25rem);
+  padding-top: var(--spacing-sm, 0.5rem);
+  border-top: 1px dashed var(--color-green-200, #bbf7d0);
 }
 
-.covenant-plus {
-  color: var(--neutral-500);
-  font-weight: var(--font-regular);
+.covenant-return__breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs, 0.125rem);
 }
 
-.covenant-returned {
-  color: var(--success);
-  font-weight: var(--font-bold);
+.covenant-return__breakdown-label {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-green-600, #16a34a);
 }
 
-.covenant-total {
-  color: var(--neutral-900);
-  font-weight: var(--font-extrabold);
-  font-size: var(--text-lg);
+.covenant-return__breakdown-value {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-green-700, #15803d);
 }
 
-/* ==========================================
-   END OF CURRENCY FORMATTER STYLES
-   ========================================== */
+/* =============================================================================
+   SUBSCRIPTION TIER STYLES
+   ============================================================================= */
+
+/**
+ * Subscription tier card
+ */
+.subscription-tier {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg, 1rem);
+  border-radius: var(--border-radius-xl, 0.75rem);
+  border: 2px solid var(--color-gray-200, #e5e7eb);
+  transition: all var(--transition-normal, 300ms) ease;
+}
+
+.subscription-tier:hover {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+.subscription-tier--selected {
+  border-color: var(--color-primary, #2563eb);
+  background-color: var(--color-primary-bg, #eff6ff);
+}
+
+.subscription-tier__name {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-text-primary, #111827);
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+.subscription-tier__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs, 0.25rem);
+  margin-bottom: var(--spacing-md, 0.75rem);
+}
+
+.subscription-tier__amount {
+  font-size: var(--font-size-3xl, 1.875rem);
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  color: var(--color-text-primary, #111827);
+}
+
+.subscription-tier__period {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.subscription-tier__return {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  padding: var(--spacing-sm, 0.5rem);
+  background-color: var(--color-green-50, #f0fdf4);
+  border-radius: var(--border-radius-md, 0.375rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-green-700, #15803d);
+}
+
+.subscription-tier__return-label {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.subscription-tier__return-amount {
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/* Tier-specific colors */
+.subscription-tier--free {
+  border-color: var(--color-gray-300, #d1d5db);
+  background-color: var(--color-gray-50, #f9fafb);
+}
+
+.subscription-tier--contender {
+  border-color: var(--color-orange-300, #fdba74);
+}
+
+.subscription-tier--contender .subscription-tier__name {
+  color: var(--color-orange-600, #ea580c);
+}
+
+.subscription-tier--pathfinder {
+  border-color: var(--color-blue-300, #93c5fd);
+}
+
+.subscription-tier--pathfinder .subscription-tier__name {
+  color: var(--color-blue-600, #2563eb);
+}
+
+.subscription-tier--navigators-circle {
+  border-color: var(--color-purple-300, #d8b4fe);
+  background: linear-gradient(135deg, 
+    rgba(168, 85, 247, 0.05) 0%, 
+    rgba(236, 72, 153, 0.05) 100%
+  );
+}
+
+.subscription-tier--navigators-circle .subscription-tier__name {
+  color: var(--color-purple-600, #9333ea);
+}
+
+/* =============================================================================
+   ADVENTURE PRICING STYLES
+   ============================================================================= */
+
+/**
+ * Adventure pricing card
+ */
+.adventure-price {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-md, 0.75rem);
+  border-radius: var(--border-radius-lg, 0.5rem);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.adventure-price__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.adventure-price__name {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-primary, #111827);
+}
+
+.adventure-price__stage {
+  font-size: var(--font-size-xs, 0.75rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-xs, 0.25rem);
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-radius: var(--border-radius-sm, 0.25rem);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.adventure-price__amount {
+  font-size: var(--font-size-xl, 1.25rem);
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+}
+
+/* =============================================================================
+   PRICE TAG STYLES
+   ============================================================================= */
+
+/**
+ * Compact price tag
+ */
+.price-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs, 0.125rem);
+  padding: var(--spacing-2xs, 0.125rem) var(--spacing-sm, 0.5rem);
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-radius: var(--border-radius-full, 9999px);
+  font-family: var(--font-family-mono, 'Roboto Mono', monospace);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.price-tag--sale {
+  background-color: var(--color-red-100, #fee2e2);
+  color: var(--color-red-700, #b91c1c);
+}
+
+.price-tag--original {
+  text-decoration: line-through;
+  color: var(--color-text-muted, #9ca3af);
+}
+
+/* =============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="dark"] .currency-display {
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .baraka-wallet {
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.1) 0%, 
+    rgba(217, 119, 6, 0.1) 100%
+  );
+  border-color: var(--color-dark-amber-700, #b45309);
+}
+
+[data-theme="dark"] .baraka-wallet__amount {
+  color: var(--color-amber-300, #fcd34d);
+}
+
+[data-theme="dark"] .psb {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--color-dark-blue-700, #1d4ed8);
+}
+
+[data-theme="dark"] .psb-wallet {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(99, 102, 241, 0.1) 100%
+  );
+  border-color: var(--color-dark-blue-700, #1d4ed8);
+}
+
+[data-theme="dark"] .covenant-return {
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.1) 0%, 
+    rgba(16, 185, 129, 0.1) 100%
+  );
+  border-color: var(--color-dark-green-700, #15803d);
+}
+
+[data-theme="dark"] .subscription-tier {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-dark-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .subscription-tier__name {
+  color: var(--color-dark-text-primary, #f3f4f6);
+}
+
+[data-theme="dark"] .adventure-price {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-dark-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .price-tag {
+  background-color: var(--color-dark-gray-700, #374151);
+}
+
+/* =============================================================================
+   HIGH CONTRAST THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="high-contrast"] .baraka-wallet,
+[data-theme="high-contrast"] .psb,
+[data-theme="high-contrast"] .psb-wallet,
+[data-theme="high-contrast"] .covenant-return,
+[data-theme="high-contrast"] .subscription-tier,
+[data-theme="high-contrast"] .adventure-price {
+  border-width: 2px;
+}
+
+[data-theme="high-contrast"] .currency-positive {
+  color: var(--color-hc-success, #00ff00);
+}
+
+[data-theme="high-contrast"] .currency-negative {
+  color: var(--color-hc-danger, #ff0000);
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .baraka-wallet__amount {
+    font-size: var(--font-size-xl, 1.25rem);
+  }
+  
+  .subscription-tier__amount {
+    font-size: var(--font-size-2xl, 1.5rem);
+  }
+  
+  .covenant-return__breakdown {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================================
+   ANIMATION UTILITIES
+   ============================================================================= */
+
+/**
+ * Currency update animation
+ */
+.currency-update {
+  animation: currency-flash 0.5s ease-out;
+}
+
+@keyframes currency-flash {
+  0%, 100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--color-yellow-200, #fef08a);
+  }
+}
+
+/**
+ * Large amount celebration
+ */
+.currency-celebrate {
+  animation: currency-celebrate 1s ease-out;
+}
+
+@keyframes currency-celebrate {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+
+@media print {
+  .baraka-wallet,
+  .psb-wallet,
+  .covenant-return,
+  .subscription-tier,
+  .adventure-price {
+    background: none !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+  }
+  
+  .currency-positive,
+  .currency-negative {
+    color: #000000 !important;
+  }
+  
+  .currency-positive::before {
+    content: '(+) ';
+  }
+  
+  .currency-negative::before {
+    content: '(-) ';
+  }
+}

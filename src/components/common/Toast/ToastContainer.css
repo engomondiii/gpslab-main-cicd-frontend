@@ -1,0 +1,235 @@
+/**
+ * GPS Lab Platform - ToastContainer Component Styles
+ * 
+ * Container positioning for toast notifications.
+ */
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+.toast-container {
+  position: fixed;
+  z-index: var(--z-toast, 1100);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 0.5rem);
+  padding: var(--spacing-4, 1rem);
+  pointer-events: none;
+}
+
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* =============================================================================
+   POSITION VARIANTS
+   ============================================================================= */
+
+/* Top Right */
+.toast-container--top-right {
+  top: 0;
+  right: 0;
+  align-items: flex-end;
+}
+
+/* Top Left */
+.toast-container--top-left {
+  top: 0;
+  left: 0;
+  align-items: flex-start;
+}
+
+.toast-container--top-left .toast {
+  animation-name: toast-enter-left;
+}
+
+.toast-container--top-left .toast--exiting {
+  animation-name: toast-exit-left;
+}
+
+/* Top Center */
+.toast-container--top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.toast-container--top-center .toast {
+  animation-name: toast-enter-top;
+}
+
+.toast-container--top-center .toast--exiting {
+  animation-name: toast-exit-top;
+}
+
+/* Bottom Right */
+.toast-container--bottom-right {
+  bottom: 0;
+  right: 0;
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}
+
+.toast-container--bottom-right .toast {
+  animation-name: toast-enter-bottom;
+}
+
+.toast-container--bottom-right .toast--exiting {
+  animation-name: toast-exit-bottom;
+}
+
+/* Bottom Left */
+.toast-container--bottom-left {
+  bottom: 0;
+  left: 0;
+  align-items: flex-start;
+  flex-direction: column-reverse;
+}
+
+.toast-container--bottom-left .toast {
+  animation-name: toast-enter-bottom-left;
+}
+
+.toast-container--bottom-left .toast--exiting {
+  animation-name: toast-exit-left;
+}
+
+/* Bottom Center */
+.toast-container--bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.toast-container--bottom-center .toast {
+  animation-name: toast-enter-bottom;
+}
+
+.toast-container--bottom-center .toast--exiting {
+  animation-name: toast-exit-bottom;
+}
+
+/* =============================================================================
+   ANIMATIONS
+   ============================================================================= */
+
+@keyframes toast-enter-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-exit-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-exit-top {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-exit-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes toast-enter-bottom-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .toast-container {
+    padding: var(--spacing-2, 0.5rem);
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+  
+  .toast-container--top-right,
+  .toast-container--top-left,
+  .toast-container--top-center {
+    align-items: stretch;
+  }
+  
+  .toast-container--bottom-right,
+  .toast-container--bottom-left,
+  .toast-container--bottom-center {
+    align-items: stretch;
+  }
+  
+  .toast-container .toast {
+    max-width: none;
+  }
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-container .toast,
+  .toast-container .toast--exiting {
+    animation-duration: 0.15s;
+  }
+}

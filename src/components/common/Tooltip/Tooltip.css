@@ -1,0 +1,167 @@
+/**
+ * GPS Lab Platform - Tooltip Component Styles
+ * 
+ * Tooltip positioning, variants, and animations.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.tooltip {
+  position: fixed;
+  z-index: var(--z-tooltip, 1200);
+  max-width: 20rem;
+  padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  line-height: 1.4;
+  border-radius: var(--radius-md, 0.5rem);
+  pointer-events: none;
+  animation: tooltip-enter 0.15s ease-out;
+}
+
+@keyframes tooltip-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =============================================================================
+   VARIANTS
+   ============================================================================= */
+
+/* Default (dark) */
+.tooltip--default {
+  background-color: var(--color-gray-900, #111827);
+  color: var(--color-white, #ffffff);
+}
+
+/* Light */
+.tooltip--light {
+  background-color: var(--color-white, #ffffff);
+  color: var(--color-gray-700, #374151);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+/* =============================================================================
+   ARROW
+   ============================================================================= */
+
+.tooltip--arrow::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+}
+
+/* Top position arrow */
+.tooltip--top.tooltip--arrow::before {
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: var(--color-gray-900, #111827);
+}
+
+.tooltip--top.tooltip--light.tooltip--arrow::before {
+  border-top-color: var(--color-white, #ffffff);
+}
+
+/* Bottom position arrow */
+.tooltip--bottom.tooltip--arrow::before {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: var(--color-gray-900, #111827);
+}
+
+.tooltip--bottom.tooltip--light.tooltip--arrow::before {
+  border-bottom-color: var(--color-white, #ffffff);
+}
+
+/* Left position arrow */
+.tooltip--left.tooltip--arrow::before {
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: var(--color-gray-900, #111827);
+}
+
+.tooltip--left.tooltip--light.tooltip--arrow::before {
+  border-left-color: var(--color-white, #ffffff);
+}
+
+/* Right position arrow */
+.tooltip--right.tooltip--arrow::before {
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: var(--color-gray-900, #111827);
+}
+
+.tooltip--right.tooltip--light.tooltip--arrow::before {
+  border-right-color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .tooltip--default {
+  background-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-900, #111827);
+}
+
+[data-theme="dark"] .tooltip--top.tooltip--arrow::before {
+  border-top-color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tooltip--bottom.tooltip--arrow::before {
+  border-bottom-color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tooltip--left.tooltip--arrow::before {
+  border-left-color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tooltip--right.tooltip--arrow::before {
+  border-right-color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tooltip--light {
+  background-color: var(--color-gray-800, #1f2937);
+  color: var(--color-gray-200, #e5e7eb);
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .tooltip--top.tooltip--light.tooltip--arrow::before {
+  border-top-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .tooltip--bottom.tooltip--light.tooltip--arrow::before {
+  border-bottom-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .tooltip--left.tooltip--light.tooltip--arrow::before {
+  border-left-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .tooltip--right.tooltip--light.tooltip--arrow::before {
+  border-right-color: var(--color-gray-800, #1f2937);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    animation: none;
+  }
+}

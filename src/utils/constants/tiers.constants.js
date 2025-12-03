@@ -1,284 +1,584 @@
-/* ============================================
-   GPS LAB - Tiers Constants
-   Subscription tier configuration
-   ============================================ */
+/**
+ * GPS Lab Platform - Tiers Constants
+ * 
+ * Subscription tiers, Baraka value tiers, and pricing information
+ * for the GPS Lab MMORPG educational platform.
+ * 
+ * @module utils/constants/tiers.constants
+ * @version 1.0.0
+ */
+
+// =============================================================================
+// SUBSCRIPTION TIERS
+// =============================================================================
 
 /**
- * Subscription tiers
+ * Subscription tier definitions
  */
-export const SubscriptionTiers = {
+export const SUBSCRIPTION_TIERS = {
   FREE: {
     id: 'free',
-    name: 'Free Tier',
-    slug: 'free',
-    price: 0,
+    name: 'Free',
+    displayName: 'Explorer',
+    description: 'Start your GPS journey',
+    monthlyPrice: 0,
+    annualPrice: 0,
     currency: 'USD',
-    billingPeriod: null,
-    description: 'Get started with GPS Lab',
-    color: '#8B949E',
-    icon: 'free-tier.svg',
-    features: [
-      'Access to GPS 101 (Stages 1-5)',
-      '5 missions per stage',
-      'Basic Navigator AI assistance',
-      'Community access',
-      'Baraka economy participation',
-      'Character badges (Red Beacon)',
-      'Basic portfolio',
-    ],
+    color: '#9ca3af',
+    icon: '🌱',
+    
+    features: {
+      // Access
+      stageAccess: 'Stage 1 only',
+      maxStage: 1,
+      missionAccess: 'GPO Call missions',
+      
+      // Support
+      aiNavigator: true,
+      aiCompanion: false,
+      aiCoach: false,
+      aiMentor: false,
+      
+      // Community
+      communityAccess: 'Basic forums',
+      partyFormation: false,
+      
+      // Rewards
+      xpMultiplier: 1.0,
+      barakaMultiplier: 1.0,
+      
+      // Limits
+      monthlyRetries: 3,
+      storageGB: 1
+    },
+    
     limitations: [
-      'Limited to GPS 101 stages',
-      'Basic Navigator features only',
-      'No party formations',
-      'No mentor access',
-      'Limited storage (100MB)',
+      'Limited to Stage 1',
+      'No AI Companion or Coach',
+      'No party formation',
+      'Basic community access only'
     ],
-    maxStages: 5,
-    maxPartySize: 0,
-    storageLimit: 100 * 1024 * 1024, // 100MB
-    navigatorAccess: 'basic',
-    mentorAccess: false,
-    priority: 1,
+    
+    highlights: [
+      'Access to GPO Call',
+      'AI Navigator guidance',
+      'Basic community forums',
+      'Earn your first badge'
+    ]
   },
-
+  
   CONTENDER: {
     id: 'contender',
     name: 'Contender',
-    slug: 'contender',
-    price: 29,
+    displayName: 'Contender',
+    description: 'Unlock the GPS foundation',
+    monthlyPrice: 19,
+    annualPrice: 190,  // ~$15.83/month - 2 months free
     currency: 'USD',
-    billingPeriod: 'month',
-    description: 'For serious problem solvers',
-    color: '#FF8C42',
-    icon: 'contender.svg',
-    features: [
-      'Everything in Free',
-      'Access to GPS Prep & Simulation (Stages 1-15)',
-      'Form and join parties',
-      'Advanced Navigator AI',
-      'Study mode & R2R rights',
-      'Priority checkpoint reviews',
-      'Extended portfolio',
-      'Exclusive Contender community',
-    ],
+    color: '#f97316',
+    icon: '🔥',
+    
+    features: {
+      // Access
+      stageAccess: 'Stages 1-11',
+      maxStage: 11,
+      missionAccess: 'GPS 101 + GPS Prep',
+      
+      // Support
+      aiNavigator: true,
+      aiCompanion: true,
+      aiCoach: false,
+      aiMentor: false,
+      
+      // Community
+      communityAccess: 'Full forums + chat',
+      partyFormation: false,
+      
+      // Rewards
+      xpMultiplier: 1.1,
+      barakaMultiplier: 1.1,
+      
+      // Limits
+      monthlyRetries: 10,
+      storageGB: 5
+    },
+    
     limitations: [
-      'Limited to stages 1-15',
-      'Party size limited to 5',
-      'Storage limited to 1GB',
+      'Limited to Stage 11',
+      'No AI Coach or Mentor',
+      'No party formation'
     ],
-    maxStages: 15,
-    maxPartySize: 5,
-    storageLimit: 1 * 1024 * 1024 * 1024, // 1GB
-    navigatorAccess: 'advanced',
-    mentorAccess: false,
-    priority: 2,
-    popular: false,
+    
+    highlights: [
+      'Access to GPS 101 + GPS Prep',
+      'AI Navigator + Companion',
+      '10% XP & Baraka bonus',
+      '10 monthly retries',
+      '5GB storage'
+    ],
+    
+    covenantReturn: {
+      totalReturn: 9.50,  // 50% of $19
+      taSupport: 2.85,    // 30%
+      dataSubsidy: 1.90,  // 20%
+      deviceSubsidy: 1.90,// 20%
+      missionCredits: 2.85// 30%
+    }
   },
-
+  
   PATHFINDER: {
     id: 'pathfinder',
     name: 'Pathfinder',
-    slug: 'pathfinder',
-    price: 99,
+    displayName: 'Pathfinder',
+    description: 'Master the GPS methodology',
+    monthlyPrice: 49,
+    annualPrice: 490,  // ~$40.83/month - 2 months free
     currency: 'USD',
-    billingPeriod: 'month',
-    description: 'For aspiring entrepreneurs',
-    color: '#00D4FF',
-    icon: 'pathfinder.svg',
-    features: [
-      'Everything in Contender',
-      'Access to GPS Capstones (Stages 1-25)',
-      'Unlimited party formations',
-      'Pro Bono Ally (mentor) access',
-      'Premium Navigator AI',
-      'pR2R (Provisional Retry Rights)',
-      'Adventure missions',
-      'Professional portfolio',
-      'GPS Lab certification upon completion',
-    ],
-    limitations: [
-      'Limited to stages 1-25',
-      'Storage limited to 5GB',
-    ],
-    maxStages: 25,
-    maxPartySize: 10,
-    storageLimit: 5 * 1024 * 1024 * 1024, // 5GB
-    navigatorAccess: 'premium',
-    mentorAccess: true,
-    priority: 3,
+    color: '#22c55e',
+    icon: '🧭',
     popular: true,
-  },
-
-  NAVIGATORS_CIRCLE: {
-    id: 'navigators-circle',
-    name: "Navigator's Circle",
-    slug: 'navigators-circle',
-    price: 299,
-    currency: 'USD',
-    billingPeriod: 'month',
-    description: 'For committed change makers',
-    color: '#8E44AD',
-    icon: 'navigators-circle.svg',
-    features: [
-      'Everything in Pathfinder',
-      'Access to ALL stages (1-35)',
-      'Venture Acceleration & Capitalization',
-      'Elite Navigator AI (fastest, most advanced)',
-      'Dedicated mentor',
-      'Investment readiness support',
-      'Fundraising connections',
-      'Exclusive events and retreats',
-      'Lifetime access to GPS Lab network',
-      'Priority support',
+    
+    features: {
+      // Access
+      stageAccess: 'Stages 1-25',
+      maxStage: 25,
+      missionAccess: 'Through GPS Capstone 2',
+      
+      // Support
+      aiNavigator: true,
+      aiCompanion: true,
+      aiCoach: true,
+      aiMentor: false,
+      
+      // Community
+      communityAccess: 'Full access + mentorship matching',
+      partyFormation: true,
+      
+      // Rewards
+      xpMultiplier: 1.2,
+      barakaMultiplier: 1.2,
+      
+      // Limits
+      monthlyRetries: 25,
+      storageGB: 25
+    },
+    
+    limitations: [
+      'Limited to Stage 25',
+      'No AI Mentor access'
     ],
-    limitations: [],
-    maxStages: 35,
-    maxPartySize: 20,
-    storageLimit: 20 * 1024 * 1024 * 1024, // 20GB
-    navigatorAccess: 'elite',
-    mentorAccess: true,
-    dedicatedMentor: true,
-    priority: 4,
-    popular: false,
-  },
-};
-
-/**
- * Tier order (free to premium)
- */
-export const TierOrder = ['free', 'contender', 'pathfinder', 'navigators-circle'];
-
-/**
- * Get tier by ID
- * @param {string} tierId - Tier ID
- * @returns {Object|null} Tier configuration
- */
-export const getTier = (tierId) => {
-  return SubscriptionTiers[tierId.toUpperCase()] || null;
-};
-
-/**
- * Get tier by slug
- * @param {string} slug - Tier slug
- * @returns {Object|null} Tier configuration
- */
-export const getTierBySlug = (slug) => {
-  return Object.values(SubscriptionTiers).find(tier => tier.slug === slug) || null;
-};
-
-/**
- * Get all tiers as array (ordered)
- * @returns {Array} Array of tiers
- */
-export const getAllTiers = () => {
-  return TierOrder.map(slug => getTierBySlug(slug));
-};
-
-/**
- * Check if tier has access to stage
- * @param {string} tierId - Tier ID
- * @param {number} stageNumber - Stage number
- * @returns {boolean}
- */
-export const tierHasStageAccess = (tierId, stageNumber) => {
-  const tier = getTier(tierId);
-  if (!tier) return false;
-  return stageNumber <= tier.maxStages;
-};
-
-/**
- * Check if tier has mentor access
- * @param {string} tierId - Tier ID
- * @returns {boolean}
- */
-export const tierHasMentorAccess = (tierId) => {
-  const tier = getTier(tierId);
-  return tier ? tier.mentorAccess : false;
-};
-
-/**
- * Get tier upgrade recommendations
- * @param {string} currentTierId - Current tier ID
- * @param {number} desiredStage - Desired stage number
- * @returns {Object|null} Recommended tier
- */
-export const getRecommendedTierUpgrade = (currentTierId, desiredStage) => {
-  const currentTier = getTier(currentTierId);
-  if (!currentTier) return null;
-
-  if (desiredStage <= currentTier.maxStages) return null;
-
-  for (const tierId of TierOrder) {
-    const tier = getTier(tierId);
-    if (tier && tier.maxStages >= desiredStage && tier.priority > currentTier.priority) {
-      return tier;
+    
+    highlights: [
+      'Access through Capstone 2',
+      'AI Navigator + Companion + Coach',
+      'Party formation enabled',
+      '20% XP & Baraka bonus',
+      '25 monthly retries',
+      '25GB storage'
+    ],
+    
+    covenantReturn: {
+      totalReturn: 24.50,
+      taSupport: 7.35,
+      dataSubsidy: 4.90,
+      deviceSubsidy: 4.90,
+      missionCredits: 7.35
     }
+  },
+  
+  NAVIGATORS_CIRCLE: {
+    id: 'navigators_circle',
+    name: "Navigator's Circle",
+    displayName: "Navigator's Circle",
+    description: 'Full GPS journey + venture support',
+    monthlyPrice: 149,
+    annualPrice: 1490,  // ~$124.17/month - 2 months free
+    currency: 'USD',
+    color: '#8b5cf6',
+    icon: '👑',
+    
+    features: {
+      // Access
+      stageAccess: 'All 35 stages',
+      maxStage: 35,
+      missionAccess: 'Complete curriculum',
+      
+      // Support
+      aiNavigator: true,
+      aiCompanion: true,
+      aiCoach: true,
+      aiMentor: true,
+      
+      // Community
+      communityAccess: 'VIP access + exclusive events',
+      partyFormation: true,
+      
+      // Rewards
+      xpMultiplier: 1.3,
+      barakaMultiplier: 1.3,
+      
+      // Limits
+      monthlyRetries: 'Unlimited',
+      storageGB: 100
+    },
+    
+    limitations: [],
+    
+    highlights: [
+      'Full 35-stage curriculum',
+      'All AI characters unlocked',
+      'Venture support & mentorship',
+      '30% XP & Baraka bonus',
+      'Unlimited retries',
+      '100GB storage',
+      'VIP community access'
+    ],
+    
+    covenantReturn: {
+      totalReturn: 74.50,
+      taSupport: 22.35,
+      dataSubsidy: 14.90,
+      deviceSubsidy: 14.90,
+      missionCredits: 22.35
+    },
+    
+    bonuses: [
+      'Priority support',
+      'Investor network access',
+      'Revenue share eligibility'
+    ]
   }
-
-  return null;
 };
 
 /**
- * Calculate annual savings
- * @param {number} monthlyPrice - Monthly price
- * @returns {number} Annual savings
+ * Subscription comparison matrix
  */
-export const calculateAnnualSavings = (monthlyPrice) => {
-  const annualPrice = monthlyPrice * 12;
-  const discountedAnnual = annualPrice * 0.8; // 20% discount
-  return annualPrice - discountedAnnual;
+export const SUBSCRIPTION_FEATURES_MATRIX = {
+  features: [
+    { name: 'Max Stage Access', key: 'maxStage' },
+    { name: 'AI Navigator', key: 'aiNavigator' },
+    { name: 'AI Companion', key: 'aiCompanion' },
+    { name: 'AI Coach', key: 'aiCoach' },
+    { name: 'AI Mentor', key: 'aiMentor' },
+    { name: 'Party Formation', key: 'partyFormation' },
+    { name: 'XP Multiplier', key: 'xpMultiplier' },
+    { name: 'Baraka Multiplier', key: 'barakaMultiplier' },
+    { name: 'Monthly Retries', key: 'monthlyRetries' },
+    { name: 'Storage', key: 'storageGB' }
+  ],
+  
+  tiers: ['FREE', 'CONTENDER', 'PATHFINDER', 'NAVIGATORS_CIRCLE']
+};
+
+// =============================================================================
+// BARAKA VALUE TIERS
+// =============================================================================
+
+/**
+ * Baraka tier definitions (based on total Baraka earned)
+ */
+export const BARAKA_TIERS = {
+  STARTER: {
+    id: 'starter',
+    name: 'Starter',
+    displayName: 'Starter',
+    threshold: 0,
+    color: '#9ca3af',
+    bgColor: '#f3f4f6',
+    icon: '🌱',
+    
+    multiplier: 1.0,
+    benefits: [
+      'Basic platform access',
+      'Standard mission rewards'
+    ]
+  },
+  
+  BEGINNER: {
+    id: 'beginner',
+    name: 'Beginner',
+    displayName: 'Beginner Solver',
+    threshold: 1000,
+    color: '#f97316',
+    bgColor: '#fff7ed',
+    icon: '🔸',
+    
+    multiplier: 1.05,
+    benefits: [
+      '5% bonus on mission rewards',
+      'Beginner profile badge',
+      'Access to beginner workshops'
+    ]
+  },
+  
+  INTERMEDIATE: {
+    id: 'intermediate',
+    name: 'Intermediate',
+    displayName: 'Growing Solver',
+    threshold: 10000,
+    color: '#eab308',
+    bgColor: '#fefce8',
+    icon: '🔶',
+    
+    multiplier: 1.10,
+    benefits: [
+      '10% bonus on mission rewards',
+      'Intermediate profile badge',
+      'Priority support access',
+      'Extended retry allowance'
+    ]
+  },
+  
+  ADVANCED: {
+    id: 'advanced',
+    name: 'Advanced',
+    displayName: 'Advanced Solver',
+    threshold: 50000,
+    color: '#22c55e',
+    bgColor: '#f0fdf4',
+    icon: '💚',
+    
+    multiplier: 1.15,
+    benefits: [
+      '15% bonus on mission rewards',
+      'Advanced profile badge',
+      'Mentor matching priority',
+      'Early feature access'
+    ]
+  },
+  
+  EXPERT: {
+    id: 'expert',
+    name: 'Expert',
+    displayName: 'Expert Solver',
+    threshold: 100000,
+    color: '#3b82f6',
+    bgColor: '#eff6ff',
+    icon: '💎',
+    
+    multiplier: 1.20,
+    benefits: [
+      '20% bonus on mission rewards',
+      'Expert profile badge',
+      'Exclusive workshops access',
+      'TA program consideration'
+    ]
+  },
+  
+  MASTER: {
+    id: 'master',
+    name: 'Master',
+    displayName: 'Master Solver',
+    threshold: 500000,
+    color: '#8b5cf6',
+    bgColor: '#faf5ff',
+    icon: '👑',
+    
+    multiplier: 1.25,
+    benefits: [
+      '25% bonus on mission rewards',
+      'Master profile badge',
+      'TA program eligibility',
+      'Investor introductions',
+      'Advisory opportunities'
+    ]
+  },
+  
+  LEGENDARY: {
+    id: 'legendary',
+    name: 'Legendary',
+    displayName: 'Legendary Solver',
+    threshold: 1000000,
+    color: '#f59e0b',
+    bgColor: '#fffbeb',
+    icon: '✨',
+    
+    multiplier: 1.30,
+    benefits: [
+      '30% bonus on mission rewards',
+      'Legendary profile badge',
+      'GPS Ambassador status',
+      'Revenue sharing eligibility',
+      'Board advisory consideration',
+      'Lifetime VIP access'
+    ]
+  }
 };
 
 /**
- * Tier comparison features
+ * Baraka tier thresholds as array for easy iteration
  */
-export const TierComparisonFeatures = [
-  {
-    category: 'Access',
-    features: [
-      { name: 'Stage Access', free: '1-5', contender: '1-15', pathfinder: '1-25', navigators: '1-35' },
-      { name: 'Missions per Stage', free: '5', contender: '5', pathfinder: '5', navigators: '5' },
-      { name: 'Party Formation', free: false, contender: true, pathfinder: true, navigators: true },
-      { name: 'Max Party Size', free: '0', contender: '5', pathfinder: '10', navigators: '20' },
-    ],
-  },
-  {
-    category: 'Support',
-    features: [
-      { name: 'Navigator AI', free: 'Basic', contender: 'Advanced', pathfinder: 'Premium', navigators: 'Elite' },
-      { name: 'Mentor Access', free: false, contender: false, pathfinder: true, navigators: true },
-      { name: 'Dedicated Mentor', free: false, contender: false, pathfinder: false, navigators: true },
-      { name: 'Priority Support', free: false, contender: false, pathfinder: false, navigators: true },
-    ],
-  },
-  {
-    category: 'Features',
-    features: [
-      { name: 'Study Mode & R2R', free: false, contender: true, pathfinder: true, navigators: true },
-      { name: 'pR2R Rights', free: false, contender: false, pathfinder: true, navigators: true },
-      { name: 'Adventure Missions', free: false, contender: false, pathfinder: true, navigators: true },
-      { name: 'Investment Support', free: false, contender: false, pathfinder: false, navigators: true },
-    ],
-  },
-  {
-    category: 'Storage & Portfolio',
-    features: [
-      { name: 'Storage', free: '100MB', contender: '1GB', pathfinder: '5GB', navigators: '20GB' },
-      { name: 'Portfolio Type', free: 'Basic', contender: 'Extended', pathfinder: 'Professional', navigators: 'Professional' },
-      { name: 'Certification', free: false, contender: false, pathfinder: true, navigators: true },
-    ],
-  },
+export const BARAKA_TIER_THRESHOLDS = [
+  { tier: 'STARTER', threshold: 0 },
+  { tier: 'BEGINNER', threshold: 1000 },
+  { tier: 'INTERMEDIATE', threshold: 10000 },
+  { tier: 'ADVANCED', threshold: 50000 },
+  { tier: 'EXPERT', threshold: 100000 },
+  { tier: 'MASTER', threshold: 500000 },
+  { tier: 'LEGENDARY', threshold: 1000000 }
 ];
 
+// =============================================================================
+// XP LEVEL TIERS
+// =============================================================================
+
+/**
+ * XP level tier definitions
+ */
+export const XP_LEVEL_TIERS = {
+  NEWCOMER: {
+    id: 'newcomer',
+    name: 'Newcomer',
+    levelRange: { min: 1, max: 4 },
+    color: '#9ca3af',
+    icon: '🌱'
+  },
+  
+  EXPLORER: {
+    id: 'explorer',
+    name: 'Explorer',
+    levelRange: { min: 5, max: 9 },
+    color: '#f97316',
+    icon: '🔍'
+  },
+  
+  APPRENTICE: {
+    id: 'apprentice',
+    name: 'Apprentice',
+    levelRange: { min: 10, max: 19 },
+    color: '#eab308',
+    icon: '📚'
+  },
+  
+  ACHIEVER: {
+    id: 'achiever',
+    name: 'Achiever',
+    levelRange: { min: 20, max: 34 },
+    color: '#22c55e',
+    icon: '🏆'
+  },
+  
+  LEADER: {
+    id: 'leader',
+    name: 'Leader',
+    levelRange: { min: 35, max: 49 },
+    color: '#3b82f6',
+    icon: '👑'
+  },
+  
+  MASTER: {
+    id: 'master',
+    name: 'Master',
+    levelRange: { min: 50, max: 69 },
+    color: '#6366f1',
+    icon: '💎'
+  },
+  
+  CHAMPION: {
+    id: 'champion',
+    name: 'Champion',
+    levelRange: { min: 70, max: 89 },
+    color: '#8b5cf6',
+    icon: '⚡'
+  },
+  
+  LEGEND: {
+    id: 'legend',
+    name: 'Legend',
+    levelRange: { min: 90, max: 100 },
+    color: '#f59e0b',
+    icon: '✨'
+  }
+};
+
+// =============================================================================
+// PSB (Problem Solver Bucks) TIERS
+// =============================================================================
+
+/**
+ * PSB issuance caps by adventure
+ */
+export const PSB_ISSUANCE_CAPS = {
+  adventure0: { cap: 0, name: 'GPO Call' },
+  adventure1: { cap: 5000, name: 'GPS 101' },
+  adventure2: { cap: 15000, name: 'GPS Prep' },
+  adventure3: { cap: 80000, name: 'GPS Simulation' },
+  adventure4: { cap: 250000, name: 'GPS Capstone 1' },
+  adventure5: { cap: 250000, name: 'GPS Capstone 2' },
+  adventure6: { cap: 200000, name: 'Venture Acceleration' },
+  adventure7: { cap: 200000, name: 'Venture Capitalization' }
+};
+
+/**
+ * PSB marketplace seller tiers
+ */
+export const PSB_SELLER_TIERS = {
+  NEW_SELLER: {
+    id: 'new_seller',
+    name: 'New Seller',
+    minSales: 0,
+    maxListings: 5,
+    commission: 0.15,  // 15%
+    color: '#9ca3af'
+  },
+  
+  ESTABLISHED: {
+    id: 'established',
+    name: 'Established Seller',
+    minSales: 10,
+    maxListings: 20,
+    commission: 0.12,  // 12%
+    color: '#22c55e'
+  },
+  
+  TRUSTED: {
+    id: 'trusted',
+    name: 'Trusted Seller',
+    minSales: 50,
+    maxListings: 50,
+    commission: 0.10,  // 10%
+    color: '#3b82f6'
+  },
+  
+  PREFERRED: {
+    id: 'preferred',
+    name: 'Preferred Seller',
+    minSales: 100,
+    maxListings: 'Unlimited',
+    commission: 0.08,  // 8%
+    color: '#8b5cf6'
+  }
+};
+
+// =============================================================================
+// ADVENTURE PRICING
+// =============================================================================
+
+/**
+ * Individual adventure pricing (à la carte)
+ */
+export const ADVENTURE_PRICING = {
+  0: { price: 0, name: 'GPO Call', included: ['FREE'] },
+  1: { price: 49, name: 'GPS 101', included: ['CONTENDER', 'PATHFINDER', 'NAVIGATORS_CIRCLE'] },
+  2: { price: 49, name: 'GPS Prep', included: ['CONTENDER', 'PATHFINDER', 'NAVIGATORS_CIRCLE'] },
+  3: { price: 79, name: 'GPS Simulation', included: ['PATHFINDER', 'NAVIGATORS_CIRCLE'] },
+  4: { price: 99, name: 'GPS Capstone 1', included: ['PATHFINDER', 'NAVIGATORS_CIRCLE'] },
+  5: { price: 99, name: 'GPS Capstone 2', included: ['PATHFINDER', 'NAVIGATORS_CIRCLE'] },
+  6: { price: 149, name: 'Venture Acceleration', included: ['NAVIGATORS_CIRCLE'] },
+  7: { price: 199, name: 'Venture Capitalization', included: ['NAVIGATORS_CIRCLE'] }
+};
+
+// =============================================================================
+// EXPORTS
+// =============================================================================
+
 export default {
-  SubscriptionTiers,
-  TierOrder,
-  TierComparisonFeatures,
-  getTier,
-  getTierBySlug,
-  getAllTiers,
-  tierHasStageAccess,
-  tierHasMentorAccess,
-  getRecommendedTierUpgrade,
-  calculateAnnualSavings,
+  SUBSCRIPTION_TIERS,
+  SUBSCRIPTION_FEATURES_MATRIX,
+  BARAKA_TIERS,
+  BARAKA_TIER_THRESHOLDS,
+  XP_LEVEL_TIERS,
+  PSB_ISSUANCE_CAPS,
+  PSB_SELLER_TIERS,
+  ADVENTURE_PRICING
 };

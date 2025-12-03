@@ -1,0 +1,235 @@
+/**
+ * GPS Lab Platform - ConfirmModal Component Styles
+ * 
+ * Confirmation dialog styling with variants.
+ */
+
+/* =============================================================================
+   CONTENT
+   ============================================================================= */
+
+.confirm-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-2, 0.5rem) 0;
+}
+
+/* =============================================================================
+   ICON
+   ============================================================================= */
+
+.confirm-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--spacing-4, 1rem);
+  border-radius: 50%;
+}
+
+.confirm-modal__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Icon variants */
+.confirm-modal__icon--default {
+  background-color: var(--color-primary-light, #dbeafe);
+  color: var(--color-primary, #2563eb);
+}
+
+.confirm-modal__icon--danger {
+  background-color: var(--color-danger-light, #fee2e2);
+  color: var(--color-danger, #dc2626);
+}
+
+.confirm-modal__icon--warning {
+  background-color: var(--color-warning-light, #fef3c7);
+  color: var(--color-warning-dark, #b45309);
+}
+
+.confirm-modal__icon--success {
+  background-color: var(--color-success-light, #dcfce7);
+  color: var(--color-success, #16a34a);
+}
+
+/* =============================================================================
+   TITLE & MESSAGE
+   ============================================================================= */
+
+.confirm-modal__title {
+  margin: 0 0 var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-900, #111827);
+}
+
+.confirm-modal__message {
+  margin: 0 0 var(--spacing-6, 1.5rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-600, #4b5563);
+  line-height: 1.5;
+}
+
+/* =============================================================================
+   ACTIONS
+   ============================================================================= */
+
+.confirm-modal__actions {
+  display: flex;
+  gap: var(--spacing-3, 0.75rem);
+  width: 100%;
+}
+
+.confirm-modal__btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 0.5rem);
+  padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  border-radius: var(--radius-md, 0.5rem);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.confirm-modal__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cancel button */
+.confirm-modal__btn--cancel {
+  background-color: var(--color-white, #ffffff);
+  border: 2px solid var(--color-gray-300, #d1d5db);
+  color: var(--color-gray-700, #374151);
+}
+
+.confirm-modal__btn--cancel:hover:not(:disabled) {
+  background-color: var(--color-gray-50, #f9fafb);
+  border-color: var(--color-gray-400, #9ca3af);
+}
+
+/* Confirm button variants */
+.confirm-modal__btn--confirm {
+  border: 2px solid transparent;
+  color: var(--color-white, #ffffff);
+}
+
+.confirm-modal__btn--default {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+}
+
+.confirm-modal__btn--default:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #1d4ed8);
+}
+
+.confirm-modal__btn--danger {
+  background-color: var(--color-danger, #dc2626);
+  border-color: var(--color-danger, #dc2626);
+}
+
+.confirm-modal__btn--danger:hover:not(:disabled) {
+  background-color: var(--color-danger-dark, #b91c1c);
+}
+
+.confirm-modal__btn--warning {
+  background-color: var(--color-warning, #f59e0b);
+  border-color: var(--color-warning, #f59e0b);
+  color: var(--color-gray-900, #111827);
+}
+
+.confirm-modal__btn--warning:hover:not(:disabled) {
+  background-color: var(--color-warning-dark, #d97706);
+}
+
+.confirm-modal__btn--success {
+  background-color: var(--color-success, #16a34a);
+  border-color: var(--color-success, #16a34a);
+}
+
+.confirm-modal__btn--success:hover:not(:disabled) {
+  background-color: var(--color-success-dark, #15803d);
+}
+
+/* =============================================================================
+   LOADING SPINNER
+   ============================================================================= */
+
+.confirm-modal__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: confirm-spinner 0.75s linear infinite;
+}
+
+@keyframes confirm-spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.confirm-modal__btn--loading {
+  position: relative;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .confirm-modal__title {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .confirm-modal__message {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .confirm-modal__btn--cancel {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-600, #4b5563);
+  color: var(--color-gray-200, #e5e7eb);
+}
+
+[data-theme="dark"] .confirm-modal__btn--cancel:hover:not(:disabled) {
+  background-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .confirm-modal__icon--default {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .confirm-modal__icon--danger {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+[data-theme="dark"] .confirm-modal__icon--warning {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+[data-theme="dark"] .confirm-modal__icon--success {
+  background-color: rgba(22, 163, 74, 0.2);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .confirm-modal__btn {
+    transition: none;
+  }
+  
+  .confirm-modal__spinner {
+    animation-duration: 1.5s;
+  }
+}

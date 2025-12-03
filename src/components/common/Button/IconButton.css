@@ -1,0 +1,345 @@
+/**
+ * GPS Lab Platform - IconButton Component Styles
+ * 
+ * Compact icon-only button with circular and square variants.
+ */
+
+/* =============================================================================
+   ICON BUTTON BASE
+   ============================================================================= */
+
+.icon-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  /* Box model */
+  border: 2px solid transparent;
+  border-radius: var(--radius-md, 0.5rem);
+  padding: 0;
+  
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  
+  /* Transitions */
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+  
+  /* Focus */
+  outline: none;
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* Rounded (Circle) */
+.icon-btn--rounded {
+  border-radius: 50%;
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+.icon-btn--xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-btn--sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-btn--md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.icon-btn--lg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-btn--xl {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* =============================================================================
+   ICON SIZING
+   ============================================================================= */
+
+.icon-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn--xs .icon-btn__icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.icon-btn--sm .icon-btn__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-btn--md .icon-btn__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-btn--lg .icon-btn__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-btn--xl .icon-btn__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* SVG icons should inherit size */
+.icon-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   COLOR VARIANTS
+   ============================================================================= */
+
+/* Primary */
+.icon-btn--primary {
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-white, #ffffff);
+}
+
+.icon-btn--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #1d4ed8);
+  border-color: var(--color-primary-dark, #1d4ed8);
+}
+
+.icon-btn--primary:active:not(:disabled) {
+  background-color: var(--color-primary-darker, #1e40af);
+  transform: scale(0.95);
+}
+
+/* Secondary */
+.icon-btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-primary, #2563eb);
+}
+
+.icon-btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #dbeafe);
+}
+
+.icon-btn--secondary:active:not(:disabled) {
+  background-color: var(--color-primary-lighter, #bfdbfe);
+  transform: scale(0.95);
+}
+
+/* Ghost */
+.icon-btn--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-gray-600, #4b5563);
+}
+
+.icon-btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-900, #111827);
+}
+
+.icon-btn--ghost:active:not(:disabled) {
+  background-color: var(--color-gray-200, #e5e7eb);
+  transform: scale(0.95);
+}
+
+/* Danger */
+.icon-btn--danger {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-danger, #dc2626);
+}
+
+.icon-btn--danger:hover:not(:disabled) {
+  background-color: var(--color-danger-light, #fee2e2);
+}
+
+.icon-btn--danger:active:not(:disabled) {
+  background-color: var(--color-danger-lighter, #fecaca);
+  transform: scale(0.95);
+}
+
+/* Success */
+.icon-btn--success {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-success, #16a34a);
+}
+
+.icon-btn--success:hover:not(:disabled) {
+  background-color: var(--color-success-light, #dcfce7);
+}
+
+.icon-btn--success:active:not(:disabled) {
+  background-color: var(--color-success-lighter, #bbf7d0);
+  transform: scale(0.95);
+}
+
+/* Baraka */
+.icon-btn--baraka {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-baraka, #f59e0b);
+}
+
+.icon-btn--baraka:hover:not(:disabled) {
+  background-color: var(--color-baraka-light, #fef3c7);
+}
+
+.icon-btn--baraka:active:not(:disabled) {
+  background-color: var(--color-baraka-lighter, #fde68a);
+  transform: scale(0.95);
+}
+
+/* =============================================================================
+   STATES
+   ============================================================================= */
+
+/* Disabled */
+.icon-btn--disabled,
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading */
+.icon-btn--loading {
+  cursor: wait;
+}
+
+/* =============================================================================
+   SPINNER
+   ============================================================================= */
+
+.icon-btn__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn__spinner-svg {
+  animation: icon-btn-spin 1s linear infinite;
+}
+
+.icon-btn--xs .icon-btn__spinner-svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.icon-btn--sm .icon-btn__spinner-svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-btn--md .icon-btn__spinner-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-btn--lg .icon-btn__spinner-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-btn--xl .icon-btn__spinner-svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.icon-btn__spinner-circle {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 45;
+}
+
+@keyframes icon-btn-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .icon-btn--ghost {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .icon-btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-700, #374151);
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .icon-btn--ghost:active:not(:disabled) {
+  background-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .icon-btn--secondary {
+  border-color: var(--color-primary-light, #3b82f6);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .icon-btn--secondary:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .icon-btn--danger:hover:not(:disabled) {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+
+[data-theme="dark"] .icon-btn--success:hover:not(:disabled) {
+  background-color: rgba(22, 163, 74, 0.2);
+}
+
+[data-theme="dark"] .icon-btn--baraka:hover:not(:disabled) {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-btn {
+    transition: none;
+  }
+  
+  .icon-btn__spinner-svg {
+    animation-duration: 1.5s;
+  }
+  
+  .icon-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

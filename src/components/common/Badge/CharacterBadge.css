@@ -1,0 +1,127 @@
+/**
+ * GPS Lab Platform - CharacterBadge Component Styles
+ * 
+ * AI character badge styling with character-specific colors.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.character-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  padding: var(--spacing-1, 0.25rem) var(--spacing-2, 0.5rem);
+  background-color: color-mix(in srgb, var(--character-color) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--character-color) 30%, transparent);
+  border-radius: var(--radius-full, 9999px);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--character-color);
+  transition: all 0.2s ease;
+}
+
+/* =============================================================================
+   PARTS
+   ============================================================================= */
+
+.character-badge__icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.character-badge__name {
+  line-height: 1.2;
+}
+
+/* Active indicator */
+.character-badge__indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--character-color);
+  border-radius: 50%;
+  animation: character-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes character-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+/* =============================================================================
+   COMPACT MODE
+   ============================================================================= */
+
+.character-badge--compact {
+  padding: var(--spacing-1, 0.25rem);
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+.character-badge--compact .character-badge__icon {
+  font-size: 1.25rem;
+}
+
+/* =============================================================================
+   ACTIVE STATE
+   ============================================================================= */
+
+.character-badge--active {
+  background-color: color-mix(in srgb, var(--character-color) 25%, transparent);
+  border-color: var(--character-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--character-color) 20%, transparent);
+}
+
+/* =============================================================================
+   CHARACTER VARIANTS
+   ============================================================================= */
+
+.character-badge--navigator {
+  --character-color: #2563eb;
+}
+
+.character-badge--companion {
+  --character-color: #16a34a;
+}
+
+.character-badge--coach {
+  --character-color: #f59e0b;
+}
+
+.character-badge--mentor {
+  --character-color: #7c3aed;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .character-badge {
+  background-color: color-mix(in srgb, var(--character-color) 20%, transparent);
+  border-color: color-mix(in srgb, var(--character-color) 40%, transparent);
+}
+
+[data-theme="dark"] .character-badge--active {
+  background-color: color-mix(in srgb, var(--character-color) 30%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--character-color) 25%, transparent);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .character-badge {
+    transition: none;
+  }
+  
+  .character-badge__indicator {
+    animation: none;
+  }
+}

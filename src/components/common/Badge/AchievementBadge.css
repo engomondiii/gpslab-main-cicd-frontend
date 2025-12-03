@@ -1,0 +1,264 @@
+/**
+ * GPS Lab Platform - AchievementBadge Component Styles
+ * 
+ * Achievement badge with tier colors, lock states, and animations.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.achievement-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 0.75rem);
+  padding: var(--spacing-3, 0.75rem);
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-lg, 0.75rem);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.achievement-badge--clickable {
+  cursor: pointer;
+}
+
+.achievement-badge--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+}
+
+.achievement-badge--clickable:focus-visible {
+  outline: 2px solid var(--tier-primary);
+  outline-offset: 2px;
+}
+
+/* =============================================================================
+   ICON WRAPPER
+   ============================================================================= */
+
+.achievement-badge__icon-wrapper {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+}
+
+.achievement-badge__icon {
+  position: absolute;
+  inset: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--tier-primary), var(--tier-secondary));
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.achievement-badge__emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.achievement-badge__image {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* =============================================================================
+   TIER RING
+   ============================================================================= */
+
+.achievement-badge__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.achievement-badge__ring-bg {
+  stroke: var(--color-gray-200, #e5e7eb);
+}
+
+.achievement-badge__ring-fill {
+  stroke: var(--tier-primary);
+  transition: stroke-dasharray 0.5s ease;
+}
+
+/* =============================================================================
+   LOCK OVERLAY
+   ============================================================================= */
+
+.achievement-badge__lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.achievement-badge__lock svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   CONTENT
+   ============================================================================= */
+
+.achievement-badge__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-badge__name {
+  margin: 0 0 var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-900, #111827);
+  line-height: 1.3;
+}
+
+.achievement-badge__description {
+  margin: 0;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-500, #6b7280);
+  line-height: 1.4;
+}
+
+.achievement-badge__date {
+  display: block;
+  margin-top: var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--tier-primary);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.achievement-badge__progress {
+  display: block;
+  margin-top: var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-400, #9ca3af);
+}
+
+/* =============================================================================
+   LOCKED STATE
+   ============================================================================= */
+
+.achievement-badge--locked {
+  opacity: 0.7;
+}
+
+.achievement-badge--locked .achievement-badge__icon {
+  filter: grayscale(1);
+}
+
+.achievement-badge--locked .achievement-badge__ring-fill {
+  stroke: var(--color-gray-300, #d1d5db);
+}
+
+/* =============================================================================
+   COMPACT MODE
+   ============================================================================= */
+
+.achievement-badge--compact {
+  padding: var(--spacing-2, 0.5rem);
+  gap: 0;
+}
+
+.achievement-badge--compact .achievement-badge__icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+}
+
+.achievement-badge--compact .achievement-badge__emoji {
+  font-size: 1.25rem;
+}
+
+/* =============================================================================
+   TIER VARIANTS - Special shine effects
+   ============================================================================= */
+
+.achievement-badge--gold .achievement-badge__icon::before,
+.achievement-badge--platinum .achievement-badge__icon::before,
+.achievement-badge--diamond .achievement-badge__icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: achievement-shine 3s ease-in-out infinite;
+}
+
+@keyframes achievement-shine {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+/* Diamond sparkle */
+.achievement-badge--diamond .achievement-badge__icon {
+  box-shadow: 0 0 20px rgba(185, 242, 255, 0.5);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .achievement-badge {
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .achievement-badge__name {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .achievement-badge__description {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .achievement-badge__ring-bg {
+  stroke: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .achievement-badge--locked .achievement-badge__ring-fill {
+  stroke: var(--color-gray-600, #4b5563);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-badge {
+    transition: none;
+  }
+  
+  .achievement-badge--clickable:hover {
+    transform: none;
+  }
+  
+  .achievement-badge__ring-fill {
+    transition: none;
+  }
+  
+  .achievement-badge--gold .achievement-badge__icon::before,
+  .achievement-badge--platinum .achievement-badge__icon::before,
+  .achievement-badge--diamond .achievement-badge__icon::before {
+    animation: none;
+  }
+}

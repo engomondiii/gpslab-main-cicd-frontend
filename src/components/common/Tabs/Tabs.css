@@ -1,0 +1,313 @@
+/**
+ * GPS Lab Platform - Tabs Component Styles
+ * 
+ * Tab navigation with multiple variants.
+ */
+
+/* =============================================================================
+   TABS CONTAINER
+   ============================================================================= */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tabs--full-width .tab-list {
+  width: 100%;
+}
+
+.tabs--full-width .tab {
+  flex: 1;
+}
+
+/* =============================================================================
+   TAB LIST
+   ============================================================================= */
+
+.tab-list {
+  display: flex;
+  position: relative;
+  gap: var(--spacing-1, 0.25rem);
+}
+
+/* =============================================================================
+   TAB BUTTON
+   ============================================================================= */
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 0.5rem);
+  padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-600, #4b5563);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover:not(.tab--disabled) {
+  color: var(--color-gray-900, #111827);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 0.25rem);
+}
+
+.tab--active {
+  color: var(--color-primary, #2563eb);
+}
+
+.tab--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+   TAB SIZES
+   ============================================================================= */
+
+.tabs--sm .tab {
+  padding: var(--spacing-1, 0.25rem) var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.tabs--md .tab {
+  padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.tabs--lg .tab {
+  padding: var(--spacing-3, 0.75rem) var(--spacing-5, 1.25rem);
+  font-size: var(--font-size-base, 1rem);
+}
+
+/* =============================================================================
+   TAB PARTS
+   ============================================================================= */
+
+.tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.tab__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tab__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+  background-color: var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.tab--active .tab__badge {
+  background-color: var(--color-primary-light, #dbeafe);
+  color: var(--color-primary-dark, #1d4ed8);
+}
+
+/* =============================================================================
+   VARIANT: DEFAULT
+   ============================================================================= */
+
+.tabs--default .tab-list {
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.tabs--default .tab {
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+
+.tabs--default .tab--active {
+  border-bottom-color: var(--color-primary, #2563eb);
+}
+
+/* =============================================================================
+   VARIANT: PILLS
+   ============================================================================= */
+
+.tabs--pills .tab-list {
+  gap: var(--spacing-2, 0.5rem);
+  padding: var(--spacing-1, 0.25rem);
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-radius: var(--radius-lg, 0.75rem);
+}
+
+.tabs--pills .tab {
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+.tabs--pills .tab--active {
+  background-color: var(--color-white, #ffffff);
+  color: var(--color-gray-900, #111827);
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+/* =============================================================================
+   VARIANT: UNDERLINE
+   ============================================================================= */
+
+.tabs--underline .tab-list {
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.tabs--underline .tab {
+  border-radius: 0;
+}
+
+.tab-list__indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--color-primary, #2563eb);
+  transition: left 0.2s ease, width 0.2s ease;
+}
+
+/* =============================================================================
+   VARIANT: ENCLOSED
+   ============================================================================= */
+
+.tabs--enclosed .tab-list {
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-bottom: none;
+  border-radius: var(--radius-lg, 0.75rem) var(--radius-lg, 0.75rem) 0 0;
+  background-color: var(--color-gray-50, #f9fafb);
+}
+
+.tabs--enclosed .tab {
+  border-right: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.tabs--enclosed .tab:first-child {
+  border-radius: var(--radius-lg, 0.75rem) 0 0 0;
+}
+
+.tabs--enclosed .tab:last-child {
+  border-right: none;
+  border-radius: 0 var(--radius-lg, 0.75rem) 0 0;
+}
+
+.tabs--enclosed .tab--active {
+  background-color: var(--color-white, #ffffff);
+  border-bottom: 1px solid var(--color-white, #ffffff);
+  margin-bottom: -1px;
+}
+
+.tabs--enclosed .tab-panels {
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 0 0 var(--radius-lg, 0.75rem) var(--radius-lg, 0.75rem);
+}
+
+/* =============================================================================
+   TAB PANELS
+   ============================================================================= */
+
+.tab-panels {
+  padding: var(--spacing-4, 1rem);
+}
+
+.tab-panel {
+  animation: tab-panel-enter 0.2s ease-out;
+}
+
+@keyframes tab-panel-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .tab {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .tab:hover:not(.tab--disabled) {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tab--active {
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .tabs--default .tab-list {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .tabs--pills .tab-list {
+  background-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .tabs--pills .tab--active {
+  background-color: var(--color-gray-700, #374151);
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .tabs--underline .tab-list {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .tabs--enclosed .tab-list {
+  border-color: var(--color-gray-700, #374151);
+  background-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .tabs--enclosed .tab {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .tabs--enclosed .tab--active {
+  background-color: var(--color-gray-900, #111827);
+  border-bottom-color: var(--color-gray-900, #111827);
+}
+
+[data-theme="dark"] .tabs--enclosed .tab-panels {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .tab__badge {
+  background-color: var(--color-gray-700, #374151);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+  
+  .tab-list__indicator {
+    transition: none;
+  }
+  
+  .tab-panel {
+    animation: none;
+  }
+}

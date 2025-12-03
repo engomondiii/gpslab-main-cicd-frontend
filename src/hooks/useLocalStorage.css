@@ -1,0 +1,132 @@
+/**
+ * GPS Lab Platform - useLocalStorage Hook Styles
+ * 
+ * CSS for components using the useLocalStorage hook.
+ * 
+ * @module hooks/useLocalStorage.css
+ * @version 1.0.0
+ */
+
+/* =============================================================================
+   STORAGE SYNC INDICATOR
+   ============================================================================= */
+
+/**
+ * Sync status indicator
+ */
+.storage-sync-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #9ca3af);
+}
+
+.storage-sync-indicator__icon {
+  width: 12px;
+  height: 12px;
+}
+
+.storage-sync-indicator--synced .storage-sync-indicator__icon {
+  color: var(--color-success, #059669);
+}
+
+.storage-sync-indicator--syncing .storage-sync-indicator__icon {
+  color: var(--color-warning, #d97706);
+  animation: storage-sync-spin 1s linear infinite;
+}
+
+@keyframes storage-sync-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =============================================================================
+   STORAGE ERROR
+   ============================================================================= */
+
+/**
+ * Storage error notification
+ */
+.storage-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  background-color: var(--color-warning-bg, #fef3c7);
+  border: 1px solid var(--color-warning-light, #fcd34d);
+  border-radius: var(--border-radius-md, 0.375rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.storage-error__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-warning, #d97706);
+  flex-shrink: 0;
+}
+
+.storage-error__message {
+  flex: 1;
+  color: var(--color-warning-dark, #b45309);
+}
+
+/* =============================================================================
+   CROSS-TAB SYNC NOTIFICATION
+   ============================================================================= */
+
+/**
+ * Tab sync notification
+ */
+.storage-tab-sync {
+  position: fixed;
+  bottom: var(--spacing-lg, 1rem);
+  right: var(--spacing-lg, 1rem);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
+  background-color: var(--color-info-bg, #e0f2fe);
+  border: 1px solid var(--color-info-light, #7dd3fc);
+  border-radius: var(--border-radius-lg, 0.5rem);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-info-dark, #0369a1);
+  z-index: var(--z-index-toast, 80);
+  animation: storage-tab-sync-appear 0.3s ease-out;
+}
+
+@keyframes storage-tab-sync-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.storage-tab-sync__icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .storage-tab-sync {
+  background-color: var(--color-dark-gray-800, #1f2937);
+  border-color: var(--color-info, #0284c7);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .storage-sync-indicator--syncing .storage-sync-indicator__icon,
+  .storage-tab-sync {
+    animation: none;
+  }
+}

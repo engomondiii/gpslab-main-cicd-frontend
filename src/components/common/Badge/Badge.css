@@ -1,0 +1,356 @@
+/**
+ * GPS Lab Platform - Badge Component Styles
+ * 
+ * Badge variants, sizes, and notification badge styles.
+ */
+
+/* =============================================================================
+   BASE BADGE
+   ============================================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  font-weight: var(--font-weight-medium, 500);
+  border-radius: var(--radius-sm, 0.25rem);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* =============================================================================
+   SIZES
+   ============================================================================= */
+
+.badge--sm {
+  padding: 0.125rem var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  line-height: 1.25;
+}
+
+.badge--md {
+  padding: var(--spacing-1, 0.25rem) var(--spacing-2, 0.5rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  line-height: 1.25;
+}
+
+.badge--lg {
+  padding: var(--spacing-1, 0.25rem) var(--spacing-3, 0.75rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  line-height: 1.4;
+}
+
+/* =============================================================================
+   VARIANTS (Filled)
+   ============================================================================= */
+
+.badge--default {
+  background-color: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-700, #374151);
+}
+
+.badge--primary {
+  background-color: var(--color-primary-light, #dbeafe);
+  color: var(--color-primary-dark, #1d4ed8);
+}
+
+.badge--secondary {
+  background-color: var(--color-gray-200, #e5e7eb);
+  color: var(--color-gray-700, #374151);
+}
+
+.badge--success {
+  background-color: var(--color-success-light, #dcfce7);
+  color: var(--color-success-dark, #15803d);
+}
+
+.badge--warning {
+  background-color: var(--color-warning-light, #fef3c7);
+  color: var(--color-warning-dark, #b45309);
+}
+
+.badge--danger {
+  background-color: var(--color-danger-light, #fee2e2);
+  color: var(--color-danger-dark, #b91c1c);
+}
+
+.badge--info {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge--baraka {
+  background: linear-gradient(135deg, var(--color-baraka, #f59e0b), var(--color-baraka-dark, #d97706));
+  color: var(--color-white, #ffffff);
+}
+
+/* =============================================================================
+   OUTLINED VARIANTS
+   ============================================================================= */
+
+.badge--outlined {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+.badge--outlined.badge--default {
+  border-color: var(--color-gray-300, #d1d5db);
+  color: var(--color-gray-600, #4b5563);
+}
+
+.badge--outlined.badge--primary {
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-primary, #2563eb);
+}
+
+.badge--outlined.badge--secondary {
+  border-color: var(--color-gray-400, #9ca3af);
+  color: var(--color-gray-600, #4b5563);
+}
+
+.badge--outlined.badge--success {
+  border-color: var(--color-success, #16a34a);
+  color: var(--color-success, #16a34a);
+}
+
+.badge--outlined.badge--warning {
+  border-color: var(--color-warning, #f59e0b);
+  color: var(--color-warning-dark, #b45309);
+}
+
+.badge--outlined.badge--danger {
+  border-color: var(--color-danger, #dc2626);
+  color: var(--color-danger, #dc2626);
+}
+
+.badge--outlined.badge--info {
+  border-color: #0ea5e9;
+  color: #0284c7;
+}
+
+.badge--outlined.badge--baraka {
+  border-color: var(--color-baraka, #f59e0b);
+  color: var(--color-baraka-dark, #d97706);
+  background: none;
+}
+
+/* =============================================================================
+   ROUNDED (PILL)
+   ============================================================================= */
+
+.badge--rounded {
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* =============================================================================
+   DOT
+   ============================================================================= */
+
+.badge--dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.badge--dot.badge--sm {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.badge--dot.badge--lg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+/* =============================================================================
+   ICON
+   ============================================================================= */
+
+.badge__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge--sm .badge__icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.badge--md .badge__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.badge--lg .badge__icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.badge__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   REMOVE BUTTON
+   ============================================================================= */
+
+.badge__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: var(--spacing-1, 0.25rem);
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.badge__remove:hover {
+  opacity: 1;
+}
+
+.badge--sm .badge__remove {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.badge--md .badge__remove {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.badge--lg .badge__remove {
+  width: 1rem;
+  height: 1rem;
+}
+
+.badge__remove svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   NOTIFICATION BADGE
+   ============================================================================= */
+
+.notification-badge__wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.notification-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--spacing-1, 0.25rem);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-white, #ffffff);
+  border-radius: var(--radius-full, 9999px);
+  line-height: 1;
+}
+
+/* Notification badge positions */
+.notification-badge--top-right {
+  top: -0.375rem;
+  right: -0.375rem;
+}
+
+.notification-badge--top-left {
+  top: -0.375rem;
+  left: -0.375rem;
+}
+
+.notification-badge--bottom-right {
+  bottom: -0.375rem;
+  right: -0.375rem;
+}
+
+.notification-badge--bottom-left {
+  bottom: -0.375rem;
+  left: -0.375rem;
+}
+
+/* Notification badge colors */
+.notification-badge--danger {
+  background-color: var(--color-danger, #dc2626);
+}
+
+.notification-badge--primary {
+  background-color: var(--color-primary, #2563eb);
+}
+
+.notification-badge--success {
+  background-color: var(--color-success, #16a34a);
+}
+
+.notification-badge--warning {
+  background-color: var(--color-warning, #f59e0b);
+  color: var(--color-gray-900, #111827);
+}
+
+.notification-badge--baraka {
+  background: linear-gradient(135deg, var(--color-baraka, #f59e0b), var(--color-baraka-dark, #d97706));
+}
+
+/* Notification badge dot */
+.notification-badge--dot {
+  min-width: 0.625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .badge--default {
+  background-color: var(--color-gray-700, #374151);
+  color: var(--color-gray-200, #e5e7eb);
+}
+
+[data-theme="dark"] .badge--secondary {
+  background-color: var(--color-gray-600, #4b5563);
+  color: var(--color-gray-200, #e5e7eb);
+}
+
+[data-theme="dark"] .badge--primary {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .badge--success {
+  background-color: rgba(22, 163, 74, 0.2);
+  color: #4ade80;
+}
+
+[data-theme="dark"] .badge--warning {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .badge--danger {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+}
+
+[data-theme="dark"] .badge--info {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #38bdf8;
+}
+
+[data-theme="dark"] .badge--outlined.badge--default {
+  border-color: var(--color-gray-500, #6b7280);
+  color: var(--color-gray-300, #d1d5db);
+}

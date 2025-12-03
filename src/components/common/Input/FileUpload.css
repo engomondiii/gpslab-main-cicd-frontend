@@ -1,0 +1,368 @@
+/**
+ * GPS Lab Platform - FileUpload Component Styles
+ * 
+ * Drag & drop file upload with preview and theming.
+ */
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 0.5rem);
+  width: 100%;
+}
+
+/* =============================================================================
+   LABEL
+   ============================================================================= */
+
+.file-upload__label {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-700, #374151);
+}
+
+/* =============================================================================
+   DROPZONE
+   ============================================================================= */
+
+.file-upload__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3, 0.75rem);
+  padding: var(--spacing-8, 2rem);
+  background-color: var(--color-gray-50, #f9fafb);
+  border: 2px dashed var(--color-gray-300, #d1d5db);
+  border-radius: var(--radius-lg, 0.75rem);
+  cursor: pointer;
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  outline: none;
+}
+
+.file-upload__dropzone:hover,
+.file-upload__dropzone:focus {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-400, #9ca3af);
+}
+
+.file-upload__dropzone:focus-visible {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Drag over state */
+.file-upload--drag-over .file-upload__dropzone {
+  background-color: var(--color-primary-light, #dbeafe);
+  border-color: var(--color-primary, #2563eb);
+  border-style: solid;
+}
+
+/* Disabled state */
+.file-upload--disabled .file-upload__dropzone {
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-color: var(--color-gray-200, #e5e7eb);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error state */
+.file-upload--error .file-upload__dropzone {
+  border-color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   HIDDEN INPUT
+   ============================================================================= */
+
+.file-upload__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* =============================================================================
+   ICON
+   ============================================================================= */
+
+.file-upload__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.file-upload__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.file-upload--drag-over .file-upload__icon {
+  color: var(--color-primary, #2563eb);
+}
+
+/* =============================================================================
+   TEXT
+   ============================================================================= */
+
+.file-upload__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1, 0.25rem);
+  text-align: center;
+}
+
+.file-upload__text-main {
+  font-size: var(--font-size-base, 1rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-700, #374151);
+}
+
+.file-upload__text-or {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.file-upload__text-browse {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-primary, #2563eb);
+}
+
+.file-upload__hint {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-400, #9ca3af);
+}
+
+/* =============================================================================
+   FILE LIST
+   ============================================================================= */
+
+.file-upload__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.file-upload__file {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 0.75rem);
+  padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+  background-color: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+/* File icon */
+.file-upload__file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  background-color: var(--color-gray-100, #f3f4f6);
+  border-radius: var(--radius-sm, 0.25rem);
+  color: var(--color-gray-500, #6b7280);
+  overflow: hidden;
+}
+
+.file-upload__file-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.file-upload__file-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* File info */
+.file-upload__file-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 0.25rem);
+}
+
+.file-upload__file-name {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-gray-900, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-upload__file-size {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-gray-500, #6b7280);
+}
+
+/* Remove button */
+.file-upload__file-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-gray-400, #9ca3af);
+  cursor: pointer;
+  border-radius: var(--radius-sm, 0.25rem);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.file-upload__file-remove:hover {
+  color: var(--color-danger, #dc2626);
+  background-color: var(--color-danger-light, #fee2e2);
+}
+
+.file-upload__file-remove svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* =============================================================================
+   HELPER TEXT
+   ============================================================================= */
+
+.file-upload__helper {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-500, #6b7280);
+}
+
+.file-upload__helper--error {
+  color: var(--color-danger, #dc2626);
+}
+
+/* =============================================================================
+   COMPACT VARIANT
+   ============================================================================= */
+
+.file-upload--compact .file-upload__dropzone {
+  flex-direction: row;
+  padding: var(--spacing-4, 1rem);
+}
+
+.file-upload--compact .file-upload__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.file-upload--compact .file-upload__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.file-upload--compact .file-upload__text {
+  flex-direction: row;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.file-upload--compact .file-upload__text-main {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.file-upload--compact .file-upload__hint {
+  display: none;
+}
+
+/* =============================================================================
+   AVATAR VARIANT
+   ============================================================================= */
+
+.file-upload--avatar .file-upload__dropzone {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.file-upload--avatar .file-upload__text {
+  display: none;
+}
+
+.file-upload--avatar .file-upload__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .file-upload__label {
+  color: var(--color-gray-300, #d1d5db);
+}
+
+[data-theme="dark"] .file-upload__dropzone {
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .file-upload__dropzone:hover,
+[data-theme="dark"] .file-upload__dropzone:focus {
+  background-color: var(--color-gray-700, #374151);
+  border-color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .file-upload--drag-over .file-upload__dropzone {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .file-upload__text-main {
+  color: var(--color-gray-200, #e5e7eb);
+}
+
+[data-theme="dark"] .file-upload__text-browse {
+  color: var(--color-primary-light, #3b82f6);
+}
+
+[data-theme="dark"] .file-upload__file {
+  background-color: var(--color-gray-800, #1f2937);
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .file-upload__file-icon {
+  background-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .file-upload__file-name {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .file-upload__helper {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .file-upload__dropzone,
+  .file-upload__file-remove {
+    transition: none;
+  }
+}

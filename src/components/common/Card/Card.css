@@ -1,0 +1,329 @@
+/**
+ * GPS Lab Platform - Card Component Styles
+ * 
+ * Flexible card container with variants and theming.
+ */
+
+/* =============================================================================
+   BASE CARD
+   ============================================================================= */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white, #ffffff);
+  border-radius: var(--radius-lg, 0.75rem);
+  overflow: hidden;
+  transition: 
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* =============================================================================
+   VARIANTS
+   ============================================================================= */
+
+/* Default - subtle shadow */
+.card--default {
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+/* Outlined - border only */
+.card--outlined {
+  border: 2px solid var(--color-gray-200, #e5e7eb);
+}
+
+/* Elevated - prominent shadow */
+.card--elevated {
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+/* Filled - colored background */
+.card--filled {
+  background-color: var(--color-gray-50, #f9fafb);
+  border: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+/* Interactive - for clickable cards */
+.card--interactive {
+  border: 2px solid var(--color-gray-200, #e5e7eb);
+  cursor: pointer;
+}
+
+/* =============================================================================
+   PADDING VARIANTS
+   ============================================================================= */
+
+.card--padding-none .card__body {
+  padding: 0;
+}
+
+.card--padding-sm .card__body {
+  padding: var(--spacing-3, 0.75rem);
+}
+
+.card--padding-md .card__body {
+  padding: var(--spacing-4, 1rem);
+}
+
+.card--padding-lg .card__body {
+  padding: var(--spacing-6, 1.5rem);
+}
+
+/* =============================================================================
+   STATES
+   ============================================================================= */
+
+/* Hoverable */
+.card--hoverable:hover {
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+/* Clickable */
+.card--clickable {
+  cursor: pointer;
+  outline: none;
+}
+
+.card--clickable:hover {
+  border-color: var(--color-gray-300, #d1d5db);
+}
+
+.card--clickable:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+.card--clickable:active {
+  transform: translateY(0);
+}
+
+/* Selected */
+.card--selected {
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Disabled */
+.card--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   CARD SECTIONS
+   ============================================================================= */
+
+/* Media */
+.card__media {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card__media img,
+.card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Header */
+.card__header {
+  padding: var(--spacing-4, 1rem);
+  border-bottom: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+.card--padding-sm .card__header {
+  padding: var(--spacing-3, 0.75rem);
+}
+
+.card--padding-lg .card__header {
+  padding: var(--spacing-6, 1.5rem);
+}
+
+/* Body */
+.card__body {
+  flex: 1;
+}
+
+/* Footer */
+.card__footer {
+  padding: var(--spacing-4, 1rem);
+  border-top: 1px solid var(--color-gray-100, #f3f4f6);
+  background-color: var(--color-gray-50, #f9fafb);
+}
+
+.card--padding-sm .card__footer {
+  padding: var(--spacing-3, 0.75rem);
+}
+
+.card--padding-lg .card__footer {
+  padding: var(--spacing-6, 1.5rem);
+}
+
+/* =============================================================================
+   CARD HEADER SUB-COMPONENT
+   ============================================================================= */
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3, 0.75rem);
+}
+
+.card-header__avatar {
+  flex-shrink: 0;
+}
+
+.card-header__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-header__title {
+  margin: 0;
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-900, #111827);
+  line-height: 1.4;
+}
+
+.card-header__subtitle {
+  margin: var(--spacing-1, 0.25rem) 0 0;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--color-gray-500, #6b7280);
+}
+
+.card-header__action {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* =============================================================================
+   CARD FOOTER SUB-COMPONENT
+   ============================================================================= */
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.card-footer--left {
+  justify-content: flex-start;
+}
+
+.card-footer--center {
+  justify-content: center;
+}
+
+.card-footer--right {
+  justify-content: flex-end;
+}
+
+.card-footer--between {
+  justify-content: space-between;
+}
+
+/* =============================================================================
+   CARD MEDIA SUB-COMPONENT
+   ============================================================================= */
+
+.card-media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-gray-100, #f3f4f6);
+}
+
+.card-media__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card--hoverable:hover .card-media__image {
+  transform: scale(1.05);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .card {
+  background-color: var(--color-gray-800, #1f2937);
+}
+
+[data-theme="dark"] .card--default {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .card--outlined {
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .card--filled {
+  background-color: var(--color-gray-750, #2d3748);
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .card--interactive {
+  border-color: var(--color-gray-600, #4b5563);
+}
+
+[data-theme="dark"] .card--clickable:hover {
+  border-color: var(--color-gray-500, #6b7280);
+}
+
+[data-theme="dark"] .card--selected {
+  border-color: var(--color-primary-light, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] .card__header {
+  border-color: var(--color-gray-700, #374151);
+}
+
+[data-theme="dark"] .card__footer {
+  border-color: var(--color-gray-700, #374151);
+  background-color: var(--color-gray-750, #2d3748);
+}
+
+[data-theme="dark"] .card-header__title {
+  color: var(--color-gray-100, #f3f4f6);
+}
+
+[data-theme="dark"] .card-header__subtitle {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+[data-theme="dark"] .card-media {
+  background-color: var(--color-gray-700, #374151);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  
+  .card--hoverable:hover {
+    transform: none;
+  }
+  
+  .card-media__image {
+    transition: none;
+  }
+  
+  .card--hoverable:hover .card-media__image {
+    transform: none;
+  }
+}

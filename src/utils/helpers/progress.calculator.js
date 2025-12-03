@@ -1,406 +1,700 @@
-/* ============================================
-   GPS LAB - Progress Calculator
-   Progress tracking and calculation utilities
-   ============================================ */
+/**
+ * GPS Lab Platform - Progress Calculator
+ * 
+ * Comprehensive progress calculations for the GPS Lab MMORPG educational platform.
+ * Handles mission, stage, adventure, and overall curriculum progress tracking.
+ * 
+ * @module utils/helpers/progress.calculator
+ * @version 1.0.0
+ */
+
+// =============================================================================
+// CONSTANTS
+// =============================================================================
 
 /**
- * Calculate percentage progress
- * @param {number} current - Current value
- * @param {number} total - Total value
+ * GPS Lab curriculum structure
+ */
+export const CURRICULUM_STRUCTURE = {
+  totalAdventures: 7,
+  totalStages: 35,
+  missionsPerStage: 5,
+  bitesPerMission: 5,
+  checkpointsPerBite: 1,
+  
+  // Calculated totals
+  totalMissions: 175,      // 35 stages × 5 missions
+  totalBites: 875,         // 175 missions × 5 bites
+  totalCheckpoints: 875    // 1 checkpoint per bite
+};
+
+/**
+ * Adventure definitions with stage ranges
+ */
+export const ADVENTURES = {
+  0: {
+    name: 'GPO Call',
+    stages: [1],
+    stageRange: { start: 1, end: 1 },
+    description: 'Introduction to Global Problem Solvers',
+    beaconColor: '#ef4444'  // red
+  },
+  1: {
+    name: 'GPS 101',
+    stages: [2, 3, 4, 5, 6],
+    stageRange: { start: 2, end: 6 },
+    description: 'Foundation of problem-solving methodology',
+    beaconColor: '#f97316'  // orange
+  },
+  2: {
+    name: 'GPS Prep',
+    stages: [7, 8, 9, 10, 11],
+    stageRange: { start: 7, end: 11 },
+    description: 'Preparation for simulation challenges',
+    beaconColor: '#eab308'  // yellow
+  },
+  3: {
+    name: 'GPS Simulation',
+    stages: [12, 13, 14, 15],
+    stageRange: { start: 12, end: 15 },
+    description: 'Practice with simulated real-world problems',
+    beaconColor: '#22c55e'  // green
+  },
+  4: {
+    name: 'GPS Capstone 1',
+    stages: [16, 17, 18, 19, 20],
+    stageRange: { start: 16, end: 20 },
+    description: 'First capstone project development',
+    beaconColor: '#3b82f6'  // blue
+  },
+  5: {
+    name: 'GPS Capstone 2',
+    stages: [21, 22, 23, 24, 25],
+    stageRange: { start: 21, end: 25 },
+    description: 'Second capstone with team collaboration',
+    beaconColor: '#6366f1'  // indigo
+  },
+  6: {
+    name: 'Venture Acceleration',
+    stages: [26, 27, 28, 29, 30],
+    stageRange: { start: 26, end: 30 },
+    description: 'Accelerating venture development',
+    beaconColor: '#8b5cf6'  // purple
+  },
+  7: {
+    name: 'Venture Capitalization',
+    stages: [31, 32, 33, 34, 35],
+    stageRange: { start: 31, end: 35 },
+    description: 'Final stage: venture launch and funding',
+    beaconColor: '#f8fafc'  // light (rainbow)
+  }
+};
+
+/**
+ * Progress status types
+ */
+export const PROGRESS_STATUS = {
+  NOT_STARTED: 'not_started',
+  IN_PROGRESS: 'in_progress',
+  COMPLETED: 'completed',
+  LOCKED: 'locked'
+};
+
+/**
+ * Recursive study loop states
+ */
+export const STUDY_LOOP_STATES = {
+  INITIAL: 'initial',
+  R2R_ACTIVE: 'r2r_active',       // Right to Retry active
+  PR2R_ACTIVE: 'pr2r_active',     // Provisional R2R active
+  PASSED: 'passed',
+  FAILED_AWAITING_RETRY: 'failed_awaiting_retry'
+};
+
+// =============================================================================
+// HELPER FUNCTIONS
+// =============================================================================
+
+/**
+ * Clamps a number between min and max
+ * @param {number} value - Value to clamp
+ * @param {number} min - Minimum value
+ * @param {number} max - Maximum value
+ * @returns {number} Clamped value
+ */
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+/**
+ * Calculates percentage
+ * @param {number} completed - Completed count
+ * @param {number} total - Total count
  * @returns {number} Percentage (0-100)
  */
-export const calculatePercentage = (current, total) => {
+const calculatePercentage = (completed, total) => {
   if (total === 0) return 0;
-  const percentage = (current / total) * 100;
-  return Math.min(Math.max(percentage, 0), 100);
+  return clamp(Math.round((completed / total) * 100), 0, 100);
+};
+
+// =============================================================================
+// STAGE AND ADVENTURE MAPPING
+// =============================================================================
+
+/**
+ * Gets adventure number for a stage
+ * @param {number} stageNumber - Stage number (1-35)
+ * @returns {number} Adventure number (0-7)
+ */
+export const getAdventureForStage = (stageNumber) => {
+  const stage = Number(stageNumber) || 1;
+  
+  for (const [adventureNum, adventure] of Object.entries(ADVENTURES)) {
+    if (stage >= adventure.stageRange.start && stage <= adventure.stageRange.end) {
+      return Number(adventureNum);
+    }
+  }
+  
+  return 0;
 };
 
 /**
- * Calculate mission progress
- * @param {number} completedBites - Number of completed bites
- * @param {number} totalBites - Total number of bites
- * @returns {Object} Progress information
+ * Gets adventure information
+ * @param {number} adventureNumber - Adventure number
+ * @returns {Object} Adventure info
  */
-export const calculateMissionProgress = (completedBites, totalBites) => {
-  const percentage = calculatePercentage(completedBites, totalBites);
-  const remaining = Math.max(0, totalBites - completedBites);
-
+export const getAdventureInfo = (adventureNumber) => {
+  const adventure = ADVENTURES[adventureNumber];
+  if (!adventure) return null;
+  
   return {
-    completed: completedBites,
-    total: totalBites,
-    remaining: remaining,
-    percentage: percentage,
-    isComplete: completedBites >= totalBites,
+    number: Number(adventureNumber),
+    ...adventure,
+    stageCount: adventure.stages.length,
+    totalMissions: adventure.stages.length * CURRICULUM_STRUCTURE.missionsPerStage,
+    totalBites: adventure.stages.length * CURRICULUM_STRUCTURE.missionsPerStage * CURRICULUM_STRUCTURE.bitesPerMission
   };
 };
 
 /**
- * Calculate stage progress (5 missions per stage)
- * @param {number} completedMissions - Number of completed missions in stage
- * @param {number} totalMissions - Total missions in stage (default: 5)
+ * Gets beacon color for a stage
+ * @param {number} stageNumber - Stage number
+ * @returns {string} Hex color code
+ */
+export const getBeaconColor = (stageNumber) => {
+  const adventure = getAdventureForStage(stageNumber);
+  return ADVENTURES[adventure]?.beaconColor || '#9ca3af';
+};
+
+/**
+ * Gets stages for an adventure
+ * @param {number} adventureNumber - Adventure number
+ * @returns {number[]} Array of stage numbers
+ */
+export const getStagesForAdventure = (adventureNumber) => {
+  const adventure = ADVENTURES[adventureNumber];
+  return adventure?.stages || [];
+};
+
+// =============================================================================
+// CHECKPOINT PROGRESS
+// =============================================================================
+
+/**
+ * Calculates bite (sub-mission) progress
+ * @param {Object} biteData - Bite completion data
+ * @returns {Object} Bite progress
+ */
+export const calculateBiteProgress = (biteData = {}) => {
+  const {
+    biteId,
+    isCompleted = false,
+    checkpointPassed = false,
+    attempts = 0,
+    startedAt = null,
+    completedAt = null
+  } = biteData;
+  
+  const status = isCompleted 
+    ? PROGRESS_STATUS.COMPLETED 
+    : (startedAt ? PROGRESS_STATUS.IN_PROGRESS : PROGRESS_STATUS.NOT_STARTED);
+  
+  return {
+    biteId,
+    status,
+    isCompleted,
+    checkpointPassed,
+    progress: isCompleted ? 100 : (checkpointPassed ? 50 : 0),
+    attempts,
+    startedAt,
+    completedAt,
+    duration: startedAt && completedAt 
+      ? new Date(completedAt) - new Date(startedAt) 
+      : null
+  };
+};
+
+// =============================================================================
+// MISSION PROGRESS
+// =============================================================================
+
+/**
+ * Calculates mission progress
+ * @param {Object} missionData - Mission data with bites
+ * @returns {Object} Mission progress
+ */
+export const calculateMissionProgress = (missionData = {}) => {
+  const {
+    missionId,
+    stageNumber = 1,
+    missionNumber = 1,
+    bites = [],
+    isLocked = false
+  } = missionData;
+  
+  const totalBites = CURRICULUM_STRUCTURE.bitesPerMission;
+  const completedBites = bites.filter(b => b.isCompleted).length;
+  const passedCheckpoints = bites.filter(b => b.checkpointPassed).length;
+  
+  let status;
+  if (isLocked) {
+    status = PROGRESS_STATUS.LOCKED;
+  } else if (completedBites === totalBites) {
+    status = PROGRESS_STATUS.COMPLETED;
+  } else if (completedBites > 0 || bites.some(b => b.startedAt)) {
+    status = PROGRESS_STATUS.IN_PROGRESS;
+  } else {
+    status = PROGRESS_STATUS.NOT_STARTED;
+  }
+  
+  const progress = calculatePercentage(completedBites, totalBites);
+  
+  return {
+    missionId: missionId || `S${stageNumber}M${missionNumber}`,
+    stageNumber,
+    missionNumber,
+    status,
+    progress,
+    completedBites,
+    totalBites,
+    passedCheckpoints,
+    totalCheckpoints: totalBites,
+    remainingBites: totalBites - completedBites,
+    isComplete: completedBites === totalBites,
+    isLocked
+  };
+};
+
+/**
+ * Calculates mission with R2R status
+ * @param {Object} missionData - Mission data
+ * @param {Object} r2rData - R2R (Right to Retry) data
+ * @returns {Object} Mission progress with R2R
+ */
+export const calculateMissionWithR2R = (missionData = {}, r2rData = {}) => {
+  const mission = calculateMissionProgress(missionData);
+  
+  const {
+    hasR2R = false,
+    hasPR2R = false,
+    pr2rExpiresAt = null,
+    retryAttempts = 0,
+    maxRetries = 3
+  } = r2rData;
+  
+  let studyLoopState = STUDY_LOOP_STATES.INITIAL;
+  
+  if (mission.isComplete) {
+    studyLoopState = STUDY_LOOP_STATES.PASSED;
+  } else if (hasR2R) {
+    studyLoopState = STUDY_LOOP_STATES.R2R_ACTIVE;
+  } else if (hasPR2R) {
+    studyLoopState = STUDY_LOOP_STATES.PR2R_ACTIVE;
+  } else if (retryAttempts > 0) {
+    studyLoopState = STUDY_LOOP_STATES.FAILED_AWAITING_RETRY;
+  }
+  
+  const canRetry = retryAttempts < maxRetries && (hasR2R || hasPR2R);
+  const pr2rExpired = hasPR2R && pr2rExpiresAt && new Date(pr2rExpiresAt) < new Date();
+  
+  return {
+    ...mission,
+    r2r: {
+      hasR2R,
+      hasPR2R,
+      pr2rExpiresAt,
+      pr2rExpired,
+      retryAttempts,
+      maxRetries,
+      retriesRemaining: maxRetries - retryAttempts,
+      canRetry: canRetry && !pr2rExpired
+    },
+    studyLoopState
+  };
+};
+
+// =============================================================================
+// STAGE PROGRESS
+// =============================================================================
+
+/**
+ * Calculates stage progress
+ * @param {Object} stageData - Stage data with missions
  * @returns {Object} Stage progress
  */
-export const calculateStageProgress = (completedMissions, totalMissions = 5) => {
-  const percentage = calculatePercentage(completedMissions, totalMissions);
-  const remaining = Math.max(0, totalMissions - completedMissions);
-
-  return {
-    completed: completedMissions,
-    total: totalMissions,
-    remaining: remaining,
-    percentage: percentage,
-    isComplete: completedMissions >= totalMissions,
-  };
-};
-
-/**
- * Calculate overall GPS program progress (35 stages)
- * @param {number} completedStages - Number of completed stages
- * @param {number} totalStages - Total stages (default: 35)
- * @returns {Object} Program progress
- */
-export const calculateProgramProgress = (completedStages, totalStages = 35) => {
-  const percentage = calculatePercentage(completedStages, totalStages);
-  const remaining = Math.max(0, totalStages - completedStages);
-
-  // Determine current beacon phase
-  let beaconPhase = 'GPS 101';
-  let beaconColor = 'Red';
-
-  if (completedStages >= 31) {
-    beaconPhase = 'Venture Capitalization';
-    beaconColor = 'Purple';
-  } else if (completedStages >= 26) {
-    beaconPhase = 'Venture Acceleration';
-    beaconColor = 'Indigo';
-  } else if (completedStages >= 21) {
-    beaconPhase = 'GPS Capstone 2';
-    beaconColor = 'Blue';
-  } else if (completedStages >= 16) {
-    beaconPhase = 'GPS Capstone 1';
-    beaconColor = 'Green';
-  } else if (completedStages >= 11) {
-    beaconPhase = 'GPS Simulation';
-    beaconColor = 'Yellow';
-  } else if (completedStages >= 6) {
-    beaconPhase = 'GPS Prep';
-    beaconColor = 'Orange';
-  }
-
-  return {
-    completed: completedStages,
-    total: totalStages,
-    remaining: remaining,
-    percentage: percentage,
-    isComplete: completedStages >= totalStages,
-    beaconPhase: beaconPhase,
-    beaconColor: beaconColor,
-  };
-};
-
-/**
- * Calculate checkpoint score
- * @param {number} pointsEarned - Points earned
- * @param {number} totalPoints - Total possible points
- * @returns {Object} Score information
- */
-export const calculateCheckpointScore = (pointsEarned, totalPoints) => {
-  const percentage = calculatePercentage(pointsEarned, totalPoints);
+export const calculateStageProgress = (stageData = {}) => {
+  const {
+    stageNumber = 1,
+    missions = [],
+    isLocked = false
+  } = stageData;
   
-  let grade = 'F';
-  let status = 'Failed';
-
-  if (percentage >= 90) {
-    grade = 'A';
-    status = 'Excellent';
-  } else if (percentage >= 80) {
-    grade = 'B';
-    status = 'Very Good';
-  } else if (percentage >= 70) {
-    grade = 'C';
-    status = 'Good';
-  } else if (percentage >= 60) {
-    grade = 'D';
-    status = 'Passed';
-  }
-
-  return {
-    pointsEarned: pointsEarned,
-    totalPoints: totalPoints,
-    percentage: percentage,
-    grade: grade,
-    status: status,
-    passed: percentage >= 60,
-  };
-};
-
-/**
- * Calculate time remaining
- * @param {Date|string} deadline - Deadline date
- * @returns {Object} Time remaining information
- */
-export const calculateTimeRemaining = (deadline) => {
-  const now = new Date();
-  const deadlineDate = new Date(deadline);
-  const diffInMs = deadlineDate - now;
-
-  if (diffInMs <= 0) {
-    return {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      totalSeconds: 0,
-      isOverdue: true,
-      formatted: 'Overdue',
-    };
-  }
-
-  const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
-
-  let formatted = '';
-  if (days > 0) {
-    formatted = `${days}d ${hours}h`;
-  } else if (hours > 0) {
-    formatted = `${hours}h ${minutes}m`;
-  } else if (minutes > 0) {
-    formatted = `${minutes}m ${seconds}s`;
-  } else {
-    formatted = `${seconds}s`;
-  }
-
-  return {
-    days,
-    hours,
-    minutes,
-    seconds,
-    totalSeconds: Math.floor(diffInMs / 1000),
-    isOverdue: false,
-    formatted,
-  };
-};
-
-/**
- * Calculate completion rate
- * @param {number} completed - Number of completed items
- * @param {number} attempted - Number of attempted items
- * @returns {Object} Completion rate information
- */
-export const calculateCompletionRate = (completed, attempted) => {
-  if (attempted === 0) {
-    return {
-      completed: 0,
-      attempted: 0,
-      rate: 0,
-      formatted: '0%',
-    };
-  }
-
-  const rate = (completed / attempted) * 100;
-
-  return {
-    completed: completed,
-    attempted: attempted,
-    rate: rate,
-    formatted: `${rate.toFixed(1)}%`,
-  };
-};
-
-/**
- * Calculate success rate (passed vs attempted)
- * @param {number} passed - Number of passed items
- * @param {number} attempted - Number of attempted items
- * @returns {Object} Success rate information
- */
-export const calculateSuccessRate = (passed, attempted) => {
-  if (attempted === 0) {
-    return {
-      passed: 0,
-      failed: 0,
-      attempted: 0,
-      rate: 0,
-      formatted: '0%',
-    };
-  }
-
-  const failed = attempted - passed;
-  const rate = (passed / attempted) * 100;
-
-  return {
-    passed: passed,
-    failed: failed,
-    attempted: attempted,
-    rate: rate,
-    formatted: `${rate.toFixed(1)}%`,
-  };
-};
-
-/**
- * Calculate average time to complete
- * @param {Array} completionTimes - Array of completion times in seconds
- * @returns {Object} Average time information
- */
-export const calculateAverageTime = (completionTimes) => {
-  if (!Array.isArray(completionTimes) || completionTimes.length === 0) {
-    return {
-      average: 0,
-      formatted: '0m',
-    };
-  }
-
-  const total = completionTimes.reduce((sum, time) => sum + time, 0);
-  const average = total / completionTimes.length;
-
-  const hours = Math.floor(average / 3600);
-  const minutes = Math.floor((average % 3600) / 60);
-
-  let formatted = '';
-  if (hours > 0) {
-    formatted = `${hours}h ${minutes}m`;
-  } else {
-    formatted = `${minutes}m`;
-  }
-
-  return {
-    average: average,
-    formatted: formatted,
-  };
-};
-
-/**
- * Calculate streak
- * @param {Array} dates - Array of activity dates
- * @returns {Object} Streak information
- */
-export const calculateStreak = (dates) => {
-  if (!Array.isArray(dates) || dates.length === 0) {
-    return {
-      current: 0,
-      longest: 0,
-    };
-  }
-
-  // Sort dates in descending order
-  const sortedDates = dates
-    .map(date => new Date(date).setHours(0, 0, 0, 0))
-    .sort((a, b) => b - a);
-
-  let currentStreak = 0;
-  let longestStreak = 0;
-  let tempStreak = 1;
-
-  const today = new Date().setHours(0, 0, 0, 0);
-  const yesterday = today - (24 * 60 * 60 * 1000);
-
-  // Check if there's activity today or yesterday for current streak
-  if (sortedDates[0] === today || sortedDates[0] === yesterday) {
-    currentStreak = 1;
-
-    // Calculate current streak
-    for (let i = 1; i < sortedDates.length; i++) {
-      const diff = sortedDates[i - 1] - sortedDates[i];
-      const daysDiff = diff / (24 * 60 * 60 * 1000);
-
-      if (daysDiff === 1) {
-        currentStreak++;
-      } else {
-        break;
-      }
-    }
-  }
-
-  // Calculate longest streak
-  for (let i = 1; i < sortedDates.length; i++) {
-    const diff = sortedDates[i - 1] - sortedDates[i];
-    const daysDiff = diff / (24 * 60 * 60 * 1000);
-
-    if (daysDiff === 1) {
-      tempStreak++;
-      longestStreak = Math.max(longestStreak, tempStreak);
-    } else {
-      tempStreak = 1;
-    }
-  }
-
-  longestStreak = Math.max(longestStreak, currentStreak, 1);
-
-  return {
-    current: currentStreak,
-    longest: longestStreak,
-  };
-};
-
-/**
- * Calculate velocity (items completed per time period)
- * @param {number} itemsCompleted - Number of items completed
- * @param {number} daysElapsed - Number of days elapsed
- * @returns {Object} Velocity information
- */
-export const calculateVelocity = (itemsCompleted, daysElapsed) => {
-  if (daysElapsed === 0) {
-    return {
-      daily: 0,
-      weekly: 0,
-      monthly: 0,
-    };
-  }
-
-  const dailyVelocity = itemsCompleted / daysElapsed;
-  const weeklyVelocity = dailyVelocity * 7;
-  const monthlyVelocity = dailyVelocity * 30;
-
-  return {
-    daily: dailyVelocity.toFixed(2),
-    weekly: weeklyVelocity.toFixed(2),
-    monthly: monthlyVelocity.toFixed(2),
-  };
-};
-
-/**
- * Calculate estimated time to completion
- * @param {number} remainingItems - Number of remaining items
- * @param {number} averageTimePerItem - Average time per item in seconds
- * @returns {Object} Estimated time information
- */
-export const calculateEstimatedCompletion = (remainingItems, averageTimePerItem) => {
-  const totalSeconds = remainingItems * averageTimePerItem;
+  const totalMissions = CURRICULUM_STRUCTURE.missionsPerStage;
+  const missionProgress = missions.map(m => calculateMissionProgress(m));
   
-  const days = Math.floor(totalSeconds / (24 * 60 * 60));
-  const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
-  const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-
-  let formatted = '';
-  if (days > 0) {
-    formatted = `${days}d ${hours}h`;
-  } else if (hours > 0) {
-    formatted = `${hours}h ${minutes}m`;
+  const completedMissions = missionProgress.filter(m => m.isComplete).length;
+  const inProgressMissions = missionProgress.filter(m => m.status === PROGRESS_STATUS.IN_PROGRESS).length;
+  
+  // Calculate bite-level progress
+  const totalBites = totalMissions * CURRICULUM_STRUCTURE.bitesPerMission;
+  const completedBites = missionProgress.reduce((sum, m) => sum + m.completedBites, 0);
+  
+  // Calculate checkpoint-level progress
+  const totalCheckpoints = totalBites;
+  const passedCheckpoints = missionProgress.reduce((sum, m) => sum + m.passedCheckpoints, 0);
+  
+  let status;
+  if (isLocked) {
+    status = PROGRESS_STATUS.LOCKED;
+  } else if (completedMissions === totalMissions) {
+    status = PROGRESS_STATUS.COMPLETED;
+  } else if (completedMissions > 0 || inProgressMissions > 0) {
+    status = PROGRESS_STATUS.IN_PROGRESS;
   } else {
-    formatted = `${minutes}m`;
+    status = PROGRESS_STATUS.NOT_STARTED;
   }
-
+  
+  const progress = calculatePercentage(completedBites, totalBites);
+  const adventureNumber = getAdventureForStage(stageNumber);
+  
   return {
-    days,
-    hours,
-    minutes,
-    totalSeconds,
-    formatted,
+    stageNumber,
+    adventureNumber,
+    beaconColor: getBeaconColor(stageNumber),
+    status,
+    progress,
+    
+    missions: {
+      completed: completedMissions,
+      inProgress: inProgressMissions,
+      total: totalMissions,
+      remaining: totalMissions - completedMissions,
+      progress: calculatePercentage(completedMissions, totalMissions)
+    },
+    
+    bites: {
+      completed: completedBites,
+      total: totalBites,
+      remaining: totalBites - completedBites,
+      progress: calculatePercentage(completedBites, totalBites)
+    },
+    
+    checkpoints: {
+      passed: passedCheckpoints,
+      total: totalCheckpoints,
+      remaining: totalCheckpoints - passedCheckpoints,
+      progress: calculatePercentage(passedCheckpoints, totalCheckpoints)
+    },
+    
+    isComplete: completedMissions === totalMissions,
+    isLocked,
+    missionProgress
   };
 };
+
+// =============================================================================
+// ADVENTURE PROGRESS
+// =============================================================================
+
+/**
+ * Calculates adventure progress
+ * @param {Object} adventureData - Adventure data with stages
+ * @returns {Object} Adventure progress
+ */
+export const calculateAdventureProgress = (adventureData = {}) => {
+  const {
+    adventureNumber = 1,
+    stages = [],
+    isLocked = false
+  } = adventureData;
+  
+  const adventureInfo = getAdventureInfo(adventureNumber);
+  if (!adventureInfo) {
+    return { error: 'Invalid adventure number' };
+  }
+  
+  const totalStages = adventureInfo.stageCount;
+  const stageProgress = stages.map(s => calculateStageProgress(s));
+  
+  const completedStages = stageProgress.filter(s => s.isComplete).length;
+  const inProgressStages = stageProgress.filter(s => s.status === PROGRESS_STATUS.IN_PROGRESS).length;
+  
+  // Aggregate mission counts
+  const totalMissions = adventureInfo.totalMissions;
+  const completedMissions = stageProgress.reduce((sum, s) => sum + s.missions.completed, 0);
+  
+  // Aggregate bite counts
+  const totalBites = adventureInfo.totalBites;
+  const completedBites = stageProgress.reduce((sum, s) => sum + s.bites.completed, 0);
+  
+  // Aggregate checkpoint counts
+  const totalCheckpoints = totalBites;
+  const passedCheckpoints = stageProgress.reduce((sum, s) => sum + s.checkpoints.passed, 0);
+  
+  let status;
+  if (isLocked) {
+    status = PROGRESS_STATUS.LOCKED;
+  } else if (completedStages === totalStages) {
+    status = PROGRESS_STATUS.COMPLETED;
+  } else if (completedStages > 0 || inProgressStages > 0) {
+    status = PROGRESS_STATUS.IN_PROGRESS;
+  } else {
+    status = PROGRESS_STATUS.NOT_STARTED;
+  }
+  
+  const progress = calculatePercentage(completedBites, totalBites);
+  
+  return {
+    adventureNumber,
+    name: adventureInfo.name,
+    description: adventureInfo.description,
+    beaconColor: adventureInfo.beaconColor,
+    status,
+    progress,
+    
+    stages: {
+      completed: completedStages,
+      inProgress: inProgressStages,
+      total: totalStages,
+      remaining: totalStages - completedStages,
+      progress: calculatePercentage(completedStages, totalStages)
+    },
+    
+    missions: {
+      completed: completedMissions,
+      total: totalMissions,
+      remaining: totalMissions - completedMissions,
+      progress: calculatePercentage(completedMissions, totalMissions)
+    },
+    
+    bites: {
+      completed: completedBites,
+      total: totalBites,
+      remaining: totalBites - completedBites,
+      progress: calculatePercentage(completedBites, totalBites)
+    },
+    
+    checkpoints: {
+      passed: passedCheckpoints,
+      total: totalCheckpoints,
+      remaining: totalCheckpoints - passedCheckpoints,
+      progress: calculatePercentage(passedCheckpoints, totalCheckpoints)
+    },
+    
+    isComplete: completedStages === totalStages,
+    isLocked,
+    stageProgress
+  };
+};
+
+// =============================================================================
+// OVERALL CURRICULUM PROGRESS
+// =============================================================================
+
+/**
+ * Calculates overall curriculum progress
+ * @param {Object} userData - User's progress data
+ * @returns {Object} Overall progress
+ */
+export const calculateOverallProgress = (userData = {}) => {
+  const { adventures = [] } = userData;
+  
+  const adventureProgress = [];
+  let totalCompletedStages = 0;
+  let totalCompletedMissions = 0;
+  let totalCompletedBites = 0;
+  let totalPassedCheckpoints = 0;
+  
+  for (let i = 0; i <= 7; i++) {
+    const adventureData = adventures.find(a => a.adventureNumber === i) || { adventureNumber: i, stages: [] };
+    const progress = calculateAdventureProgress(adventureData);
+    adventureProgress.push(progress);
+    
+    totalCompletedStages += progress.stages?.completed || 0;
+    totalCompletedMissions += progress.missions?.completed || 0;
+    totalCompletedBites += progress.bites?.completed || 0;
+    totalPassedCheckpoints += progress.checkpoints?.passed || 0;
+  }
+  
+  const structure = CURRICULUM_STRUCTURE;
+  const overallProgress = calculatePercentage(totalCompletedBites, structure.totalBites);
+  
+  // Determine current position
+  const currentAdventure = adventureProgress.find(a => a.status === PROGRESS_STATUS.IN_PROGRESS) 
+    || adventureProgress.find(a => a.status === PROGRESS_STATUS.NOT_STARTED);
+  
+  const currentStage = currentAdventure?.stageProgress?.find(s => s.status === PROGRESS_STATUS.IN_PROGRESS)
+    || currentAdventure?.stageProgress?.find(s => s.status === PROGRESS_STATUS.NOT_STARTED);
+  
+  return {
+    overallProgress,
+    
+    stages: {
+      completed: totalCompletedStages,
+      total: structure.totalStages,
+      remaining: structure.totalStages - totalCompletedStages,
+      progress: calculatePercentage(totalCompletedStages, structure.totalStages)
+    },
+    
+    missions: {
+      completed: totalCompletedMissions,
+      total: structure.totalMissions,
+      remaining: structure.totalMissions - totalCompletedMissions,
+      progress: calculatePercentage(totalCompletedMissions, structure.totalMissions)
+    },
+    
+    bites: {
+      completed: totalCompletedBites,
+      total: structure.totalBites,
+      remaining: structure.totalBites - totalCompletedBites,
+      progress: calculatePercentage(totalCompletedBites, structure.totalBites)
+    },
+    
+    checkpoints: {
+      passed: totalPassedCheckpoints,
+      total: structure.totalCheckpoints,
+      remaining: structure.totalCheckpoints - totalPassedCheckpoints,
+      progress: calculatePercentage(totalPassedCheckpoints, structure.totalCheckpoints)
+    },
+    
+    currentPosition: {
+      adventureNumber: currentAdventure?.adventureNumber || 0,
+      adventureName: currentAdventure?.name || 'GPO Call',
+      stageNumber: currentStage?.stageNumber || 1
+    },
+    
+    adventureProgress,
+    isComplete: totalCompletedStages === structure.totalStages
+  };
+};
+
+// =============================================================================
+// PROGRESS PROJECTIONS
+// =============================================================================
+
+/**
+ * Estimates time to completion
+ * @param {Object} progressData - Current progress
+ * @param {number} averageDailyProgress - Average bites per day
+ * @returns {Object} Time estimation
+ */
+export const estimateTimeToCompletion = (progressData, averageDailyProgress = 5) => {
+  const remaining = progressData?.bites?.remaining || 0;
+  const dailyRate = Number(averageDailyProgress) || 5;
+  
+  const daysNeeded = Math.ceil(remaining / dailyRate);
+  const completionDate = new Date(Date.now() + daysNeeded * 24 * 60 * 60 * 1000);
+  
+  return {
+    bitesRemaining: remaining,
+    dailyRate,
+    daysNeeded,
+    weeksNeeded: Math.ceil(daysNeeded / 7),
+    monthsNeeded: Math.ceil(daysNeeded / 30),
+    estimatedCompletion: completionDate,
+    estimatedCompletionISO: completionDate.toISOString()
+  };
+};
+
+/**
+ * Gets next milestone
+ * @param {Object} progressData - Current progress
+ * @returns {Object} Next milestone info
+ */
+export const getNextMilestone = (progressData) => {
+  const { currentPosition, adventureProgress } = progressData || {};
+  
+  if (!currentPosition) {
+    return { type: 'start', message: 'Begin your GPS journey!' };
+  }
+  
+  const currentAdventure = adventureProgress?.find(a => a.adventureNumber === currentPosition.adventureNumber);
+  const currentStage = currentAdventure?.stageProgress?.find(s => s.stageNumber === currentPosition.stageNumber);
+  
+  // Check for mission completion
+  const currentMission = currentStage?.missionProgress?.find(m => m.status === PROGRESS_STATUS.IN_PROGRESS);
+  if (currentMission && currentMission.remainingBites <= 2) {
+    return {
+      type: 'mission',
+      message: `Complete Mission ${currentMission.missionNumber}`,
+      remaining: currentMission.remainingBites,
+      reward: 'Mission completion bonus'
+    };
+  }
+  
+  // Check for stage completion
+  if (currentStage && currentStage.missions.remaining <= 1) {
+    return {
+      type: 'stage',
+      message: `Complete Stage ${currentStage.stageNumber}`,
+      remaining: currentStage.missions.remaining,
+      reward: 'Stage completion bonus'
+    };
+  }
+  
+  // Check for adventure completion
+  if (currentAdventure && currentAdventure.stages.remaining <= 1) {
+    return {
+      type: 'adventure',
+      message: `Complete ${currentAdventure.name}`,
+      remaining: currentAdventure.stages.remaining,
+      reward: 'Adventure completion bonus'
+    };
+  }
+  
+  // Default to next bite
+  return {
+    type: 'bite',
+    message: 'Complete the next checkpoint',
+    remaining: 1,
+    reward: 'Checkpoint XP'
+  };
+};
+
+// =============================================================================
+// EXPORTS
+// =============================================================================
 
 export default {
-  calculatePercentage,
+  // Constants
+  CURRICULUM_STRUCTURE,
+  ADVENTURES,
+  PROGRESS_STATUS,
+  STUDY_LOOP_STATES,
+  
+  // Mapping
+  getAdventureForStage,
+  getAdventureInfo,
+  getBeaconColor,
+  getStagesForAdventure,
+  
+  // Progress calculations
+  calculateBiteProgress,
   calculateMissionProgress,
+  calculateMissionWithR2R,
   calculateStageProgress,
-  calculateProgramProgress,
-  calculateCheckpointScore,
-  calculateTimeRemaining,
-  calculateCompletionRate,
-  calculateSuccessRate,
-  calculateAverageTime,
-  calculateStreak,
-  calculateVelocity,
-  calculateEstimatedCompletion,
+  calculateAdventureProgress,
+  calculateOverallProgress,
+  
+  // Projections
+  estimateTimeToCompletion,
+  getNextMilestone
 };
