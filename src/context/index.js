@@ -1,68 +1,48 @@
 /**
- * GPS Lab Platform - Context Index
+ * GPS Lab Platform - Contexts Index
  * 
  * Central export for all context providers and hooks.
  * 
- * @module context
- * @version 1.0.0
+ * @module contexts
  */
 
-// =============================================================================
-// AUTH CONTEXT
-// =============================================================================
-
-export { 
-  AuthProvider, 
-  useAuthContext,
-  default as AuthContext 
-} from './AuthContext';
-
-// =============================================================================
-// THEME CONTEXT
-// =============================================================================
-
+// Theme Context
 export { 
   ThemeProvider, 
-  useTheme,
+  useTheme, 
   THEMES,
-  THEME_COLORS,
   default as ThemeContext 
 } from './ThemeContext';
 
-// =============================================================================
-// BARAKA CONTEXT
-// =============================================================================
-
+// I18n Context
 export { 
-  BarakaProvider, 
-  useBaraka,
-  default as BarakaContext 
-} from './BarakaContext';
+  I18nProvider, 
+  useI18n, 
+  useTranslation,
+  LANGUAGES,
+  LANGUAGE_NAMES,
+  default as I18nContext 
+} from './I18nContext';
 
-// =============================================================================
-// COMBINED PROVIDER
-// =============================================================================
+// Auth Context
+export { 
+  AuthProvider, 
+  useAuth,
+  default as AuthContext 
+} from './AuthContext';
 
-import React from 'react';
-import { AuthProvider } from './AuthContext';
-import { ThemeProvider } from './ThemeContext';
-import { BarakaProvider } from './BarakaContext';
+// Notification Context
+export { 
+  NotificationProvider, 
+  useNotifications,
+  NOTIFICATION_TYPES,
+  default as NotificationContext 
+} from './NotificationContext';
 
-/**
- * Combined provider that wraps all context providers
- * @param {Object} props - Component props
- * @returns {JSX.Element} Provider tree
- */
-export const AppProviders = ({ children }) => {
-  return (
-    <ThemeProvider>
-      <AuthProvider>
-        <BarakaProvider>
-          {children}
-        </BarakaProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  );
-};
-
-export default AppProviders;
+// WebSocket Context
+export { 
+  WebSocketProvider, 
+  useWebSocket,
+  WS_STATUS,
+  default as WebSocketContext 
+} from './WebSocketContext';

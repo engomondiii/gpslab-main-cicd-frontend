@@ -1,0 +1,177 @@
+/**
+ * GPS Lab Platform - DashboardOverview Component Styles
+ */
+
+.dashboard-overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Header */
+.dashboard-overview__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--gps-primary-pale, rgba(0, 212, 255, 0.15)), var(--gps-accent-pale, rgba(42, 157, 143, 0.15)));
+  border-radius: var(--radius-xl, 12px);
+}
+
+@media (min-width: 768px) {
+  .dashboard-overview__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Greeting */
+.dashboard-overview__greeting {
+  flex: 1;
+}
+
+.dashboard-overview__greeting-text {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.dashboard-overview__user-name {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.dashboard-overview__greeting-sub {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #2d4263);
+  margin: 0;
+}
+
+/* Level */
+.dashboard-overview__level {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-overview__level-badge {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dashboard-overview__level-number {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.dashboard-overview__level-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  min-width: 150px;
+}
+
+.dashboard-overview__level-label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-700, #1b263b);
+}
+
+.dashboard-overview__level-progress {
+  height: 8px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.dashboard-overview__level-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.dashboard-overview__level-xp {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Stats Grid */
+.dashboard-overview__stats {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 640px) {
+  .dashboard-overview__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-overview__stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-overview__stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.dashboard-overview__stat {
+  height: 100%;
+}
+
+/* Activity Section */
+.dashboard-overview__activity {
+  display: block;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .dashboard-overview__header {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(42, 157, 143, 0.1));
+}
+
+[data-theme="dark"] .dashboard-overview__greeting-text {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .dashboard-overview__greeting-sub {
+  color: var(--neutral-400, #a8dadc);
+}
+
+[data-theme="dark"] .dashboard-overview__level {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .dashboard-overview__level-label {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .dashboard-overview__level-progress {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-overview__level-progress-fill {
+    transition: none;
+  }
+}

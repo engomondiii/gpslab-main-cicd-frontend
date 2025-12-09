@@ -1,0 +1,324 @@
+/**
+ * GPS Lab Platform - StageCard Component Styles
+ */
+
+.stage-card {
+  position: relative;
+  display: flex;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+  overflow: hidden;
+}
+
+.stage-card--clickable {
+  cursor: pointer;
+}
+
+.stage-card--clickable:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-md);
+}
+
+/* Size Variants */
+.stage-card--small {
+  padding: var(--space-3, 12px);
+  gap: var(--space-3, 12px);
+}
+
+.stage-card--small .stage-card__badge {
+  width: 40px;
+  height: 40px;
+}
+
+.stage-card--small .stage-card__number {
+  font-size: var(--text-lg, 20px);
+}
+
+.stage-card--large {
+  padding: var(--space-6, 24px);
+  gap: var(--space-5, 20px);
+}
+
+.stage-card--large .stage-card__badge {
+  width: 72px;
+  height: 72px;
+}
+
+.stage-card--large .stage-card__number {
+  font-size: var(--text-2xl, 32px);
+}
+
+/* Variant Styles */
+.stage-card--compact {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stage-card--compact .stage-card__status {
+  justify-content: center;
+}
+
+/* Badge */
+.stage-card__badge {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl, 12px);
+  flex-shrink: 0;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.stage-card--locked .stage-card__badge {
+  background-color: var(--neutral-200, #f0f4f8);
+}
+
+.stage-card--available .stage-card__badge {
+  background: linear-gradient(135deg, var(--gps-primary-pale, rgba(0, 212, 255, 0.15)), var(--gps-accent-pale, rgba(42, 157, 143, 0.15)));
+  border: 2px solid var(--gps-primary, #00d4ff);
+}
+
+.stage-card--in_progress .stage-card__badge {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.stage-card--completed .stage-card__badge {
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--gps-accent, #2a9d8f));
+}
+
+.stage-card__number {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+}
+
+.stage-card--locked .stage-card__number {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.stage-card--available .stage-card__number {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.stage-card--in_progress .stage-card__number,
+.stage-card--completed .stage-card__number {
+  color: var(--neutral-0, #ffffff);
+}
+
+.stage-card__check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--success, #2a9d8f);
+  border-radius: 50%;
+  color: var(--neutral-0, #ffffff);
+}
+
+.stage-card__check svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Content */
+.stage-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stage-card__adventure {
+  display: inline-block;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-accent, #2a9d8f);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.stage-card__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-1, 4px);
+}
+
+.stage-card--locked .stage-card__title {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.stage-card__description {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0 0 var(--space-3, 12px);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Status */
+.stage-card__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.stage-card__status-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.stage-card__status-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stage-card--locked .stage-card__status-icon {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.stage-card--available .stage-card__status-icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.stage-card--in_progress .stage-card__status-icon {
+  color: var(--warning, #f1c40f);
+}
+
+.stage-card--completed .stage-card__status-icon {
+  color: var(--success, #2a9d8f);
+}
+
+.stage-card__status-label {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Progress */
+.stage-card__progress {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.stage-card__progress-bar {
+  height: 6px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.stage-card__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.stage-card__progress-text {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Missions */
+.stage-card__missions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.stage-card__missions svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Rewards */
+.stage-card__rewards {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.stage-card__reward {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.stage-card__reward--xp {
+  background-color: var(--gps-accent-pale, rgba(42, 157, 143, 0.15));
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.stage-card__reward--baraka {
+  background-color: var(--warning-pale, rgba(241, 196, 15, 0.1));
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+/* Locked Overlay */
+.stage-card__locked-overlay {
+  position: absolute;
+  top: var(--space-3, 12px);
+  right: var(--space-3, 12px);
+  color: var(--neutral-300, #d0d7de);
+}
+
+.stage-card__locked-overlay svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .stage-card {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-card--clickable:hover {
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .stage-card--locked .stage-card__badge {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-card__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .stage-card--locked .stage-card__title {
+  color: var(--neutral-500, #8b949e);
+}
+
+[data-theme="dark"] .stage-card__progress-bar {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .stage-card,
+  .stage-card__badge,
+  .stage-card__progress-fill {
+    transition: none;
+  }
+}

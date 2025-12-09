@@ -1,0 +1,21 @@
+/**
+ * GPS Lab Platform - MainLayout Component Styles
+ */
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--neutral-50, #fafbfc);
+}
+
+.main-layout__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark theme */
+[data-theme="dark"] .main-layout {
+  background-color: var(--neutral-900, #0d1117);
+}

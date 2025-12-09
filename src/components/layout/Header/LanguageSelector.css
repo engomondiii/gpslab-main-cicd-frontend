@@ -1,0 +1,186 @@
+/**
+ * GPS Lab Platform - LanguageSelector Component Styles
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.language-selector {
+  position: relative;
+}
+
+/* =============================================================================
+   TRIGGER
+   ============================================================================= */
+
+.language-selector__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.language-selector__trigger:hover {
+  background-color: var(--neutral-100, #f7faff);
+  border-color: var(--neutral-300, #e1e4e8);
+}
+
+.language-selector__trigger:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 2px;
+}
+
+.language-selector__flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.language-selector__code {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .language-selector__code {
+    display: block;
+  }
+}
+
+.language-selector__arrow {
+  width: 14px;
+  height: 14px;
+  color: var(--neutral-500, #8b949e);
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.language-selector--open .language-selector__arrow {
+  transform: rotate(180deg);
+}
+
+/* =============================================================================
+   DROPDOWN
+   ============================================================================= */
+
+.language-selector__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 160px;
+  padding: var(--space-1, 4px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #e1e4e8);
+  border-radius: var(--radius-lg, 8px);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown, 100);
+  animation: langDropdownEnter 150ms var(--ease-out);
+}
+
+@keyframes langDropdownEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================================================
+   OPTIONS
+   ============================================================================= */
+
+.language-selector__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: none;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: background-color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.language-selector__option:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.language-selector__option--selected {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+.language-selector__option-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.language-selector__option-name {
+  flex: 1;
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  text-align: left;
+}
+
+.language-selector__option--selected .language-selector__option-name {
+  color: var(--gps-primary-dark, #00a3cc);
+  font-weight: var(--font-medium, 500);
+}
+
+.language-selector__option-check {
+  width: 16px;
+  height: 16px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .language-selector__trigger:hover {
+  background-color: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .language-selector__code {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .language-selector__dropdown {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .language-selector__option:hover {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .language-selector__option-name {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .language-selector__trigger,
+  .language-selector__arrow,
+  .language-selector__option {
+    transition: none;
+  }
+  
+  .language-selector__dropdown {
+    animation: none;
+  }
+}

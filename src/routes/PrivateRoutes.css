@@ -1,0 +1,99 @@
+/**
+ * GPS Lab Platform - PrivateRoutes Component Styles
+ */
+
+/* Private Route Container */
+.private-route {
+  min-height: 100vh;
+}
+
+/* Route Transition */
+.private-route-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.private-route-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.private-route-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.private-route-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+/* Navigation Items - Icon mapping classes */
+.nav-icon--dashboard {
+  --icon-color: var(--gps-primary, #00d4ff);
+}
+
+.nav-icon--missions {
+  --icon-color: var(--gps-secondary, #ff6b6b);
+}
+
+.nav-icon--checkpoint {
+  --icon-color: var(--warning, #f1c40f);
+}
+
+.nav-icon--study {
+  --icon-color: var(--gps-accent, #2a9d8f);
+}
+
+.nav-icon--projects {
+  --icon-color: var(--beacon-indigo, #9b59b6);
+}
+
+.nav-icon--party {
+  --icon-color: var(--beacon-orange, #ff8c00);
+}
+
+.nav-icon--mentor {
+  --icon-color: var(--beacon-blue, #3498db);
+}
+
+.nav-icon--portfolio {
+  --icon-color: var(--beacon-green, #2ecc71);
+}
+
+.nav-icon--leaderboard {
+  --icon-color: var(--baraka-base, #f1c40f);
+}
+
+.nav-icon--marketplace {
+  --icon-color: var(--gps-primary, #00d4ff);
+}
+
+.nav-icon--wallet {
+  --icon-color: var(--success, #2a9d8f);
+}
+
+.nav-icon--profile {
+  --icon-color: var(--neutral-400, #a8dadc);
+}
+
+.nav-icon--settings {
+  --icon-color: var(--neutral-400, #a8dadc);
+}
+
+.nav-icon--help {
+  --icon-color: var(--neutral-400, #a8dadc);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .private-route-enter,
+  .private-route-enter-active,
+  .private-route-exit,
+  .private-route-exit-active {
+    transition: none;
+    transform: none;
+  }
+}

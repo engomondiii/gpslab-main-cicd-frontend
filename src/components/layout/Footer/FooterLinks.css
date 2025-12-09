@@ -1,0 +1,68 @@
+/**
+ * GPS Lab Platform - FooterLinks Component Styles
+ */
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8, 32px);
+}
+
+@media (min-width: 768px) {
+  .footer-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer-links__section {
+  min-width: 0;
+}
+
+.footer-links__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.footer-links__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links__item {
+  margin-bottom: var(--space-2, 8px);
+}
+
+.footer-links__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.footer-links__link:hover {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.footer-links__badge {
+  padding: 2px 6px;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-sm, 4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-links__link {
+    transition: none;
+  }
+}

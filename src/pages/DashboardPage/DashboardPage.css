@@ -1,0 +1,129 @@
+/**
+ * GPS Lab Platform - DashboardPage Component Styles
+ */
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* View Toggle */
+.dashboard-page__view-toggle {
+  display: flex;
+  gap: var(--space-2, 8px);
+  padding: var(--space-1, 4px);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-lg, 8px);
+  width: fit-content;
+}
+
+.dashboard-page__view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.dashboard-page__view-btn:hover {
+  color: var(--neutral-700, #1b263b);
+}
+
+.dashboard-page__view-btn--active {
+  color: var(--gps-primary, #00d4ff);
+  background-color: var(--neutral-0, #ffffff);
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-page__view-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Overview View */
+.dashboard-page__overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Grid Layout */
+.dashboard-page__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6, 24px);
+}
+
+@media (min-width: 1024px) {
+  .dashboard-page__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Map View */
+.dashboard-page__map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Command Center View */
+.dashboard-page__command {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .dashboard-page__view-toggle {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .dashboard-page__view-btn:hover {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .dashboard-page__view-btn--active {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .dashboard-page {
+    padding: var(--space-4, 16px);
+  }
+  
+  .dashboard-page__view-toggle {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  
+  .dashboard-page__view-toggle::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .dashboard-page__view-btn {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-page__view-btn {
+    transition: none;
+  }
+}

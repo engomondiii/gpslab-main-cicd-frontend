@@ -1,0 +1,270 @@
+/**
+ * GPS Lab Platform - CommandCenterMap Component Styles
+ */
+
+.command-center-map {
+  position: relative;
+  height: 280px;
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Background */
+.command-center-map__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.command-center-map__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.command-center-map__decoration {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.command-center-map__decoration--1 {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  right: -50px;
+  background: radial-gradient(circle, var(--gps-primary, #00d4ff), transparent);
+}
+
+.command-center-map__decoration--2 {
+  width: 150px;
+  height: 150px;
+  bottom: -30px;
+  left: -30px;
+  background: radial-gradient(circle, var(--gps-accent, #2a9d8f), transparent);
+}
+
+/* Path */
+.command-center-map__path {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-6, 24px);
+}
+
+.command-center-map__path-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.command-center-map__path-bg {
+  fill: none;
+  stroke: var(--neutral-700, #1b263b);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.command-center-map__path-progress {
+  fill: none;
+  stroke: url(#pathGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 100%;
+  transition: stroke-dashoffset var(--duration-slow, 400ms) var(--ease-out);
+}
+
+/* Nodes Container */
+.command-center-map__nodes {
+  position: absolute;
+  top: 50%;
+  left: var(--space-6, 24px);
+  right: var(--space-6, 24px);
+  transform: translateY(-50%);
+  height: 100px;
+}
+
+/* Node */
+.command-center-map__node {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.command-center-map__node:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.command-center-map__node:disabled {
+  cursor: not-allowed;
+}
+
+/* Node Marker */
+.command-center-map__node-marker {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.command-center-map__node--completed .command-center-map__node-marker {
+  background-color: var(--success, #2a9d8f);
+  box-shadow: 0 0 15px rgba(42, 157, 143, 0.4);
+}
+
+.command-center-map__node--current .command-center-map__node-marker {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.command-center-map__node--available .command-center-map__node-marker {
+  background-color: var(--neutral-600, #2d4263);
+  border: 2px solid var(--gps-primary, #00d4ff);
+}
+
+.command-center-map__node--locked .command-center-map__node-marker {
+  background-color: var(--neutral-700, #1b263b);
+  opacity: 0.5;
+}
+
+.command-center-map__node-icon {
+  font-size: 20px;
+}
+
+/* Current Node Pulse */
+.command-center-map__node-pulse {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: commandCenterPulse 2s ease-out infinite;
+}
+
+@keyframes commandCenterPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Node Label */
+.command-center-map__node-label {
+  position: absolute;
+  top: 100%;
+  margin-top: var(--space-2, 8px);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.command-center-map__node-type {
+  display: block;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.command-center-map__node-title {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-300, #e1e4e8);
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.command-center-map__node--locked .command-center-map__node-label {
+  opacity: 0.5;
+}
+
+/* Node Lock */
+.command-center-map__node-lock {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--neutral-600, #2d4263);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-400, #a8dadc);
+}
+
+.command-center-map__node-lock svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Navigator Indicator */
+.command-center-map__navigator {
+  position: absolute;
+  bottom: var(--space-4, 16px);
+  left: var(--space-4, 16px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.command-center-map__navigator-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.command-center-map__navigator-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.command-center-map__navigator-label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .command-center-map__node {
+    transition: none;
+  }
+  
+  .command-center-map__node-marker {
+    transition: none;
+  }
+  
+  .command-center-map__node-pulse {
+    animation: none;
+  }
+  
+  .command-center-map__path-progress {
+    transition: none;
+  }
+}

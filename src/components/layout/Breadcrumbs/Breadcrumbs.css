@@ -1,0 +1,73 @@
+/**
+ * GPS Lab Platform - Breadcrumbs Component Styles
+ */
+
+.breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__separator {
+  width: 16px;
+  height: 16px;
+  margin: 0 var(--space-1, 4px);
+  color: var(--neutral-400, #a8dadc);
+  flex-shrink: 0;
+}
+
+.breadcrumbs__link,
+.breadcrumbs__current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-size: var(--text-sm, 14px);
+}
+
+.breadcrumbs__link {
+  color: var(--neutral-500, #8b949e);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.breadcrumbs__link:hover {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.breadcrumbs__current {
+  color: var(--neutral-700, #1b263b);
+  font-weight: var(--font-medium, 500);
+}
+
+.breadcrumbs__ellipsis {
+  color: var(--neutral-400, #a8dadc);
+  font-size: var(--text-sm, 14px);
+}
+
+.breadcrumbs__icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .breadcrumbs__link {
+  color: var(--neutral-400, #a8dadc);
+}
+
+[data-theme="dark"] .breadcrumbs__current {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumbs__link {
+    transition: none;
+  }
+}

@@ -1,0 +1,111 @@
+/**
+ * GPS Lab Platform - QuickStats Component Styles
+ */
+
+.quick-stats {
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-700, #1b263b) 100%);
+  border-radius: var(--radius-lg, 8px);
+  margin: var(--space-4, 16px);
+}
+
+.quick-stats__level {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
+  padding-bottom: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-600, #2d4263);
+}
+
+.quick-stats__level-badge {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-primary);
+}
+
+.quick-stats__level-number {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.quick-stats__level-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-stats__level-label {
+  display: block;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.quick-stats__xp-bar {
+  height: 6px;
+  background-color: var(--neutral-600, #2d4263);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.quick-stats__xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.quick-stats__xp-text {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.quick-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2, 8px);
+}
+
+.quick-stats__stat {
+  text-align: center;
+  padding: var(--space-2, 8px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md, 6px);
+}
+
+.quick-stats__stat-value {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.quick-stats__stat-label {
+  display: block;
+  font-size: var(--text-2xs, 11px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.quick-stats__stat--streak .quick-stats__stat-value {
+  color: var(--gps-secondary, #ff6b6b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-stats__xp-fill {
+    transition: none;
+  }
+}

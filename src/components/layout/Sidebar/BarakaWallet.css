@@ -1,0 +1,104 @@
+/**
+ * GPS Lab Platform - BarakaWallet Component Styles
+ */
+
+.baraka-wallet {
+  padding: var(--space-3, 12px);
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(241, 196, 15, 0.05));
+  border: 1px solid var(--tier-color, var(--baraka-base, #f1c40f));
+  border-radius: var(--radius-lg, 8px);
+}
+
+.baraka-wallet__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.baraka-wallet__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--tier-color, var(--baraka-base, #f1c40f));
+}
+
+.baraka-wallet__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.baraka-wallet__info {
+  flex: 1;
+}
+
+.baraka-wallet__label {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+}
+
+.baraka-wallet__tier {
+  display: block;
+  font-size: var(--text-2xs, 11px);
+  color: var(--tier-color, var(--baraka-base, #f1c40f));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.baraka-wallet__balance {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1, 4px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.baraka-wallet__amount {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--tier-color, var(--baraka-base, #f1c40f));
+  line-height: 1;
+}
+
+.baraka-wallet__symbol {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--tier-color, var(--baraka-base, #f1c40f));
+  opacity: 0.7;
+}
+
+.baraka-wallet__pending {
+  font-size: var(--text-xs, 12px);
+  color: var(--success, #2a9d8f);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.baraka-wallet__actions {
+  padding-top: var(--space-2, 8px);
+  border-top: 1px solid rgba(241, 196, 15, 0.2);
+}
+
+.baraka-wallet__action {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--tier-color, var(--baraka-base, #f1c40f));
+  text-decoration: none;
+  transition: opacity var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.baraka-wallet__action:hover {
+  opacity: 0.8;
+}
+
+/* Dark theme */
+[data-theme="dark"] .baraka-wallet__label {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baraka-wallet__action {
+    transition: none;
+  }
+}

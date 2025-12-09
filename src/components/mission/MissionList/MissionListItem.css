@@ -1,0 +1,464 @@
+/**
+ * GPS Lab Platform - MissionListItem Component Styles
+ */
+
+.mission-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list-item--clickable {
+  cursor: pointer;
+}
+
+.mission-list-item--clickable:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-md);
+}
+
+.mission-list-item--locked {
+  opacity: 0.7;
+}
+
+/* Size Variants */
+.mission-list-item--small {
+  padding: var(--space-3, 12px);
+  gap: var(--space-3, 12px);
+}
+
+.mission-list-item--small .mission-list-item__type {
+  width: 40px;
+  height: 40px;
+}
+
+.mission-list-item--small .mission-list-item__title {
+  font-size: var(--text-base, 16px);
+}
+
+.mission-list-item--large {
+  padding: var(--space-6, 24px);
+  gap: var(--space-5, 20px);
+}
+
+.mission-list-item--large .mission-list-item__type {
+  width: 64px;
+  height: 64px;
+}
+
+/* Variant Styles */
+.mission-list-item--compact {
+  flex-direction: row;
+  align-items: center;
+}
+
+.mission-list-item--compact .mission-list-item__description {
+  display: none;
+}
+
+.mission-list-item--card {
+  flex-direction: column;
+}
+
+.mission-list-item--card .mission-list-item__type {
+  margin-bottom: var(--space-3, 12px);
+}
+
+/* Mission Type Icon */
+.mission-list-item__type {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  padding: var(--space-3, 12px);
+  border-radius: var(--radius-xl, 12px);
+  flex-shrink: 0;
+}
+
+.mission-list-item__type svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-list-item__type--standard {
+  background: linear-gradient(135deg, var(--gps-primary-pale, rgba(0, 212, 255, 0.15)), var(--gps-accent-pale, rgba(42, 157, 143, 0.15)));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-list-item__type--boss {
+  background: linear-gradient(135deg, var(--gps-secondary-pale, rgba(255, 107, 107, 0.15)), rgba(255, 107, 107, 0.05));
+  color: var(--gps-secondary, #ff6b6b);
+}
+
+.mission-list-item__type--checkpoint {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+  color: var(--warning, #f1c40f);
+}
+
+.mission-list-item__type--challenge {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(155, 89, 182, 0.05));
+  color: #9b59b6;
+}
+
+.mission-list-item__type--party {
+  background: linear-gradient(135deg, var(--gps-accent-pale, rgba(42, 157, 143, 0.15)), rgba(42, 157, 143, 0.05));
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-list-item--locked .mission-list-item__type {
+  background: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.mission-list-item__party-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  padding: 2px 6px;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-accent, #2a9d8f);
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* Content */
+.mission-list-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.mission-list-item__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.mission-list-item__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.mission-list-item__number {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  padding: 2px 6px;
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  border-radius: var(--radius-sm, 4px);
+}
+
+.mission-list-item__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.mission-list-item--locked .mission-list-item__title {
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Status Badge */
+.mission-list-item__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-full, 9999px);
+  flex-shrink: 0;
+}
+
+.mission-list-item__status svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mission-list-item__status--locked {
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-list-item__status--available {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-list-item__status--in_progress {
+  background-color: var(--warning-pale, rgba(241, 196, 15, 0.1));
+  color: var(--warning-dark, #d4a90a);
+}
+
+.mission-list-item__status--completed {
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
+  color: var(--success, #2a9d8f);
+}
+
+.mission-list-item__status--failed {
+  background-color: var(--error-pale, rgba(231, 76, 60, 0.1));
+  color: var(--error, #e74c3c);
+}
+
+/* Description */
+.mission-list-item__description {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0 0 var(--space-3, 12px);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Progress Bar */
+.mission-list-item__progress {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.mission-list-item__progress-bar {
+  height: 6px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.mission-list-item__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.mission-list-item__progress-text {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Meta Info */
+.mission-list-item__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.mission-list-item__difficulty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.mission-list-item__difficulty svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mission-list-item__difficulty span {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+}
+
+.mission-list-item__difficulty--success {
+  color: var(--success, #2a9d8f);
+}
+
+.mission-list-item__difficulty--warning {
+  color: var(--warning, #f1c40f);
+}
+
+.mission-list-item__difficulty--error {
+  color: var(--error, #e74c3c);
+}
+
+.mission-list-item__difficulty--secondary {
+  color: var(--gps-secondary, #ff6b6b);
+}
+
+.mission-list-item__time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-list-item__time svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mission-list-item__tags {
+  display: flex;
+  gap: var(--space-1, 4px);
+}
+
+.mission-list-item__tag {
+  padding: 2px 6px;
+  font-size: var(--text-2xs, 11px);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* Actions */
+.mission-list-item__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3, 12px);
+  flex-shrink: 0;
+}
+
+/* Rewards */
+.mission-list-item__rewards {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1, 4px);
+}
+
+.mission-list-item__reward {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+}
+
+.mission-list-item__reward--xp {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-list-item__reward--baraka {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+/* Buttons */
+.mission-list-item__accept-btn,
+.mission-list-item__continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list-item__accept-btn {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.mission-list-item__accept-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.mission-list-item__continue-btn {
+  color: var(--gps-primary, #00d4ff);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  border: none;
+}
+
+.mission-list-item__continue-btn:hover {
+  background-color: rgba(0, 212, 255, 0.25);
+}
+
+.mission-list-item__accept-btn svg,
+.mission-list-item__continue-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Completed Badge */
+.mission-list-item__completed-badge {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
+  border-radius: 50%;
+  color: var(--success, #2a9d8f);
+}
+
+.mission-list-item__completed-badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Locked Badge */
+.mission-list-item__locked-badge {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 50%;
+  color: var(--neutral-400, #a8dadc);
+}
+
+.mission-list-item__locked-badge svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-list-item {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-list-item--clickable:hover {
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .mission-list-item__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-list-item--locked .mission-list-item__title {
+  color: var(--neutral-500, #8b949e);
+}
+
+[data-theme="dark"] .mission-list-item__progress-bar {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-list-item__tag {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-list-item__locked-badge {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-list-item,
+  .mission-list-item__progress-fill,
+  .mission-list-item__accept-btn,
+  .mission-list-item__continue-btn {
+    transition: none;
+  }
+  
+  .mission-list-item__accept-btn:hover {
+    transform: none;
+  }
+}

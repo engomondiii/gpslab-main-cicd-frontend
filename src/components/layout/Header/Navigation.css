@@ -1,0 +1,306 @@
+/**
+ * GPS Lab Platform - Navigation Component Styles
+ * 
+ * Desktop and mobile navigation styling.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.navigation {
+  --nav-text: var(--neutral-600, #2d4263);
+  --nav-text-hover: var(--neutral-900, #0d1117);
+  --nav-primary: var(--gps-primary, #00d4ff);
+  --nav-bg-hover: var(--neutral-100, #f7faff);
+}
+
+/* =============================================================================
+   DESKTOP NAVIGATION
+   ============================================================================= */
+
+.navigation--desktop .navigation__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigation--desktop .navigation__item {
+  position: relative;
+}
+
+.navigation--desktop .navigation__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--nav-text);
+  text-decoration: none;
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--desktop .navigation__link:hover,
+.navigation--desktop .navigation__link--active {
+  color: var(--nav-text-hover);
+  background-color: var(--nav-bg-hover);
+}
+
+.navigation--desktop .navigation__link-icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+  color: var(--nav-primary);
+}
+
+@media (min-width: 1280px) {
+  .navigation--desktop .navigation__link-icon {
+    display: block;
+  }
+}
+
+.navigation--desktop .navigation__link-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navigation--desktop .navigation__link-arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-1, 4px);
+  opacity: 0.5;
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--desktop .navigation__link--active .navigation__link-arrow {
+  transform: rotate(180deg);
+}
+
+.navigation--desktop .navigation__link-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   DROPDOWN (Desktop)
+   ============================================================================= */
+
+.navigation--desktop .navigation__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  padding-top: var(--space-2, 8px);
+  z-index: var(--z-dropdown, 100);
+  animation: dropdownEnter var(--duration-fast, 150ms) var(--ease-out);
+}
+
+@keyframes dropdownEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navigation--desktop .navigation__dropdown-list {
+  margin: 0;
+  padding: var(--space-2, 8px);
+  list-style: none;
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #e1e4e8);
+  border-radius: var(--radius-lg, 8px);
+  box-shadow: var(--shadow-lg, 0 8px 16px rgba(13, 17, 23, 0.15));
+}
+
+.navigation--desktop .navigation__dropdown-item {
+  margin: 0;
+}
+
+.navigation--desktop .navigation__dropdown-link {
+  display: block;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-regular, 400);
+  color: var(--nav-text);
+  text-decoration: none;
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--desktop .navigation__dropdown-link:hover {
+  color: var(--nav-primary);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+/* =============================================================================
+   MOBILE NAVIGATION
+   ============================================================================= */
+
+.navigation--mobile {
+  padding: var(--space-4, 16px);
+}
+
+.navigation--mobile .navigation__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigation--mobile .navigation__item {
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.navigation--mobile .navigation__item:last-child {
+  border-bottom: none;
+}
+
+.navigation--mobile .navigation__item-header {
+  display: flex;
+  align-items: center;
+}
+
+.navigation--mobile .navigation__link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px) 0;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-medium, 500);
+  color: var(--nav-text-hover);
+  text-decoration: none;
+}
+
+.navigation--mobile .navigation__link-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--nav-primary);
+}
+
+.navigation--mobile .navigation__link-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navigation--mobile .navigation__expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  color: var(--nav-text);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--mobile .navigation__expand-btn:hover {
+  background-color: var(--nav-bg-hover);
+}
+
+.navigation--mobile .navigation__expand-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--mobile .navigation__expand-btn--expanded svg {
+  transform: rotate(180deg);
+}
+
+/* =============================================================================
+   MOBILE SUBMENU
+   ============================================================================= */
+
+.navigation--mobile .navigation__submenu {
+  margin: 0;
+  padding: 0 0 var(--space-4, 16px) var(--space-10, 40px);
+  list-style: none;
+  animation: submenuEnter var(--duration-fast, 150ms) var(--ease-out);
+}
+
+@keyframes submenuEnter {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.navigation--mobile .navigation__submenu-item {
+  margin: 0;
+}
+
+.navigation--mobile .navigation__submenu-link {
+  display: block;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-regular, 400);
+  color: var(--nav-text);
+  text-decoration: none;
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.navigation--mobile .navigation__submenu-link:hover {
+  color: var(--nav-primary);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .navigation {
+  --nav-text: var(--neutral-400, #a8dadc);
+  --nav-text-hover: var(--neutral-100, #f7faff);
+  --nav-bg-hover: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .navigation--desktop .navigation__dropdown-list {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .navigation--mobile .navigation__item {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation--desktop .navigation__link,
+  .navigation--desktop .navigation__link-arrow,
+  .navigation--desktop .navigation__dropdown-link,
+  .navigation--mobile .navigation__expand-btn,
+  .navigation--mobile .navigation__expand-btn svg,
+  .navigation--mobile .navigation__submenu-link {
+    transition: none;
+  }
+  
+  .navigation--desktop .navigation__dropdown,
+  .navigation--mobile .navigation__submenu {
+    animation: none;
+  }
+}

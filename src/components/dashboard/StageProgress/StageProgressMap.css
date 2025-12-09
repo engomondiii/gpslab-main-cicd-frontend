@@ -1,0 +1,305 @@
+/**
+ * GPS Lab Platform - StageProgressMap Component Styles
+ */
+
+.stage-progress-map {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.stage-progress-map__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@media (min-width: 640px) {
+  .stage-progress-map__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.stage-progress-map__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-1, 4px);
+}
+
+.stage-progress-map__subtitle {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Overall Progress */
+.stage-progress-map__overall {
+  min-width: 200px;
+}
+
+.stage-progress-map__overall-bar {
+  height: 8px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.stage-progress-map__overall-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.stage-progress-map__overall-text {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+}
+
+/* Mini Map */
+.stage-progress-map__minimap {
+  display: flex;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.stage-progress-map__minimap::-webkit-scrollbar {
+  display: none;
+}
+
+.stage-progress-map__adventure-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  min-width: 100px;
+  background-color: var(--neutral-0, #ffffff);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.stage-progress-map__adventure-btn:hover {
+  background-color: var(--neutral-50, #fafbfc);
+}
+
+.stage-progress-map__adventure-btn--active {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-md);
+}
+
+.stage-progress-map__adventure-btn--current::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  border: 2px solid var(--neutral-0, #ffffff);
+}
+
+.stage-progress-map__adventure-id {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.stage-progress-map__adventure-btn--active .stage-progress-map__adventure-id {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Adventure Color Variants */
+.stage-progress-map__adventure-btn--cyan .stage-progress-map__adventure-id { color: #00d4ff; }
+.stage-progress-map__adventure-btn--teal .stage-progress-map__adventure-id { color: #2a9d8f; }
+.stage-progress-map__adventure-btn--green .stage-progress-map__adventure-id { color: #2ecc71; }
+.stage-progress-map__adventure-btn--yellow .stage-progress-map__adventure-id { color: #f1c40f; }
+.stage-progress-map__adventure-btn--orange .stage-progress-map__adventure-id { color: #ff8c00; }
+.stage-progress-map__adventure-btn--red .stage-progress-map__adventure-id { color: #ff6b6b; }
+.stage-progress-map__adventure-btn--purple .stage-progress-map__adventure-id { color: #9b59b6; }
+
+.stage-progress-map__adventure-title {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-700, #1b263b);
+  white-space: nowrap;
+}
+
+.stage-progress-map__adventure-progress {
+  font-size: var(--text-2xs, 11px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Adventure Detail */
+.stage-progress-map__adventure-detail {
+  padding: var(--space-5, 20px);
+}
+
+.stage-progress-map__adventure {
+  position: relative;
+}
+
+.stage-progress-map__adventure-header {
+  text-align: center;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.stage-progress-map__adventure-number {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.stage-progress-map__adventure-name {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-1, 4px);
+}
+
+.stage-progress-map__adventure-sub {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Stages Grid */
+.stage-progress-map__stages {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 640px) {
+  .stage-progress-map__stages {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage-progress-map__stages {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Path Connectors */
+.stage-progress-map__path {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .stage-progress-map__path {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: calc(10% + 28px);
+    right: calc(10% + 28px);
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.stage-progress-map__connector {
+  flex: 1;
+  height: 4px;
+  background-color: var(--neutral-200, #f0f4f8);
+  margin: 0 -10px;
+}
+
+.stage-progress-map__connector--completed {
+  background: linear-gradient(90deg, var(--success, #2a9d8f), var(--gps-accent, #2a9d8f));
+}
+
+/* Expanded View */
+.stage-progress-map--expanded {
+  min-height: 600px;
+}
+
+.stage-progress-map--expanded .stage-progress-map__stages {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .stage-progress-map--expanded .stage-progress-map__stages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage-progress-map--expanded .stage-progress-map__stages {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .stage-progress-map {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-progress-map__header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-progress-map__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .stage-progress-map__overall-bar {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-progress-map__minimap {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .stage-progress-map__adventure-btn {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .stage-progress-map__adventure-btn:hover {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .stage-progress-map__adventure-title {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .stage-progress-map__adventure-name {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .stage-progress-map__connector {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .stage-progress-map__overall-fill,
+  .stage-progress-map__adventure-btn {
+    transition: none;
+  }
+}

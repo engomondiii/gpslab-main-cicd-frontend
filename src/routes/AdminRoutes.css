@@ -1,0 +1,222 @@
+/**
+ * GPS Lab Platform - AdminRoutes Component Styles
+ */
+
+/* Admin Route Container */
+.admin-route {
+  min-height: calc(100vh - 200px);
+}
+
+/* Admin Badge */
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.admin-badge--admin {
+  color: var(--error, #e74c3c);
+  background-color: var(--error-pale, rgba(231, 76, 60, 0.1));
+}
+
+.admin-badge--super-admin {
+  color: var(--beacon-purple, #8e44ad);
+  background-color: rgba(142, 68, 173, 0.1);
+}
+
+.admin-badge--content-admin {
+  color: var(--gps-accent, #2a9d8f);
+  background-color: rgba(42, 157, 143, 0.1);
+}
+
+/* Admin Header Styling */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-700, #1b263b) 100%);
+  border-bottom: 1px solid var(--neutral-600, #2d4263);
+  margin-bottom: var(--space-6, 24px);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.admin-header__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.admin-header__actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+}
+
+/* Admin Stats Grid */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+@media (min-width: 640px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.admin-stat-card {
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  transition: box-shadow var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.admin-stat-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.admin-stat-card__label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.admin-stat-card__value {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.admin-stat-card__change {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-size: var(--text-xs, 12px);
+  margin-top: var(--space-2, 8px);
+}
+
+.admin-stat-card__change--positive {
+  color: var(--success, #2a9d8f);
+}
+
+.admin-stat-card__change--negative {
+  color: var(--error, #e74c3c);
+}
+
+/* Admin Table */
+.admin-table-container {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  overflow: hidden;
+}
+
+.admin-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.admin-table-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+/* Admin Navigation */
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.admin-nav__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+  text-decoration: none;
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.admin-nav__item:hover {
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-900, #0d1117);
+}
+
+.admin-nav__item--active {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.admin-nav__item-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .admin-stat-card {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .admin-stat-card__value {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .admin-table-container {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .admin-table-header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .admin-nav {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .admin-nav__item {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .admin-nav__item:hover {
+  background-color: var(--neutral-700, #1b263b);
+  color: var(--neutral-100, #f7faff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .admin-stat-card,
+  .admin-nav__item {
+    transition: none;
+  }
+}

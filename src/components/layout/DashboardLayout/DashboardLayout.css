@@ -1,0 +1,102 @@
+/**
+ * GPS Lab Platform - DashboardLayout Component Styles
+ */
+
+.dashboard-layout {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 64px;
+  --topbar-height: 40px;
+  
+  min-height: 100vh;
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* Main Content */
+.dashboard-layout__main {
+  margin-left: 0;
+  padding-top: calc(var(--header-height) + var(--topbar-height));
+  min-height: 100vh;
+  transition: margin-left var(--duration-base, 250ms) var(--ease-out);
+}
+
+@media (min-width: 1024px) {
+  .dashboard-layout__main {
+    margin-left: var(--sidebar-width);
+  }
+  
+  .dashboard-layout--sidebar-collapsed .dashboard-layout__main {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+}
+
+/* Page Header */
+.dashboard-layout__page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding: var(--space-6, 24px) var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__page-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-6, 24px) var(--space-8, 32px);
+  }
+}
+
+.dashboard-layout__page-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.dashboard-layout__page-title {
+  margin: 0;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.dashboard-layout__page-actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+  flex-shrink: 0;
+}
+
+/* Content */
+.dashboard-layout__content {
+  padding: var(--space-6, 24px) var(--space-4, 16px);
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__content {
+    padding: var(--space-8, 32px);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .dashboard-layout {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .dashboard-layout__page-header {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .dashboard-layout__page-title {
+  color: var(--neutral-100, #f7faff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-layout__main {
+    transition: none;
+  }
+}

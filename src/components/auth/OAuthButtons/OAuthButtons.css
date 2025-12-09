@@ -1,0 +1,43 @@
+/**
+ * GPS Lab Platform - OAuthButtons Component Styles
+ */
+
+.oauth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+.oauth-buttons__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+/* Divider */
+.oauth-buttons__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+}
+
+.oauth-buttons__divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--neutral-200, #f0f4f8);
+}
+
+.oauth-buttons__divider-text {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  white-space: nowrap;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .oauth-buttons__divider-line {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .oauth-buttons__divider-text {
+  color: var(--neutral-500, #8b949e);
+}

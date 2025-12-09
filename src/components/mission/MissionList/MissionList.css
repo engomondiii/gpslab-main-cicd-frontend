@@ -1,0 +1,408 @@
+/**
+ * GPS Lab Platform - MissionList Component Styles
+ */
+
+.mission-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+/* Header */
+.mission-list__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding-bottom: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@media (min-width: 768px) {
+  .mission-list__header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.mission-list__title-section {
+  flex: 1;
+}
+
+.mission-list__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-1, 4px);
+}
+
+.mission-list__subtitle {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-list__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.mission-list__stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1, 4px);
+}
+
+.mission-list__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-list__stat-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-list__stat-divider {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* View Toggle */
+.mission-list__view-toggle {
+  display: flex;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-list__view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list__view-btn:hover {
+  color: var(--neutral-700, #1b263b);
+}
+
+.mission-list__view-btn--active {
+  background-color: var(--neutral-0, #ffffff);
+  color: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-sm);
+}
+
+.mission-list__view-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Toolbar */
+.mission-list__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+@media (min-width: 768px) {
+  .mission-list__toolbar {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Search */
+.mission-list__search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.mission-list__search svg {
+  position: absolute;
+  left: var(--space-3, 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--neutral-400, #a8dadc);
+  pointer-events: none;
+}
+
+.mission-list__search-input {
+  width: 100%;
+  padding: var(--space-2, 8px) var(--space-3, 12px) var(--space-2, 8px) var(--space-10, 40px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  outline: none;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list__search-input::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.mission-list__search-input:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+/* Filters */
+.mission-list__filters {
+  display: flex;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.mission-list__filter-select,
+.mission-list__sort-select {
+  padding: var(--space-2, 8px) var(--space-8, 32px) var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-50, #fafbfc);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238b949e'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  appearance: none;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list__filter-select:focus,
+.mission-list__sort-select:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  outline: none;
+}
+
+.mission-list__clear-btn {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-secondary, #ff6b6b);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list__clear-btn:hover {
+  color: var(--error, #e74c3c);
+}
+
+/* Results */
+.mission-list__results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mission-list__results-count {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Content */
+.mission-list__content {
+  min-height: 200px;
+}
+
+/* Items - List View */
+.mission-list__items--list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+/* Items - Grid View */
+.mission-list__items--grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 640px) {
+  .mission-list__items--grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mission-list__items--grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Empty State */
+.mission-list__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12, 48px);
+  text-align: center;
+}
+
+.mission-list__empty svg {
+  width: 64px;
+  height: 64px;
+  color: var(--neutral-300, #d0d7de);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.mission-list__empty p {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.mission-list__empty-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-list__empty-btn:hover {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+}
+
+/* Loading Skeleton */
+.mission-list__loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.mission-list__skeleton {
+  display: flex;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.mission-list__skeleton-icon {
+  width: 56px;
+  height: 56px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  animation: missionListSkeleton 1.5s ease-in-out infinite;
+}
+
+.mission-list__skeleton-content {
+  flex: 1;
+}
+
+.mission-list__skeleton-title {
+  width: 40%;
+  height: 20px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-sm, 4px);
+  margin-bottom: var(--space-2, 8px);
+  animation: missionListSkeleton 1.5s ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+
+.mission-list__skeleton-desc {
+  width: 70%;
+  height: 14px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-sm, 4px);
+  margin-bottom: var(--space-3, 12px);
+  animation: missionListSkeleton 1.5s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.mission-list__skeleton-meta {
+  width: 50%;
+  height: 12px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-sm, 4px);
+  animation: missionListSkeleton 1.5s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+@keyframes missionListSkeleton {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-list__header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-list__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-list__view-toggle {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .mission-list__view-btn--active {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-list__search-input,
+[data-theme="dark"] .mission-list__filter-select,
+[data-theme="dark"] .mission-list__sort-select {
+  background-color: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .mission-list__skeleton {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .mission-list__skeleton-icon,
+[data-theme="dark"] .mission-list__skeleton-title,
+[data-theme="dark"] .mission-list__skeleton-desc,
+[data-theme="dark"] .mission-list__skeleton-meta {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-list__view-btn,
+  .mission-list__search-input,
+  .mission-list__filter-select,
+  .mission-list__sort-select,
+  .mission-list__clear-btn,
+  .mission-list__empty-btn {
+    transition: none;
+  }
+  
+  .mission-list__skeleton-icon,
+  .mission-list__skeleton-title,
+  .mission-list__skeleton-desc,
+  .mission-list__skeleton-meta {
+    animation: none;
+  }
+}

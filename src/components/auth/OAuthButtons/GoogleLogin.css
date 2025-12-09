@@ -1,0 +1,102 @@
+/**
+ * GPS Lab Platform - GoogleLogin Component Styles
+ */
+
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.google-login:hover:not(:disabled) {
+  background-color: var(--neutral-50, #fafbfc);
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.google-login:active:not(:disabled) {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.google-login:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+}
+
+.google-login--outline {
+  background-color: transparent;
+}
+
+.google-login--outline:hover:not(:disabled) {
+  background-color: var(--neutral-50, #fafbfc);
+}
+
+.google-login--loading,
+.google-login--disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.google-login__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.google-login__text {
+  flex: 1;
+  text-align: center;
+}
+
+.google-login__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--neutral-300, #d0d7de);
+  border-top-color: var(--neutral-700, #1b263b);
+  border-radius: 50%;
+  animation: googleLoginSpinner 0.6s linear infinite;
+}
+
+@keyframes googleLoginSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .google-login {
+  color: var(--neutral-100, #f7faff);
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .google-login:hover:not(:disabled) {
+  background-color: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-500, #8b949e);
+}
+
+[data-theme="dark"] .google-login__spinner {
+  border-color: var(--neutral-600, #2d4263);
+  border-top-color: var(--neutral-100, #f7faff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .google-login {
+    transition: none;
+  }
+  
+  .google-login__spinner {
+    animation: none;
+  }
+}

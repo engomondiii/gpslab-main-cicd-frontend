@@ -1,0 +1,55 @@
+/**
+ * GPS Lab Platform - LoginPage Component Styles
+ */
+
+.login-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Register Link */
+.login-page__register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.login-page__register span {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.login-page__register-link {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-page__register-link:hover {
+  color: var(--gps-primary-dark, #00a3cc);
+  text-decoration: underline;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .login-page__register {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .login-page__register span {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .login-page__register-link {
+    transition: none;
+  }
+}

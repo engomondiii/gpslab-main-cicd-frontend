@@ -1,0 +1,151 @@
+/**
+ * GPS Lab Platform - PSBWallet Component Styles
+ */
+
+.psb-wallet {
+  padding: var(--space-3, 12px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(42, 157, 143, 0.05));
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-wallet__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.psb-wallet__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-wallet__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.psb-wallet__info {
+  flex: 1;
+}
+
+.psb-wallet__label {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+}
+
+.psb-wallet__sublabel {
+  display: block;
+  font-size: var(--text-2xs, 11px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-wallet__balance {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.psb-wallet__amount {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  line-height: 1.2;
+}
+
+.psb-wallet__total-label {
+  font-size: var(--text-2xs, 11px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-wallet__breakdown {
+  padding: var(--space-2, 8px) 0;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.psb-wallet__breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-1, 4px) 0;
+}
+
+.psb-wallet__breakdown-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-wallet__breakdown-value {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-700, #1b263b);
+}
+
+.psb-wallet__breakdown-value--positive {
+  color: var(--success, #2a9d8f);
+}
+
+.psb-wallet__breakdown-value--negative {
+  color: var(--error, #e74c3c);
+}
+
+.psb-wallet__actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.psb-wallet__action {
+  flex: 1;
+  padding: var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.psb-wallet__action:first-child {
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid var(--gps-primary, #00d4ff);
+}
+
+.psb-wallet__action:first-child:hover {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+.psb-wallet__action--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-primary-dark, #00a3cc));
+  border: none;
+}
+
+.psb-wallet__action--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-primary);
+}
+
+/* Dark theme */
+[data-theme="dark"] .psb-wallet__label {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .psb-wallet__breakdown-value {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .psb-wallet__action {
+    transition: none;
+  }
+  .psb-wallet__action--primary:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,166 @@
+/**
+ * GPS Lab Platform - TutorialSlides Component Styles
+ */
+
+.tutorial-slides {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+}
+
+/* Skip Button */
+.tutorial-slides__skip {
+  position: absolute;
+  top: var(--space-6, 24px);
+  right: var(--space-6, 24px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  background: none;
+  border: 1px solid var(--neutral-600, #2d4263);
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.tutorial-slides__skip:hover {
+  color: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+/* Slides Container */
+.tutorial-slides__container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorial-slides__container .tutorial-slide {
+  position: absolute;
+  width: 100%;
+}
+
+/* Navigation */
+.tutorial-slides__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6, 24px);
+  margin-top: var(--space-8, 32px);
+}
+
+.tutorial-slides__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: var(--neutral-400, #a8dadc);
+  background-color: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.tutorial-slides__nav-btn:hover:not(:disabled) {
+  color: var(--gps-primary, #00d4ff);
+  background-color: rgba(0, 212, 255, 0.2);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.tutorial-slides__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tutorial-slides__nav-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tutorial-slides__nav-btn--complete {
+  width: auto;
+  gap: var(--space-2, 8px);
+  padding: 0 var(--space-6, 24px);
+  border-radius: var(--radius-full, 9999px);
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.tutorial-slides__nav-btn--complete span {
+  font-weight: var(--font-semibold, 600);
+}
+
+.tutorial-slides__nav-btn--complete:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+/* Dots */
+.tutorial-slides__dots {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.tutorial-slides__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  background-color: var(--neutral-600, #2d4263);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.tutorial-slides__dot:hover {
+  background-color: var(--neutral-500, #8b949e);
+}
+
+.tutorial-slides__dot--active {
+  width: 32px;
+  background-color: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* Progress Bar */
+.tutorial-slides__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--neutral-700, #1b263b);
+}
+
+.tutorial-slides__progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  transition: width var(--duration-base, 250ms) var(--ease-out);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-slides__skip,
+  .tutorial-slides__nav-btn,
+  .tutorial-slides__dot,
+  .tutorial-slides__progress-bar {
+    transition: none;
+  }
+  
+  .tutorial-slides__nav-btn--complete:hover:not(:disabled) {
+    transform: none;
+  }
+}

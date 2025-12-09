@@ -1,0 +1,305 @@
+/**
+ * GPS Lab Platform - ErrorPage Component Styles
+ */
+
+.error-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  overflow: hidden;
+}
+
+.error-page__content {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  text-align: center;
+  animation: errorPageFadeIn 0.5s ease-out;
+}
+
+@keyframes errorPageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Icon */
+.error-page__icon-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-6, 24px);
+}
+
+.error-page__icon {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, var(--error-pale, rgba(231, 76, 60, 0.2)), var(--error-pale, rgba(231, 76, 60, 0.1)));
+  border-radius: 50%;
+  color: var(--error, #e74c3c);
+}
+
+.error-page__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.error-page__icon-pulse {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--error-pale, rgba(231, 76, 60, 0.2)) 0%, transparent 70%);
+  animation: errorPulse 2s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+/* Different error types have different icon colors */
+.error-page--maintenance .error-page__icon {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(241, 196, 15, 0.1));
+  color: var(--warning, #f1c40f);
+}
+
+.error-page--maintenance .error-page__icon-pulse {
+  background: radial-gradient(circle, rgba(241, 196, 15, 0.2) 0%, transparent 70%);
+}
+
+.error-page--network .error-page__icon {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 212, 255, 0.1));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.error-page--network .error-page__icon-pulse {
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+}
+
+.error-page--auth .error-page__icon {
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.2), rgba(42, 157, 143, 0.1));
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.error-page--auth .error-page__icon-pulse {
+  background: radial-gradient(circle, rgba(42, 157, 143, 0.2) 0%, transparent 70%);
+}
+
+/* Error Code */
+.error-page__code {
+  display: inline-block;
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--error, #e74c3c);
+  background-color: var(--error-pale, rgba(231, 76, 60, 0.1));
+  border-radius: var(--radius-full, 9999px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+/* Title & Message */
+.error-page__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.error-page__message {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+/* Technical Details */
+.error-page__details {
+  margin-bottom: var(--space-6, 24px);
+  text-align: left;
+}
+
+.error-page__details summary {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.error-page__details pre {
+  padding: var(--space-3, 12px);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-300, #e1e4e8);
+  background-color: var(--neutral-800, #0d1b2a);
+  border-radius: var(--radius-md, 6px);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Actions */
+.error-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+@media (min-width: 480px) {
+  .error-page__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.error-page__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.error-page__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.error-page__btn--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-primary-dark, #00a3cc));
+  border: none;
+}
+
+.error-page__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.error-page__btn--secondary {
+  color: var(--neutral-300, #e1e4e8);
+  background-color: transparent;
+  border: 1px solid var(--neutral-600, #2d4263);
+}
+
+.error-page__btn--secondary:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Report Issue */
+.error-page__report {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+}
+
+.error-page__report p {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+.error-page__report-link {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.error-page__report-link:hover {
+  color: var(--gps-primary-light, #66e3ff);
+  text-decoration: underline;
+}
+
+/* Background */
+.error-page__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.error-page__bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--error-pale, rgba(231, 76, 60, 0.1)) 0%, transparent 70%);
+}
+
+.error-page__bg-circle--1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -200px;
+  animation: errorBgFloat 20s ease-in-out infinite;
+}
+
+.error-page__bg-circle--2 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  left: -100px;
+  animation: errorBgFloat 15s ease-in-out infinite reverse;
+}
+
+@keyframes errorBgFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 30px);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .error-page__content {
+    animation: none;
+  }
+  
+  .error-page__icon-pulse {
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  .error-page__btn {
+    transition: none;
+  }
+  
+  .error-page__btn--primary:hover {
+    transform: none;
+  }
+  
+  .error-page__bg-circle {
+    animation: none;
+  }
+}

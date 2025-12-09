@@ -1,0 +1,298 @@
+/**
+ * GPS Lab Platform - UniversityRoutes Component Styles
+ */
+
+/* University Route Container */
+.university-route {
+  min-height: calc(100vh - 200px);
+}
+
+/* University Badge */
+.university-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.university-badge--admin {
+  color: var(--beacon-indigo, #9b59b6);
+  background-color: rgba(155, 89, 182, 0.1);
+}
+
+.university-badge--professor {
+  color: var(--beacon-blue, #3498db);
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.university-badge--ta {
+  color: var(--gps-accent, #2a9d8f);
+  background-color: rgba(42, 157, 143, 0.1);
+}
+
+/* University Header */
+.university-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--beacon-indigo, #9b59b6) 0%, var(--beacon-purple, #8e44ad) 100%);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.university-header__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.university-header__subtitle {
+  font-size: var(--text-sm, 14px);
+  color: rgba(255, 255, 255, 0.8);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Cohort Card */
+.cohort-card {
+  padding: var(--space-5, 20px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.cohort-card:hover {
+  border-color: var(--beacon-indigo, #9b59b6);
+  box-shadow: var(--shadow-md);
+}
+
+.cohort-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.cohort-card__name {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.cohort-card__status {
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.cohort-card__status--active {
+  color: var(--success, #2a9d8f);
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
+}
+
+.cohort-card__status--upcoming {
+  color: var(--warning, #f1c40f);
+  background-color: var(--warning-pale, rgba(241, 196, 15, 0.1));
+}
+
+.cohort-card__status--completed {
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.cohort-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4, 16px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.cohort-card__stat {
+  text-align: center;
+}
+
+.cohort-card__stat-value {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-indigo, #9b59b6);
+}
+
+.cohort-card__stat-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Student Progress Card */
+.student-progress-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.student-progress-card:hover {
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.student-progress-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  flex-shrink: 0;
+}
+
+.student-progress-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-progress-card__name {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-progress-card__stage {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.student-progress-card__progress {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.student-progress-card__progress-bar {
+  height: 8px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-1, 4px);
+}
+
+.student-progress-card__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.student-progress-card__progress-text {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-align: right;
+}
+
+/* Grade Summary */
+.grade-summary {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 768px) {
+  .grade-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grade-summary {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.grade-summary__item {
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  text-align: center;
+}
+
+.grade-summary__letter {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.grade-summary__letter--a { color: var(--success, #2a9d8f); }
+.grade-summary__letter--b { color: var(--beacon-blue, #3498db); }
+.grade-summary__letter--c { color: var(--warning, #f1c40f); }
+.grade-summary__letter--d { color: var(--beacon-orange, #ff8c00); }
+.grade-summary__letter--f { color: var(--error, #e74c3c); }
+
+.grade-summary__count {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .cohort-card {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .cohort-card__name {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .cohort-card__stats {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .student-progress-card {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .student-progress-card__name {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .student-progress-card__progress-bar {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .grade-summary__item {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cohort-card,
+  .student-progress-card,
+  .student-progress-card__progress-fill {
+    transition: none;
+  }
+}

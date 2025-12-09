@@ -1,0 +1,40 @@
+/**
+ * GPS Lab Platform - SocialLinks Component Styles
+ */
+
+.social-links {
+  display: flex;
+  gap: var(--space-3, 12px);
+}
+
+.social-links__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--neutral-400, #a8dadc);
+  background-color: var(--neutral-700, #1b263b);
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.social-links__link:hover {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-primary, #00d4ff);
+  transform: translateY(-2px);
+}
+
+.social-links__link svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-links__link {
+    transition: none;
+  }
+  .social-links__link:hover {
+    transform: none;
+  }
+}

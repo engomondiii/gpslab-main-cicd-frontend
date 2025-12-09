@@ -1,38 +1,362 @@
-.App {
-  text-align: center;
-}
+/**
+ * GPS Lab Platform - App Component Styles
+ */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* App Container */
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--neutral-50, #fafbfc);
+  color: var(--neutral-900, #0d1117);
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  line-height: var(--leading-normal, 1.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] .app {
+  background-color: var(--neutral-900, #0d1117);
+  color: var(--neutral-100, #f7faff);
+}
+
+/* Skip Link (Accessibility) */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-lg, 8px);
+  text-decoration: none;
+  z-index: 10001;
+  transition: top var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-4, 16px);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+}
+
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  top: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.toast-container > * {
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .toast-container {
+    left: var(--space-4, 16px);
+    right: var(--space-4, 16px);
+  }
+}
+
+/* App Loading Screen */
+.app-loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  z-index: 10002;
 }
 
-.App-link {
-  color: #61dafb;
+.app-loading__content {
+  text-align: center;
+  animation: appLoadingFadeIn 0.5s ease-out;
 }
 
-@keyframes App-logo-spin {
+@keyframes appLoadingFadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-loading__logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-6, 24px);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.app-loading__logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-loading__needle {
+  transform-origin: 50px 50px;
+  animation: compassNeedle 2s ease-in-out infinite;
+}
+
+@keyframes compassNeedle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  75% {
+    transform: rotate(-30deg);
+  }
+}
+
+.app-loading__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.app-loading__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-8, 32px);
+  animation: appLoadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes appLoadingPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.app-loading__spinner {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.app-loading__spinner-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: appLoadingSpinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.app-loading__spinner-ring:nth-child(1) {
+  border-top-color: var(--gps-primary, #00d4ff);
+  animation-delay: -0.45s;
+}
+
+.app-loading__spinner-ring:nth-child(2) {
+  border-top-color: var(--gps-accent, #2a9d8f);
+  animation-delay: -0.3s;
+}
+
+.app-loading__spinner-ring:nth-child(3) {
+  border-top-color: var(--gps-secondary, #ff6b6b);
+  animation-delay: -0.15s;
+}
+
+@keyframes appLoadingSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+/* App Error Screen */
+.app-error {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  z-index: 10002;
+}
+
+.app-error__content {
+  max-width: 480px;
+  text-align: center;
+  animation: appErrorFadeIn 0.4s ease-out;
+}
+
+@keyframes appErrorFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.app-error__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-6, 24px);
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--error-pale, rgba(231, 76, 60, 0.2)), transparent);
+  border-radius: 50%;
+  color: var(--error, #e74c3c);
+}
+
+.app-error__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-error__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.app-error__message {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+.app-error__details {
+  text-align: left;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.app-error__details summary {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.app-error__details pre {
+  padding: var(--space-3, 12px);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--error, #e74c3c);
+  background-color: var(--neutral-800, #0d1b2a);
+  border: 1px solid var(--neutral-700, #1b263b);
+  border-radius: var(--radius-md, 6px);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: var(--space-2, 8px) 0;
+}
+
+.app-error__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+@media (min-width: 480px) {
+  .app-error__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.app-error__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.app-error__btn--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-primary-dark, #00a3cc));
+  border: none;
+}
+
+.app-error__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.app-error__btn--secondary {
+  color: var(--neutral-300, #e1e4e8);
+  background-color: transparent;
+  border: 1px solid var(--neutral-600, #2d4263);
+}
+
+.app-error__btn--secondary:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Main Content */
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+  
+  .app-loading__content {
+    animation: none;
+  }
+  
+  .app-loading__needle {
+    animation: none;
+  }
+  
+  .app-loading__subtitle {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .app-loading__spinner-ring {
+    animation: none;
+  }
+  
+  .app-error__content {
+    animation: none;
+  }
+  
+  .app-error__btn {
+    transition: none;
+  }
+  
+  .app-error__btn--primary:hover {
+    transform: none;
   }
 }

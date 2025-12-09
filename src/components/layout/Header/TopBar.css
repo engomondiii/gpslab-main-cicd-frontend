@@ -1,0 +1,234 @@
+/**
+ * GPS Lab Platform - TopBar Component Styles
+ * 
+ * Stats bar styling with beacon colors and gamification elements.
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.topbar {
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-700, #1b263b) 100%);
+  border-bottom: 1px solid var(--neutral-600, #2d4263);
+}
+
+.topbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-2xl, 1400px);
+  margin: 0 auto;
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 1024px) {
+  .topbar__container {
+    padding: var(--space-2, 8px) var(--space-8, 32px);
+  }
+}
+
+/* =============================================================================
+   BEACON INDICATOR
+   ============================================================================= */
+
+.topbar__beacon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--beacon-color);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.topbar__beacon-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--beacon-color);
+  border-radius: 50%;
+  animation: beaconPulse 2s ease-in-out infinite;
+}
+
+@keyframes beaconPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--beacon-color);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 8px 2px var(--beacon-color);
+  }
+}
+
+.topbar__beacon-text {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--beacon-color);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  white-space: nowrap;
+}
+
+/* =============================================================================
+   STATS
+   ============================================================================= */
+
+.topbar__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 768px) {
+  .topbar__stats {
+    gap: var(--space-6, 24px);
+  }
+}
+
+.topbar__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.topbar__stat-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.topbar__stat-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.topbar__stat-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.topbar__stat-label {
+  display: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+@media (min-width: 768px) {
+  .topbar__stat-label {
+    display: block;
+  }
+}
+
+/* Baraka styling */
+.topbar__stat--baraka .topbar__stat-icon {
+  color: var(--baraka-base, #f1c40f);
+}
+
+.topbar__stat--baraka .topbar__stat-value {
+  color: var(--baraka-base, #f1c40f);
+}
+
+/* XP styling */
+.topbar__stat--xp .topbar__stat-icon {
+  color: var(--xp-gold, #ffd700);
+}
+
+.topbar__stat--xp .topbar__stat-value {
+  color: var(--xp-gold, #ffd700);
+}
+
+/* Level styling */
+.topbar__stat--level .topbar__stat-icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.topbar__stat--level .topbar__stat-value {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* =============================================================================
+   QUICK LINKS
+   ============================================================================= */
+
+.topbar__links {
+  display: none;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+@media (min-width: 1024px) {
+  .topbar__links {
+    display: flex;
+  }
+}
+
+.topbar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  text-decoration: none;
+  border-radius: var(--radius-sm, 4px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.topbar__link:hover {
+  color: var(--neutral-0, #ffffff);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.topbar__link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.topbar__link span {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .topbar__link span {
+    display: block;
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE - Hide on mobile
+   ============================================================================= */
+
+@media (max-width: 480px) {
+  .topbar__links {
+    display: none;
+  }
+  
+  .topbar__stat-label {
+    display: none;
+  }
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar__beacon-dot {
+    animation: none;
+  }
+  
+  .topbar__link {
+    transition: none;
+  }
+}

@@ -1,0 +1,329 @@
+/**
+ * GPS Lab Platform - LoginForm Component Styles
+ */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+/* Error Banner */
+.login-form__error-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: var(--error-pale, rgba(231, 76, 60, 0.1));
+  border: 1px solid var(--error, #e74c3c);
+  border-radius: var(--radius-lg, 8px);
+  color: var(--error, #e74c3c);
+  font-size: var(--text-sm, 14px);
+  animation: loginFormShake 0.4s ease-out;
+}
+
+@keyframes loginFormShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.login-form__error-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Field */
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.login-form__label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+}
+
+/* Input Wrapper */
+.login-form__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-form__input-icon {
+  position: absolute;
+  left: var(--space-3, 12px);
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-400, #a8dadc);
+  pointer-events: none;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__input {
+  width: 100%;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  padding-left: 44px;
+  padding-right: 44px;
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-lg, 8px);
+  outline: none;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__input::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.login-form__input:hover {
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.login-form__input:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+}
+
+.login-form__input:focus + .login-form__input-icon,
+.login-form__input-wrapper:focus-within .login-form__input-icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.login-form__input:disabled {
+  background-color: var(--neutral-100, #f7faff);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Error State */
+.login-form__field--error .login-form__input {
+  border-color: var(--error, #e74c3c);
+}
+
+.login-form__field--error .login-form__input:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.login-form__field--error .login-form__input-icon {
+  color: var(--error, #e74c3c);
+}
+
+.login-form__error {
+  font-size: var(--text-xs, 12px);
+  color: var(--error, #e74c3c);
+}
+
+/* Password Toggle */
+.login-form__password-toggle {
+  position: absolute;
+  right: var(--space-3, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--neutral-400, #a8dadc);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__password-toggle:hover {
+  color: var(--neutral-600, #2d4263);
+}
+
+.login-form__password-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Options Row */
+.login-form__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+/* Remember Me Checkbox */
+.login-form__remember {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  cursor: pointer;
+}
+
+.login-form__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.login-form__checkbox-custom {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-sm, 4px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__checkbox:checked + .login-form__checkbox-custom {
+  background-color: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.login-form__checkbox:checked + .login-form__checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--neutral-0, #ffffff);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.login-form__checkbox:focus-visible + .login-form__checkbox-custom {
+  box-shadow: 0 0 0 3px var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+}
+
+.login-form__checkbox:disabled + .login-form__checkbox-custom {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.login-form__remember-text {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+}
+
+/* Forgot Password Link */
+.login-form__forgot {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__forgot:hover {
+  color: var(--gps-primary-dark, #00a3cc);
+  text-decoration: underline;
+}
+
+.login-form__forgot:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Submit Button */
+.login-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  padding: var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-primary-dark, #00a3cc));
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.login-form__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.login-form__submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Submit Spinner */
+.login-form__submit-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: var(--neutral-900, #0d1117);
+  border-radius: 50%;
+  animation: loginFormSpinner 0.6s linear infinite;
+}
+
+@keyframes loginFormSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .login-form__label {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .login-form__input {
+  color: var(--neutral-100, #f7faff);
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .login-form__input:hover {
+  border-color: var(--neutral-500, #8b949e);
+}
+
+[data-theme="dark"] .login-form__checkbox-custom {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .login-form__remember-text {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .login-form__error-banner {
+    animation: none;
+  }
+  
+  .login-form__input,
+  .login-form__checkbox-custom,
+  .login-form__password-toggle,
+  .login-form__forgot,
+  .login-form__submit {
+    transition: none;
+  }
+  
+  .login-form__submit:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .login-form__submit-spinner {
+    animation: none;
+  }
+}

@@ -1,0 +1,370 @@
+/**
+ * GPS Lab Platform - NotificationBell Component Styles
+ */
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
+
+.notification-bell {
+  position: relative;
+}
+
+/* =============================================================================
+   TRIGGER
+   ============================================================================= */
+
+.notification-bell__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  color: var(--neutral-600, #2d4263);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.notification-bell__trigger:hover {
+  background-color: var(--neutral-100, #f7faff);
+  color: var(--neutral-900, #0d1117);
+}
+
+.notification-bell__trigger:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 2px;
+}
+
+.notification-bell__trigger svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Badge */
+.notification-bell__badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-secondary, #ff6b6b);
+  border-radius: var(--radius-full, 9999px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badgePop 300ms var(--ease-bounce);
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =============================================================================
+   DROPDOWN
+   ============================================================================= */
+
+.notification-bell__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #e1e4e8);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  z-index: var(--z-dropdown, 100);
+  animation: notifDropdownEnter 150ms var(--ease-out);
+}
+
+@keyframes notifDropdownEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =============================================================================
+   HEADER
+   ============================================================================= */
+
+.notification-bell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.notification-bell__title {
+  margin: 0;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.notification-bell__mark-read {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.notification-bell__mark-read:hover {
+  color: var(--gps-primary-dark, #00a3cc);
+}
+
+/* =============================================================================
+   LIST
+   ============================================================================= */
+
+.notification-bell__list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Empty state */
+.notification-bell__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-8, 32px);
+  text-align: center;
+}
+
+.notification-bell__empty svg {
+  width: 48px;
+  height: 48px;
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.notification-bell__empty p {
+  margin: 0;
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* =============================================================================
+   NOTIFICATION ITEM
+   ============================================================================= */
+
+.notification-bell__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--neutral-100, #f7faff);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.notification-bell__item:last-child {
+  border-bottom: none;
+}
+
+.notification-bell__item:hover {
+  background-color: var(--neutral-50, #fafbfc);
+}
+
+.notification-bell__item--unread {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.05));
+}
+
+.notification-bell__item--unread:hover {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+/* Item icon */
+.notification-bell__item-icon {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: var(--radius-md, 6px);
+  flex-shrink: 0;
+}
+
+.notification-bell__item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.notification-bell__item-icon--achievement {
+  background-color: var(--xp-gold, #ffd700);
+  background-color: rgba(255, 215, 0, 0.15);
+  color: var(--xp-gold, #ffd700);
+}
+
+.notification-bell__item-icon--mission {
+  background-color: rgba(0, 212, 255, 0.15);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.notification-bell__item-icon--community {
+  background-color: rgba(42, 157, 143, 0.15);
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.notification-bell__item-icon--baraka {
+  background-color: rgba(241, 196, 15, 0.15);
+  color: var(--baraka-base, #f1c40f);
+}
+
+.notification-bell__item-icon--system {
+  background-color: var(--neutral-100, #f7faff);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Item content */
+.notification-bell__item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-bell__item-text {
+  margin: 0 0 var(--space-1, 4px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  line-height: 1.4;
+}
+
+.notification-bell__item--unread .notification-bell__item-text {
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-900, #0d1117);
+}
+
+.notification-bell__item-time {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Unread dot */
+.notification-bell__item-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+
+.notification-bell__footer {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+  text-align: center;
+}
+
+.notification-bell__view-all {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  text-decoration: none;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.notification-bell__view-all:hover {
+  color: var(--gps-primary-dark, #00a3cc);
+}
+
+/* =============================================================================
+   DARK THEME
+   ============================================================================= */
+
+[data-theme="dark"] .notification-bell__trigger {
+  color: var(--neutral-400, #a8dadc);
+}
+
+[data-theme="dark"] .notification-bell__trigger:hover {
+  background-color: var(--neutral-700, #1b263b);
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .notification-bell__dropdown {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .notification-bell__header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .notification-bell__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .notification-bell__item {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .notification-bell__item:hover {
+  background-color: var(--neutral-750, #172535);
+}
+
+[data-theme="dark"] .notification-bell__item-text {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .notification-bell__item--unread .notification-bell__item-text {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .notification-bell__footer {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-bell__trigger,
+  .notification-bell__mark-read,
+  .notification-bell__item,
+  .notification-bell__view-all {
+    transition: none;
+  }
+  
+  .notification-bell__badge {
+    animation: none;
+  }
+  
+  .notification-bell__dropdown {
+    animation: none;
+  }
+}

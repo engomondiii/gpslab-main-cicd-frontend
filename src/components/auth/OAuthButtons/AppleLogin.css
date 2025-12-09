@@ -1,0 +1,116 @@
+/**
+ * GPS Lab Platform - AppleLogin Component Styles
+ */
+
+.apple-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--neutral-900, #0d1117);
+  border: 1px solid var(--neutral-900, #0d1117);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.apple-login:hover:not(:disabled) {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-800, #0d1b2a);
+}
+
+.apple-login:active:not(:disabled) {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+.apple-login:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--neutral-500, #8b949e);
+}
+
+.apple-login--outline {
+  color: var(--neutral-900, #0d1117);
+  background-color: transparent;
+  border-color: var(--neutral-900, #0d1117);
+}
+
+.apple-login--outline:hover:not(:disabled) {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--neutral-900, #0d1117);
+}
+
+.apple-login--loading,
+.apple-login--disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.apple-login__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.apple-login__text {
+  flex: 1;
+  text-align: center;
+}
+
+.apple-login__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--neutral-700, #1b263b);
+  border-top-color: var(--neutral-0, #ffffff);
+  border-radius: 50%;
+  animation: appleLoginSpinner 0.6s linear infinite;
+}
+
+@keyframes appleLoginSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .apple-login {
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border-color: var(--neutral-0, #ffffff);
+}
+
+[data-theme="dark"] .apple-login:hover:not(:disabled) {
+  background-color: var(--neutral-100, #f7faff);
+  border-color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .apple-login--outline {
+  color: var(--neutral-0, #ffffff);
+  background-color: transparent;
+  border-color: var(--neutral-0, #ffffff);
+}
+
+[data-theme="dark"] .apple-login--outline:hover:not(:disabled) {
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+}
+
+[data-theme="dark"] .apple-login__spinner {
+  border-color: var(--neutral-300, #d0d7de);
+  border-top-color: var(--neutral-900, #0d1117);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .apple-login {
+    transition: none;
+  }
+  
+  .apple-login__spinner {
+    animation: none;
+  }
+}

@@ -1,0 +1,232 @@
+/**
+ * GPS Lab Platform - QuickActions Component Styles
+ */
+
+.quick-actions {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+}
+
+/* Title */
+.quick-actions__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+/* Grid */
+.quick-actions__grid {
+  display: grid;
+  gap: var(--space-3, 12px);
+}
+
+.quick-actions--cols-1 .quick-actions__grid {
+  grid-template-columns: 1fr;
+}
+
+.quick-actions--cols-2 .quick-actions__grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .quick-actions--cols-2 .quick-actions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.quick-actions--cols-3 .quick-actions__grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .quick-actions--cols-3 .quick-actions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .quick-actions--cols-3 .quick-actions__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Button */
+.quick-actions__btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.quick-actions__btn:hover {
+  border-color: var(--neutral-200, #f0f4f8);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Button Icon */
+.quick-actions__btn-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg, 8px);
+  flex-shrink: 0;
+}
+
+.quick-actions__btn-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Color Variants */
+.quick-actions__btn--primary .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 212, 255, 0.05));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.quick-actions__btn--primary:hover {
+  background-color: rgba(0, 212, 255, 0.05);
+}
+
+.quick-actions__btn--secondary .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.05));
+  color: var(--gps-secondary, #ff6b6b);
+}
+
+.quick-actions__btn--secondary:hover {
+  background-color: rgba(255, 107, 107, 0.05);
+}
+
+.quick-actions__btn--accent .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.15), rgba(42, 157, 143, 0.05));
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.quick-actions__btn--accent:hover {
+  background-color: rgba(42, 157, 143, 0.05);
+}
+
+.quick-actions__btn--baraka .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+.quick-actions__btn--baraka:hover {
+  background-color: rgba(241, 196, 15, 0.05);
+}
+
+.quick-actions__btn--info .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(52, 152, 219, 0.05));
+  color: var(--info, #3498db);
+}
+
+.quick-actions__btn--info:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.quick-actions__btn--warning .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+  color: var(--warning, #f1c40f);
+}
+
+.quick-actions__btn--warning:hover {
+  background-color: rgba(241, 196, 15, 0.05);
+}
+
+/* Badge */
+.quick-actions__btn-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-secondary, #ff6b6b);
+  border-radius: var(--radius-full, 9999px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Text */
+.quick-actions__btn-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-actions__btn-label {
+  display: block;
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.quick-actions__btn-desc {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Arrow */
+.quick-actions__btn-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-400, #a8dadc);
+  flex-shrink: 0;
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.quick-actions__btn:hover .quick-actions__btn-arrow {
+  transform: translateX(4px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .quick-actions {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .quick-actions__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .quick-actions__btn {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .quick-actions__btn:hover {
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .quick-actions__btn-label {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .quick-actions__btn,
+  .quick-actions__btn-arrow {
+    transition: none;
+  }
+  
+  .quick-actions__btn:hover .quick-actions__btn-arrow {
+    transform: none;
+  }
+}

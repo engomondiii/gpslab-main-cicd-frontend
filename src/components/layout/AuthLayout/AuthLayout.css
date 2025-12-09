@@ -1,0 +1,258 @@
+/**
+ * GPS Lab Platform - AuthLayout Component Styles
+ */
+
+.auth-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Branding Side */
+.auth-layout__branding {
+  display: none;
+  position: relative;
+  width: 50%;
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .auth-layout__branding {
+    display: flex;
+  }
+}
+
+.auth-layout__branding-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-12, 48px);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Logo */
+.auth-layout__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  text-decoration: none;
+  margin-bottom: var(--space-12, 48px);
+}
+
+.auth-layout__logo-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.auth-layout__logo-text {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+}
+
+.auth-layout__logo-gps {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.auth-layout__logo-lab {
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Branding Content */
+.auth-layout__branding-default {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-layout__branding-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  line-height: var(--leading-tight, 1.2);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+.auth-layout__branding-text {
+  font-size: var(--text-lg, 20px);
+  line-height: var(--leading-relaxed, 1.8);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-10, 40px);
+  max-width: 480px;
+}
+
+/* Features */
+.auth-layout__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+.auth-layout__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4, 16px);
+}
+
+.auth-layout__feature-icon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  border-radius: var(--radius-lg, 8px);
+  color: var(--gps-primary, #00d4ff);
+  flex-shrink: 0;
+}
+
+.auth-layout__feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.auth-layout__feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.auth-layout__feature-text strong {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+.auth-layout__feature-text span {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Background Decoration */
+.auth-layout__branding-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.auth-layout__branding-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  opacity: 0.1;
+}
+
+.auth-layout__branding-circle--1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -100px;
+}
+
+.auth-layout__branding-circle--2 {
+  width: 300px;
+  height: 300px;
+  bottom: 10%;
+  left: -50px;
+}
+
+.auth-layout__branding-circle--3 {
+  width: 200px;
+  height: 200px;
+  bottom: 30%;
+  right: 20%;
+}
+
+/* Form Side */
+.auth-layout__form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background-color: var(--neutral-0, #ffffff);
+}
+
+@media (min-width: 1024px) {
+  .auth-layout__form-side {
+    width: 50%;
+    padding: var(--space-12, 48px);
+  }
+}
+
+.auth-layout__form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Mobile Logo */
+.auth-layout__mobile-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  text-decoration: none;
+  margin-bottom: var(--space-8, 32px);
+}
+
+@media (min-width: 1024px) {
+  .auth-layout__mobile-logo {
+    display: none;
+  }
+}
+
+.auth-layout__mobile-logo-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.auth-layout__mobile-logo-text {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Header */
+.auth-layout__header {
+  text-align: center;
+  margin-bottom: var(--space-8, 32px);
+}
+
+.auth-layout__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.auth-layout__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Form Content */
+.auth-layout__form-content {
+  width: 100%;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .auth-layout__form-side {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .auth-layout__mobile-logo-text {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .auth-layout__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .auth-layout__subtitle {
+  color: var(--neutral-400, #a8dadc);
+}
