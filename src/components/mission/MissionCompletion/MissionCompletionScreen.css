@@ -1,0 +1,323 @@
+/**
+ * GPS Lab Platform - MissionCompletionScreen Component Styles
+ */
+
+.mission-completion-screen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1050);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.mission-completion-screen--visible {
+  opacity: 1;
+}
+
+/* Background */
+.mission-completion-screen__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.mission-completion-screen__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+}
+
+.mission-completion-screen__bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+}
+
+/* Content */
+.mission-completion-screen__content {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  text-align: center;
+  animation: completionSlideUp 0.6s ease-out;
+}
+
+@keyframes completionSlideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Trophy */
+.mission-completion-screen__trophy {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--baraka-yellow, #f1c40f), #f39c12);
+  border-radius: 50%;
+  color: var(--neutral-900, #0d1117);
+  position: relative;
+  animation: trophyPop 0.5s ease-out 0.3s both;
+}
+
+@keyframes trophyPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.mission-completion-screen__trophy svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-completion-screen__trophy--perfect {
+  box-shadow: 0 0 60px rgba(241, 196, 15, 0.5);
+}
+
+.mission-completion-screen__perfect-badge {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  white-space: nowrap;
+}
+
+/* Title */
+.mission-completion-screen__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-4xl, 48px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.mission-completion-screen__mission-name {
+  font-size: var(--text-lg, 20px);
+  color: var(--gps-primary, #00d4ff);
+  margin: 0 0 var(--space-8, 32px);
+}
+
+/* Stats */
+.mission-completion-screen__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-8, 32px);
+  margin-bottom: var(--space-8, 32px);
+}
+
+.mission-completion-screen__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mission-completion-screen__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.mission-completion-screen__stat-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Rewards */
+.mission-completion-screen__rewards {
+  padding: var(--space-6, 24px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.mission-completion-screen__rewards-title {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.mission-completion-screen__rewards-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-8, 32px);
+}
+
+.mission-completion-screen__reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.mission-completion-screen__reward svg {
+  width: 40px;
+  height: 40px;
+}
+
+.mission-completion-screen__reward--xp svg {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-completion-screen__reward--baraka svg {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+.mission-completion-screen__reward-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.mission-completion-screen__reward-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Badges */
+.mission-completion-screen__badges {
+  margin-bottom: var(--space-8, 32px);
+}
+
+.mission-completion-screen__badges-title {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-completion-screen__badges-list {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+}
+
+.mission-completion-screen__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-completion-screen__badge svg,
+.mission-completion-screen__badge img {
+  width: 48px;
+  height: 48px;
+  color: var(--gps-secondary, #ff6b6b);
+}
+
+.mission-completion-screen__badge span {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-200, #f0f4f8);
+}
+
+/* Actions */
+.mission-completion-screen__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.mission-completion-screen__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  padding: var(--space-4, 16px);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-xl, 12px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-completion-screen__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mission-completion-screen__btn--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.mission-completion-screen__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+.mission-completion-screen__btn--secondary {
+  color: var(--neutral-300, #e1e4e8);
+  background: none;
+  border: 1px solid var(--neutral-600, #2d4263);
+}
+
+.mission-completion-screen__btn--secondary:hover {
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+/* Share */
+.mission-completion-screen__share {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-completion-screen__share:hover {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-completion-screen__share svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-completion-screen {
+    transition: none;
+  }
+  
+  .mission-completion-screen__content,
+  .mission-completion-screen__trophy {
+    animation: none;
+  }
+  
+  .mission-completion-screen__btn,
+  .mission-completion-screen__share {
+    transition: none;
+  }
+}

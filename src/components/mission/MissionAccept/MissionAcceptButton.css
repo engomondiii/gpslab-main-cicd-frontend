@@ -1,0 +1,160 @@
+/**
+ * GPS Lab Platform - MissionAcceptButton Component Styles
+ */
+
+.mission-accept-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-accept-btn svg {
+  flex-shrink: 0;
+}
+
+/* Size Variants */
+.mission-accept-btn--small {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+}
+
+.mission-accept-btn--small svg {
+  width: 16px;
+  height: 16px;
+}
+
+.mission-accept-btn--medium {
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+}
+
+.mission-accept-btn--medium svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mission-accept-btn--large {
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  font-size: var(--text-lg, 20px);
+}
+
+.mission-accept-btn--large svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Status Variants */
+.mission-accept-btn--available {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.mission-accept-btn--available:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+}
+
+.mission-accept-btn--in_progress {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--warning, #f1c40f), var(--warning-dark, #d4a90a));
+  border: none;
+}
+
+.mission-accept-btn--in_progress:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(241, 196, 15, 0.3);
+}
+
+.mission-accept-btn--completed {
+  color: var(--success, #2a9d8f);
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
+  border: 1px solid var(--success, #2a9d8f);
+}
+
+.mission-accept-btn--locked {
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-200, #f0f4f8);
+  border: none;
+  cursor: not-allowed;
+}
+
+/* Style Variants */
+.mission-accept-btn--outline.mission-accept-btn--available {
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: 2px solid var(--gps-primary, #00d4ff);
+}
+
+.mission-accept-btn--outline.mission-accept-btn--available:hover:not(:disabled) {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  transform: none;
+  box-shadow: none;
+}
+
+.mission-accept-btn--ghost.mission-accept-btn--available {
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: none;
+}
+
+.mission-accept-btn--ghost.mission-accept-btn--available:hover:not(:disabled) {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  transform: none;
+}
+
+/* Loading State */
+.mission-accept-btn--loading {
+  cursor: wait;
+}
+
+.mission-accept-btn__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: missionAcceptSpinner 0.6s linear infinite;
+}
+
+@keyframes missionAcceptSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* Disabled State */
+.mission-accept-btn--disabled,
+.mission-accept-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mission-accept-btn--disabled:hover,
+.mission-accept-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-accept-btn--locked {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-accept-btn {
+    transition: none;
+  }
+  
+  .mission-accept-btn:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .mission-accept-btn__spinner {
+    animation: none;
+  }
+}

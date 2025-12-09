@@ -1,0 +1,204 @@
+/**
+ * GPS Lab Platform - BriefingVideo Component Styles
+ */
+
+.briefing-video {
+  position: relative;
+  background-color: var(--neutral-900, #0d1117);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.briefing-video__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Loading */
+.briefing-video__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 17, 23, 0.8);
+}
+
+.briefing-video__spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--neutral-700, #1b263b);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: briefingSpinner 0.8s linear infinite;
+}
+
+@keyframes briefingSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.briefing-video__error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  background-color: rgba(13, 17, 23, 0.9);
+  color: var(--error, #e74c3c);
+}
+
+.briefing-video__error svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Play Overlay */
+.briefing-video__play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.briefing-video__play-overlay:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.briefing-video__play-overlay svg {
+  width: 80px;
+  height: 80px;
+  color: var(--neutral-0, #ffffff);
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.4));
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.briefing-video__play-overlay:hover svg {
+  transform: scale(1.1);
+}
+
+/* Controls */
+.briefing-video__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: var(--space-8, 32px) var(--space-4, 16px) var(--space-4, 16px);
+  opacity: 0;
+  transition: opacity var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.briefing-video__controls--visible {
+  opacity: 1;
+}
+
+.briefing-video:hover .briefing-video__controls {
+  opacity: 1;
+}
+
+/* Progress Bar */
+.briefing-video__progress {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.briefing-video__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width 0.1s linear;
+}
+
+/* Controls Row */
+.briefing-video__controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.briefing-video__controls-left,
+.briefing-video__controls-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+/* Button */
+.briefing-video__btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.briefing-video__btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.briefing-video__btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Time */
+.briefing-video__time {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+  margin-left: var(--space-2, 8px);
+}
+
+/* Title Overlay */
+.briefing-video__title-overlay {
+  position: absolute;
+  top: var(--space-4, 16px);
+  left: var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-md, 6px);
+}
+
+/* Fullscreen */
+.briefing-video--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1050);
+  border-radius: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .briefing-video__spinner {
+    animation: none;
+  }
+  
+  .briefing-video__play-overlay,
+  .briefing-video__play-overlay svg,
+  .briefing-video__controls,
+  .briefing-video__btn {
+    transition: none;
+  }
+}

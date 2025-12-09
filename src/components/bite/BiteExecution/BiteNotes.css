@@ -1,0 +1,260 @@
+/**
+ * GPS Lab Platform - BiteNotes Component Styles
+ */
+
+.bite-notes {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.bite-notes__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-notes__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.bite-notes__title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-notes__count {
+  padding: 2px var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: 9999px;
+}
+
+/* Add Note */
+.bite-notes__add {
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-notes__add-input {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  transition: all 150ms ease-out;
+}
+
+.bite-notes__add-input:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.bite-notes__add-input::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.bite-notes__add-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-3, 12px);
+}
+
+.bite-notes__hint {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.bite-notes__add-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-notes__add-btn:hover:not(:disabled) {
+  background-color: #00b8e0;
+}
+
+.bite-notes__add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content */
+.bite-notes__content {
+  padding: var(--space-4, 16px);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.bite-notes__empty {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-align: center;
+  margin: 0;
+  padding: var(--space-6, 24px);
+}
+
+/* List */
+.bite-notes__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+/* Item */
+.bite-notes__item {
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: 8px;
+  border-left: 3px solid var(--gps-primary, #00d4ff);
+}
+
+.bite-notes__item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.bite-notes__item-time {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.bite-notes__item-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.bite-notes__item:hover .bite-notes__item-actions {
+  opacity: 1;
+}
+
+.bite-notes__item-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-notes__item-btn:hover {
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-700, #1b263b);
+}
+
+.bite-notes__item-btn--delete:hover {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: var(--error, #e74c3c);
+}
+
+.bite-notes__item-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bite-notes__item-content {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Edit */
+.bite-notes__edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.bite-notes__edit-input {
+  width: 100%;
+  padding: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: 6px;
+  resize: vertical;
+  outline: none;
+}
+
+.bite-notes__edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2, 8px);
+}
+
+.bite-notes__edit-cancel,
+.bite-notes__edit-save {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-notes__edit-cancel {
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: 1px solid var(--neutral-300, #d0d7de);
+}
+
+.bite-notes__edit-save {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--success, #2a9d8f);
+  border: none;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-notes { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-notes__header { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-notes__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-notes__count { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-notes__add { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-notes__add-input { background-color: var(--neutral-700, #1b263b); border-color: var(--neutral-600, #2d4263); color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-notes__item { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-notes__item-content { color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-notes__edit-input { background-color: var(--neutral-800, #0d1b2a); color: var(--neutral-100, #f7faff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-notes__add-input, .bite-notes__add-btn, .bite-notes__item-actions, .bite-notes__item-btn, .bite-notes__edit-cancel, .bite-notes__edit-save { transition: none; }
+}

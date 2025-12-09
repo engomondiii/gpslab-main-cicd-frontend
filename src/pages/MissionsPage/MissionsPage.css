@@ -1,0 +1,139 @@
+/**
+ * GPS Lab Platform - MissionsPage Component Styles
+ */
+
+.missions-page {
+  min-height: 100vh;
+  background-color: var(--neutral-50, #fafbfc);
+  padding-bottom: var(--space-12, 48px);
+}
+
+/* Header */
+.missions-page__header {
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+  padding: var(--space-8, 32px) var(--space-6, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+@media (min-width: 768px) {
+  .missions-page__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.missions-page__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.missions-page__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+}
+
+/* Quick Stats */
+.missions-page__quick-stats {
+  display: flex;
+  gap: var(--space-6, 24px);
+}
+
+.missions-page__quick-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.missions-page__quick-stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.missions-page__quick-stat-value--progress {
+  color: var(--warning, #f1c40f);
+}
+
+.missions-page__quick-stat-value--available {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.missions-page__quick-stat-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+/* Stage Tabs */
+.missions-page__stage-tabs {
+  display: flex;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background-color: var(--neutral-0, #ffffff);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+  overflow-x: auto;
+}
+
+.missions-page__stage-tab {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background: none;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.missions-page__stage-tab:hover {
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.missions-page__stage-tab--active {
+  color: var(--gps-primary, #00d4ff);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+}
+
+/* Content */
+.missions-page__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6, 24px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .missions-page {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .missions-page__stage-tabs {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .missions-page__stage-tab:hover {
+  color: var(--neutral-200, #f0f4f8);
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .missions-page__stage-tab {
+    transition: none;
+  }
+}

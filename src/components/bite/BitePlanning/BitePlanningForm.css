@@ -1,0 +1,300 @@
+/**
+ * GPS Lab Platform - BitePlanningForm Component Styles
+ */
+
+.bite-planning-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+.bite-planning-form__header {
+  text-align: center;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.bite-planning-form__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.bite-planning-form__title svg {
+  width: 32px;
+  height: 32px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-planning-form__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Context */
+.bite-planning-form__context {
+  padding: var(--space-4, 16px);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: 12px;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.bite-planning-form__context-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.bite-planning-form__context-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+}
+
+.bite-planning-form__context-id {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-planning-form__context-title {
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.bite-planning-form__context-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+}
+
+.bite-planning-form__context-meta svg {
+  width: 16px;
+  height: 16px;
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Content */
+.bite-planning-form__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Section */
+.bite-planning-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.bite-planning-form__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bite-planning-form__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.bite-planning-form__label svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.bite-planning-form__required {
+  color: var(--error, #e74c3c);
+}
+
+.bite-planning-form__hint {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+.bite-planning-form__textarea {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  transition: all 150ms ease-out;
+}
+
+.bite-planning-form__textarea:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.bite-planning-form__textarea::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Template Button */
+.bite-planning-form__template-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-planning-form__template-btn:hover {
+  background-color: rgba(0, 212, 255, 0.1);
+}
+
+.bite-planning-form__template-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Estimate */
+.bite-planning-form__estimate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: 8px;
+}
+
+.bite-planning-form__estimate-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+}
+
+.bite-planning-form__estimate-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Actions */
+.bite-planning-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3, 12px);
+  margin-top: var(--space-6, 24px);
+  padding-top: var(--space-6, 24px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-planning-form__cancel-btn,
+.bite-planning-form__save-btn,
+.bite-planning-form__start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-planning-form__cancel-btn {
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: 1px solid var(--neutral-300, #d0d7de);
+}
+
+.bite-planning-form__cancel-btn:hover:not(:disabled) {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.bite-planning-form__save-btn {
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: 1px solid var(--gps-primary, #00d4ff);
+}
+
+.bite-planning-form__save-btn:hover:not(:disabled) {
+  background-color: rgba(0, 212, 255, 0.1);
+}
+
+.bite-planning-form__start-btn {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.bite-planning-form__start-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+}
+
+.bite-planning-form__start-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.bite-planning-form__cancel-btn:disabled,
+.bite-planning-form__save-btn:disabled,
+.bite-planning-form__start-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.bite-planning-form__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: bitePlanningSpinner 0.8s linear infinite;
+}
+
+@keyframes bitePlanningSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-planning-form__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-planning-form__context { background-color: rgba(0, 212, 255, 0.08); }
+[data-theme="dark"] .bite-planning-form__context-title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-planning-form__label { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-planning-form__textarea { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-planning-form__estimate { background-color: var(--neutral-800, #0d1b2a); }
+[data-theme="dark"] .bite-planning-form__actions { border-color: var(--neutral-700, #1b263b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-planning-form__textarea, .bite-planning-form__template-btn, .bite-planning-form__cancel-btn, .bite-planning-form__save-btn, .bite-planning-form__start-btn { transition: none; }
+  .bite-planning-form__start-btn:hover:not(:disabled) { transform: none; }
+  .bite-planning-form__spinner { animation: none; }
+}

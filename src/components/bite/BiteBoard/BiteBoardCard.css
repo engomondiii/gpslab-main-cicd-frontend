@@ -1,0 +1,90 @@
+/**
+ * GPS Lab Platform - BiteBoardCard Component Styles
+ */
+
+.bite-board-card {
+  position: relative;
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  cursor: grab;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+  overflow: hidden;
+}
+
+.bite-board-card:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.bite-board-card:active { cursor: grabbing; }
+.bite-board-card--dragging { opacity: 0.5; transform: rotate(3deg); }
+.bite-board-card--drop-target { border-color: var(--gps-primary, #00d4ff); border-style: dashed; background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1)); }
+.bite-board-card--blocked { opacity: 0.8; }
+.bite-board-card--overdue { border-left: 3px solid var(--error, #e74c3c); }
+
+/* Priority Indicator */
+.bite-board-card__priority { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.bite-board-card__priority--success { background-color: var(--success, #2a9d8f); }
+.bite-board-card__priority--warning { background-color: var(--warning, #f1c40f); }
+.bite-board-card__priority--error { background-color: var(--error, #e74c3c); }
+.bite-board-card__priority--secondary { background: linear-gradient(90deg, var(--gps-secondary, #ff6b6b), var(--error, #e74c3c)); }
+
+/* Header */
+.bite-board-card__header { display: flex; align-items: center; gap: var(--space-2, 8px); margin-bottom: var(--space-2, 8px); }
+.bite-board-card__type { width: 24px; height: 24px; padding: var(--space-1, 4px); border-radius: var(--radius-md, 6px); }
+.bite-board-card__type svg { width: 100%; height: 100%; }
+.bite-board-card__type--primary { background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15)); color: var(--gps-primary, #00d4ff); }
+.bite-board-card__type--accent { background-color: var(--gps-accent-pale, rgba(42, 157, 143, 0.15)); color: var(--gps-accent, #2a9d8f); }
+.bite-board-card__type--secondary { background-color: var(--gps-secondary-pale, rgba(255, 107, 107, 0.15)); color: var(--gps-secondary, #ff6b6b); }
+.bite-board-card__type--info { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
+.bite-board-card__type--warning { background-color: var(--warning-pale, rgba(241, 196, 15, 0.15)); color: var(--warning, #f1c40f); }
+.bite-board-card__id { font-family: var(--font-mono, monospace); font-size: var(--text-xs, 12px); color: var(--neutral-400, #a8dadc); }
+
+/* Title & Description */
+.bite-board-card__title { font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); margin: 0 0 var(--space-2, 8px); line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.bite-board-card__description { font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); line-height: 1.6; margin: 0 0 var(--space-2, 8px); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Mission Badge */
+.bite-board-card__mission { display: inline-flex; align-items: center; gap: var(--space-1, 4px); padding: 2px var(--space-2, 8px); font-size: var(--text-xs, 12px); color: var(--gps-primary, #00d4ff); background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1)); border-radius: 9999px; margin-bottom: var(--space-2, 8px); }
+.bite-board-card__mission svg { width: 12px; height: 12px; }
+
+/* Progress */
+.bite-board-card__progress { display: flex; align-items: center; gap: var(--space-2, 8px); margin-bottom: var(--space-2, 8px); }
+.bite-board-card__progress-bar { flex: 1; height: 4px; background-color: var(--neutral-200, #f0f4f8); border-radius: 9999px; overflow: hidden; }
+.bite-board-card__progress-fill { height: 100%; background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f)); border-radius: 9999px; }
+.bite-board-card__progress-text { font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); min-width: 28px; }
+
+/* Tags */
+.bite-board-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-1, 4px); margin-bottom: var(--space-2, 8px); }
+.bite-board-card__tag { padding: 2px var(--space-2, 8px); font-size: 10px; color: var(--neutral-500, #8b949e); background-color: var(--neutral-100, #f7faff); border-radius: 4px; }
+.bite-board-card__tag--more { background-color: var(--neutral-200, #f0f4f8); }
+
+/* Footer */
+.bite-board-card__footer { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-2, 8px); padding-top: var(--space-2, 8px); border-top: 1px solid var(--neutral-100, #f7faff); }
+.bite-board-card__meta { display: flex; align-items: center; gap: var(--space-2, 8px); }
+.bite-board-card__meta-item { display: inline-flex; align-items: center; gap: 2px; font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); }
+.bite-board-card__meta-item svg { width: 12px; height: 12px; }
+.bite-board-card__meta-item--overdue { color: var(--error, #e74c3c); }
+.bite-board-card__meta-item--blocked { color: var(--error, #e74c3c); }
+
+/* Actions */
+.bite-board-card__actions { display: flex; align-items: center; gap: var(--space-2, 8px); }
+.bite-board-card__reward { font-size: var(--text-xs, 12px); font-weight: var(--font-bold, 700); }
+.bite-board-card__reward--xp { color: var(--gps-accent, #2a9d8f); }
+.bite-board-card__assignee { width: 24px; height: 24px; border-radius: 50%; overflow: hidden; background-color: var(--gps-primary, #00d4ff); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); }
+.bite-board-card__assignee img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Dark Theme */
+[data-theme="dark"] .bite-board-card { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-board-card__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-board-card__tag { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-board-card__footer { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-board-card__progress-bar { background-color: var(--neutral-700, #1b263b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-board-card { transition: none; }
+  .bite-board-card:hover { transform: none; }
+}

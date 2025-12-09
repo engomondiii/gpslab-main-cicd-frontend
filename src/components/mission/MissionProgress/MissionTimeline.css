@@ -1,0 +1,217 @@
+/**
+ * GPS Lab Platform - MissionTimeline Component Styles
+ */
+
+.mission-timeline {
+  padding: var(--space-4, 16px);
+}
+
+.mission-timeline__track {
+  position: relative;
+}
+
+/* Vertical Layout */
+.mission-timeline--vertical .mission-timeline__track {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-timeline--vertical .mission-timeline__step {
+  display: flex;
+  gap: var(--space-4, 16px);
+  padding-bottom: var(--space-6, 24px);
+  position: relative;
+}
+
+.mission-timeline--vertical .mission-timeline__step:last-child {
+  padding-bottom: 0;
+}
+
+.mission-timeline--vertical .mission-timeline__connector {
+  position: absolute;
+  left: 20px;
+  top: -24px;
+  width: 2px;
+  height: 24px;
+  background-color: var(--neutral-300, #d0d7de);
+}
+
+.mission-timeline--vertical .mission-timeline__connector--completed {
+  background: linear-gradient(180deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+/* Horizontal Layout */
+.mission-timeline--horizontal .mission-timeline__track {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--space-2, 8px);
+  padding-bottom: var(--space-2, 8px);
+}
+
+.mission-timeline--horizontal .mission-timeline__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  text-align: center;
+  position: relative;
+}
+
+.mission-timeline--horizontal .mission-timeline__connector {
+  position: absolute;
+  left: -10px;
+  top: 20px;
+  width: 20px;
+  height: 2px;
+  background-color: var(--neutral-300, #d0d7de);
+}
+
+.mission-timeline--horizontal .mission-timeline__connector--completed {
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+/* Step */
+.mission-timeline__step {
+  cursor: default;
+  transition: opacity var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-timeline__step[role="button"] {
+  cursor: pointer;
+}
+
+.mission-timeline__step[role="button"]:hover .mission-timeline__node {
+  transform: scale(1.1);
+}
+
+.mission-timeline__step--locked {
+  opacity: 0.5;
+}
+
+/* Node */
+.mission-timeline__node {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 50%;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-timeline__node-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-timeline__node-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-timeline__step--completed .mission-timeline__node {
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
+}
+
+.mission-timeline__step--completed .mission-timeline__node-icon {
+  color: var(--success, #2a9d8f);
+}
+
+.mission-timeline__step--current .mission-timeline__node {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.mission-timeline__step--current .mission-timeline__node-icon {
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Pulse Animation */
+.mission-timeline__node-pulse {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: timelinePulse 2s ease-out infinite;
+}
+
+@keyframes timelinePulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Content */
+.mission-timeline__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.mission-timeline__step-number {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.mission-timeline__step-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: var(--space-1, 4px) 0;
+}
+
+.mission-timeline__step--completed .mission-timeline__step-title {
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-timeline__step--locked .mission-timeline__step-title {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.mission-timeline__step-desc {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+.mission-timeline__step-duration {
+  display: inline-block;
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  margin-top: var(--space-1, 4px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-timeline__node {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-timeline__connector {
+  background-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .mission-timeline__step-title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-timeline__step--completed .mission-timeline__step-title {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-timeline__node,
+  .mission-timeline__step {
+    transition: none;
+  }
+  
+  .mission-timeline__node-pulse {
+    animation: none;
+  }
+}

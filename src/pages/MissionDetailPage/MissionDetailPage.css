@@ -1,0 +1,95 @@
+/**
+ * GPS Lab Platform - MissionDetailPage Component Styles
+ */
+
+.mission-detail-page {
+  min-height: 100vh;
+  background-color: var(--neutral-50, #fafbfc);
+}
+
+.mission-detail-page__main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6, 24px);
+}
+
+/* With Sidebar Layout */
+@media (min-width: 1200px) {
+  .mission-detail-page {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+  }
+  
+  .mission-detail-page__main {
+    padding-right: 0;
+  }
+  
+  .mission-detail-page__sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: var(--space-6, 24px);
+    background-color: var(--neutral-0, #ffffff);
+    border-left: 1px solid var(--neutral-200, #f0f4f8);
+  }
+}
+
+/* Sidebar */
+.mission-detail-page__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+/* Quick Actions */
+.mission-detail-page__quick-actions {
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-detail-page__complete-btn {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px dashed var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-detail-page__complete-btn:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-detail-page {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .mission-detail-page__sidebar {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-detail-page__quick-actions {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-detail-page__complete-btn {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-600, #2d4263);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-detail-page__complete-btn {
+    transition: none;
+  }
+}

@@ -1,0 +1,406 @@
+/**
+ * GPS Lab Platform - BiteWorkBreakdown Component Styles
+ */
+
+.bite-work-breakdown {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.bite-work-breakdown__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-work-breakdown__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.bite-work-breakdown__title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-work-breakdown__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.bite-work-breakdown__progress-text {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+}
+
+.bite-work-breakdown__time {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Progress */
+.bite-work-breakdown__progress {
+  padding: 0 var(--space-4, 16px);
+}
+
+.bite-work-breakdown__progress-bar {
+  height: 4px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.bite-work-breakdown__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: 9999px;
+  transition: width 400ms ease-out;
+}
+
+/* Content */
+.bite-work-breakdown__content {
+  padding: var(--space-4, 16px);
+}
+
+.bite-work-breakdown__empty {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-align: center;
+  margin: 0;
+  padding: var(--space-4, 16px);
+}
+
+/* List */
+.bite-work-breakdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.bite-work-breakdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: 8px;
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__item:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.bite-work-breakdown__item--completed {
+  background-color: rgba(42, 157, 143, 0.08);
+}
+
+.bite-work-breakdown__item--dragging {
+  opacity: 0.5;
+  transform: scale(1.02);
+}
+
+/* Drag Handle */
+.bite-work-breakdown__drag-handle {
+  cursor: grab;
+  color: var(--neutral-400, #a8dadc);
+  padding: var(--space-1, 4px);
+}
+
+.bite-work-breakdown__drag-handle:active {
+  cursor: grabbing;
+}
+
+.bite-work-breakdown__drag-handle svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Number */
+.bite-work-breakdown__number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bite-work-breakdown__item--completed .bite-work-breakdown__number {
+  background-color: var(--success, #2a9d8f);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Checkbox */
+.bite-work-breakdown__checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bite-work-breakdown__checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.bite-work-breakdown__checkmark {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--neutral-300, #d0d7de);
+  border-radius: 6px;
+  background-color: var(--neutral-0, #ffffff);
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__checkmark svg {
+  width: 12px;
+  height: 12px;
+  color: var(--neutral-0, #ffffff);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__checkbox input:checked + .bite-work-breakdown__checkmark {
+  background-color: var(--success, #2a9d8f);
+  border-color: var(--success, #2a9d8f);
+}
+
+.bite-work-breakdown__checkbox input:checked + .bite-work-breakdown__checkmark svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Text */
+.bite-work-breakdown__text {
+  flex: 1;
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+}
+
+.bite-work-breakdown__item--completed .bite-work-breakdown__text {
+  text-decoration: line-through;
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Time Badge */
+.bite-work-breakdown__time-badge {
+  padding: 2px var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 9999px;
+}
+
+/* Actions */
+.bite-work-breakdown__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.bite-work-breakdown__item:hover .bite-work-breakdown__actions {
+  opacity: 1;
+}
+
+.bite-work-breakdown__action-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__action-btn:hover {
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-700, #1b263b);
+}
+
+.bite-work-breakdown__action-btn--delete:hover {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: var(--error, #e74c3c);
+}
+
+.bite-work-breakdown__action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Edit Row */
+.bite-work-breakdown__edit-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+}
+
+.bite-work-breakdown__edit-input {
+  flex: 1;
+  padding: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: 6px;
+  outline: none;
+}
+
+.bite-work-breakdown__edit-time {
+  width: 60px;
+  padding: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 6px;
+  outline: none;
+  text-align: center;
+}
+
+.bite-work-breakdown__save-btn,
+.bite-work-breakdown__cancel-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__save-btn {
+  background-color: var(--success, #2a9d8f);
+  color: var(--neutral-0, #ffffff);
+}
+
+.bite-work-breakdown__cancel-btn {
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-600, #2d4263);
+}
+
+.bite-work-breakdown__save-btn svg,
+.bite-work-breakdown__cancel-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Add New */
+.bite-work-breakdown__add {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-3, 12px);
+  padding-top: var(--space-3, 12px);
+  border-top: 1px dashed var(--neutral-200, #f0f4f8);
+}
+
+.bite-work-breakdown__add-input {
+  flex: 1;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  outline: none;
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__add-input:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.bite-work-breakdown__add-time {
+  width: 70px;
+  padding: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+}
+
+.bite-work-breakdown__add-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: 8px;
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-work-breakdown__add-btn:hover:not(:disabled) {
+  background-color: #00b8e0;
+}
+
+.bite-work-breakdown__add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bite-work-breakdown__add-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-work-breakdown { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-work-breakdown__header { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-work-breakdown__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-work-breakdown__item { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-work-breakdown__item:hover { background-color: var(--neutral-600, #2d4263); }
+[data-theme="dark"] .bite-work-breakdown__number { background-color: var(--neutral-600, #2d4263); }
+[data-theme="dark"] .bite-work-breakdown__text { color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-work-breakdown__checkmark { background-color: var(--neutral-700, #1b263b); border-color: var(--neutral-500, #8b949e); }
+[data-theme="dark"] .bite-work-breakdown__time-badge { background-color: var(--neutral-600, #2d4263); }
+[data-theme="dark"] .bite-work-breakdown__add-input, [data-theme="dark"] .bite-work-breakdown__add-time { background-color: var(--neutral-700, #1b263b); border-color: var(--neutral-600, #2d4263); color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-work-breakdown__add { border-color: var(--neutral-700, #1b263b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-work-breakdown__progress-fill, .bite-work-breakdown__item, .bite-work-breakdown__checkmark, .bite-work-breakdown__checkmark svg, .bite-work-breakdown__actions, .bite-work-breakdown__action-btn, .bite-work-breakdown__add-input, .bite-work-breakdown__add-btn { transition: none; }
+}

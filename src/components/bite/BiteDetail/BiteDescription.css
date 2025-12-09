@@ -1,0 +1,255 @@
+/**
+ * GPS Lab Platform - BiteDescription Component Styles
+ */
+
+.bite-description {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.bite-description__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-description__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.bite-description__title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-description__edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background: none;
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.bite-description__edit-btn:hover {
+  color: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.bite-description__edit-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Content */
+.bite-description__content {
+  padding: var(--space-4, 16px);
+}
+
+.bite-description__text {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-700, #1b263b);
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+.bite-description__text p {
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.bite-description__text p:last-child {
+  margin-bottom: 0;
+}
+
+.bite-description__empty {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Editor */
+.bite-description__editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.bite-description__textarea {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-lg, 8px);
+  resize: vertical;
+  outline: none;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.bite-description__textarea:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.bite-description__editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2, 8px);
+}
+
+.bite-description__cancel-btn,
+.bite-description__save-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.bite-description__cancel-btn {
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: 1px solid var(--neutral-300, #d0d7de);
+}
+
+.bite-description__cancel-btn:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.bite-description__save-btn {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--gps-primary, #00d4ff);
+  border: none;
+}
+
+.bite-description__save-btn:hover {
+  background-color: var(--gps-primary-dark, #00b8e0);
+}
+
+/* Section Styles */
+.bite-description__context,
+.bite-description__objectives {
+  padding: var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-description__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.bite-description__section-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.bite-description__context p {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0;
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  border-left: 3px solid var(--gps-accent, #2a9d8f);
+}
+
+/* Objectives List */
+.bite-description__objectives-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.bite-description__objectives-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+}
+
+.bite-description__objectives-list li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--success, #2a9d8f);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-description {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .bite-description__header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .bite-description__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .bite-description__text {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .bite-description__textarea {
+  background-color: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .bite-description__context,
+[data-theme="dark"] .bite-description__objectives {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .bite-description__context p {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .bite-description__objectives-list li {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .bite-description__edit-btn,
+  .bite-description__textarea,
+  .bite-description__cancel-btn,
+  .bite-description__save-btn {
+    transition: none;
+  }
+}

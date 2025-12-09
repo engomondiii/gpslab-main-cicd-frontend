@@ -1,0 +1,384 @@
+/**
+ * GPS Lab Platform - MissionBriefing Component Styles
+ */
+
+.mission-briefing {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--space-6, 24px);
+  overflow-y: auto;
+}
+
+/* Background */
+.mission-briefing__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.mission-briefing__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+}
+
+.mission-briefing__bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Close Button */
+.mission-briefing__close {
+  position: fixed;
+  top: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: var(--neutral-300, #e1e4e8);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-briefing__close:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--neutral-0, #ffffff);
+}
+
+.mission-briefing__close svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Content */
+.mission-briefing__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.mission-briefing__header {
+  text-align: center;
+  margin-bottom: var(--space-8, 32px);
+}
+
+.mission-briefing__label {
+  display: inline-block;
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.mission-briefing__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-4xl, 48px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-4, 16px);
+  line-height: var(--leading-tight, 1.2);
+}
+
+.mission-briefing__desc {
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-400, #a8dadc);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0;
+}
+
+/* Video Section */
+.mission-briefing__video-section {
+  margin-bottom: var(--space-6, 24px);
+}
+
+.mission-briefing__video-hint {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  text-align: center;
+  margin: var(--space-3, 12px) 0 0;
+}
+
+/* Briefing Text */
+.mission-briefing__text {
+  padding: var(--space-5, 20px);
+  background-color: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.mission-briefing__text-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-briefing__text-title svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mission-briefing__text p {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-200, #f0f4f8);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0;
+}
+
+/* Info Grid */
+.mission-briefing__info {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+@media (min-width: 640px) {
+  .mission-briefing__info {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mission-briefing__info-card {
+  padding: var(--space-4, 16px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-briefing__info-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-briefing__info-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Objectives */
+.mission-briefing__objectives {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mission-briefing__objectives li {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  padding-left: var(--space-4, 16px);
+  position: relative;
+}
+
+.mission-briefing__objectives li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-briefing__more {
+  color: var(--neutral-500, #8b949e);
+  font-style: italic;
+}
+
+/* Rewards */
+.mission-briefing__rewards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.mission-briefing__reward {
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+}
+
+.mission-briefing__reward--xp {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-briefing__reward--baraka {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+/* Stats */
+.mission-briefing__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.mission-briefing__stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-briefing__stat-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-briefing__stat-value {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-200, #f0f4f8);
+  text-transform: capitalize;
+}
+
+/* Tips */
+.mission-briefing__tips {
+  padding: var(--space-4, 16px);
+  background-color: rgba(241, 196, 15, 0.1);
+  border: 1px solid rgba(241, 196, 15, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.mission-briefing__tips-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--warning, #f1c40f);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-briefing__tips-title svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mission-briefing__tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mission-briefing__tips-list li {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+  padding-left: var(--space-4, 16px);
+  position: relative;
+}
+
+.mission-briefing__tips-list li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+
+/* Actions */
+.mission-briefing__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+  padding-top: var(--space-6, 24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mission-briefing__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-xl, 12px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-briefing__btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.mission-briefing__btn--skip {
+  color: var(--neutral-400, #a8dadc);
+  background: none;
+  border: 1px solid var(--neutral-600, #2d4263);
+}
+
+.mission-briefing__btn--skip:hover {
+  color: var(--neutral-200, #f0f4f8);
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.mission-briefing__btn--start {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.mission-briefing__btn--start:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+.mission-briefing__btn--start:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mission-briefing__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: missionBriefingSpinner 0.6s linear infinite;
+}
+
+@keyframes missionBriefingSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-briefing__close,
+  .mission-briefing__btn {
+    transition: none;
+  }
+  
+  .mission-briefing__btn--start:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .mission-briefing__spinner {
+    animation: none;
+  }
+}

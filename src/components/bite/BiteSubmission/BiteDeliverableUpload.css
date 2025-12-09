@@ -1,0 +1,161 @@
+/**
+ * GPS Lab Platform - BiteDeliverableUpload Component Styles
+ */
+
+.bite-deliverable-upload {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.bite-deliverable-upload__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-deliverable-upload__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.bite-deliverable-upload__title svg { width: 20px; height: 20px; color: var(--gps-primary, #00d4ff); }
+.bite-deliverable-upload__required { color: var(--error, #e74c3c); }
+
+.bite-deliverable-upload__count {
+  padding: 2px var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: 9999px;
+}
+
+/* Dropzone */
+.bite-deliverable-upload__dropzone {
+  padding: var(--space-8, 32px);
+  margin: var(--space-4, 16px);
+  border: 2px dashed var(--neutral-300, #d0d7de);
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-deliverable-upload__dropzone:hover,
+.bite-deliverable-upload--dragging .bite-deliverable-upload__dropzone {
+  border-color: var(--gps-primary, #00d4ff);
+  background-color: rgba(0, 212, 255, 0.05);
+}
+
+.bite-deliverable-upload__input { display: none; }
+
+.bite-deliverable-upload__dropzone-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto var(--space-3, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.bite-deliverable-upload--dragging .bite-deliverable-upload__dropzone-icon { color: var(--gps-primary, #00d4ff); }
+
+.bite-deliverable-upload__dropzone-icon svg { width: 100%; height: 100%; }
+
+.bite-deliverable-upload__dropzone-text { margin: 0; }
+
+.bite-deliverable-upload__dropzone-primary {
+  display: block;
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.bite-deliverable-upload__dropzone-secondary {
+  display: block;
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Error */
+.bite-deliverable-upload__error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin: 0 var(--space-4, 16px) var(--space-4, 16px);
+  padding: var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  color: var(--error, #e74c3c);
+  background-color: rgba(231, 76, 60, 0.1);
+  border-radius: 8px;
+}
+
+.bite-deliverable-upload__error svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Files */
+.bite-deliverable-upload__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: 0 var(--space-4, 16px) var(--space-4, 16px);
+}
+
+.bite-deliverable-upload__file {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: 8px;
+}
+
+.bite-deliverable-upload__file-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; flex-shrink: 0;
+}
+
+.bite-deliverable-upload__file-icon svg { width: 24px; height: 24px; }
+.bite-deliverable-upload__file-icon--image { background-color: rgba(155, 89, 182, 0.15); color: #9b59b6; }
+.bite-deliverable-upload__file-icon--video { background-color: rgba(255, 107, 107, 0.15); color: var(--gps-secondary, #ff6b6b); }
+.bite-deliverable-upload__file-icon--code { background-color: rgba(42, 157, 143, 0.15); color: var(--gps-accent, #2a9d8f); }
+.bite-deliverable-upload__file-icon--document { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
+.bite-deliverable-upload__file-icon--archive { background-color: rgba(241, 196, 15, 0.15); color: #d4a90a; }
+.bite-deliverable-upload__file-icon--default { background-color: var(--neutral-200, #f0f4f8); color: var(--neutral-600, #2d4263); }
+
+.bite-deliverable-upload__file-info { flex: 1; min-width: 0; }
+.bite-deliverable-upload__file-name { display: block; font-size: var(--text-sm, 14px); font-weight: var(--font-medium, 500); color: var(--neutral-900, #0d1117); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bite-deliverable-upload__file-size { display: block; font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); }
+
+.bite-deliverable-upload__file-remove {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; border-radius: 6px;
+  color: var(--neutral-400, #a8dadc); cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-deliverable-upload__file-remove:hover { background-color: rgba(231, 76, 60, 0.15); color: var(--error, #e74c3c); }
+.bite-deliverable-upload__file-remove svg { width: 16px; height: 16px; }
+
+/* Dark Theme */
+[data-theme="dark"] .bite-deliverable-upload { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-deliverable-upload__header { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-deliverable-upload__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-deliverable-upload__count { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-deliverable-upload__dropzone { border-color: var(--neutral-600, #2d4263); }
+[data-theme="dark"] .bite-deliverable-upload__dropzone-primary { color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-deliverable-upload__file { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-deliverable-upload__file-name { color: var(--neutral-100, #f7faff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-deliverable-upload__dropzone, .bite-deliverable-upload__file-remove { transition: none; }
+}

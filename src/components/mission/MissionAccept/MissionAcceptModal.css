@@ -1,0 +1,358 @@
+/**
+ * GPS Lab Platform - MissionAcceptModal Component Styles
+ */
+
+.mission-accept-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1050);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4, 16px);
+}
+
+/* Backdrop */
+.mission-accept-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+/* Dialog */
+.mission-accept-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: var(--shadow-xl);
+  animation: missionModalIn 0.3s ease-out;
+}
+
+@keyframes missionModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Close Button */
+.mission-accept-modal__close {
+  position: absolute;
+  top: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-accept-modal__close:hover {
+  background-color: var(--neutral-100, #f7faff);
+  color: var(--neutral-600, #2d4263);
+}
+
+.mission-accept-modal__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Header */
+.mission-accept-modal__header {
+  padding: var(--space-6, 24px) var(--space-6, 24px) var(--space-4, 16px);
+  text-align: center;
+}
+
+.mission-accept-modal__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-xl, 12px);
+  color: var(--neutral-900, #0d1117);
+}
+
+.mission-accept-modal__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-accept-modal__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.mission-accept-modal__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--gps-primary, #00d4ff);
+  margin: 0;
+}
+
+/* Content */
+.mission-accept-modal__content {
+  padding: 0 var(--space-6, 24px) var(--space-4, 16px);
+}
+
+.mission-accept-modal__desc {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  line-height: var(--leading-relaxed, 1.8);
+  margin: 0 0 var(--space-4, 16px);
+  text-align: center;
+}
+
+/* Info Grid */
+.mission-accept-modal__info {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6, 24px);
+  padding: var(--space-4, 16px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.mission-accept-modal__info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.mission-accept-modal__info-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+}
+
+.mission-accept-modal__info-value {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  text-transform: capitalize;
+}
+
+/* Rewards */
+.mission-accept-modal__rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+}
+
+.mission-accept-modal__rewards-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.mission-accept-modal__reward {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+}
+
+.mission-accept-modal__reward--xp {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-accept-modal__reward--baraka {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+/* Actions */
+.mission-accept-modal__actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px) var(--space-6, 24px) var(--space-6, 24px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-accept-modal__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-accept-modal__btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mission-accept-modal__btn--cancel {
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: 1px solid var(--neutral-300, #d0d7de);
+}
+
+.mission-accept-modal__btn--cancel:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.mission-accept-modal__btn--accept {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+}
+
+.mission-accept-modal__btn--accept:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+}
+
+.mission-accept-modal__btn--accept:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mission-accept-modal__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: missionModalSpinner 0.6s linear infinite;
+}
+
+@keyframes missionModalSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* Success State */
+.mission-accept-modal__success {
+  padding: var(--space-8, 32px);
+  text-align: center;
+}
+
+.mission-accept-modal__success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-4, 16px);
+  color: var(--success, #2a9d8f);
+  animation: successPop 0.4s ease-out;
+}
+
+@keyframes successPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.mission-accept-modal__success-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-accept-modal__success-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--success, #2a9d8f);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.mission-accept-modal__success-text {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+.mission-accept-modal__start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-accept-modal__start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+}
+
+.mission-accept-modal__start-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-accept-modal__dialog {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .mission-accept-modal__title,
+[data-theme="dark"] .mission-accept-modal__info-value {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-accept-modal__desc {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+[data-theme="dark"] .mission-accept-modal__info {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-accept-modal__actions {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-accept-modal__btn--cancel {
+  color: var(--neutral-300, #e1e4e8);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .mission-accept-modal__btn--cancel:hover {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-accept-modal__dialog {
+    animation: none;
+  }
+  
+  .mission-accept-modal__close,
+  .mission-accept-modal__btn,
+  .mission-accept-modal__start-btn {
+    transition: none;
+  }
+  
+  .mission-accept-modal__success-icon {
+    animation: none;
+  }
+  
+  .mission-accept-modal__spinner {
+    animation: none;
+  }
+}

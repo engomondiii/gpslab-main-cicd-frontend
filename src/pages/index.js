@@ -15,3 +15,7 @@ export { default as ErrorPage, ERROR_CONFIGS } from './ErrorPage/ErrorPage';
 // Main Pages
 export { default as DashboardPage } from './DashboardPage/DashboardPage';
 export { default as HomePage } from './HomePage/HomePage';
+
+// Mission Pages
+export { default as MissionsPage } from './MissionsPage/MissionsPage';
+export { default as MissionDetailPage } from './MissionDetailPage/MissionDetailPage';

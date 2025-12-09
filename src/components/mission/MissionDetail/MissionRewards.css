@@ -1,0 +1,340 @@
+/**
+ * GPS Lab Platform - MissionRewards Component Styles
+ */
+
+.mission-rewards {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.mission-rewards__header {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-rewards__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+/* Main Rewards */
+.mission-rewards__main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+}
+
+/* Reward Card */
+.mission-rewards__card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-rewards__card--accent {
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.15), rgba(42, 157, 143, 0.05));
+}
+
+.mission-rewards__card--baraka {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+}
+
+.mission-rewards__card-icon {
+  width: 48px;
+  height: 48px;
+  padding: var(--space-3, 12px);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mission-rewards__card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mission-rewards__card--accent .mission-rewards__card-icon {
+  background-color: rgba(42, 157, 143, 0.2);
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-rewards__card--baraka .mission-rewards__card-icon {
+  background-color: rgba(241, 196, 15, 0.2);
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+.mission-rewards__card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-rewards__card-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  line-height: 1;
+}
+
+.mission-rewards__card--accent .mission-rewards__card-value {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-rewards__card--baraka .mission-rewards__card-value {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+.mission-rewards__card-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin-top: var(--space-1, 4px);
+}
+
+/* Sections */
+.mission-rewards__section {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-rewards__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-rewards__section-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Badges */
+.mission-rewards__badges {
+  display: flex;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.mission-rewards__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  min-width: 80px;
+}
+
+.mission-rewards__badge-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.mission-rewards__badge-placeholder {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gps-secondary, #ff6b6b), rgba(255, 107, 107, 0.5));
+  border-radius: 50%;
+  color: var(--neutral-0, #ffffff);
+}
+
+.mission-rewards__badge-placeholder svg {
+  width: 24px;
+  height: 24px;
+}
+
+.mission-rewards__badge-name {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+  text-align: center;
+}
+
+/* Achievements */
+.mission-rewards__achievements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.mission-rewards__achievement {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.mission-rewards__achievement-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--warning, #f1c40f), rgba(241, 196, 15, 0.5));
+  border-radius: 50%;
+  color: var(--neutral-900, #0d1117);
+  flex-shrink: 0;
+}
+
+.mission-rewards__achievement-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mission-rewards__achievement-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-rewards__achievement-name {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.mission-rewards__achievement-desc {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Unlocks */
+.mission-rewards__unlocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mission-rewards__unlock {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+}
+
+.mission-rewards__unlock svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Breakdown */
+.mission-rewards__breakdown {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-rewards__breakdown-title {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.mission-rewards__breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.mission-rewards__breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mission-rewards__breakdown-name {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+}
+
+.mission-rewards__breakdown-value {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+}
+
+.mission-rewards__breakdown-value--xp {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-rewards__breakdown-value--baraka {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+/* Compact Variant */
+.mission-rewards--compact .mission-rewards__main {
+  grid-template-columns: 1fr;
+  padding: var(--space-4, 16px);
+}
+
+.mission-rewards--compact .mission-rewards__card {
+  padding: var(--space-3, 12px);
+}
+
+.mission-rewards--compact .mission-rewards__card-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.mission-rewards--compact .mission-rewards__card-value {
+  font-size: var(--text-xl, 24px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-rewards {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-rewards__header,
+[data-theme="dark"] .mission-rewards__section {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-rewards__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-rewards__badge,
+[data-theme="dark"] .mission-rewards__achievement {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-rewards__badge-name {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .mission-rewards__achievement-name {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-rewards__unlock {
+  color: var(--neutral-200, #f0f4f8);
+}
+
+[data-theme="dark"] .mission-rewards__breakdown {
+  background-color: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+}

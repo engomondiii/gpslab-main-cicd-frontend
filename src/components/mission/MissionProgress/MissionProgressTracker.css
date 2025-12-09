@@ -1,0 +1,202 @@
+/**
+ * GPS Lab Platform - MissionProgressTracker Component Styles
+ */
+
+.mission-progress-tracker {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.mission-progress-tracker__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+}
+
+.mission-progress-tracker__label {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.mission-progress-tracker__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+/* Timer */
+.mission-progress-tracker__timer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.mission-progress-tracker__time {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.mission-progress-tracker__estimated {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.mission-progress-tracker__pause-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.mission-progress-tracker__pause-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.mission-progress-tracker__pause-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Progress Bar */
+.mission-progress-tracker__progress {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-progress-tracker__progress-bar {
+  height: 10px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.mission-progress-tracker__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.mission-progress-tracker__progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-progress-tracker__progress-percent {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.mission-progress-tracker__progress-count {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Stats */
+.mission-progress-tracker__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.mission-progress-tracker__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mission-progress-tracker__stat svg {
+  width: 24px;
+  height: 24px;
+  color: var(--neutral-400, #a8dadc);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.mission-progress-tracker__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.mission-progress-tracker__stat-value--xp {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.mission-progress-tracker__stat-value--baraka {
+  color: var(--baraka-yellow, #f1c40f);
+}
+
+.mission-progress-tracker__stat-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  margin-top: var(--space-1, 4px);
+}
+
+/* Timeline */
+.mission-progress-tracker__timeline {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+}
+
+.mission-progress-tracker__timeline-title {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mission-progress-tracker {
+  background-color: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-progress-tracker__progress,
+[data-theme="dark"] .mission-progress-tracker__stats {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-progress-tracker__progress-bar {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-progress-tracker__progress-percent,
+[data-theme="dark"] .mission-progress-tracker__stat-value {
+  color: var(--neutral-100, #f7faff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mission-progress-tracker__progress-fill,
+  .mission-progress-tracker__pause-btn {
+    transition: none;
+  }
+}

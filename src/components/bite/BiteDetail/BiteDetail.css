@@ -1,0 +1,202 @@
+/**
+ * GPS Lab Platform - BiteDetail Component Styles
+ */
+
+.bite-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Loading */
+.bite-detail__loading { padding: var(--space-6, 24px); }
+.bite-detail__loading-header { height: 120px; background-color: var(--neutral-200, #f0f4f8); border-radius: 12px; margin-bottom: var(--space-4, 16px); animation: biteDetailSkeleton 1.5s ease-in-out infinite; }
+.bite-detail__loading-content { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-4, 16px); }
+.bite-detail__loading-block { height: 200px; background-color: var(--neutral-200, #f0f4f8); border-radius: 12px; animation: biteDetailSkeleton 1.5s ease-in-out infinite 0.1s; }
+@keyframes biteDetailSkeleton { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Header */
+.bite-detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding: var(--space-6, 24px);
+  background-color: var(--neutral-0, #ffffff);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@media (min-width: 768px) {
+  .bite-detail__header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.bite-detail__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: var(--space-3, 12px);
+  transition: all 150ms ease-out;
+}
+
+.bite-detail__back-btn:hover { background-color: var(--neutral-100, #f7faff); color: var(--neutral-900, #0d1117); }
+.bite-detail__back-btn svg { width: 18px; height: 18px; }
+
+/* Title Section */
+.bite-detail__title-section { flex: 1; }
+.bite-detail__meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3, 12px); margin-bottom: var(--space-3, 12px); }
+
+.bite-detail__type {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: 9999px;
+}
+
+.bite-detail__type svg { width: 16px; height: 16px; }
+.bite-detail__type--primary { background-color: rgba(0, 212, 255, 0.15); color: var(--gps-primary, #00d4ff); }
+.bite-detail__type--accent { background-color: rgba(42, 157, 143, 0.15); color: var(--gps-accent, #2a9d8f); }
+.bite-detail__type--secondary { background-color: rgba(255, 107, 107, 0.15); color: var(--gps-secondary, #ff6b6b); }
+.bite-detail__type--info { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
+.bite-detail__type--warning { background-color: rgba(241, 196, 15, 0.15); color: #d4a90a; }
+
+.bite-detail__id { font-family: var(--font-mono, monospace); font-size: var(--text-sm, 14px); color: var(--neutral-400, #a8dadc); }
+.bite-detail__mission { display: inline-flex; align-items: center; gap: var(--space-1, 4px); font-size: var(--text-sm, 14px); color: var(--gps-primary, #00d4ff); }
+.bite-detail__mission svg { width: 16px; height: 16px; }
+.bite-detail__title { font-family: var(--font-heading, 'Orbitron', sans-serif); font-size: var(--text-2xl, 32px); font-weight: var(--font-bold, 700); color: var(--neutral-900, #0d1117); margin: 0 0 var(--space-3, 12px); line-height: 1.25; }
+
+/* Badges */
+.bite-detail__badges { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3, 12px); }
+
+.bite-detail__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-detail__status svg { width: 16px; height: 16px; }
+.bite-detail__status--neutral { background-color: var(--neutral-200, #f0f4f8); color: var(--neutral-600, #2d4263); }
+.bite-detail__status--info { background-color: rgba(52, 152, 219, 0.15); color: #3498db; }
+.bite-detail__status--warning { background-color: rgba(241, 196, 15, 0.15); color: #d4a90a; }
+.bite-detail__status--primary { background-color: rgba(0, 212, 255, 0.15); color: var(--gps-primary, #00d4ff); }
+.bite-detail__status--success { background-color: rgba(42, 157, 143, 0.15); color: var(--success, #2a9d8f); }
+.bite-detail__status--error { background-color: rgba(231, 76, 60, 0.15); color: var(--error, #e74c3c); }
+.bite-detail__status:hover { filter: brightness(0.95); }
+
+.bite-detail__priority { display: inline-flex; align-items: center; gap: var(--space-2, 8px); font-size: var(--text-sm, 14px); color: var(--neutral-600, #2d4263); }
+.bite-detail__priority-dot { width: 8px; height: 8px; border-radius: 50%; }
+.bite-detail__priority--success .bite-detail__priority-dot { background-color: var(--success, #2a9d8f); }
+.bite-detail__priority--warning .bite-detail__priority-dot { background-color: var(--warning, #f1c40f); }
+.bite-detail__priority--error .bite-detail__priority-dot { background-color: var(--error, #e74c3c); }
+.bite-detail__priority--secondary .bite-detail__priority-dot { background-color: var(--gps-secondary, #ff6b6b); }
+
+.bite-detail__blocked-badge { display: inline-flex; align-items: center; gap: var(--space-1, 4px); padding: var(--space-1, 4px) var(--space-3, 12px); font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600); color: var(--error, #e74c3c); background-color: rgba(231, 76, 60, 0.15); border-radius: 9999px; }
+.bite-detail__blocked-badge svg { width: 16px; height: 16px; }
+
+/* Actions */
+.bite-detail__actions { display: flex; align-items: center; gap: var(--space-2, 8px); flex-shrink: 0; }
+.bite-detail__edit-btn { display: inline-flex; align-items: center; gap: var(--space-2, 8px); padding: var(--space-2, 8px) var(--space-4, 16px); font-size: var(--text-sm, 14px); font-weight: var(--font-medium, 500); color: var(--neutral-600, #2d4263); background-color: var(--neutral-100, #f7faff); border: none; border-radius: 8px; cursor: pointer; transition: all 150ms ease-out; }
+.bite-detail__edit-btn:hover { background-color: var(--neutral-200, #f0f4f8); }
+.bite-detail__edit-btn svg { width: 16px; height: 16px; }
+.bite-detail__delete-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background-color: var(--neutral-100, #f7faff); border: none; border-radius: 8px; color: var(--neutral-500, #8b949e); cursor: pointer; transition: all 150ms ease-out; }
+.bite-detail__delete-btn:hover { background-color: rgba(231, 76, 60, 0.15); color: var(--error, #e74c3c); }
+.bite-detail__delete-btn svg { width: 18px; height: 18px; }
+
+/* Info Bar */
+.bite-detail__info-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6, 24px); padding: var(--space-4, 16px) var(--space-6, 24px); background-color: var(--neutral-50, #fafbfc); border-bottom: 1px solid var(--neutral-200, #f0f4f8); }
+.bite-detail__info-item { display: flex; align-items: center; gap: var(--space-2, 8px); }
+.bite-detail__info-item svg { width: 18px; height: 18px; color: var(--neutral-400, #a8dadc); }
+.bite-detail__info-label { font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); }
+.bite-detail__info-value { font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); }
+.bite-detail__info-value--xp { color: var(--gps-accent, #2a9d8f); }
+.bite-detail__info-value--baraka { color: var(--baraka-yellow, #f1c40f); }
+.bite-detail__assignee { display: flex; align-items: center; gap: var(--space-2, 8px); }
+.bite-detail__assignee img, .bite-detail__assignee > span:first-child { width: 28px; height: 28px; border-radius: 50%; background-color: var(--gps-primary, #00d4ff); display: flex; align-items: center; justify-content: center; font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); object-fit: cover; }
+.bite-detail__assignee-name { font-size: var(--text-sm, 14px); font-weight: var(--font-medium, 500); color: var(--neutral-900, #0d1117); }
+
+/* Main Content */
+.bite-detail__content { display: grid; grid-template-columns: 1fr; gap: var(--space-6, 24px); padding: var(--space-6, 24px); }
+@media (min-width: 1024px) { .bite-detail__content { grid-template-columns: 1fr 350px; } }
+.bite-detail__main { display: flex; flex-direction: column; gap: var(--space-4, 16px); }
+
+/* Sidebar */
+.bite-detail__sidebar { display: flex; flex-direction: column; gap: var(--space-4, 16px); }
+.bite-detail__action-card { padding: var(--space-5, 20px); background-color: var(--neutral-0, #ffffff); border: 1px solid var(--neutral-200, #f0f4f8); border-radius: 12px; }
+.bite-detail__action-card h4 { font-size: var(--text-base, 16px); font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); margin: 0 0 var(--space-2, 8px); }
+.bite-detail__action-card p { font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); margin: 0 0 var(--space-4, 16px); }
+
+.bite-detail__start-btn, .bite-detail__submit-btn { display: flex; align-items: center; justify-content: center; gap: var(--space-2, 8px); width: 100%; padding: var(--space-3, 12px); font-size: var(--text-base, 16px); font-weight: var(--font-semibold, 600); border: none; border-radius: 8px; cursor: pointer; transition: all 150ms ease-out; }
+.bite-detail__start-btn { color: var(--neutral-900, #0d1117); background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f)); }
+.bite-detail__submit-btn { color: var(--neutral-0, #ffffff); background-color: var(--success, #2a9d8f); }
+.bite-detail__start-btn:hover, .bite-detail__submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3); }
+.bite-detail__start-btn svg, .bite-detail__submit-btn svg { width: 20px; height: 20px; }
+
+/* Completed/Blocked States */
+.bite-detail__completed-state, .bite-detail__blocked-state { text-align: center; }
+.bite-detail__completed-icon, .bite-detail__blocked-icon { width: 56px; height: 56px; margin: 0 auto var(--space-3, 12px); display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.bite-detail__completed-icon { background-color: rgba(42, 157, 143, 0.15); color: var(--success, #2a9d8f); }
+.bite-detail__blocked-icon { background-color: rgba(231, 76, 60, 0.15); color: var(--error, #e74c3c); }
+.bite-detail__completed-icon svg, .bite-detail__blocked-icon svg { width: 28px; height: 28px; }
+.bite-detail__completed-state h4, .bite-detail__blocked-state h4 { font-size: var(--text-base, 16px); font-weight: var(--font-semibold, 600); margin: 0 0 var(--space-1, 4px); }
+.bite-detail__completed-state h4 { color: var(--success, #2a9d8f); }
+.bite-detail__blocked-state h4 { color: var(--error, #e74c3c); }
+.bite-detail__completed-state p, .bite-detail__blocked-state p { font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); margin: 0; }
+
+/* Tags */
+.bite-detail__tags-section { padding: var(--space-4, 16px); background-color: var(--neutral-0, #ffffff); border: 1px solid var(--neutral-200, #f0f4f8); border-radius: 12px; }
+.bite-detail__tags-section h4 { font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600); color: var(--neutral-600, #2d4263); margin: 0 0 var(--space-3, 12px); }
+.bite-detail__tags { display: flex; flex-wrap: wrap; gap: var(--space-2, 8px); }
+.bite-detail__tag { padding: var(--space-1, 4px) var(--space-3, 12px); font-size: var(--text-sm, 14px); color: var(--neutral-600, #2d4263); background-color: var(--neutral-100, #f7faff); border-radius: 9999px; }
+
+/* Metadata */
+.bite-detail__metadata { padding: var(--space-4, 16px); background-color: var(--neutral-0, #ffffff); border: 1px solid var(--neutral-200, #f0f4f8); border-radius: 12px; }
+.bite-detail__metadata-item { display: flex; justify-content: space-between; padding: var(--space-2, 8px) 0; border-bottom: 1px solid var(--neutral-100, #f7faff); }
+.bite-detail__metadata-item:last-child { border-bottom: none; }
+.bite-detail__metadata-label { font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); }
+.bite-detail__metadata-value { font-size: var(--text-sm, 14px); color: var(--neutral-700, #1b263b); }
+
+/* Confirm Modal */
+.bite-detail__confirm-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: var(--space-4, 16px); }
+.bite-detail__confirm-modal { background-color: var(--neutral-0, #ffffff); border-radius: 12px; padding: var(--space-6, 24px); max-width: 400px; width: 100%; }
+.bite-detail__confirm-modal h3 { font-size: var(--text-lg, 20px); font-weight: var(--font-bold, 700); color: var(--neutral-900, #0d1117); margin: 0 0 var(--space-2, 8px); }
+.bite-detail__confirm-modal p { font-size: var(--text-sm, 14px); color: var(--neutral-600, #2d4263); margin: 0 0 var(--space-4, 16px); }
+.bite-detail__confirm-actions { display: flex; justify-content: flex-end; gap: var(--space-2, 8px); }
+.bite-detail__confirm-actions button { padding: var(--space-2, 8px) var(--space-4, 16px); font-size: var(--text-sm, 14px); font-weight: var(--font-medium, 500); border-radius: 8px; cursor: pointer; transition: all 150ms ease-out; }
+.bite-detail__confirm-actions button:first-child { color: var(--neutral-600, #2d4263); background: none; border: 1px solid var(--neutral-300, #d0d7de); }
+.bite-detail__confirm-delete { color: var(--neutral-0, #ffffff); background-color: var(--error, #e74c3c); border: none; }
+
+/* Dark Theme */
+[data-theme="dark"] .bite-detail__header { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-detail__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-detail__info-bar { background-color: var(--neutral-900, #0d1117); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-detail__info-value { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-detail__action-card, [data-theme="dark"] .bite-detail__tags-section, [data-theme="dark"] .bite-detail__metadata { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-detail__action-card h4 { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-detail__tag { background-color: var(--neutral-700, #1b263b); color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-detail__confirm-modal { background-color: var(--neutral-800, #0d1b2a); }
+[data-theme="dark"] .bite-detail__confirm-modal h3 { color: var(--neutral-100, #f7faff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-detail__back-btn, .bite-detail__status, .bite-detail__edit-btn, .bite-detail__delete-btn, .bite-detail__start-btn, .bite-detail__submit-btn { transition: none; }
+  .bite-detail__start-btn:hover, .bite-detail__submit-btn:hover { transform: none; }
+  .bite-detail__loading-header, .bite-detail__loading-block { animation: none; }
+}

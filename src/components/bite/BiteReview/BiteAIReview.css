@@ -1,0 +1,249 @@
+/**
+ * GPS Lab Platform - BiteAIReview Component Styles
+ */
+
+.bite-ai-review {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.bite-ai-review__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(0, 212, 255, 0.1));
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-ai-review__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.bite-ai-review__title svg { width: 20px; height: 20px; color: #9b59b6; }
+
+.bite-ai-review__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: 9999px;
+}
+
+.bite-ai-review__rating svg { width: 16px; height: 16px; }
+.bite-ai-review__rating--success { background-color: rgba(42, 157, 143, 0.15); color: var(--success, #2a9d8f); }
+.bite-ai-review__rating--primary { background-color: rgba(0, 212, 255, 0.15); color: var(--gps-primary, #00d4ff); }
+.bite-ai-review__rating--warning { background-color: rgba(241, 196, 15, 0.15); color: #d4a90a; }
+.bite-ai-review__rating--error { background-color: rgba(231, 76, 60, 0.15); color: var(--error, #e74c3c); }
+
+/* Score */
+.bite-ai-review__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-ai-review__score-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.bite-ai-review__score-circle svg { transform: rotate(-90deg); }
+.bite-ai-review__score-bg { fill: none; stroke: var(--neutral-200, #f0f4f8); stroke-width: 3; }
+.bite-ai-review__score-fill { fill: none; stroke-width: 3; stroke-linecap: round; transition: stroke-dasharray 600ms ease-out; }
+.bite-ai-review__score-fill--success { stroke: var(--success, #2a9d8f); }
+.bite-ai-review__score-fill--primary { stroke: var(--gps-primary, #00d4ff); }
+.bite-ai-review__score-fill--warning { stroke: #f1c40f; }
+.bite-ai-review__score-fill--error { stroke: var(--error, #e74c3c); }
+
+.bite-ai-review__score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.bite-ai-review__score-label {
+  margin-top: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Content */
+.bite-ai-review__content { padding: var(--space-4, 16px); }
+
+.bite-ai-review__section { margin-bottom: var(--space-4, 16px); }
+.bite-ai-review__section:last-child { margin-bottom: 0; }
+
+.bite-ai-review__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-700, #1b263b);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.bite-ai-review__section-title svg { width: 16px; height: 16px; }
+.bite-ai-review__section-title--success svg { color: var(--success, #2a9d8f); }
+.bite-ai-review__section-title--warning svg { color: #d4a90a; }
+.bite-ai-review__section-title--info svg { color: var(--gps-primary, #00d4ff); }
+
+.bite-ai-review__section-text {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bite-ai-review__list { list-style: none; margin: 0; padding: 0; }
+.bite-ai-review__list-item {
+  position: relative;
+  padding-left: var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  line-height: 1.6;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.bite-ai-review__list-item:last-child { margin-bottom: 0; }
+
+.bite-ai-review__list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--neutral-400, #a8dadc);
+  border-radius: 50%;
+}
+
+.bite-ai-review__list-item--success::before { background-color: var(--success, #2a9d8f); }
+.bite-ai-review__list-item--warning::before { background-color: #f1c40f; }
+
+/* Footer */
+.bite-ai-review__footer {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-ai-review__timestamp { font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); }
+
+/* Loading */
+.bite-ai-review__loading {
+  padding: var(--space-6, 24px);
+  text-align: center;
+}
+
+.bite-ai-review__loading-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-3, 12px);
+  color: #9b59b6;
+  animation: biteAIReviewPulse 2s ease-in-out infinite;
+}
+
+@keyframes biteAIReviewPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.bite-ai-review__loading-icon svg { width: 100%; height: 100%; }
+
+.bite-ai-review__loading-text { margin-bottom: var(--space-4, 16px); }
+.bite-ai-review__loading-title { display: block; font-size: var(--text-base, 16px); font-weight: var(--font-semibold, 600); color: var(--neutral-900, #0d1117); }
+.bite-ai-review__loading-subtitle { display: block; font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); margin-top: var(--space-1, 4px); }
+
+.bite-ai-review__loading-bar {
+  width: 200px;
+  height: 4px;
+  margin: 0 auto;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.bite-ai-review__loading-progress {
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, #9b59b6, var(--gps-primary, #00d4ff));
+  border-radius: 9999px;
+  animation: biteAIReviewLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes biteAIReviewLoading { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+
+/* Error */
+.bite-ai-review__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-6, 24px);
+  text-align: center;
+}
+
+.bite-ai-review__error svg { width: 32px; height: 32px; color: var(--error, #e74c3c); }
+.bite-ai-review__error-text { font-size: var(--text-sm, 14px); color: var(--error, #e74c3c); }
+
+.bite-ai-review__retry-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background: none;
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-ai-review__retry-btn:hover { background-color: rgba(0, 212, 255, 0.1); }
+
+/* Empty */
+.bite-ai-review__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-6, 24px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-align: center;
+}
+
+.bite-ai-review__empty svg { width: 32px; height: 32px; }
+
+/* Dark Theme */
+[data-theme="dark"] .bite-ai-review { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-ai-review__header { border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-ai-review__title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-ai-review__score-bg { stroke: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-ai-review__score-value { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-ai-review__section-title { color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-ai-review__section-text, [data-theme="dark"] .bite-ai-review__list-item { color: var(--neutral-300, #d0d7de); }
+[data-theme="dark"] .bite-ai-review__footer { background-color: var(--neutral-900, #0d1117); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-ai-review__loading-title { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-ai-review__loading-bar { background-color: var(--neutral-700, #1b263b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-ai-review__score-fill, .bite-ai-review__retry-btn { transition: none; }
+  .bite-ai-review__loading-icon, .bite-ai-review__loading-progress { animation: none; }
+}

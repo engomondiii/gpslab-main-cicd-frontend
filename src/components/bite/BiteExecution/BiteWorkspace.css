@@ -1,0 +1,209 @@
+/**
+ * GPS Lab Platform - BiteWorkspace Component Styles
+ */
+
+.bite-workspace {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header */
+.bite-workspace__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background: linear-gradient(135deg, var(--neutral-900, #0d1117), var(--neutral-800, #0d1b2a));
+  color: var(--neutral-0, #ffffff);
+}
+
+@media (min-width: 768px) {
+  .bite-workspace__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.bite-workspace__header-left { display: flex; flex-direction: column; gap: var(--space-1, 4px); }
+.bite-workspace__task-id { font-family: var(--font-mono, monospace); font-size: var(--text-sm, 14px); color: var(--gps-primary, #00d4ff); }
+.bite-workspace__task-title { font-size: var(--text-lg, 20px); font-weight: var(--font-semibold, 600); margin: 0; }
+
+.bite-workspace__header-actions { display: flex; align-items: center; gap: var(--space-2, 8px); }
+
+.bite-workspace__save-btn, .bite-workspace__submit-btn {
+  display: inline-flex; align-items: center; gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px); font-weight: var(--font-semibold, 600);
+  border-radius: 8px; cursor: pointer; transition: all 150ms ease-out;
+}
+
+.bite-workspace__save-btn { color: var(--neutral-0, #ffffff); background: transparent; border: 1px solid var(--neutral-600, #2d4263); }
+.bite-workspace__save-btn:hover { background-color: var(--neutral-700, #1b263b); border-color: var(--neutral-500, #8b949e); }
+
+.bite-workspace__submit-btn { color: var(--neutral-900, #0d1117); background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f)); border: none; }
+.bite-workspace__submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3); }
+.bite-workspace__submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.bite-workspace__save-btn svg, .bite-workspace__submit-btn svg { width: 16px; height: 16px; }
+
+/* Stats Section */
+.bite-workspace__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@media (min-width: 768px) {
+  .bite-workspace__stats {
+    grid-template-columns: auto 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* Timer */
+.bite-workspace__timer {
+  display: flex; align-items: center; gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 12px;
+}
+
+.bite-workspace__timer--paused { border-color: var(--warning, #f1c40f); }
+.bite-workspace__timer--overtime { border-color: var(--error, #e74c3c); }
+
+.bite-workspace__timer-display { display: flex; align-items: baseline; gap: var(--space-2, 8px); }
+
+.bite-workspace__timer-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+}
+
+.bite-workspace__timer--overtime .bite-workspace__timer-value { color: var(--error, #e74c3c); }
+
+.bite-workspace__timer-estimate { font-size: var(--text-sm, 14px); color: var(--neutral-500, #8b949e); }
+
+.bite-workspace__timer-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background-color: var(--gps-primary, #00d4ff); border: none;
+  border-radius: 50%; color: var(--neutral-900, #0d1117);
+  cursor: pointer; transition: all 150ms ease-out;
+}
+
+.bite-workspace__timer-btn:hover { transform: scale(1.1); }
+.bite-workspace__timer-btn svg { width: 24px; height: 24px; }
+
+.bite-workspace__paused-badge, .bite-workspace__overtime-badge {
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-xs, 12px); font-weight: var(--font-semibold, 600);
+  border-radius: 9999px;
+}
+
+.bite-workspace__paused-badge { background-color: rgba(241, 196, 15, 0.2); color: #d4a90a; }
+.bite-workspace__overtime-badge { background-color: rgba(231, 76, 60, 0.2); color: var(--error, #e74c3c); }
+
+/* Progress */
+.bite-workspace__progress, .bite-workspace__time-progress {
+  display: flex; flex-direction: column; gap: var(--space-1, 4px);
+}
+
+.bite-workspace__progress-header, .bite-workspace__time-progress-header {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.bite-workspace__progress-label, .bite-workspace__time-progress-label {
+  font-size: var(--text-sm, 14px); color: var(--neutral-600, #2d4263);
+}
+
+.bite-workspace__progress-value {
+  font-size: var(--text-lg, 20px); font-weight: var(--font-bold, 700); color: var(--success, #2a9d8f);
+}
+
+.bite-workspace__time-progress-value { font-size: var(--text-lg, 20px); font-weight: var(--font-bold, 700); color: var(--gps-primary, #00d4ff); }
+.bite-workspace__time-progress-value--overtime { color: var(--error, #e74c3c); }
+
+.bite-workspace__progress-bar, .bite-workspace__time-progress-bar {
+  height: 8px; background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 9999px; overflow: hidden;
+}
+
+.bite-workspace__progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--success, #2a9d8f), var(--gps-accent, #2a9d8f));
+  border-radius: 9999px; transition: width 400ms ease-out;
+}
+
+.bite-workspace__time-progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: 9999px; transition: width 400ms ease-out;
+}
+
+.bite-workspace__time-progress-fill--overtime { background: linear-gradient(90deg, var(--warning, #f1c40f), var(--error, #e74c3c)); }
+
+.bite-workspace__progress-count { font-size: var(--text-xs, 12px); color: var(--neutral-500, #8b949e); }
+
+/* Tabs */
+.bite-workspace__tabs {
+  display: flex; gap: var(--space-1, 4px);
+  padding: 0 var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.bite-workspace__tab {
+  display: inline-flex; align-items: center; gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px); font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer; transition: all 150ms ease-out;
+  margin-bottom: -1px;
+}
+
+.bite-workspace__tab:hover { color: var(--neutral-700, #1b263b); }
+
+.bite-workspace__tab--active {
+  color: var(--gps-primary, #00d4ff);
+  border-bottom-color: var(--gps-primary, #00d4ff);
+}
+
+.bite-workspace__tab svg { width: 18px; height: 18px; }
+
+.bite-workspace__tab-count {
+  padding: 2px var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 9999px;
+}
+
+.bite-workspace__tab--active .bite-workspace__tab-count {
+  background-color: rgba(0, 212, 255, 0.2);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Content */
+.bite-workspace__content { padding: var(--space-5, 20px); }
+
+/* Dark Theme */
+[data-theme="dark"] .bite-workspace { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-workspace__stats { background-color: var(--neutral-900, #0d1117); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-workspace__timer { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-workspace__timer-value { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-workspace__progress-bar, [data-theme="dark"] .bite-workspace__time-progress-bar { background-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-workspace__tabs { background-color: var(--neutral-900, #0d1117); border-color: var(--neutral-700, #1b263b); }
+[data-theme="dark"] .bite-workspace__tab:hover { color: var(--neutral-200, #f0f4f8); }
+[data-theme="dark"] .bite-workspace__tab-count { background-color: var(--neutral-700, #1b263b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-workspace__save-btn, .bite-workspace__submit-btn, .bite-workspace__timer-btn, .bite-workspace__progress-fill, .bite-workspace__time-progress-fill, .bite-workspace__tab { transition: none; }
+  .bite-workspace__timer-btn:hover, .bite-workspace__submit-btn:hover:not(:disabled) { transform: none; }
+}

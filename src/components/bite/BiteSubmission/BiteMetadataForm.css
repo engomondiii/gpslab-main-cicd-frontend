@@ -1,0 +1,178 @@
+/**
+ * GPS Lab Platform - BiteMetadataForm Component Styles
+ */
+
+.bite-metadata-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+/* Section */
+.bite-metadata-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.bite-metadata-form__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.bite-metadata-form__label svg { width: 20px; height: 20px; color: var(--gps-accent, #2a9d8f); }
+.bite-metadata-form__required { color: var(--error, #e74c3c); }
+
+.bite-metadata-form__hint {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+.bite-metadata-form__textarea {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  transition: all 150ms ease-out;
+}
+
+.bite-metadata-form__textarea:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.bite-metadata-form__textarea::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Tag Input */
+.bite-metadata-form__tag-input-wrapper {
+  position: relative;
+}
+
+.bite-metadata-form__tag-input {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-50, #fafbfc);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+  outline: none;
+  transition: all 150ms ease-out;
+}
+
+.bite-metadata-form__tag-input:focus {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+/* Tags */
+.bite-metadata-form__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-2, 8px);
+}
+
+.bite-metadata-form__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
+  background-color: rgba(0, 212, 255, 0.15);
+  border-radius: 9999px;
+}
+
+.bite-metadata-form__tag-remove {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--gps-primary, #00d4ff);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-metadata-form__tag-remove:hover {
+  background-color: rgba(0, 212, 255, 0.3);
+}
+
+.bite-metadata-form__tag-remove svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Suggested Tags */
+.bite-metadata-form__suggested {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-3, 12px);
+}
+
+.bite-metadata-form__suggested-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  white-space: nowrap;
+  padding-top: var(--space-1, 4px);
+}
+
+.bite-metadata-form__suggested-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.bite-metadata-form__suggested-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  background-color: var(--neutral-100, #f7faff);
+  border: 1px dashed var(--neutral-300, #d0d7de);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-metadata-form__suggested-tag:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  background-color: rgba(0, 212, 255, 0.1);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-metadata-form__suggested-tag svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-metadata-form__label { color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-metadata-form__textarea { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-metadata-form__tag-input { background-color: var(--neutral-800, #0d1b2a); border-color: var(--neutral-700, #1b263b); color: var(--neutral-100, #f7faff); }
+[data-theme="dark"] .bite-metadata-form__suggested-tag { background-color: var(--neutral-700, #1b263b); border-color: var(--neutral-600, #2d4263); color: var(--neutral-300, #d0d7de); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-metadata-form__textarea, .bite-metadata-form__tag-input, .bite-metadata-form__tag-remove, .bite-metadata-form__suggested-tag { transition: none; }
+}
