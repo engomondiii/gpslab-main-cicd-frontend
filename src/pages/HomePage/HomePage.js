@@ -4,6 +4,9 @@
  * Landing page for unauthenticated users.
  * Includes hero section, features, navigation header.
  * 
+ * Updated: Hero section now matches AuthLayout branding panel styling
+ * with dark navy gradient and cyan/teal decorative circles.
+ * 
  * @module pages/HomePage
  */
 
@@ -112,12 +115,25 @@ const ADVENTURES = [
 ];
 
 /**
+ * Generate star positions for hero background
+ */
+const generateStars = (count = 30) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 3}s`
+  }));
+};
+
+/**
  * HomePage Component
  */
 const HomePage = ({ className = '' }) => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [stars] = useState(() => generateStars(30));
   
   // Handle scroll for header styling
   useEffect(() => {
@@ -200,19 +216,20 @@ const HomePage = ({ className = '' }) => {
           </div>
           
           {/* Mobile Menu Button */}
-          <button
-            type="button"
+          <button 
             className="home-page__header-mobile-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              {mobileMenuOpen ? (
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-              ) : (
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-              )}
-            </svg>
+            {mobileMenuOpen ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            )}
           </button>
         </div>
         
@@ -230,59 +247,69 @@ const HomePage = ({ className = '' }) => {
                   {link.label}
                 </Link>
               ))}
-              <div className="home-page__mobile-actions">
-                <button
-                  type="button"
-                  onClick={() => { handleLogin(); setMobileMenuOpen(false); }}
-                  className="home-page__mobile-btn"
-                >
-                  Sign In
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { handleGetStarted(); setMobileMenuOpen(false); }}
-                  className="home-page__mobile-btn home-page__mobile-btn--primary"
-                >
-                  Get Started Free
-                </button>
-              </div>
             </nav>
+            <div className="home-page__mobile-actions">
+              <button
+                type="button"
+                onClick={() => { handleLogin(); setMobileMenuOpen(false); }}
+                className="home-page__mobile-btn"
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onClick={() => { handleGetStarted(); setMobileMenuOpen(false); }}
+                className="home-page__mobile-btn home-page__mobile-btn--primary"
+              >
+                Get Started
+              </button>
+            </div>
           </div>
         )}
       </header>
       
-      {/* Hero Section */}
+      {/* Hero Section - AuthLayout Style */}
       <section className="home-page__hero">
-        {/* Background */}
+        {/* Background - Matching AuthLayout branding panel */}
         <div className="home-page__hero-bg">
+          {/* Main gradient */}
           <div className="home-page__hero-gradient" />
+          
+          {/* Grid overlay */}
           <div className="home-page__hero-grid" />
-          {[...Array(20)].map((_, i) => (
+          
+          {/* Decorative circles - Matching AuthLayout */}
+          <div className="home-page__hero-circle home-page__hero-circle--1" />
+          <div className="home-page__hero-circle home-page__hero-circle--2" />
+          <div className="home-page__hero-circle home-page__hero-circle--3" />
+          <div className="home-page__hero-circle home-page__hero-circle--4" />
+          
+          {/* Twinkling stars */}
+          {stars.map(star => (
             <div 
-              key={i}
+              key={star.id}
               className="home-page__hero-star"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
+                left: star.left,
+                top: star.top,
+                animationDelay: star.delay
               }}
             />
           ))}
         </div>
         
-        {/* Content */}
+        {/* Hero Content */}
         <div className="home-page__hero-content">
-          {/* Logo */}
+          {/* Animated Logo */}
           <div className="home-page__logo">
             <svg viewBox="0 0 100 100" fill="none">
               <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="3"/>
               <path 
+                className="home-page__logo-needle"
                 d="M50 10L50 50L75 75" 
                 stroke="currentColor" 
                 strokeWidth="3" 
                 strokeLinecap="round"
-                className="home-page__logo-needle"
               />
               <circle cx="50" cy="50" r="6" fill="currentColor"/>
             </svg>
@@ -291,7 +318,8 @@ const HomePage = ({ className = '' }) => {
           {/* Title */}
           <h1 className="home-page__title">
             <span className="home-page__title-line">Master Problem Solving with</span>
-            <span className="home-page__title-brand">GPS Lab</span>
+            <span className="home-page__title-gps">GPS</span>{' '}
+            <span className="home-page__title-lab">Lab</span>
           </h1>
           
           {/* Subtitle */}
@@ -325,18 +353,11 @@ const HomePage = ({ className = '' }) => {
           <div className="home-page__stats">
             {STATS.map(stat => (
               <div key={stat.label} className="home-page__stat">
-                <span className="home-page__stat-value">{stat.value}</span>
-                <span className="home-page__stat-label">{stat.label}</span>
+                <div className="home-page__stat-value">{stat.value}</div>
+                <div className="home-page__stat-label">{stat.label}</div>
               </div>
             ))}
           </div>
-        </div>
-        
-        {/* Scroll indicator */}
-        <div className="home-page__scroll-indicator" onClick={handleLearnMore}>
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-          </svg>
         </div>
       </section>
       
@@ -346,7 +367,8 @@ const HomePage = ({ className = '' }) => {
           <div className="home-page__features-header">
             <h2 className="home-page__features-title">Why GPS Lab?</h2>
             <p className="home-page__features-subtitle">
-              Everything you need to become a world-class problem solver
+              Our platform combines gamification, AI guidance, and real-world projects 
+              to create an unmatched learning experience.
             </p>
           </div>
           
