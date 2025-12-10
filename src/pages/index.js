@@ -19,3 +19,6 @@ export { default as HomePage } from './HomePage/HomePage';
 // Mission Pages
 export { default as MissionsPage } from './MissionsPage/MissionsPage';
 export { default as MissionDetailPage } from './MissionDetailPage/MissionDetailPage';
+
+// Bite Pages
+export { default as BiteBoardPage } from './BiteBoardPage';

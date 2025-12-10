@@ -1,0 +1,132 @@
+/**
+ * GPS Lab Platform - BiteBoardPage Styles
+ */
+
+.bite-board-page {
+  min-height: 100vh;
+  background-color: var(--neutral-50, #fafbfc);
+  padding: var(--space-5, 20px);
+}
+
+/* Header */
+.bite-board-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-5, 20px);
+}
+
+@media (min-width: 768px) {
+  .bite-board-page__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.bite-board-page__header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.bite-board-page__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.bite-board-page__title svg {
+  width: 36px;
+  height: 36px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.bite-board-page__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* View Toggle */
+.bite-board-page__header-actions {
+  display: flex;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px);
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 8px;
+}
+
+.bite-board-page__view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.bite-board-page__view-btn:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.bite-board-page__view-btn--active {
+  color: var(--gps-primary, #00d4ff);
+  background-color: var(--neutral-0, #ffffff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bite-board-page__view-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Content */
+.bite-board-page__content {
+  /* Allow board to scroll horizontally */
+  overflow-x: auto;
+  margin: 0 calc(-1 * var(--space-5, 20px));
+  padding: 0 var(--space-5, 20px);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .bite-board-page {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .bite-board-page__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .bite-board-page__header-actions {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+[data-theme="dark"] .bite-board-page__view-btn {
+  color: var(--neutral-400, #a8dadc);
+}
+
+[data-theme="dark"] .bite-board-page__view-btn:hover {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .bite-board-page__view-btn--active {
+  background-color: var(--neutral-700, #1b263b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bite-board-page__view-btn {
+    transition: none;
+  }
+}

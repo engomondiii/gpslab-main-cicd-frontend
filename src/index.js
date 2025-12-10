@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 // Global styles
-import './styles/index.css';
+import './index.css';
 
 // Performance monitoring (optional)
 import reportWebVitals from './reportWebVitals';

@@ -10,11 +10,11 @@
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
 
 // Providers
-import { ThemeProvider } from './contexts/ThemeContext';
-import { I18nProvider } from './contexts/I18nContext';
-import { AuthProvider } from './contexts/AuthContext';
-import { NotificationProvider } from './contexts/NotificationContext';
-import { WebSocketProvider } from './contexts/WebSocketContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { I18nProvider } from './context/I18nContext';
+import { AuthProvider } from './context/AuthContext';
+import { NotificationProvider } from './context/NotificationContext';
+import { WebSocketProvider } from './context/WebSocketContext';
 
 // Router
 import AppRouter from './routes/AppRouter';
