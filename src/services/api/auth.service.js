@@ -11,7 +11,7 @@
 import apiClient, { setTokens, clearTokens, getRefreshToken } from './client';
 import { setUser, removeItem, STORAGE_KEYS } from '../storage/localStorage.service';
 import { saveOAuthState, validateOAuthState, savePendingAction } from '../storage/sessionStorage.service';
-import { logUserAction, authLogger } from '../../utils/error/logger';
+import { logUserAction, authLogger } from '../../utils/error/error.logger';
 import { createError, ERROR_TYPES } from '../../utils/error/error.handler';
 
 // =============================================================================

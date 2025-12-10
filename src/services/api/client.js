@@ -9,7 +9,7 @@
  */
 
 import { createError, createErrorFromResponse, createNetworkError, ERROR_TYPES } from '../../utils/error/error.handler';
-import { logApiRequest, logApiResponse, error as logError } from '../../utils/error/logger';
+import { logApiRequest, logApiResponse, error as logError } from '../../utils/error/error.logger';
 
 // =============================================================================
 // CONFIGURATION

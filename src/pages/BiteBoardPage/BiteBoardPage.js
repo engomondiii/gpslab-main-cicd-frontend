@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import BiteBoard from '../components/bite/BiteBoard/BiteBoard';
+import BiteBoard from '../../components/bite/BiteBoard/BiteBoard';
 import './BiteBoardPage.css';
 
 /**

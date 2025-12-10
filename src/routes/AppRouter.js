@@ -53,22 +53,6 @@ const RouteTransition = ({ children }) => {
  * AppRouter Component
  * 
  * Main application router that combines all route groups.
- * 
- * @param {Object} props - Component props
- * @param {Object} props.auth - Authentication state
- * @param {Object} props.user - Current user
- * @param {boolean} props.isAuthenticated - Authentication status
- * @param {boolean} props.isLoading - Loading state
- * @param {Function} props.onLogin - Login handler
- * @param {Function} props.onRegister - Register handler
- * @param {Function} props.onOAuthLogin - OAuth login handler
- * @param {Function} props.onLogout - Logout handler
- * @param {Array} props.notifications - User notifications
- * @param {Object} props.stats - User stats
- * @param {Object} props.wallets - User wallets
- * @param {string} props.currentLanguage - Current language
- * @param {Function} props.onLanguageChange - Language change handler
- * @param {Function} props.onNotificationClick - Notification click handler
  */
 const AppRouter = ({
   user = null,
@@ -150,12 +134,34 @@ const AppRouter = ({
           LoginPage: () => import('../pages/LoginPage/LoginPage'),
           RegisterPage: () => import('../pages/RegisterPage/RegisterPage'),
           ForgotPasswordPage: () => import('../pages/ForgotPasswordPage/ForgotPasswordPage'),
-          ResetPasswordPage: () => import('../pages/ResetPasswordPage/ResetPasswordPage')
+          ResetPasswordPage: () => import('../pages/ResetPasswordPage/ResetPasswordPage'),
+          // Add placeholder pages
+          AboutPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>About GPS Lab</h1><p>Coming soon...</p></div> 
+          })),
+          FeaturesPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Features</h1><p>Coming soon...</p></div> 
+          })),
+          PricingPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Pricing</h1><p>Coming soon...</p></div> 
+          })),
+          ContactPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Contact Us</h1><p>Coming soon...</p></div> 
+          })),
+          TermsPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Terms of Service</h1><p>Coming soon...</p></div> 
+          })),
+          PrivacyPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Privacy Policy</h1><p>Coming soon...</p></div> 
+          })),
+          HelpPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
+            default: () => <div className="placeholder-page"><h1>Help Center</h1><p>Coming soon...</p></div> 
+          }))
         };
         
         return componentMap[route.element] 
           ? componentMap[route.element]()
-          : Promise.resolve({ default: () => <div>{route.title}</div> });
+          : Promise.resolve({ default: () => <div className="placeholder-page"><h1>{route.title}</h1><p>Coming soon...</p></div> });
       });
       
       // Add props for auth pages
@@ -166,6 +172,7 @@ const AppRouter = ({
         if (route.element === 'RegisterPage') {
           return { onRegister: handleRegister, onOAuthLogin };
         }
+        // HomePage now uses useNavigate internally, so no props needed
         return {};
       };
       
@@ -268,9 +275,12 @@ const AppRouter = ({
               element={
                 isAuthenticated ? (
                   <Suspense fallback={<RouteLoadingFallback />}>
-                    <div className="placeholder-page">
+                    <div className="placeholder-page onboarding-page">
                       <h1>Welcome to GPS Lab!</h1>
                       <p>Let's get you started on your journey.</p>
+                      <a href="/dashboard" className="onboarding-continue-btn">
+                        Continue to Dashboard
+                      </a>
                     </div>
                   </Suspense>
                 ) : (

@@ -516,6 +516,16 @@ export const getCheckpointAttempt = (checkpointId) => {
 };
 
 /**
+ * Clears checkpoint attempt
+ * @param {string} checkpointId - Checkpoint ID
+ */
+export const clearCheckpointAttempt = (checkpointId) => {
+  const attempts = getItem(SESSION_KEYS.checkpointAttempt, {});
+  delete attempts[checkpointId];
+  setItem(SESSION_KEYS.checkpointAttempt, attempts);
+};
+
+/**
  * Saves bite workspace state
  * @param {string} biteId - Bite ID
  * @param {Object} workspaceData - Workspace data
@@ -534,6 +544,16 @@ export const saveBiteWorkspace = (biteId, workspaceData) => {
 export const getBiteWorkspace = (biteId) => {
   const workspaces = getItem(SESSION_KEYS.biteWorkspace, {});
   return workspaces[biteId] || null;
+};
+
+/**
+ * Clears bite workspace state
+ * @param {string} biteId - Bite ID
+ */
+export const clearBiteWorkspace = (biteId) => {
+  const workspaces = getItem(SESSION_KEYS.biteWorkspace, {});
+  delete workspaces[biteId];
+  setItem(SESSION_KEYS.biteWorkspace, workspaces);
 };
 
 // =============================================================================
@@ -578,6 +598,13 @@ export const validateOAuthState = (state) => {
 };
 
 /**
+ * Clears OAuth state
+ */
+export const clearOAuthState = () => {
+  removeItem(SESSION_KEYS.oauthState);
+};
+
+/**
  * Saves pending action for after auth
  * @param {Object} action - Pending action
  */
@@ -593,6 +620,14 @@ export const getPendingAction = () => {
   const action = getItem(SESSION_KEYS.pendingAction);
   removeItem(SESSION_KEYS.pendingAction);
   return action;
+};
+
+/**
+ * Clears pending action without returning it
+ * @returns {boolean} Success status
+ */
+export const clearPendingAction = () => {
+  return removeItem(SESSION_KEYS.pendingAction);
 };
 
 // =============================================================================
@@ -639,12 +674,16 @@ export default {
   isBriefingViewed,
   saveCheckpointAttempt,
   getCheckpointAttempt,
+  clearCheckpointAttempt,
   saveBiteWorkspace,
   getBiteWorkspace,
+  clearBiteWorkspace,
   
   // Auth Flow
   saveOAuthState,
   validateOAuthState,
+  clearOAuthState,
   savePendingAction,
-  getPendingAction
+  getPendingAction,
+  clearPendingAction
 };

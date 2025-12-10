@@ -1,289 +1,182 @@
 /**
- * GPS Lab Platform - AppRouter Component Styles
+ * GPS Lab Platform - AppRouter Styles
+ * 
+ * Styles for router transitions, loading states, and placeholder pages.
  */
 
-/* App Router Container */
+/* =====================================================
+   APP ROUTER BASE
+   ===================================================== */
+
 .app-router {
+  min-height: 100vh;
+}
+
+/* =====================================================
+   ROUTE TRANSITIONS
+   ===================================================== */
+
+.route-transition {
+  animation: routeFadeIn 0.3s ease;
+}
+
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   PLACEHOLDER PAGES
+   ===================================================== */
+
+.placeholder-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* Route Transition */
-.route-transition {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Route Enter Animation */
-.route-transition-enter {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.route-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
-}
-
-/* Route Exit Animation */
-.route-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.route-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 150ms ease-in, transform 150ms ease-in;
-}
-
-/* Page Wrapper */
-.page-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Route Loading Overlay */
-.route-loading-overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(13, 17, 23, 0.8);
-  backdrop-filter: blur(4px);
-  z-index: 9998;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-fast, 150ms) var(--ease-out);
-}
-
-.route-loading-overlay--visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Skip to Content Link (Accessibility) */
-.skip-to-content {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: var(--space-3, 12px) var(--space-6, 24px);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-900, #0d1117);
-  background-color: var(--gps-primary, #00d4ff);
-  border-radius: var(--radius-lg, 8px);
-  z-index: 10000;
-  transition: top var(--duration-fast, 150ms) var(--ease-out);
-}
-
-.skip-to-content:focus {
-  top: var(--space-4, 16px);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
-}
-
-/* Route Error Boundary */
-.route-error {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-6, 24px);
-  background-color: var(--neutral-50, #fafbfc);
-}
-
-.route-error__content {
-  max-width: 480px;
   text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, 
+    var(--color-primary-50, #eff6ff) 0%, 
+    var(--color-neutral-50, #f9fafb) 100%
+  );
 }
 
-.route-error__icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--space-6, 24px);
-  padding: var(--space-4, 16px);
-  background: linear-gradient(135deg, var(--error-pale, rgba(231, 76, 60, 0.1)), transparent);
-  border-radius: 50%;
-  color: var(--error, #e74c3c);
+[data-theme="dark"] .placeholder-page {
+  background: linear-gradient(135deg, 
+    var(--color-neutral-900, #111827) 0%, 
+    var(--color-neutral-800, #1f2937) 100%
+  );
 }
 
-.route-error__icon svg {
-  width: 100%;
-  height: 100%;
+.placeholder-page h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, 
+    var(--color-primary-600, #2563eb) 0%, 
+    var(--color-secondary-600, #7c3aed) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.route-error__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-900, #0d1117);
-  margin: 0 0 var(--space-3, 12px);
+.placeholder-page p {
+  font-size: 1.25rem;
+  color: var(--color-neutral-600, #4b5563);
+  margin-bottom: 2rem;
 }
 
-.route-error__message {
-  font-size: var(--text-base, 16px);
-  color: var(--neutral-500, #8b949e);
-  line-height: var(--leading-relaxed, 1.8);
-  margin: 0 0 var(--space-6, 24px);
+[data-theme="dark"] .placeholder-page p {
+  color: var(--color-neutral-400, #9ca3af);
 }
 
-.route-error__actions {
-  display: flex;
-  gap: var(--space-3, 12px);
-  justify-content: center;
+/* =====================================================
+   ONBOARDING PAGE
+   ===================================================== */
+
+.onboarding-page {
+  background: linear-gradient(135deg, 
+    var(--color-primary-600, #2563eb) 0%, 
+    var(--color-secondary-600, #7c3aed) 100%
+  );
+  color: white;
 }
 
-/* Navigation Progress Bar */
-.nav-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: transparent;
-  z-index: 10001;
-  pointer-events: none;
+.onboarding-page h1 {
+  background: none;
+  -webkit-text-fill-color: white;
+  color: white;
 }
 
-.nav-progress__bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
-  border-radius: 0 2px 2px 0;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform var(--duration-slow, 400ms) var(--ease-out);
+.onboarding-page p {
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.nav-progress--loading .nav-progress__bar {
-  transform: scaleX(0.8);
-  animation: navProgressPulse 1.5s ease-in-out infinite;
-}
-
-.nav-progress--complete .nav-progress__bar {
-  transform: scaleX(1);
-  opacity: 0;
-  transition: transform 200ms ease-out, opacity 300ms ease-out 200ms;
-}
-
-@keyframes navProgressPulse {
-  0%, 100% {
-    transform: scaleX(0.7);
-  }
-  50% {
-    transform: scaleX(0.9);
-  }
-}
-
-/* Breadcrumb Trail */
-.route-breadcrumbs {
-  display: flex;
+.onboarding-continue-btn {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-3, 12px) var(--space-6, 24px);
-  background-color: var(--neutral-50, #fafbfc);
-  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
-}
-
-.route-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2, 8px);
-}
-
-.route-breadcrumb__link {
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--color-primary-700, #1d4ed8);
   text-decoration: none;
-  transition: color var(--duration-fast, 150ms) var(--ease-out);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 
-.route-breadcrumb__link:hover {
-  color: var(--gps-primary, #00d4ff);
+.onboarding-continue-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-.route-breadcrumb__current {
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-700, #1b263b);
+/* =====================================================
+   ROUTE LOADING FALLBACK
+   ===================================================== */
+
+.route-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-neutral-50, #f9fafb);
 }
 
-.route-breadcrumb__separator {
-  color: var(--neutral-300, #d0d7de);
-  font-size: var(--text-sm, 14px);
+[data-theme="dark"] .route-loading {
+  background: var(--color-neutral-900, #111827);
 }
 
-/* Dark Theme */
-[data-theme="dark"] .route-error {
-  background-color: var(--neutral-900, #0d1117);
+.route-loading__spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1.5rem;
 }
 
-[data-theme="dark"] .route-error__title {
-  color: var(--neutral-100, #f7faff);
+.route-loading__spinner-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-top-color: var(--color-primary-500, #3b82f6);
+  border-radius: 50%;
+  animation: spinRing 1.2s ease-in-out infinite;
 }
 
-[data-theme="dark"] .route-breadcrumbs {
-  background-color: var(--neutral-800, #0d1b2a);
-  border-color: var(--neutral-700, #1b263b);
+.route-loading__spinner-ring:nth-child(2) {
+  inset: 6px;
+  border-top-color: var(--color-secondary-500, #8b5cf6);
+  animation-delay: 0.15s;
 }
 
-[data-theme="dark"] .route-breadcrumb__current {
-  color: var(--neutral-200, #f0f4f8);
+.route-loading__spinner-ring:nth-child(3) {
+  inset: 12px;
+  border-top-color: var(--color-primary-400, #60a5fa);
+  animation-delay: 0.3s;
 }
 
-/* Route-specific Backgrounds */
-.route--auth {
-  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
-}
-
-.route--dashboard {
-  background-color: var(--neutral-50, #fafbfc);
-}
-
-.route--admin {
-  background-color: var(--neutral-100, #f7faff);
-}
-
-.route--university {
-  background: linear-gradient(180deg, rgba(155, 89, 182, 0.05) 0%, var(--neutral-50, #fafbfc) 100%);
-}
-
-[data-theme="dark"] .route--dashboard,
-[data-theme="dark"] .route--admin,
-[data-theme="dark"] .route--university {
-  background-color: var(--neutral-900, #0d1117);
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .route-transition-enter,
-  .route-transition-enter-active,
-  .route-transition-exit,
-  .route-transition-exit-active {
-    transition: none;
-    transform: none;
+@keyframes spinRing {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .route-loading-overlay {
-    transition: none;
-  }
-  
-  .skip-to-content {
-    transition: none;
-  }
-  
-  .nav-progress__bar {
-    transition: none;
-    animation: none;
-  }
-  
-  .route-breadcrumb__link {
-    transition: none;
-  }
+}
+
+.route-loading__text {
+  font-size: 1rem;
+  color: var(--color-neutral-600, #4b5563);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .route-loading__text {
+  color: var(--color-neutral-400, #9ca3af);
 }
