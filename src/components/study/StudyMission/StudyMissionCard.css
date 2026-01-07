@@ -1,0 +1,364 @@
+/**
+ * GPS Lab Platform - StudyMissionCard Component Styles
+ */
+
+.study-mission-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  overflow: hidden;
+}
+
+.study-mission-card:hover:not(.study-mission-card--locked) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--beacon-color, var(--gps-primary));
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Variants */
+.study-mission-card--compact {
+  padding: var(--space-4, 16px);
+}
+
+.study-mission-card--featured {
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border-color: var(--beacon-color, var(--gps-primary));
+}
+
+/* Status */
+.study-mission-card--completed {
+  opacity: 0.85;
+}
+
+.study-mission-card--in_progress {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+/* Locked State */
+.study-mission-card--locked {
+  cursor: not-allowed;
+}
+
+.study-mission-card__locked-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  background: rgba(13, 17, 23, 0.9);
+  z-index: 10;
+}
+
+.study-mission-card__locked-overlay svg {
+  width: 32px;
+  height: 32px;
+  color: var(--neutral-500, #8b949e);
+}
+
+.study-mission-card__locked-overlay span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-align: center;
+  padding: 0 var(--space-4, 16px);
+}
+
+/* Recommended */
+.study-mission-card--recommended::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--warning, #f1c40f) 0%, var(--gps-primary, #00d4ff) 100%);
+}
+
+/* Header */
+.study-mission-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-mission-card__beacon-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.study-mission-card__beacon {
+  width: 10px;
+  height: 10px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--beacon-color, var(--gps-primary));
+}
+
+.study-mission-card__stage {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-color, var(--gps-primary));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+/* Badges */
+.study-mission-card__badges {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.study-mission-card__badge {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.study-mission-card__badge--new {
+  background: rgba(42, 157, 143, 0.2);
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.study-mission-card__badge--required {
+  background: rgba(241, 196, 15, 0.2);
+  color: var(--warning, #f1c40f);
+}
+
+.study-mission-card__badge--recommended {
+  background: rgba(241, 196, 15, 0.15);
+  color: var(--warning, #f1c40f);
+}
+
+/* Content */
+.study-mission-card__content {
+  flex: 1;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.study-mission-card__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+  line-height: var(--leading-tight, 1.3);
+}
+
+.study-mission-card--compact .study-mission-card__title {
+  font-size: var(--text-base, 16px);
+}
+
+.study-mission-card__description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+  line-height: var(--leading-normal, 1.6);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags */
+.study-mission-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-3, 12px);
+}
+
+.study-mission-card__tag {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.study-mission-card__tag--more {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Meta */
+.study-mission-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-mission-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.study-mission-card__meta-item svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Difficulty */
+.study-mission-card__difficulty-badge {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.study-mission-card__difficulty-badge--easy {
+  background: rgba(42, 157, 143, 0.2);
+  color: var(--success, #2a9d8f);
+}
+
+.study-mission-card__difficulty-badge--medium {
+  background: rgba(241, 196, 15, 0.2);
+  color: var(--warning, #f1c40f);
+}
+
+.study-mission-card__difficulty-badge--hard {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--error, #e74c3c);
+}
+
+/* Rewards */
+.study-mission-card__rewards {
+  display: flex;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-mission-card__reward {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+}
+
+.study-mission-card__reward--xp {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.study-mission-card__reward--r2r {
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.study-mission-card__reward-icon {
+  font-size: 14px;
+}
+
+/* Progress */
+.study-mission-card__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-mission-card__progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.study-mission-card__progress-fill {
+  height: 100%;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.study-mission-card__progress-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--beacon-color, var(--gps-primary));
+  font-weight: var(--font-semibold, 600);
+  min-width: 40px;
+  text-align: right;
+}
+
+.study-mission-card__completed-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  color: var(--success, #2a9d8f);
+}
+
+.study-mission-card__completed-text svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Action Button */
+.study-mission-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  padding: var(--space-3, 12px);
+  background: var(--beacon-color, var(--gps-primary));
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-mission-card__action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.study-mission-card__action svg {
+  width: 18px;
+  height: 18px;
+}
+
+.study-mission-card--completed .study-mission-card__action {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .study-mission-card__meta {
+    flex-wrap: wrap;
+    gap: var(--space-2, 8px);
+  }
+  
+  .study-mission-card__rewards {
+    flex-wrap: wrap;
+  }
+}

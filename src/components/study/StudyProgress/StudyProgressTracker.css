@@ -1,0 +1,366 @@
+/**
+ * GPS Lab Platform - StudyProgressTracker Component Styles
+ */
+
+.study-progress-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.study-progress-tracker--compact {
+  padding: var(--space-4, 16px);
+  gap: var(--space-4, 16px);
+}
+
+/* Overall Progress */
+.study-progress-tracker__overall {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5, 20px);
+}
+
+.study-progress-tracker__overall-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.study-progress-tracker--compact .study-progress-tracker__overall-circle {
+  width: 80px;
+  height: 80px;
+}
+
+.study-progress-tracker__overall-circle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.study-progress-tracker__overall-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.study-progress-tracker__percent {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-3xl, 40px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  line-height: 1;
+}
+
+.study-progress-tracker--compact .study-progress-tracker__percent {
+  font-size: var(--text-xl, 24px);
+}
+
+.study-progress-tracker__percent-sign {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.study-progress-tracker--compact .study-progress-tracker__percent-sign {
+  font-size: var(--text-sm, 14px);
+}
+
+.study-progress-tracker__overall-info {
+  flex: 1;
+}
+
+.study-progress-tracker__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.study-progress-tracker--compact .study-progress-tracker__title {
+  font-size: var(--text-lg, 20px);
+}
+
+.study-progress-tracker__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Stats */
+.study-progress-tracker__stats {
+  display: flex;
+  gap: var(--space-3, 12px);
+}
+
+.study-progress-tracker__stat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.study-progress-tracker__stat--streak {
+  background: rgba(241, 196, 15, 0.1);
+  border: 1px solid rgba(241, 196, 15, 0.2);
+}
+
+.study-progress-tracker__stat-icon {
+  font-size: 24px;
+}
+
+.study-progress-tracker__stat-value {
+  display: block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.study-progress-tracker__stat-label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Weekly Goal */
+.study-progress-tracker__weekly {
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.study-progress-tracker__weekly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-progress-tracker__weekly-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+.study-progress-tracker__weekly-count {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.study-progress-tracker__weekly-bar {
+  position: relative;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: visible;
+}
+
+.study-progress-tracker__weekly-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.study-progress-tracker__weekly-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.study-progress-tracker__weekly-marker--complete {
+  background: var(--success, #2a9d8f);
+}
+
+.study-progress-tracker__weekly-complete {
+  text-align: center;
+  margin-top: var(--space-3, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--success, #2a9d8f);
+}
+
+/* Section Title */
+.study-progress-tracker__section-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+/* Stages */
+.study-progress-tracker__stages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.study-progress-tracker__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: left;
+  width: 100%;
+}
+
+.study-progress-tracker__stage:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--beacon-color, rgba(255, 255, 255, 0.2));
+}
+
+.study-progress-tracker__stage--active {
+  border-color: var(--beacon-color, var(--gps-primary));
+}
+
+.study-progress-tracker__stage--complete {
+  background: rgba(42, 157, 143, 0.1);
+  border-color: rgba(42, 157, 143, 0.3);
+}
+
+.study-progress-tracker__stage-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.study-progress-tracker__stage-beacon {
+  width: 8px;
+  height: 8px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--beacon-color, var(--gps-primary));
+}
+
+.study-progress-tracker__stage-number {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.study-progress-tracker__stage-check {
+  width: 16px;
+  height: 16px;
+  color: var(--success, #2a9d8f);
+  margin-left: auto;
+}
+
+.study-progress-tracker__stage-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.study-progress-tracker__stage-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.study-progress-tracker__stage-fill {
+  height: 100%;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.study-progress-tracker__stage-percent {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--beacon-color, var(--gps-primary));
+  min-width: 32px;
+  text-align: right;
+}
+
+.study-progress-tracker__stage-count {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Activity */
+.study-progress-tracker__activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.study-progress-tracker__activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-2, 8px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.study-progress-tracker__activity-item:last-child {
+  border-bottom: none;
+}
+
+.study-progress-tracker__activity-icon {
+  font-size: 16px;
+}
+
+.study-progress-tracker__activity-text {
+  flex: 1;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.study-progress-tracker__activity-time {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .study-progress-tracker__overall {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .study-progress-tracker__stats {
+    flex-direction: column;
+  }
+  
+  .study-progress-tracker__stages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .study-progress-tracker__stages-grid {
+    grid-template-columns: 1fr;
+  }
+}

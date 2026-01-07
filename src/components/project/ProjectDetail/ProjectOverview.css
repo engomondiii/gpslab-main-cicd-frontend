@@ -1,0 +1,353 @@
+/**
+ * GPS Lab Platform - ProjectOverview Component Styles
+ */
+
+.project-overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Header */
+.project-overview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4, 16px);
+}
+
+.project-overview__title-section {
+  flex: 1;
+}
+
+.project-overview__beacon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.project-overview__beacon {
+  width: 12px;
+  height: 12px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--beacon-color, var(--gps-primary));
+  animation: beaconPulse 2s ease-in-out infinite;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.project-overview__stage {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-color, var(--gps-primary));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.project-overview__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 40px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.project-overview__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.project-overview__category {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(142, 68, 173, 0.2);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-purple, #8e44ad);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.project-overview__status {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.project-overview__status--active {
+  color: var(--success, #2a9d8f);
+}
+
+.project-overview__status--paused {
+  color: var(--warning, #f1c40f);
+}
+
+.project-overview__status--completed {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.project-overview__status--archived {
+  color: var(--neutral-500, #8b949e);
+}
+
+.project-overview__edit-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.project-overview__edit-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+.project-overview__edit-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Progress */
+.project-overview__progress-section {
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.project-overview__progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.project-overview__progress-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.project-overview__progress-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-color, var(--gps-primary));
+}
+
+.project-overview__progress-bar {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.project-overview__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--beacon-color, var(--gps-primary)) 0%, var(--gps-primary-light, #4ce3ff) 100%);
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+/* Sections */
+.project-overview__section {
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.project-overview__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-overview__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.project-overview__section-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.project-overview__description,
+.project-overview__problem,
+.project-overview__audience {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-300, #e1e4e8);
+  line-height: var(--leading-relaxed, 1.7);
+  margin: 0;
+}
+
+/* Team */
+.project-overview__invite-btn {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.2);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.project-overview__invite-btn:hover {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+.project-overview__team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.project-overview__team-member {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 8px);
+  min-width: 200px;
+}
+
+.project-overview__member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--neutral-700, #1d2939);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-300, #e1e4e8);
+  background-size: cover;
+  background-position: center;
+}
+
+.project-overview__member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-overview__member-name {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+.project-overview__member-role {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--beacon-color, var(--gps-primary));
+  text-transform: capitalize;
+}
+
+.project-overview__team-empty {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Tags */
+.project-overview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.project-overview__tag {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Dates */
+.project-overview__dates {
+  display: flex;
+  gap: var(--space-6, 24px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-overview__date {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.project-overview__date-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.project-overview__date-value {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-overview__header {
+    flex-direction: column;
+  }
+  
+  .project-overview__title {
+    font-size: var(--text-2xl, 32px);
+  }
+  
+  .project-overview__edit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .project-overview__team-member {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .project-overview__dates {
+    flex-direction: column;
+    gap: var(--space-3, 12px);
+  }
+}

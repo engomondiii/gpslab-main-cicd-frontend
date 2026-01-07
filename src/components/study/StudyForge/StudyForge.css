@@ -1,0 +1,523 @@
+/**
+ * GPS Lab Platform - StudyForge Component Styles
+ */
+
+.study-forge {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Content Layout */
+.study-forge__content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  flex: 1;
+}
+
+/* Sidebar */
+.study-forge__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+.study-forge__quick-start {
+  margin-bottom: var(--space-2, 8px);
+}
+
+.study-forge__start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border: none;
+  border-radius: var(--radius-xl, 12px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-forge__start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(142, 68, 173, 0.4);
+}
+
+.study-forge__start-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Sections */
+.study-forge__section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-4, 16px);
+}
+
+.study-forge__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.study-forge__section-icon {
+  font-size: 16px;
+}
+
+/* Recommended List */
+.study-forge__recommended-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.study-forge__recommended-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: left;
+  width: 100%;
+}
+
+.study-forge__recommended-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--beacon-color, var(--gps-primary));
+}
+
+.study-forge__recommended-beacon {
+  width: 8px;
+  height: 8px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.study-forge__recommended-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.study-forge__recommended-title {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-0, #ffffff);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-forge__recommended-meta {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  margin-top: 2px;
+}
+
+.study-forge__recommended-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--neutral-500, #8b949e);
+  flex-shrink: 0;
+}
+
+/* Recent List */
+.study-forge__recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.study-forge__recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+  width: 100%;
+  text-align: left;
+}
+
+.study-forge__recent-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.study-forge__recent-title {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-forge__recent-progress {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--gps-primary, #00d4ff);
+  flex-shrink: 0;
+}
+
+/* Tips */
+.study-forge__tips {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-4, 16px);
+}
+
+.study-forge__tips-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.study-forge__tips-list li {
+  position: relative;
+  padding-left: var(--space-5, 20px);
+  margin-bottom: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  line-height: var(--leading-normal, 1.6);
+}
+
+.study-forge__tips-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--beacon-purple, #8e44ad);
+}
+
+.study-forge__tips-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Main Content */
+.study-forge__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8, 32px);
+}
+
+/* Results Info */
+.study-forge__results-info {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  padding: var(--space-2, 8px) 0;
+}
+
+/* Empty State */
+.study-forge__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12, 48px);
+  text-align: center;
+}
+
+.study-forge__empty-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.study-forge__empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.study-forge__empty h3 {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.study-forge__empty p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.study-forge__clear-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-forge__clear-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Mission Groups */
+.study-forge__group {
+  margin-bottom: var(--space-6, 24px);
+}
+
+.study-forge__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.study-forge__group-beacon {
+  width: 12px;
+  height: 12px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+}
+
+.study-forge__group-count {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* Missions Grid */
+.study-forge__missions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+/* Mission Card */
+.study-forge__mission-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-forge__mission-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--beacon-color, var(--gps-primary));
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.study-forge__mission-card--selected {
+  border-color: var(--beacon-color, var(--gps-primary));
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.study-forge__mission-card--completed {
+  opacity: 0.8;
+}
+
+.study-forge__mission-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.study-forge__mission-beacon {
+  width: 12px;
+  height: 12px;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--beacon-color, var(--gps-primary));
+}
+
+.study-forge__mission-badges {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.study-forge__badge {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.study-forge__badge--new {
+  background: rgba(42, 157, 143, 0.2);
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.study-forge__badge--required {
+  background: rgba(241, 196, 15, 0.2);
+  color: var(--warning, #f1c40f);
+}
+
+.study-forge__mission-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+  line-height: var(--leading-tight, 1.3);
+}
+
+.study-forge__mission-description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-4, 16px);
+  line-height: var(--leading-normal, 1.6);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.study-forge__mission-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.study-forge__mission-duration {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.study-forge__mission-duration svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mission Progress */
+.study-forge__mission-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-top: var(--space-4, 16px);
+  padding-top: var(--space-3, 12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.study-forge__mission-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.study-forge__mission-progress-fill {
+  height: 100%;
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.study-forge__mission-progress-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--beacon-color, var(--gps-primary));
+  font-weight: var(--font-semibold, 600);
+}
+
+/* Completed Indicator */
+.study-forge__mission-completed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-4, 16px);
+  padding-top: var(--space-3, 12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--success, #2a9d8f);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.study-forge__mission-completed svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .study-forge__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .study-forge__sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4, 16px);
+  }
+  
+  .study-forge__quick-start {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .study-forge__content {
+    padding: var(--space-4, 16px);
+    gap: var(--space-4, 16px);
+  }
+  
+  .study-forge__sidebar {
+    grid-template-columns: 1fr;
+  }
+  
+  .study-forge__missions-grid {
+    grid-template-columns: 1fr;
+  }
+}

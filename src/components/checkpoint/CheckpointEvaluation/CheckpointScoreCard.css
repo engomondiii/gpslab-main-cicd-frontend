@@ -1,0 +1,155 @@
+/**
+ * GPS Lab Platform - CheckpointScoreCard Component Styles
+ */
+
+.checkpoint-score-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+  transition: var(--transition-all);
+}
+
+.checkpoint-score-card--scored {
+  border-color: var(--score-color, var(--gps-primary));
+}
+
+.checkpoint-score-card--compact {
+  padding: var(--space-4, 16px);
+}
+
+/* Header */
+.checkpoint-score-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.checkpoint-score-card__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.checkpoint-score-card--compact .checkpoint-score-card__title {
+  font-size: var(--text-sm, 14px);
+}
+
+.checkpoint-score-card__weight {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-accent, #2a9d8f);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(42, 157, 143, 0.15);
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* Score Section */
+.checkpoint-score-card__score-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.checkpoint-score-card__score-display {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1, 4px);
+}
+
+.checkpoint-score-card__score-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--score-color, var(--neutral-400));
+  line-height: 1;
+}
+
+.checkpoint-score-card--compact .checkpoint-score-card__score-value {
+  font-size: var(--text-2xl, 32px);
+}
+
+.checkpoint-score-card__score-max {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-500, #8b949e);
+}
+
+.checkpoint-score-card__score-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.checkpoint-score-card__score-fill {
+  height: 100%;
+  background: var(--score-color, var(--gps-primary));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.checkpoint-score-card__score-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--score-color, var(--neutral-400));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Details */
+.checkpoint-score-card__details {
+  margin-top: var(--space-4, 16px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.checkpoint-score-card__description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  line-height: var(--leading-normal, 1.6);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.checkpoint-score-card__feedback {
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.checkpoint-score-card__feedback-label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.checkpoint-score-card__feedback-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  line-height: var(--leading-normal, 1.6);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .checkpoint-score-card {
+    padding: var(--space-4, 16px);
+  }
+  
+  .checkpoint-score-card__score-value {
+    font-size: var(--text-2xl, 32px);
+  }
+}

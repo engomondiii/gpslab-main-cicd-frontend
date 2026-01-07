@@ -1,0 +1,243 @@
+/**
+ * GPS Lab Platform - PartyRoles Component Styles
+ */
+
+.party-roles {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+}
+
+/* Header */
+.party-roles__header {
+  margin-bottom: var(--space-4, 16px);
+}
+
+.party-roles__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.party-roles__title svg {
+  width: 24px;
+  height: 24px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* List */
+.party-roles__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+/* Role */
+.party-roles__role {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  overflow: hidden;
+  transition: var(--transition-all);
+}
+
+.party-roles__role:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.party-roles__role--expanded {
+  border-color: var(--role-color, rgba(255, 255, 255, 0.1));
+}
+
+/* Role Header */
+.party-roles__role-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  padding: var(--space-4, 16px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.party-roles__role-header:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.party-roles__role-icon {
+  font-size: 24px;
+}
+
+.party-roles__role-info {
+  flex: 1;
+  text-align: left;
+}
+
+.party-roles__role-name {
+  display: block;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--role-color, var(--neutral-0, #ffffff));
+}
+
+.party-roles__role-count {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin-top: 2px;
+}
+
+.party-roles__role-chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-400, #a8dadc);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.party-roles__role--expanded .party-roles__role-chevron {
+  transform: rotate(180deg);
+}
+
+/* Role Details */
+.party-roles__role-details {
+  padding: 0 var(--space-4, 16px) var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.party-roles__role-description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-3, 12px) 0;
+}
+
+/* Permissions */
+.party-roles__permissions {
+  margin-bottom: var(--space-4, 16px);
+}
+
+.party-roles__permissions-title {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.party-roles__permissions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-2, 8px);
+}
+
+.party-roles__permission {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.party-roles__permission svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.party-roles__permission--granted {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.party-roles__permission--granted svg {
+  color: var(--success, #2a9d8f);
+}
+
+/* Members in Role */
+.party-roles__role-members {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.party-roles__members-title {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.party-roles__members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.party-roles__member-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-1, 4px) var(--space-3, 12px) var(--space-1, 4px) var(--space-1, 4px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.party-roles__member-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--neutral-700, #1d2939);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  background-size: cover;
+  background-position: center;
+}
+
+.party-roles__member-name {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Edit Button */
+.party-roles__edit-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--gps-primary, #00d4ff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.party-roles__edit-btn:hover {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+.party-roles__edit-btn svg {
+  width: 16px;
+  height: 16px;
+}

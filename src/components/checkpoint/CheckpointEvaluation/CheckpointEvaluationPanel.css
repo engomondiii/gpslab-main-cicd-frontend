@@ -1,0 +1,306 @@
+/**
+ * GPS Lab Platform - CheckpointEvaluationPanel Component Styles
+ */
+
+.checkpoint-evaluation-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.checkpoint-evaluation-panel--disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.checkpoint-evaluation-panel--paused {
+  filter: blur(2px);
+}
+
+/* Header */
+.checkpoint-evaluation-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-4, 16px);
+  flex-wrap: wrap;
+}
+
+.checkpoint-evaluation-panel__header-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.checkpoint-evaluation-panel__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.checkpoint-evaluation-panel__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.checkpoint-evaluation-panel__progress-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  white-space: nowrap;
+}
+
+.checkpoint-evaluation-panel__progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.checkpoint-evaluation-panel__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff) 0%, var(--gps-accent, #2a9d8f) 100%);
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+/* View Toggle */
+.checkpoint-evaluation-panel__view-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-1, 4px);
+}
+
+.checkpoint-evaluation-panel__view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-evaluation-panel__view-btn:hover {
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-evaluation-panel__view-btn--active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-evaluation-panel__view-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Content */
+.checkpoint-evaluation-panel__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6, 24px);
+}
+
+.checkpoint-evaluation-panel--split .checkpoint-evaluation-panel__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6, 24px);
+}
+
+/* Rubric Section */
+.checkpoint-evaluation-panel__rubric {
+  height: 100%;
+}
+
+/* Summary Section */
+.checkpoint-evaluation-panel__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+.checkpoint-evaluation-panel__score-overview {
+  padding: var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.checkpoint-evaluation-panel__score-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 32px);
+}
+
+.checkpoint-evaluation-panel__score-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.checkpoint-evaluation-panel__score-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.checkpoint-evaluation-panel__score-circle svg circle:last-child {
+  transition: stroke-dasharray var(--duration-slow) var(--ease-out);
+}
+
+.checkpoint-evaluation-panel__score-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoint-evaluation-panel__score-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-evaluation-panel__score-label {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-evaluation-panel__score-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.checkpoint-evaluation-panel__score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2, 8px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.checkpoint-evaluation-panel__score-row:last-child {
+  border-bottom: none;
+}
+
+.checkpoint-evaluation-panel__score-row span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-evaluation-panel__score-row strong {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-evaluation-panel__score-row .text-success {
+  color: var(--success, #2a9d8f);
+}
+
+.checkpoint-evaluation-panel__score-row .text-warning {
+  color: var(--warning, #f1c40f);
+}
+
+/* Score Grid */
+.checkpoint-evaluation-panel__score-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+/* Paused Overlay */
+.checkpoint-evaluation-panel__paused-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  background: rgba(13, 17, 23, 0.8);
+  z-index: 10;
+}
+
+.checkpoint-evaluation-panel__paused-overlay svg {
+  width: 48px;
+  height: 48px;
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-evaluation-panel__paused-overlay span {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .checkpoint-evaluation-panel--split .checkpoint-evaluation-panel__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkpoint-evaluation-panel__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .checkpoint-evaluation-panel__view-toggle {
+    width: 100%;
+  }
+  
+  .checkpoint-evaluation-panel__view-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .checkpoint-evaluation-panel__score-main {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .checkpoint-evaluation-panel__score-info {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkpoint-evaluation-panel__content {
+    padding: var(--space-4, 16px);
+  }
+  
+  .checkpoint-evaluation-panel__score-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkpoint-evaluation-panel__view-btn span {
+    display: none;
+  }
+}

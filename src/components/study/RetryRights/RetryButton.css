@@ -1,0 +1,210 @@
+/**
+ * GPS Lab Platform - RetryButton Component Styles
+ */
+
+.retry-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+/* Sizes */
+.retry-button--small {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-sm, 14px);
+  border-radius: var(--radius-md, 6px);
+}
+
+.retry-button--default {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+}
+
+.retry-button--large {
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  font-size: var(--text-lg, 20px);
+  border-radius: var(--radius-xl, 12px);
+}
+
+/* R2R Type */
+.retry-button--r2r {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--gps-accent, #2a9d8f) 100%);
+  color: var(--neutral-900, #0d1117);
+}
+
+.retry-button--r2r:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* pR2R Type */
+.retry-button--pr2r {
+  background: linear-gradient(135deg, var(--warning, #f1c40f) 0%, var(--beacon-orange, #f39c12) 100%);
+  color: var(--neutral-900, #0d1117);
+}
+
+.retry-button--pr2r:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(241, 196, 15, 0.4);
+}
+
+/* Variants */
+.retry-button--outline.retry-button--r2r {
+  background: transparent;
+  border: 2px solid var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.retry-button--outline.retry-button--pr2r {
+  background: transparent;
+  border: 2px solid var(--warning, #f1c40f);
+  color: var(--warning, #f1c40f);
+}
+
+.retry-button--ghost {
+  background: transparent;
+  border: none;
+}
+
+.retry-button--ghost.retry-button--r2r {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.retry-button--ghost.retry-button--pr2r {
+  color: var(--warning, #f1c40f);
+}
+
+.retry-button--ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* States */
+.retry-button--empty {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.retry-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.retry-button--confirming {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.retry-button--confirming.retry-button--r2r {
+  background: linear-gradient(135deg, #ff6b6b 0%, var(--gps-primary, #00d4ff) 100%);
+}
+
+.retry-button--confirming.retry-button--pr2r {
+  background: linear-gradient(135deg, #ff6b6b 0%, var(--warning, #f1c40f) 100%);
+}
+
+.retry-button--processing {
+  pointer-events: none;
+}
+
+/* Content */
+.retry-button__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.retry-button__content--confirm {
+  gap: var(--space-3, 12px);
+}
+
+.retry-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.retry-button--small .retry-button__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.retry-button--default .retry-button__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.retry-button--large .retry-button__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.retry-button__label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.retry-button__count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 var(--space-2, 8px);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+}
+
+.retry-button--large .retry-button__count {
+  min-width: 28px;
+  height: 28px;
+  font-size: var(--text-base, 16px);
+}
+
+/* Cancel Button */
+.retry-button__cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.retry-button__cancel:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Spinner */
+.retry-button__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

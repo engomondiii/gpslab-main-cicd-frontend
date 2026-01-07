@@ -1,0 +1,421 @@
+/**
+ * GPS Lab Platform - CheckpointHeader Component Styles
+ * 
+ * Cinematic header for checkpoint evaluation arena
+ */
+
+.checkpoint-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky, 200);
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  color: var(--neutral-0, #ffffff);
+  border-bottom: 2px solid var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  max-width: var(--container-2xl, 1400px);
+  margin: 0 auto;
+  gap: var(--space-4, 16px);
+}
+
+/* Left Section */
+.checkpoint-header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  flex: 1;
+  min-width: 0;
+}
+
+.checkpoint-header__back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-300, #e1e4e8);
+  cursor: pointer;
+  transition: var(--transition-all);
+  flex-shrink: 0;
+}
+
+.checkpoint-header__back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-header__back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.checkpoint-header__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.checkpoint-header__stage-badge {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: var(--beacon-color, var(--gps-primary));
+  border-radius: var(--radius-full, 9999px);
+  flex-shrink: 0;
+}
+
+.checkpoint-header__stage-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.checkpoint-header__titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.checkpoint-header__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkpoint-header__mission {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Center Section */
+.checkpoint-header__center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6, 24px);
+  flex-shrink: 0;
+}
+
+/* Status Badge */
+.checkpoint-header__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-full, 9999px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.checkpoint-header__status--neutral {
+  background: rgba(139, 148, 158, 0.2);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-header__status--primary {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-header__status--info {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--info, #00d4ff);
+}
+
+.checkpoint-header__status--warning {
+  background: rgba(241, 196, 15, 0.2);
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-header__status--success {
+  background: rgba(42, 157, 143, 0.2);
+  color: var(--success, #2a9d8f);
+}
+
+.checkpoint-header__status--error {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--error, #e74c3c);
+}
+
+.checkpoint-header__status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoint-header__status-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.checkpoint-header__status-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Timer */
+.checkpoint-header__timer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  border: 2px solid transparent;
+}
+
+.checkpoint-header__timer--warning {
+  background: rgba(241, 196, 15, 0.15);
+  border-color: var(--warning, #f1c40f);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.checkpoint-header__timer--critical {
+  background: rgba(231, 76, 60, 0.15);
+  border-color: var(--error, #e74c3c);
+  animation: pulse 0.75s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.checkpoint-header__timer-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-header__timer--warning .checkpoint-header__timer-icon {
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-header__timer--critical .checkpoint-header__timer-icon {
+  color: var(--error, #e74c3c);
+}
+
+.checkpoint-header__timer-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-header__timer--warning .checkpoint-header__timer-value {
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-header__timer--critical .checkpoint-header__timer-value {
+  color: var(--error, #e74c3c);
+}
+
+.checkpoint-header__timer-paused {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(241, 196, 15, 0.2);
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* Right Section */
+.checkpoint-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  flex-shrink: 0;
+}
+
+.checkpoint-header__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+  border: none;
+}
+
+.checkpoint-header__action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.checkpoint-header__action-btn--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-300, #e1e4e8);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkpoint-header__action-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-header__action-btn--primary {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--gps-primary-dark, #00a3cc) 100%);
+  color: var(--neutral-900, #0d1117);
+}
+
+.checkpoint-header__action-btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary, 0 4px 12px rgba(0, 212, 255, 0.3));
+}
+
+.checkpoint-header__action-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Result Badge */
+.checkpoint-header__result-badge {
+  padding: var(--space-2, 8px);
+}
+
+.checkpoint-header__result {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.checkpoint-header__result svg {
+  width: 20px;
+  height: 20px;
+}
+
+.checkpoint-header__result--passed {
+  background: rgba(42, 157, 143, 0.2);
+  color: var(--success, #2a9d8f);
+  border: 2px solid var(--success, #2a9d8f);
+}
+
+.checkpoint-header__result--failed {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--error, #e74c3c);
+  border: 2px solid var(--error, #e74c3c);
+}
+
+/* Progress Bar */
+.checkpoint-header__progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.checkpoint-header__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff) 0%, var(--gps-accent, #2a9d8f) 100%);
+  transition: width 1s linear;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .checkpoint-header__container {
+    flex-wrap: wrap;
+  }
+  
+  .checkpoint-header__center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding-top: var(--space-3, 12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .checkpoint-header__container {
+    padding: var(--space-3, 12px);
+  }
+  
+  .checkpoint-header__title {
+    font-size: var(--text-lg, 20px);
+  }
+  
+  .checkpoint-header__stage-badge {
+    padding: var(--space-1, 4px) var(--space-3, 12px);
+  }
+  
+  .checkpoint-header__action-btn span {
+    display: none;
+  }
+  
+  .checkpoint-header__action-btn {
+    padding: var(--space-2, 8px);
+  }
+  
+  .checkpoint-header__timer-value {
+    font-size: var(--text-lg, 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .checkpoint-header__info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2, 8px);
+  }
+  
+  .checkpoint-header__center {
+    flex-direction: column;
+    gap: var(--space-3, 12px);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .checkpoint-header {
+  background: linear-gradient(135deg, var(--neutral-900, #0d1117) 0%, #000000 100%);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkpoint-header__timer--warning,
+  .checkpoint-header__timer--critical {
+    animation: none;
+  }
+  
+  .checkpoint-header__action-btn:hover {
+    transform: none;
+  }
+  
+  .checkpoint-header__progress-fill {
+    transition: none;
+  }
+}

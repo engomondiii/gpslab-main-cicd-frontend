@@ -1,0 +1,170 @@
+/**
+ * GPS Lab Platform - CheckpointFeedback Component Styles
+ */
+
+.checkpoint-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Header */
+.checkpoint-feedback__header {
+  text-align: center;
+}
+
+.checkpoint-feedback__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.checkpoint-feedback__title svg {
+  width: 32px;
+  height: 32px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-feedback__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+}
+
+/* Tabs */
+.checkpoint-feedback__tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-1, 4px);
+}
+
+.checkpoint-feedback__tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-feedback__tab:hover {
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-feedback__tab--active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-feedback__tab svg {
+  width: 24px;
+  height: 24px;
+}
+
+.checkpoint-feedback__tab--active svg {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-feedback__tab-badge {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  background: var(--gps-accent, #2a9d8f);
+  padding: 2px 8px;
+  border-radius: var(--radius-full, 9999px);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.checkpoint-feedback__tab-loading {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Content */
+.checkpoint-feedback__content {
+  min-height: 400px;
+}
+
+/* Quick Actions */
+.checkpoint-feedback__quick-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.checkpoint-feedback__quick-action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-feedback__quick-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-feedback__quick-action svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkpoint-feedback__title {
+    font-size: var(--text-xl, 24px);
+  }
+  
+  .checkpoint-feedback__title svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .checkpoint-feedback__tab span {
+    display: none;
+  }
+  
+  .checkpoint-feedback__tab svg {
+    width: 28px;
+    height: 28px;
+  }
+}

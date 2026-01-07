@@ -1,0 +1,133 @@
+/**
+ * GPS Lab Platform - ProjectDetailPage Styles
+ */
+
+.project-detail-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  color: var(--neutral-0, #ffffff);
+  padding: var(--space-6, 24px);
+  max-width: var(--container-xl, 1280px);
+  margin: 0 auto;
+}
+
+/* Loading State */
+.project-detail-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: var(--space-4, 16px);
+}
+
+.project-detail-page__spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.project-detail-page__loading p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+}
+
+/* Error State */
+.project-detail-page__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: var(--space-8, 32px);
+}
+
+.project-detail-page__error-icon {
+  font-size: 64px;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.project-detail-page__error h3 {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--error, #e74c3c);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.project-detail-page__error p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+/* Not Found State */
+.project-detail-page__not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: var(--space-8, 32px);
+}
+
+.project-detail-page__not-found-icon {
+  font-size: 64px;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.project-detail-page__not-found h3 {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.project-detail-page__not-found p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+/* Back Button */
+.project-detail-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.project-detail-page__back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-detail-page {
+    padding: var(--space-4, 16px);
+  }
+}

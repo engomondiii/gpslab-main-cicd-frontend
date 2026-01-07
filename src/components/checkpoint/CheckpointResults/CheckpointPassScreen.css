@@ -1,0 +1,468 @@
+/**
+ * GPS Lab Platform - CheckpointPassScreen Component Styles
+ */
+
+.checkpoint-pass-screen {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8, 32px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, 
+    rgba(42, 157, 143, 0.1) 0%, 
+    rgba(13, 27, 42, 0.95) 100%
+  );
+}
+
+/* Confetti */
+.checkpoint-pass-screen__confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.checkpoint-pass-screen__confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--color);
+  left: var(--x);
+  top: -20px;
+  animation: confettiFall 3s ease-in-out var(--delay) infinite;
+  transform: rotate(var(--rotation));
+}
+
+.checkpoint-pass-screen__confetti-piece:nth-child(odd) {
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.checkpoint-pass-screen__confetti-piece:nth-child(even) {
+  border-radius: 50%;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(var(--rotation)) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(calc(var(--rotation) + 720deg)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Content */
+.checkpoint-pass-screen__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* Badge */
+.checkpoint-pass-screen__badge {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: var(--space-6, 24px);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s var(--ease-bounce);
+}
+
+.checkpoint-pass-screen--phase-1 .checkpoint-pass-screen__badge,
+.checkpoint-pass-screen--phase-2 .checkpoint-pass-screen__badge,
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__badge,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checkpoint-pass-screen__badge-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(42, 157, 143, 0.4) 0%, transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.checkpoint-pass-screen__badge-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: var(--success, #2a9d8f);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.checkpoint-pass-screen__badge-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Title */
+.checkpoint-pass-screen__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-4xl, 48px);
+  font-weight: var(--font-bold, 700);
+  margin: 0 0 var(--space-3, 12px);
+  background: linear-gradient(135deg, var(--success, #2a9d8f) 0%, var(--gps-primary, #00d4ff) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out) 0.2s;
+}
+
+.checkpoint-pass-screen--phase-1 .checkpoint-pass-screen__title,
+.checkpoint-pass-screen--phase-2 .checkpoint-pass-screen__title,
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__title,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-pass-screen__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-8, 32px);
+  max-width: 450px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out) 0.3s;
+}
+
+.checkpoint-pass-screen--phase-1 .checkpoint-pass-screen__subtitle,
+.checkpoint-pass-screen--phase-2 .checkpoint-pass-screen__subtitle,
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__subtitle,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Score */
+.checkpoint-pass-screen__score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-8, 32px);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-pass-screen--phase-2 .checkpoint-pass-screen__score,
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__score,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__score {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checkpoint-pass-screen__score-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.checkpoint-pass-screen__score-circle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.checkpoint-pass-screen__score-ring {
+  transition: stroke-dasharray 1s var(--ease-out);
+}
+
+.checkpoint-pass-screen__score-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoint-pass-screen__score-number {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--success, #2a9d8f);
+}
+
+.checkpoint-pass-screen__score-percent {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-pass-screen__score-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.checkpoint-pass-screen__score-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+}
+
+.checkpoint-pass-screen__score-points {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Rewards */
+.checkpoint-pass-screen__rewards {
+  width: 100%;
+  margin-bottom: var(--space-8, 32px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__rewards,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__rewards {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-pass-screen__rewards-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.checkpoint-pass-screen__rewards-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+  flex-wrap: wrap;
+}
+
+.checkpoint-pass-screen__reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  min-width: 100px;
+}
+
+.checkpoint-pass-screen__reward-icon {
+  font-size: 32px;
+}
+
+.checkpoint-pass-screen__reward-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-pass-screen__reward-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-pass-screen__reward--badge {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+  border-color: var(--warning, #f1c40f);
+}
+
+.checkpoint-pass-screen__reward--badge .checkpoint-pass-screen__reward-value {
+  color: var(--warning, #f1c40f);
+  font-size: var(--text-sm, 14px);
+}
+
+/* Next Stage */
+.checkpoint-pass-screen__next-stage {
+  margin-bottom: var(--space-8, 32px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-pass-screen--phase-3 .checkpoint-pass-screen__next-stage,
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__next-stage {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-pass-screen__next-label {
+  display: block;
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.05em);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.checkpoint-pass-screen__next-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.checkpoint-pass-screen__next-stage-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.checkpoint-pass-screen__next-stage-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Actions */
+.checkpoint-pass-screen__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-pass-screen--phase-4 .checkpoint-pass-screen__actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-pass-screen__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  border-radius: var(--radius-xl, 12px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  cursor: pointer;
+  transition: var(--transition-all);
+  border: none;
+}
+
+.checkpoint-pass-screen__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.checkpoint-pass-screen__btn--primary {
+  background: linear-gradient(135deg, var(--success, #2a9d8f) 0%, var(--gps-primary, #00d4ff) 100%);
+  color: var(--neutral-900, #0d1117);
+}
+
+.checkpoint-pass-screen__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(42, 157, 143, 0.4);
+}
+
+.checkpoint-pass-screen__btn--secondary {
+  background: transparent;
+  color: var(--neutral-300, #e1e4e8);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkpoint-pass-screen__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkpoint-pass-screen {
+    padding: var(--space-6, 24px);
+  }
+  
+  .checkpoint-pass-screen__title {
+    font-size: var(--text-3xl, 36px);
+  }
+  
+  .checkpoint-pass-screen__badge {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkpoint-pass-screen__rewards-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .checkpoint-pass-screen__reward {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkpoint-pass-screen__confetti-piece {
+    animation: none;
+    display: none;
+  }
+  
+  .checkpoint-pass-screen__badge-glow {
+    animation: none;
+  }
+  
+  .checkpoint-pass-screen__badge-icon {
+    animation: none;
+  }
+  
+  .checkpoint-pass-screen__badge,
+  .checkpoint-pass-screen__title,
+  .checkpoint-pass-screen__subtitle,
+  .checkpoint-pass-screen__score,
+  .checkpoint-pass-screen__rewards,
+  .checkpoint-pass-screen__next-stage,
+  .checkpoint-pass-screen__actions {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

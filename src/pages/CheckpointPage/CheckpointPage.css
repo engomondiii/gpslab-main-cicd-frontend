@@ -1,0 +1,146 @@
+/**
+ * GPS Lab Platform - CheckpointPage Styles
+ */
+
+.checkpoint-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+}
+
+/* Loading State */
+.checkpoint-page--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoint-page__loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 16px);
+}
+
+.checkpoint-page__loader-spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.checkpoint-page__loader p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+}
+
+/* Error State */
+.checkpoint-page--error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoint-page__error {
+  text-align: center;
+  padding: var(--space-8, 32px);
+}
+
+.checkpoint-page__error h2 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.checkpoint-page__error p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-6, 24px);
+}
+
+.checkpoint-page__error button {
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-page__error button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+/* Feedback View */
+.checkpoint-page--feedback {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-page__feedback-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky, 200);
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: rgba(13, 27, 42, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.checkpoint-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-page__back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-page__back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.checkpoint-page__feedback-content {
+  max-width: var(--container-xl, 1280px);
+  margin: 0 auto;
+  padding: var(--space-8, 32px) var(--space-6, 24px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkpoint-page__feedback-header {
+    padding: var(--space-3, 12px) var(--space-4, 16px);
+  }
+  
+  .checkpoint-page__feedback-content {
+    padding: var(--space-6, 24px) var(--space-4, 16px);
+  }
+}

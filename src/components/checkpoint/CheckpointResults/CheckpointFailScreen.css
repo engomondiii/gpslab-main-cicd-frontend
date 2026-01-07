@@ -1,0 +1,488 @@
+/**
+ * GPS Lab Platform - CheckpointFailScreen Component Styles
+ */
+
+.checkpoint-fail-screen {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8, 32px);
+  background: linear-gradient(180deg, 
+    rgba(231, 76, 60, 0.05) 0%, 
+    rgba(13, 27, 42, 0.95) 100%
+  );
+}
+
+.checkpoint-fail-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Icon */
+.checkpoint-fail-screen__icon {
+  width: 80px;
+  height: 80px;
+  color: var(--warning, #f1c40f);
+  margin-bottom: var(--space-4, 16px);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-1 .checkpoint-fail-screen__icon,
+.checkpoint-fail-screen--phase-2 .checkpoint-fail-screen__icon,
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__icon,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checkpoint-fail-screen__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Title */
+.checkpoint-fail-screen__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out) 0.1s;
+}
+
+.checkpoint-fail-screen--phase-1 .checkpoint-fail-screen__title,
+.checkpoint-fail-screen--phase-2 .checkpoint-fail-screen__title,
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__title,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-6, 24px);
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out) 0.2s;
+}
+
+.checkpoint-fail-screen--phase-1 .checkpoint-fail-screen__subtitle,
+.checkpoint-fail-screen--phase-2 .checkpoint-fail-screen__subtitle,
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__subtitle,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Score */
+.checkpoint-fail-screen__score {
+  width: 100%;
+  padding: var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-6, 24px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-2 .checkpoint-fail-screen__score,
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__score,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__score {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__score-visual {
+  margin-bottom: var(--space-4, 16px);
+}
+
+.checkpoint-fail-screen__score-bar {
+  position: relative;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: visible;
+}
+
+.checkpoint-fail-screen__score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--error, #e74c3c) 0%, var(--warning, #f1c40f) 100%);
+  border-radius: var(--radius-full, 9999px);
+  transition: width 1s var(--ease-out);
+}
+
+.checkpoint-fail-screen__score-target {
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  width: 3px;
+  background: var(--success, #2a9d8f);
+  transform: translateX(-50%);
+}
+
+.checkpoint-fail-screen__score-target::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--success, #2a9d8f);
+}
+
+.checkpoint-fail-screen__score-target-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--success, #2a9d8f);
+  white-space: nowrap;
+}
+
+.checkpoint-fail-screen__score-details {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--space-4, 16px);
+}
+
+.checkpoint-fail-screen__score-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.checkpoint-fail-screen__score-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.checkpoint-fail-screen__score-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-fail-screen__score-value--current {
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-fail-screen__score-value--needed {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Sections */
+.checkpoint-fail-screen__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.checkpoint-fail-screen__section-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Weak Areas */
+.checkpoint-fail-screen__weak-areas {
+  width: 100%;
+  text-align: left;
+  margin-bottom: var(--space-6, 24px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__weak-areas,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__weak-areas {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__weak-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkpoint-fail-screen__weak-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3, 12px);
+  background: rgba(231, 76, 60, 0.1);
+  border-left: 3px solid var(--error, #e74c3c);
+  margin-bottom: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.checkpoint-fail-screen__weak-score {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--error, #e74c3c);
+}
+
+/* Recommendations */
+.checkpoint-fail-screen__recommendations {
+  width: 100%;
+  text-align: left;
+  margin-bottom: var(--space-6, 24px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-3 .checkpoint-fail-screen__recommendations,
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__recommendations {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__study-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.checkpoint-fail-screen__study-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: left;
+}
+
+.checkpoint-fail-screen__study-item:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-fail-screen__study-title {
+  flex: 1;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-0, #ffffff);
+}
+
+.checkpoint-fail-screen__study-type {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.checkpoint-fail-screen__study-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Retry Options */
+.checkpoint-fail-screen__retry-options {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-6, 24px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__retry-options {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__retry-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.checkpoint-fail-screen__retry-badge--pr2r {
+  background: rgba(241, 196, 15, 0.1);
+  border-color: var(--warning, #f1c40f);
+}
+
+.checkpoint-fail-screen__retry-icon {
+  font-size: 18px;
+}
+
+.checkpoint-fail-screen__retry-count {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.checkpoint-fail-screen__retry-badge--pr2r .checkpoint-fail-screen__retry-count {
+  color: var(--warning, #f1c40f);
+}
+
+.checkpoint-fail-screen__retry-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Actions */
+.checkpoint-fail-screen__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  width: 100%;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s var(--ease-out);
+}
+
+.checkpoint-fail-screen--phase-4 .checkpoint-fail-screen__actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checkpoint-fail-screen__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+  border: none;
+}
+
+.checkpoint-fail-screen__btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.checkpoint-fail-screen__btn--primary {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--gps-primary-dark, #00a3cc) 100%);
+  color: var(--neutral-900, #0d1117);
+}
+
+.checkpoint-fail-screen__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+}
+
+.checkpoint-fail-screen__btn--secondary {
+  background: rgba(42, 157, 143, 0.15);
+  color: var(--success, #2a9d8f);
+  border: 2px solid var(--success, #2a9d8f);
+}
+
+.checkpoint-fail-screen__btn--secondary:hover {
+  background: rgba(42, 157, 143, 0.25);
+}
+
+.checkpoint-fail-screen__btn--tertiary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--neutral-300, #e1e4e8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkpoint-fail-screen__btn--tertiary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.checkpoint-fail-screen__btn--ghost {
+  background: transparent;
+  color: var(--neutral-400, #a8dadc);
+}
+
+.checkpoint-fail-screen__btn--ghost:hover {
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkpoint-fail-screen {
+    padding: var(--space-6, 24px);
+  }
+  
+  .checkpoint-fail-screen__title {
+    font-size: var(--text-2xl, 32px);
+  }
+  
+  .checkpoint-fail-screen__score-details {
+    flex-wrap: wrap;
+  }
+  
+  .checkpoint-fail-screen__retry-options {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkpoint-fail-screen__icon,
+  .checkpoint-fail-screen__title,
+  .checkpoint-fail-screen__subtitle,
+  .checkpoint-fail-screen__score,
+  .checkpoint-fail-screen__weak-areas,
+  .checkpoint-fail-screen__recommendations,
+  .checkpoint-fail-screen__retry-options,
+  .checkpoint-fail-screen__actions {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

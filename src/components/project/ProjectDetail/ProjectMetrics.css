@@ -1,0 +1,363 @@
+/**
+ * GPS Lab Platform - ProjectMetrics Component Styles
+ */
+
+.project-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+}
+
+/* Header */
+.project-metrics__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.project-metrics__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.project-metrics__title svg {
+  width: 24px;
+  height: 24px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.project-metrics__period-selector {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  overflow: hidden;
+}
+
+.project-metrics__period-btn {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: transparent;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.project-metrics__period-btn:hover {
+  color: var(--neutral-0, #ffffff);
+}
+
+.project-metrics__period-btn--active {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Key Metrics */
+.project-metrics__key-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+.project-metrics__metric {
+  display: flex;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg, 8px);
+  transition: var(--transition-all);
+}
+
+.project-metrics__metric:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__metric-icon {
+  font-size: 32px;
+}
+
+.project-metrics__metric-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-metrics__metric-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  line-height: 1;
+}
+
+.project-metrics__metric-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.project-metrics__metric-change {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+}
+
+.project-metrics__metric-change--positive {
+  color: var(--success, #2a9d8f);
+}
+
+.project-metrics__metric-change--negative {
+  color: var(--error, #e74c3c);
+}
+
+/* Section Title */
+.project-metrics__section-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+/* GPS Metrics */
+.project-metrics__gps-section {
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__gps-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+}
+
+.project-metrics__gps-metric {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.project-metrics__gps-icon {
+  font-size: 20px;
+}
+
+.project-metrics__gps-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.project-metrics__gps-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Economy Metrics */
+.project-metrics__economy-section {
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__economy-metrics {
+  display: flex;
+  gap: var(--space-4, 16px);
+}
+
+.project-metrics__economy-metric {
+  flex: 1;
+  padding: var(--space-4, 16px);
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.project-metrics__economy-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.project-metrics__economy-icon {
+  font-size: 24px;
+}
+
+.project-metrics__economy-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.project-metrics__economy-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+}
+
+/* Chart */
+.project-metrics__chart-section {
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__chart {
+  height: 150px;
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.project-metrics__chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 100%;
+  gap: var(--space-2, 8px);
+}
+
+.project-metrics__chart-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  height: 100%;
+}
+
+.project-metrics__chart-bar {
+  width: 100%;
+  max-width: 40px;
+  background: linear-gradient(180deg, var(--gps-primary, #00d4ff) 0%, var(--beacon-purple, #8e44ad) 100%);
+  border-radius: var(--radius-sm, 4px) var(--radius-sm, 4px) 0 0;
+  transition: height var(--duration-slow) var(--ease-out);
+}
+
+.project-metrics__chart-label {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Milestones */
+.project-metrics__milestones-section {
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__milestones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.project-metrics__milestone {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  transition: var(--transition-all);
+}
+
+.project-metrics__milestone:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-metrics__milestone--completed {
+  border-color: rgba(42, 157, 143, 0.3);
+  background: rgba(42, 157, 143, 0.05);
+}
+
+.project-metrics__milestone-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.project-metrics__milestone--completed .project-metrics__milestone-icon {
+  background: var(--success, #2a9d8f);
+  color: var(--neutral-0, #ffffff);
+}
+
+.project-metrics__milestone-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-metrics__milestone-name {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.project-metrics__milestone--completed .project-metrics__milestone-name {
+  color: var(--success, #2a9d8f);
+}
+
+.project-metrics__milestone-date {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-metrics__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .project-metrics__period-selector {
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .project-metrics__key-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .project-metrics__economy-metrics {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-metrics__key-metrics {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-metrics__gps-metrics {
+    flex-direction: column;
+  }
+}

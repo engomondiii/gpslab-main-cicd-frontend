@@ -1,0 +1,224 @@
+/**
+ * GPS Lab Platform - NavigatorChatWindow Component Styles
+ */
+
+.navigator-chat-window {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Container */
+.navigator-chat-window__container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-4, 16px);
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.navigator-chat-window__container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navigator-chat-window__container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.navigator-chat-window__container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.navigator-chat-window__container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Loading More */
+.navigator-chat-window__loading-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+}
+
+.navigator-chat-window__loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.navigator-chat-window__loading-more span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Empty State */
+.navigator-chat-window__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-10, 40px);
+  min-height: 400px;
+}
+
+.navigator-chat-window__empty-avatar {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border-radius: 50%;
+  font-size: 40px;
+  margin-bottom: var(--space-5, 20px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  animation: avatarFloat 3s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.navigator-chat-window__empty-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.navigator-chat-window__empty-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  line-height: var(--leading-relaxed, 1.7);
+  max-width: 400px;
+  margin: 0 0 var(--space-6, 24px);
+}
+
+.navigator-chat-window__empty-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+}
+
+.navigator-chat-window__empty-btn {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--gps-primary, #00d4ff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.navigator-chat-window__empty-btn:hover {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+  transform: translateY(-2px);
+}
+
+/* Messages */
+.navigator-chat-window__messages {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom Anchor */
+.navigator-chat-window__bottom {
+  height: 1px;
+}
+
+/* Scroll to Bottom Button */
+.navigator-chat-window__scroll-btn {
+  position: absolute;
+  bottom: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: 50%;
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  transition: var(--transition-all);
+  animation: bounceIn var(--duration-base) var(--ease-out);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.navigator-chat-window__scroll-btn:hover {
+  transform: scale(1.1);
+}
+
+.navigator-chat-window__scroll-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navigator-chat-window__container {
+    padding: var(--space-3, 12px);
+  }
+  
+  .navigator-chat-window__empty {
+    padding: var(--space-6, 24px);
+    min-height: 300px;
+  }
+  
+  .navigator-chat-window__empty-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+  
+  .navigator-chat-window__empty-title {
+    font-size: var(--text-xl, 24px);
+  }
+  
+  .navigator-chat-window__empty-suggestions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .navigator-chat-window__empty-btn {
+    width: 100%;
+  }
+}

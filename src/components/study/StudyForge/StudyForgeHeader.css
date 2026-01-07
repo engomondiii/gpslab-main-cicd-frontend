@@ -1,0 +1,336 @@
+/**
+ * GPS Lab Platform - StudyForgeHeader Component Styles
+ */
+
+.study-forge-header {
+  background: linear-gradient(180deg, var(--neutral-800, #0d1b2a) 0%, rgba(13, 27, 42, 0.8) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-6, 24px);
+}
+
+/* Top Section */
+.study-forge-header__top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6, 24px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.study-forge-header__back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+  flex-shrink: 0;
+}
+
+.study-forge-header__back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+.study-forge-header__back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Title Section */
+.study-forge-header__title-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  flex: 1;
+}
+
+.study-forge-header__icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--beacon-indigo, #9b59b6) 100%);
+  border-radius: var(--radius-xl, 12px);
+  color: var(--neutral-0, #ffffff);
+  flex-shrink: 0;
+}
+
+.study-forge-header__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.study-forge-header__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.study-forge-header__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Stats */
+.study-forge-header__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+}
+
+.study-forge-header__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  min-width: 90px;
+}
+
+.study-forge-header__stat-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  line-height: 1;
+}
+
+.study-forge-header__stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  margin-top: var(--space-1, 4px);
+}
+
+.study-forge-header__stat-icon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 16px;
+}
+
+/* Retry Stats */
+.study-forge-header__retry-stats {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.study-forge-header__retry-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-full, 9999px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--gps-primary, #00d4ff);
+}
+
+.study-forge-header__retry-badge--pr2r {
+  background: rgba(241, 196, 15, 0.1);
+  border-color: var(--warning, #f1c40f);
+}
+
+.study-forge-header__retry-count {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.study-forge-header__retry-badge--pr2r .study-forge-header__retry-count {
+  color: var(--warning, #f1c40f);
+}
+
+.study-forge-header__retry-label {
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-300, #e1e4e8);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Progress Bar */
+.study-forge-header__progress {
+  margin-bottom: var(--space-5, 20px);
+}
+
+.study-forge-header__progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.study-forge-header__progress-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.study-forge-header__progress-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.study-forge-header__progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.study-forge-header__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+/* Search and Filter Controls */
+.study-forge-header__controls {
+  display: flex;
+  gap: var(--space-4, 16px);
+  flex-wrap: wrap;
+}
+
+.study-forge-header__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex: 1;
+  min-width: 250px;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.study-forge-header__search:focus-within {
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+.study-forge-header__search svg {
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-500, #8b949e);
+  flex-shrink: 0;
+}
+
+.study-forge-header__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-0, #ffffff);
+  outline: none;
+}
+
+.study-forge-header__search-input::placeholder {
+  color: var(--neutral-500, #8b949e);
+}
+
+.study-forge-header__filters {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.study-forge-header__filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-forge-header__filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+.study-forge-header__filter-btn--active {
+  background: rgba(142, 68, 173, 0.2);
+  border-color: var(--beacon-purple, #8e44ad);
+  color: var(--neutral-0, #ffffff);
+}
+
+.study-forge-header__filter-icon {
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .study-forge-header__top {
+    flex-wrap: wrap;
+  }
+  
+  .study-forge-header__stats {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: var(--space-4, 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .study-forge-header {
+    padding: var(--space-4, 16px);
+  }
+  
+  .study-forge-header__title-section {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .study-forge-header__title {
+    font-size: var(--text-xl, 24px);
+  }
+  
+  .study-forge-header__stat {
+    min-width: 70px;
+    padding: var(--space-2, 8px) var(--space-3, 12px);
+  }
+  
+  .study-forge-header__stat-value {
+    font-size: var(--text-lg, 20px);
+  }
+  
+  .study-forge-header__search {
+    min-width: 100%;
+  }
+  
+  .study-forge-header__filters {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: var(--space-2, 8px);
+  }
+  
+  .study-forge-header__filter-btn {
+    white-space: nowrap;
+  }
+}

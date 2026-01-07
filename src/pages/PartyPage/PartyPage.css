@@ -1,0 +1,106 @@
+/**
+ * GPS Lab Platform - PartyPage Styles
+ */
+
+.party-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  color: var(--neutral-0, #ffffff);
+  padding: var(--space-6, 24px);
+  max-width: var(--container-xl, 1280px);
+  margin: 0 auto;
+}
+
+/* Back Button */
+.party-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-5, 20px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.party-page__back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Create View */
+.party-page__create {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Detail View */
+.party-page__detail {
+  position: relative;
+}
+
+/* Chat View */
+.party-page__chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 48px);
+}
+
+/* Tasks View */
+.party-page__tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Files View */
+.party-page__files {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal */
+.party-page__modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-6, 24px);
+}
+
+.party-page__modal {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .party-page {
+    padding: var(--space-4, 16px);
+  }
+  
+  .party-page__modal-overlay {
+    padding: var(--space-4, 16px);
+  }
+}

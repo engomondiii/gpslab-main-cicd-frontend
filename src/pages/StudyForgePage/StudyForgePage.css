@@ -1,0 +1,100 @@
+/**
+ * GPS Lab Platform - StudyForgePage Styles
+ */
+
+.study-forge-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Back Button */
+.study-forge-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-5, 20px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.study-forge-page__back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Module View */
+.study-forge-page__module-view {
+  height: 100vh;
+}
+
+/* Mission View */
+.study-forge-page__mission-view {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-6, 24px);
+  padding: var(--space-6, 24px);
+  max-width: var(--container-xl, 1280px);
+  margin: 0 auto;
+}
+
+.study-forge-page__mission-main {
+  min-width: 0;
+}
+
+.study-forge-page__mission-sidebar {
+  position: sticky;
+  top: var(--space-6, 24px);
+  height: fit-content;
+}
+
+/* Progress View */
+.study-forge-page__progress-view {
+  max-width: var(--container-lg, 1024px);
+  margin: 0 auto;
+  padding: var(--space-6, 24px);
+}
+
+/* R2R View */
+.study-forge-page__r2r-view {
+  max-width: var(--container-lg, 1024px);
+  margin: 0 auto;
+  padding: var(--space-6, 24px);
+}
+
+.study-forge-page__r2r-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-6, 24px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .study-forge-page__mission-view {
+    grid-template-columns: 1fr;
+  }
+  
+  .study-forge-page__mission-sidebar {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .study-forge-page__mission-view,
+  .study-forge-page__progress-view,
+  .study-forge-page__r2r-view {
+    padding: var(--space-4, 16px);
+  }
+  
+  .study-forge-page__r2r-panels {
+    grid-template-columns: 1fr;
+  }
+}
