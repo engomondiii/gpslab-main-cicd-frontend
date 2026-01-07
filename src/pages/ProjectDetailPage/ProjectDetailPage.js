@@ -8,7 +8,7 @@
  */
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { ProjectDetail } from '../../components/project/ProjectDetail';
+import ProjectDetail from '../../components/project/ProjectDetail/ProjectDetail';
 import './ProjectDetailPage.css';
 
 /**

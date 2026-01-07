@@ -8,8 +8,8 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import { ProjectList } from '../../components/project/ProjectList';
-import { CreateProjectForm } from '../../components/project/ProjectCreation';
+import  ProjectList from '../../components/project/ProjectList/ProjectList';
+import CreateProjectForm from '../../components/project/ProjectCreation/CreateProjectForm';
 import './ProjectsPage.css';
 
 /**
