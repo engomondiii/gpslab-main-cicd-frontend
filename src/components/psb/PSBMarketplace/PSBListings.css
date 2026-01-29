@@ -1,0 +1,367 @@
+/**
+ * GPS Lab Platform - PSBListings Component Styles
+ */
+
+.psb-listings {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.psb-listings__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  background: rgba(0, 212, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-listings__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.psb-listings__title-icon {
+  font-size: 24px;
+}
+
+.psb-listings__current-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.psb-listings__price-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-listings__price-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Filters */
+.psb-listings__filters {
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-listings__type-filter {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.psb-listings__type-btn {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-listings__type-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-listings__type-btn--active {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-listings__type-btn--buy.psb-listings__type-btn--active {
+  background: rgba(46, 204, 113, 0.2);
+  border-color: var(--success, #2ecc71);
+  color: var(--success, #2ecc71);
+}
+
+.psb-listings__type-btn--sell.psb-listings__type-btn--active {
+  background: rgba(231, 76, 60, 0.2);
+  border-color: var(--error, #e74c3c);
+  color: var(--error, #e74c3c);
+}
+
+/* Order Book */
+.psb-listings__order-book {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-listings__book-section {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+}
+
+.psb-listings__book-section--sell {
+  background: rgba(231, 76, 60, 0.02);
+}
+
+.psb-listings__book-section--buy {
+  background: rgba(46, 204, 113, 0.02);
+}
+
+.psb-listings__book-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+}
+
+.psb-listings__book-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.psb-listings__book-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+}
+
+.psb-listings__book-row--sell .psb-listings__book-price {
+  color: var(--error, #e74c3c);
+}
+
+.psb-listings__book-row--buy .psb-listings__book-price {
+  color: var(--success, #2ecc71);
+}
+
+.psb-listings__book-amount {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-listings__book-total {
+  color: var(--neutral-400, #a8dadc);
+  text-align: right;
+}
+
+.psb-listings__book-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.psb-listings__book-row--sell .psb-listings__book-bar {
+  background: var(--error, #e74c3c);
+}
+
+.psb-listings__book-row--buy .psb-listings__book-bar {
+  background: var(--success, #2ecc71);
+}
+
+/* Spread */
+.psb-listings__spread {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-listings__spread-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-listings__spread-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* List View */
+.psb-listings__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-listings__table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-listings__sort-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: left;
+}
+
+.psb-listings__sort-btn:hover,
+.psb-listings__sort-btn--active {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-listings__table-header span {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+}
+
+.psb-listings__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  transition: var(--transition-all);
+}
+
+.psb-listings__row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.psb-listings__row--buy {
+  border-left: 3px solid var(--success, #2ecc71);
+}
+
+.psb-listings__row--sell {
+  border-left: 3px solid var(--error, #e74c3c);
+}
+
+.psb-listings__cell {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+}
+
+.psb-listings__cell--price {
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-listings__row--buy .psb-listings__cell--price {
+  color: var(--success, #2ecc71);
+}
+
+.psb-listings__row--sell .psb-listings__cell--price {
+  color: var(--error, #e74c3c);
+}
+
+.psb-listings__cell--amount {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-listings__cell--total {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-listings__cell--seller {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.psb-listings__accept-btn,
+.psb-listings__cancel-btn {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-listings__accept-btn--buy {
+  background: var(--success, #2ecc71);
+  border: none;
+  color: var(--neutral-900, #0d1117);
+}
+
+.psb-listings__accept-btn--sell {
+  background: var(--error, #e74c3c);
+  border: none;
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-listings__cancel-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.psb-listings__cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Loading & Empty */
+.psb-listings__loading,
+.psb-listings__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8, 32px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-listings__spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .psb-listings__table-header,
+  .psb-listings__row {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  
+  .psb-listings__cell--total,
+  .psb-listings__cell--seller,
+  .psb-listings__table-header span:nth-child(3),
+  .psb-listings__table-header span:nth-child(4) {
+    display: none;
+  }
+}

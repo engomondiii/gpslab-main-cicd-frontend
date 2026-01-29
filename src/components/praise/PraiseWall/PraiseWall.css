@@ -1,0 +1,428 @@
+/**
+ * GPS Lab Platform - PraiseWall Component Styles
+ */
+
+.praise-wall {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  position: relative;
+}
+
+/* Header */
+.praise-wall__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-8, 32px);
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: var(--space-5, 20px);
+}
+
+.praise-wall__header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.praise-wall__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 32px);
+  font-weight: var(--font-black, 900);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.praise-wall__title-icon {
+  font-size: 40px;
+  animation: trophyShine 2s ease-in-out infinite;
+}
+
+@keyframes trophyShine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+.praise-wall__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-2, 8px) 0 0;
+}
+
+/* Stats */
+.praise-wall__stats {
+  display: flex;
+  gap: var(--space-6, 24px);
+}
+
+.praise-wall__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.praise-wall__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--beacon-purple, #8e44ad);
+}
+
+.praise-wall__stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Controls */
+.praise-wall__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+}
+
+.praise-wall__controls-left {
+  display: flex;
+  gap: var(--space-6, 24px);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Sort */
+.praise-wall__sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.praise-wall__sort-label,
+.praise-wall__stage-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.praise-wall__sort-options {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.praise-wall__sort-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.praise-wall__sort-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--neutral-0, #ffffff);
+}
+
+.praise-wall__sort-btn--active {
+  background: var(--beacon-purple, #8e44ad);
+  border-color: var(--beacon-purple, #8e44ad);
+  color: var(--neutral-0, #ffffff);
+}
+
+.praise-wall__sort-icon {
+  font-size: 14px;
+}
+
+/* Stage Filter */
+.praise-wall__stage-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.praise-wall__stage-select {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+}
+
+.praise-wall__stage-select option {
+  background: var(--neutral-800, #161b22);
+}
+
+/* Give Button */
+.praise-wall__give-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: var(--transition-all);
+  box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
+}
+
+.praise-wall__give-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
+}
+
+.praise-wall__give-icon {
+  font-size: 20px;
+}
+
+.praise-wall__give-baraka {
+  padding: 2px var(--space-2, 8px);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+}
+
+/* Content */
+.praise-wall__content {
+  flex: 1;
+  padding: var(--space-6, 24px) var(--space-8, 32px);
+}
+
+/* Loading */
+.praise-wall__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16, 64px);
+  gap: var(--space-4, 16px);
+}
+
+.praise-wall__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(142, 68, 173, 0.2);
+  border-top-color: var(--beacon-purple, #8e44ad);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.praise-wall__spinner--small {
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.praise-wall__loading span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Empty State */
+.praise-wall__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16, 64px);
+  text-align: center;
+}
+
+.praise-wall__empty-icon {
+  font-size: 80px;
+  margin-bottom: var(--space-4, 16px);
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.praise-wall__empty-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.praise-wall__empty-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-5, 20px);
+  max-width: 400px;
+}
+
+.praise-wall__empty-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--beacon-indigo, #9b59b6) 100%);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.praise-wall__empty-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
+}
+
+.praise-wall__empty-btn-icon {
+  font-size: 24px;
+}
+
+/* Masonry Grid */
+.praise-wall__masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-5, 20px);
+}
+
+.praise-wall__item {
+  break-inside: avoid;
+}
+
+/* Load More */
+.praise-wall__load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-6, 24px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Celebration Overlay */
+.praise-wall__celebration {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-overlay, 500);
+}
+
+.praise-wall__confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.praise-wall__confetti-piece {
+  position: absolute;
+  top: -20px;
+  left: var(--x, 50%);
+  width: 10px;
+  height: 10px;
+  background: var(--beacon-purple, #8e44ad);
+  transform: rotate(var(--rotation, 0deg));
+  animation: confettiFall 3s ease-out var(--delay, 0s) forwards;
+}
+
+.praise-wall__confetti-piece:nth-child(even) {
+  background: var(--beacon-indigo, #9b59b6);
+}
+
+.praise-wall__confetti-piece:nth-child(3n) {
+  background: var(--warning, #f1c40f);
+}
+
+.praise-wall__confetti-piece:nth-child(5n) {
+  background: var(--gps-primary, #00d4ff);
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(var(--rotation, 0deg));
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(calc(var(--rotation, 0deg) + 720deg));
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .praise-wall__header {
+    padding: var(--space-5, 20px);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .praise-wall__title {
+    font-size: var(--text-2xl, 28px);
+  }
+  
+  .praise-wall__stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .praise-wall__controls {
+    padding: var(--space-4, 16px) var(--space-5, 20px);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .praise-wall__controls-left {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .praise-wall__sort {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .praise-wall__content {
+    padding: var(--space-4, 16px);
+  }
+  
+  .praise-wall__masonry {
+    grid-template-columns: 1fr;
+  }
+}

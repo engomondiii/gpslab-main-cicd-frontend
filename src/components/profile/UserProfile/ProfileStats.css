@@ -1,0 +1,214 @@
+/**
+ * GPS Lab Platform - ProfileStats Component Styles
+ */
+
+.profile-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+/* Section */
+.profile-stats__section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5, 20px);
+}
+
+.profile-stats__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-4, 16px);
+}
+
+.profile-stats__section-icon {
+  font-size: 24px;
+}
+
+/* Grid */
+.profile-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+.profile-stats__grid--two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Item */
+.profile-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  transition: var(--transition-all);
+}
+
+.profile-stats__item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.profile-stats__item--large {
+  grid-column: 1 / -1;
+}
+
+.profile-stats__item--currency {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.profile-stats__item--rank {
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  border-color: rgba(142, 68, 173, 0.3);
+}
+
+.profile-stats__item--streak {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.profile-stats__item-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.profile-stats__item-icon {
+  font-size: 20px;
+}
+
+.profile-stats__item-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.profile-stats__item-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.profile-stats__item-value--highlight {
+  color: var(--gps-primary, #00d4ff);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.profile-stats__item-value--baraka {
+  color: var(--warning, #f1c40f);
+}
+
+.profile-stats__item-value--psb {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.profile-stats__item-value--rank {
+  color: var(--beacon-purple, #8e44ad);
+}
+
+.profile-stats__item-value--streak {
+  color: var(--error, #e74c3c);
+}
+
+.profile-stats__item-total {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-normal, 400);
+  color: var(--neutral-500, #8b949e);
+  margin-left: var(--space-1, 4px);
+}
+
+/* Progress Bar */
+.profile-stats__progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  margin-top: var(--space-2, 8px);
+}
+
+.profile-stats__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--beacon-purple, #8e44ad));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.profile-stats__progress-fill--success {
+  background: linear-gradient(90deg, var(--success, #2ecc71), #27ae60);
+}
+
+.profile-stats__progress-fill--warning {
+  background: linear-gradient(90deg, var(--warning, #f1c40f), var(--beacon-orange, #f39c12));
+}
+
+/* Compact Variant */
+.profile-stats--compact .profile-stats__compact-grid {
+  display: flex;
+  gap: var(--space-4, 16px);
+  justify-content: center;
+}
+
+.profile-stats__compact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg, 8px);
+  min-width: 80px;
+}
+
+.profile-stats__compact-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.profile-stats__compact-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .profile-stats__grid--two-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-stats__item-value {
+    font-size: var(--text-xl, 24px);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-stats__section {
+    padding: var(--space-4, 16px);
+  }
+  
+  .profile-stats__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-stats--compact .profile-stats__compact-grid {
+    flex-wrap: wrap;
+  }
+}

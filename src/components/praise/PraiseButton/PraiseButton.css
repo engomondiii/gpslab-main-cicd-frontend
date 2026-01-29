@@ -1,0 +1,234 @@
+/**
+ * GPS Lab Platform - PraiseButton Component Styles
+ */
+
+.praise-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-all);
+  overflow: visible;
+}
+
+/* Default Variant */
+.praise-button--default {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--beacon-indigo, #9b59b6) 100%);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+.praise-button--default:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(142, 68, 173, 0.4);
+}
+
+.praise-button--default:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Icon Variant */
+.praise-button--icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.2);
+  border-radius: 50%;
+}
+
+.praise-button--icon:hover:not(:disabled) {
+  background: rgba(142, 68, 173, 0.2);
+  border-color: var(--beacon-purple, #8e44ad);
+  transform: scale(1.1);
+}
+
+/* Text Variant */
+.praise-button--text {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: transparent;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: var(--font-medium, 500);
+  color: var(--beacon-purple, #8e44ad);
+}
+
+.praise-button--text:hover:not(:disabled) {
+  background: rgba(142, 68, 173, 0.1);
+}
+
+/* Floating Variant */
+.praise-button--floating {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(142, 68, 173, 0.4);
+}
+
+.praise-button--floating:hover:not(:disabled) {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 6px 30px rgba(142, 68, 173, 0.5);
+}
+
+.praise-button__pulse {
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--beacon-purple, #8e44ad);
+  border-radius: 50%;
+  animation: pulseFade 2s ease-out infinite;
+}
+
+@keyframes pulseFade {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Sizes */
+.praise-button--small {
+  font-size: var(--text-xs, 12px);
+}
+
+.praise-button--small.praise-button--default {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+}
+
+.praise-button--small.praise-button--icon {
+  width: 32px;
+  height: 32px;
+}
+
+.praise-button--small .praise-button__icon {
+  font-size: 14px;
+}
+
+.praise-button--medium {
+  font-size: var(--text-sm, 14px);
+}
+
+.praise-button--medium .praise-button__icon {
+  font-size: 18px;
+}
+
+.praise-button--large {
+  font-size: var(--text-base, 16px);
+}
+
+.praise-button--large.praise-button--default {
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+}
+
+.praise-button--large.praise-button--icon {
+  width: 48px;
+  height: 48px;
+}
+
+.praise-button--large.praise-button--floating {
+  width: 64px;
+  height: 64px;
+}
+
+.praise-button--large .praise-button__icon {
+  font-size: 24px;
+}
+
+/* Icon */
+.praise-button__icon {
+  display: inline-flex;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.praise-button--animating .praise-button__icon {
+  animation: iconBounce 0.3s ease-out;
+}
+
+@keyframes iconBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Label */
+.praise-button__label {
+  white-space: nowrap;
+}
+
+/* Recipient */
+.praise-button__recipient {
+  font-weight: var(--font-normal, 400);
+  opacity: 0.8;
+}
+
+/* Particles */
+.praise-button__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.praise-button__particle {
+  position: absolute;
+  font-size: 12px;
+  animation: particleFly 1s ease-out forwards;
+}
+
+.praise-button__particle:nth-child(1) {
+  top: 0;
+  left: 50%;
+  animation-delay: 0s;
+}
+
+.praise-button__particle:nth-child(2) {
+  top: 50%;
+  right: 0;
+  animation-delay: 0.1s;
+}
+
+.praise-button__particle:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  animation-delay: 0.2s;
+}
+
+.praise-button__particle:nth-child(4) {
+  top: 50%;
+  left: 0;
+  animation-delay: 0.15s;
+}
+
+@keyframes particleFly {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 20px), var(--ty, -30px)) scale(1);
+    opacity: 0;
+  }
+}
+
+.praise-button__particle:nth-child(1) { --tx: 0px; --ty: -40px; }
+.praise-button__particle:nth-child(2) { --tx: 40px; --ty: 0px; }
+.praise-button__particle:nth-child(3) { --tx: 0px; --ty: 40px; }
+.praise-button__particle:nth-child(4) { --tx: -40px; --ty: 0px; }
+
+/* Disabled */
+.praise-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

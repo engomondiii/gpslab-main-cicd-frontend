@@ -1,0 +1,306 @@
+/**
+ * GPS Lab Platform - PSBWallet Component Styles
+ */
+
+.psb-wallet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.psb-wallet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-wallet__header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-wallet__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  margin: 0;
+}
+
+.psb-wallet__title-icon {
+  font-size: 28px;
+}
+
+.psb-wallet__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Ticker */
+.psb-wallet__ticker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-wallet__price {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-wallet__change {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+}
+
+.psb-wallet__change--positive {
+  color: var(--success, #2ecc71);
+}
+
+.psb-wallet__change--negative {
+  color: var(--error, #e74c3c);
+}
+
+/* Balance Section */
+.psb-wallet__balance-section {
+  padding: var(--space-5, 20px);
+  display: flex;
+  justify-content: center;
+}
+
+/* Actions */
+.psb-wallet__actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3, 12px);
+  padding: 0 var(--space-5, 20px) var(--space-5, 20px);
+}
+
+.psb-wallet__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-wallet__action:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.psb-wallet__action--primary:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+}
+
+.psb-wallet__action--success:hover {
+  border-color: var(--success, #2ecc71);
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+}
+
+.psb-wallet__action--warning:hover {
+  border-color: var(--warning, #f1c40f);
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+}
+
+.psb-wallet__action--neutral:hover {
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.psb-wallet__action-icon {
+  font-size: 24px;
+}
+
+.psb-wallet__action-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Stats */
+.psb-wallet__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 20px);
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-wallet__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-wallet__stat--highlight {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.psb-wallet__stat-icon {
+  font-size: 24px;
+}
+
+.psb-wallet__stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-wallet__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-wallet__stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Portfolio */
+.psb-wallet__portfolio {
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-wallet__portfolio-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.psb-wallet__portfolio-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.psb-wallet__portfolio-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.psb-wallet__portfolio-bar-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.psb-wallet__portfolio-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.psb-wallet__portfolio-bar-fill--available {
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--beacon-purple, #8e44ad));
+}
+
+.psb-wallet__portfolio-bar-fill--locked {
+  background: linear-gradient(90deg, var(--warning, #f1c40f), var(--beacon-orange, #f39c12));
+}
+
+/* Compact Variant */
+.psb-wallet--compact {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-wallet--compact .psb-wallet__quick-actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.psb-wallet__quick-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-wallet__quick-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+/* Glow Effect */
+.psb-wallet__glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .psb-wallet__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3, 12px);
+  }
+  
+  .psb-wallet__ticker {
+    align-items: flex-start;
+  }
+  
+  .psb-wallet__actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .psb-wallet__stats {
+    grid-template-columns: 1fr;
+  }
+}

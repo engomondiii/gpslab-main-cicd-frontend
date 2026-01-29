@@ -1,0 +1,302 @@
+/**
+ * GPS Lab Platform - BarakaWallet Component Styles
+ */
+
+.baraka-wallet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(241, 196, 15, 0.2);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.baraka-wallet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-wallet__header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.baraka-wallet__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+  margin: 0;
+}
+
+.baraka-wallet__title-icon {
+  font-size: 28px;
+}
+
+.baraka-wallet__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Streak */
+.baraka-wallet__streak {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.baraka-wallet__streak-icon {
+  font-size: 18px;
+  animation: flamePulse 1s ease-in-out infinite;
+}
+
+@keyframes flamePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.baraka-wallet__streak-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--error, #e74c3c);
+}
+
+.baraka-wallet__streak-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Balance Section */
+.baraka-wallet__balance-section {
+  padding: var(--space-5, 20px);
+  display: flex;
+  justify-content: center;
+}
+
+/* Actions */
+.baraka-wallet__actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3, 12px);
+  padding: 0 var(--space-5, 20px) var(--space-5, 20px);
+}
+
+.baraka-wallet__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-wallet__action:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.baraka-wallet__action--success:hover {
+  border-color: var(--success, #2ecc71);
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+}
+
+.baraka-wallet__action--primary:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+}
+
+.baraka-wallet__action--warning:hover {
+  border-color: var(--warning, #f1c40f);
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+}
+
+.baraka-wallet__action--neutral:hover {
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.baraka-wallet__action-icon {
+  font-size: 24px;
+}
+
+.baraka-wallet__action-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Stats */
+.baraka-wallet__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 20px);
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-wallet__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.baraka-wallet__stat--highlight {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+  border: 1px solid rgba(241, 196, 15, 0.2);
+}
+
+.baraka-wallet__stat-icon {
+  font-size: 24px;
+}
+
+.baraka-wallet__stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.baraka-wallet__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-wallet__stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Tabs */
+.baraka-wallet__tabs {
+  display: flex;
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  gap: var(--space-2, 8px);
+}
+
+.baraka-wallet__tab {
+  flex: 1;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-wallet__tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-wallet__tab--active {
+  background: var(--warning, #f1c40f);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Glow Effect */
+.baraka-wallet__glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(241, 196, 15, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Compact Variant */
+.baraka-wallet--compact {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(241, 196, 15, 0.05);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.baraka-wallet--compact .baraka-wallet__quick-actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.baraka-wallet__quick-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-wallet__quick-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--warning, #f1c40f);
+}
+
+/* Expanded Variant */
+.baraka-wallet--expanded {
+  min-height: 400px;
+}
+
+.baraka-wallet--expanded .baraka-wallet__stats {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .baraka-wallet__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3, 12px);
+  }
+  
+  .baraka-wallet__actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .baraka-wallet--expanded .baraka-wallet__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .baraka-wallet__stats {
+    grid-template-columns: 1fr;
+  }
+}

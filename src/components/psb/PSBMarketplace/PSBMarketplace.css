@@ -1,0 +1,426 @@
+/**
+ * GPS Lab Platform - PSBMarketplace Component Styles
+ */
+
+.psb-marketplace {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--neutral-900, #0d1117);
+}
+
+/* Header */
+.psb-marketplace__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-6, 24px) var(--space-8, 32px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+}
+
+.psb-marketplace__header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-marketplace__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.psb-marketplace__title-icon {
+  font-size: 32px;
+}
+
+.psb-marketplace__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Price Display */
+.psb-marketplace__price-display {
+  text-align: right;
+}
+
+.psb-marketplace__current-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.psb-marketplace__price-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.psb-marketplace__price-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-marketplace__price-change {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+}
+
+.psb-marketplace__price-change--positive {
+  color: var(--success, #2ecc71);
+}
+
+.psb-marketplace__price-change--negative {
+  color: var(--error, #e74c3c);
+}
+
+/* Market Stats */
+.psb-marketplace__stats {
+  display: flex;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+}
+
+.psb-marketplace__stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.psb-marketplace__stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.psb-marketplace__stat-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-marketplace__stat-value--high {
+  color: var(--success, #2ecc71);
+}
+
+.psb-marketplace__stat-value--low {
+  color: var(--error, #e74c3c);
+}
+
+/* Balances */
+.psb-marketplace__balances {
+  display: flex;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+}
+
+.psb-marketplace__balance {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-marketplace__balance-icon {
+  font-size: 24px;
+}
+
+.psb-marketplace__balance-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-marketplace__balance-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-marketplace__balance-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-marketplace__trade-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-left: auto;
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--beacon-purple, #8e44ad) 100%);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-marketplace__trade-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+}
+
+.psb-marketplace__trade-btn-icon {
+  font-size: 18px;
+}
+
+/* Tabs */
+.psb-marketplace__tabs {
+  display: flex;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-8, 32px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-marketplace__tab {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-marketplace__tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-marketplace__tab--active {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Content */
+.psb-marketplace__content {
+  flex: 1;
+  padding: var(--space-5, 20px) var(--space-8, 32px);
+}
+
+/* Trades */
+.psb-marketplace__trades {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+.psb-marketplace__trades-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+}
+
+.psb-marketplace__trades-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.psb-marketplace__trade {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-3, 12px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+}
+
+.psb-marketplace__trade--buy .psb-marketplace__trade-price {
+  color: var(--success, #2ecc71);
+}
+
+.psb-marketplace__trade--sell .psb-marketplace__trade-price {
+  color: var(--error, #e74c3c);
+}
+
+.psb-marketplace__trade-amount {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-marketplace__trade-time {
+  color: var(--neutral-500, #8b949e);
+  text-align: right;
+}
+
+/* My Orders */
+.psb-marketplace__my-orders {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+.psb-marketplace__orders-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-marketplace__order {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-marketplace__order--buy {
+  border-left: 3px solid var(--success, #2ecc71);
+}
+
+.psb-marketplace__order--sell {
+  border-left: 3px solid var(--error, #e74c3c);
+}
+
+.psb-marketplace__order-type {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+}
+
+.psb-marketplace__order-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-marketplace__order-amount {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-marketplace__order-price {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.psb-marketplace__order-total {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-marketplace__order-cancel {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: transparent;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--error, #e74c3c);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-marketplace__order-cancel:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* Empty State */
+.psb-marketplace__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10, 40px);
+  text-align: center;
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-marketplace__empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-3, 12px);
+  opacity: 0.5;
+}
+
+.psb-marketplace__empty-btn {
+  margin-top: var(--space-4, 16px);
+  padding: var(--space-2, 8px) var(--space-5, 20px);
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .psb-marketplace__header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-5, 20px);
+  }
+  
+  .psb-marketplace__price-display {
+    text-align: left;
+  }
+  
+  .psb-marketplace__stats {
+    padding: var(--space-3, 12px) var(--space-5, 20px);
+  }
+  
+  .psb-marketplace__balances {
+    padding: var(--space-3, 12px) var(--space-5, 20px);
+    flex-direction: column;
+  }
+  
+  .psb-marketplace__trade-btn {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+  
+  .psb-marketplace__tabs {
+    padding: var(--space-3, 12px) var(--space-5, 20px);
+    overflow-x: auto;
+  }
+  
+  .psb-marketplace__content {
+    padding: var(--space-4, 16px);
+  }
+}

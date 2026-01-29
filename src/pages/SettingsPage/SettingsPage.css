@@ -1,0 +1,85 @@
+/**
+ * GPS Lab Platform - SettingsPage Styles
+ */
+
+.settings-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  padding: var(--space-6, 24px);
+}
+
+.settings-page__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Loading */
+.settings-page--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-page__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 16px);
+}
+
+.settings-page__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.settings-page__loading p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Success Message */
+.settings-page__success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  margin-bottom: var(--space-5, 20px);
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid var(--success, #2ecc71);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--success, #2ecc71);
+  animation: slideDown 0.3s var(--ease-out);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.settings-page__success-icon {
+  font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: var(--space-4, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-page {
+    padding: var(--space-3, 12px);
+  }
+}

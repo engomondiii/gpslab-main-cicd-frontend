@@ -1,0 +1,296 @@
+/**
+ * GPS Lab Platform - BarakaStore Component Styles
+ */
+
+.baraka-store {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--neutral-900, #0d1117);
+}
+
+/* Header */
+.baraka-store__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-6, 24px) var(--space-8, 32px);
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+}
+
+.baraka-store__header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.baraka-store__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.baraka-store__title-icon {
+  font-size: 32px;
+}
+
+.baraka-store__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+}
+
+/* Balance */
+.baraka-store__balance {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(241, 196, 15, 0.1);
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.baraka-store__balance-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.baraka-store__balance-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+}
+
+/* Filters */
+.baraka-store__filters {
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Categories */
+.baraka-store__categories {
+  display: flex;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-4, 16px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: var(--space-2, 8px);
+}
+
+.baraka-store__categories::-webkit-scrollbar {
+  display: none;
+}
+
+.baraka-store__category {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+  white-space: nowrap;
+}
+
+.baraka-store__category:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-store__category--active {
+  background: var(--warning, #f1c40f);
+  border-color: var(--warning, #f1c40f);
+  color: var(--neutral-900, #0d1117);
+}
+
+.baraka-store__category-icon {
+  font-size: 16px;
+}
+
+/* Controls */
+.baraka-store__controls {
+  display: flex;
+  gap: var(--space-3, 12px);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Search */
+.baraka-store__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex: 1;
+  min-width: 200px;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.baraka-store__search-icon {
+  font-size: 16px;
+}
+
+.baraka-store__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-store__search-input::placeholder {
+  color: var(--neutral-500, #8b949e);
+}
+
+.baraka-store__search-input:focus {
+  outline: none;
+}
+
+/* Sort */
+.baraka-store__sort {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+}
+
+.baraka-store__sort option {
+  background: var(--neutral-800, #161b22);
+}
+
+/* Toggle */
+.baraka-store__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+}
+
+.baraka-store__toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--warning, #f1c40f);
+}
+
+/* Content */
+.baraka-store__content {
+  flex: 1;
+  padding: var(--space-6, 24px) var(--space-8, 32px);
+}
+
+/* Empty State */
+.baraka-store__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16, 64px);
+  text-align: center;
+}
+
+.baraka-store__empty-icon {
+  font-size: 80px;
+  margin-bottom: var(--space-4, 16px);
+  opacity: 0.5;
+}
+
+.baraka-store__empty-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-300, #e1e4e8);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.baraka-store__empty-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+  margin: 0;
+}
+
+/* Grid */
+.baraka-store__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5, 20px);
+}
+
+/* Footer */
+.baraka-store__footer {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6, 24px);
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-store__footer-stat {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .baraka-store__header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-5, 20px);
+  }
+  
+  .baraka-store__balance {
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  .baraka-store__filters {
+    padding: var(--space-4, 16px);
+  }
+  
+  .baraka-store__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .baraka-store__search {
+    min-width: 100%;
+  }
+  
+  .baraka-store__content {
+    padding: var(--space-4, 16px);
+  }
+  
+  .baraka-store__grid {
+    grid-template-columns: 1fr;
+  }
+}

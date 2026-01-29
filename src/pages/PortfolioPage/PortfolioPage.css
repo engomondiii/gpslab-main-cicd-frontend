@@ -1,0 +1,37 @@
+/**
+ * GPS Lab Platform - PortfolioPage Styles
+ */
+
+.portfolio-page {
+  min-height: 100vh;
+  background: var(--neutral-900, #0d1117);
+  padding: var(--space-6, 24px);
+}
+
+.portfolio-page__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Editor Wrapper */
+.portfolio-page__editor-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.portfolio-page--editor-open .portfolio-page__container {
+  max-width: 700px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .portfolio-page {
+    padding: var(--space-4, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-page {
+    padding: var(--space-3, 12px);
+  }
+}

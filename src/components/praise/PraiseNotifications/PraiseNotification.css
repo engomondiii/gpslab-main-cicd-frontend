@@ -1,0 +1,381 @@
+/**
+ * GPS Lab Platform - PraiseNotification Component Styles
+ */
+
+/* Container */
+.praise-notification-container {
+  position: fixed;
+  z-index: var(--z-toast, 1100);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  pointer-events: none;
+}
+
+.praise-notification-container > * {
+  pointer-events: auto;
+}
+
+.praise-notification-container--top-right {
+  top: var(--space-5, 20px);
+  right: var(--space-5, 20px);
+}
+
+.praise-notification-container--top-left {
+  top: var(--space-5, 20px);
+  left: var(--space-5, 20px);
+}
+
+.praise-notification-container--bottom-right {
+  bottom: var(--space-5, 20px);
+  right: var(--space-5, 20px);
+}
+
+.praise-notification-container--bottom-left {
+  bottom: var(--space-5, 20px);
+  left: var(--space-5, 20px);
+}
+
+.praise-notification-container--top-center {
+  top: var(--space-5, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Notification */
+.praise-notification {
+  position: relative;
+  width: 360px;
+  max-width: calc(100vw - 40px);
+  background: var(--neutral-900, #0d1117);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: 0 8px 30px rgba(142, 68, 173, 0.3);
+  overflow: hidden;
+  animation: notificationSlideIn var(--duration-base) var(--ease-out);
+}
+
+/* Position-based animations */
+.praise-notification--top-right,
+.praise-notification--bottom-right {
+  animation-name: notificationSlideInRight;
+}
+
+.praise-notification--top-left,
+.praise-notification--bottom-left {
+  animation-name: notificationSlideInLeft;
+}
+
+.praise-notification--top-center {
+  animation-name: notificationSlideInTop;
+}
+
+@keyframes notificationSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes notificationSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes notificationSlideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Exiting state */
+.praise-notification--exiting {
+  animation: notificationSlideOut var(--duration-fast) var(--ease-in) forwards;
+}
+
+@keyframes notificationSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px) scale(0.95);
+  }
+}
+
+/* Type variants */
+.praise-notification--received {
+  border-color: rgba(142, 68, 173, 0.5);
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, var(--neutral-900, #0d1117) 100%);
+}
+
+.praise-notification--sent {
+  border-color: rgba(46, 204, 113, 0.5);
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, var(--neutral-900, #0d1117) 100%);
+}
+
+.praise-notification--badge {
+  border-color: rgba(241, 196, 15, 0.5);
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, var(--neutral-900, #0d1117) 100%);
+}
+
+/* Particles */
+.praise-notification__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.praise-notification__particle {
+  position: absolute;
+  font-size: 12px;
+  animation: particleFloat 2s ease-out forwards;
+  opacity: 0;
+}
+
+.praise-notification__particle:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.praise-notification__particle:nth-child(2) {
+  top: 30%;
+  right: 15%;
+  animation-delay: 0.3s;
+}
+
+.praise-notification__particle:nth-child(3) {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 0.6s;
+}
+
+.praise-notification__particle:nth-child(4) {
+  bottom: 20%;
+  right: 25%;
+  animation-delay: 0.9s;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+}
+
+/* Content */
+.praise-notification__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+}
+
+/* Icon */
+.praise-notification__icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--beacon-indigo, #9b59b6) 100%);
+  border-radius: 50%;
+  animation: iconPop 0.5s var(--ease-out);
+}
+
+@keyframes iconPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.praise-notification__emoji {
+  font-size: 28px;
+}
+
+/* Message */
+.praise-notification__message {
+  flex: 1;
+  min-width: 0;
+}
+
+.praise-notification__title {
+  display: block;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.praise-notification__text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.7);
+}
+
+.praise-notification__user {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.praise-notification__user:hover {
+  text-decoration: underline;
+}
+
+.praise-notification__badge-info {
+  font-weight: var(--font-semibold, 600);
+  color: var(--warning, #f1c40f);
+}
+
+.praise-notification__baraka {
+  display: inline-block;
+  margin-top: var(--space-2, 8px);
+  padding: 2px var(--space-2, 8px);
+  background: rgba(241, 196, 15, 0.2);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+  animation: barakaPop 0.5s var(--ease-out) 0.3s backwards;
+}
+
+@keyframes barakaPop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Actions */
+.praise-notification__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.praise-notification__view-btn {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--beacon-purple, #8e44ad);
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.praise-notification__view-btn:hover {
+  background: #9b59b6;
+}
+
+.praise-notification__close-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  font-size: 14px;
+  color: var(--neutral-500, #8b949e);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.praise-notification__close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Progress Bar */
+.praise-notification__progress {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.praise-notification__progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--beacon-purple, #8e44ad), var(--beacon-indigo, #9b59b6));
+  transition: width 50ms linear;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .praise-notification-container--top-right,
+  .praise-notification-container--top-left,
+  .praise-notification-container--top-center {
+    top: var(--space-3, 12px);
+    left: var(--space-3, 12px);
+    right: var(--space-3, 12px);
+    transform: none;
+  }
+  
+  .praise-notification-container--bottom-right,
+  .praise-notification-container--bottom-left {
+    bottom: var(--space-3, 12px);
+    left: var(--space-3, 12px);
+    right: var(--space-3, 12px);
+  }
+  
+  .praise-notification {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .praise-notification__content {
+    padding: var(--space-3, 12px);
+  }
+  
+  .praise-notification__icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .praise-notification__emoji {
+    font-size: 22px;
+  }
+}

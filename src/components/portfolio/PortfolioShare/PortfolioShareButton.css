@@ -1,0 +1,89 @@
+/**
+ * GPS Lab Platform - PortfolioShareButton Component Styles
+ */
+
+.portfolio-share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.portfolio-share-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--neutral-0, #ffffff);
+}
+
+.portfolio-share-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.portfolio-share-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.portfolio-share-button--small {
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  font-size: var(--text-xs, 12px);
+}
+
+.portfolio-share-button--small .portfolio-share-button__icon {
+  font-size: 14px;
+}
+
+.portfolio-share-button--medium {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+}
+
+.portfolio-share-button--medium .portfolio-share-button__icon {
+  font-size: 16px;
+}
+
+.portfolio-share-button--large {
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+}
+
+.portfolio-share-button--large .portfolio-share-button__icon {
+  font-size: 20px;
+}
+
+/* Icon Variant */
+.portfolio-share-button--icon {
+  padding: var(--space-2, 8px);
+  border-radius: var(--radius-md, 6px);
+}
+
+.portfolio-share-button--icon.portfolio-share-button--small {
+  padding: var(--space-1, 4px);
+}
+
+.portfolio-share-button--icon.portfolio-share-button--large {
+  padding: var(--space-3, 12px);
+}
+
+/* Text Variant */
+.portfolio-share-button--text {
+  background: transparent;
+  border: none;
+  padding: var(--space-1, 4px);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.portfolio-share-button--text:hover:not(:disabled) {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+}

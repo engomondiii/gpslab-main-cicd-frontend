@@ -1,0 +1,305 @@
+/**
+ * GPS Lab Platform - PSBBalance Component Styles
+ */
+
+.psb-balance {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  transition: var(--transition-all);
+}
+
+.psb-balance--clickable {
+  cursor: pointer;
+}
+
+.psb-balance--clickable:hover {
+  transform: scale(1.02);
+}
+
+/* Icon */
+.psb-balance__icon {
+  font-size: 24px;
+  animation: gemFloat 3s ease-in-out infinite;
+}
+
+@keyframes gemFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(3deg); }
+}
+
+/* Content */
+.psb-balance__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-balance__label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.psb-balance__value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Change Animation */
+.psb-balance__change {
+  padding: 2px var(--space-2, 8px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  animation: changePopup 0.5s var(--ease-out);
+}
+
+.psb-balance--increase .psb-balance__change {
+  background: rgba(46, 204, 113, 0.2);
+  color: var(--success, #2ecc71);
+}
+
+.psb-balance--decrease .psb-balance__change {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--error, #e74c3c);
+}
+
+@keyframes changePopup {
+  0% { transform: scale(0) translateY(10px); opacity: 0; }
+  50% { transform: scale(1.2) translateY(-5px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Animating State */
+.psb-balance--animating .psb-balance__value {
+  animation: valueGlow 0.5s ease-out;
+}
+
+.psb-balance--animating.psb-balance--increase .psb-balance__value {
+  color: var(--success, #2ecc71);
+}
+
+.psb-balance--animating.psb-balance--decrease .psb-balance__value {
+  color: var(--error, #e74c3c);
+}
+
+@keyframes valueGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+/* Compact Variant */
+.psb-balance--compact {
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.psb-balance--compact .psb-balance__icon {
+  font-size: 16px;
+  animation: none;
+}
+
+.psb-balance--compact .psb-balance__value {
+  font-size: var(--text-base, 16px);
+  text-shadow: none;
+}
+
+.psb-balance--compact .psb-balance__label {
+  font-size: 10px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-balance--compact .psb-balance__change {
+  font-size: var(--text-xs, 12px);
+  padding: 1px var(--space-1, 4px);
+}
+
+/* Large Variant */
+.psb-balance--large {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.psb-balance--large .psb-balance__content {
+  align-items: center;
+  text-align: center;
+}
+
+.psb-balance--large .psb-balance__value {
+  font-size: var(--text-4xl, 40px);
+}
+
+.psb-balance__gem-container {
+  position: relative;
+  margin-bottom: var(--space-4, 16px);
+}
+
+.psb-balance__gem {
+  font-size: 56px;
+  display: block;
+  animation: gemPulse 3s ease-in-out infinite;
+}
+
+@keyframes gemPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.psb-balance__gem-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%);
+  animation: gemGlow 2s ease-in-out infinite;
+}
+
+@keyframes gemGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.psb-balance__locked {
+  margin-top: var(--space-2, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--warning, #f1c40f);
+}
+
+.psb-balance__market-value {
+  margin-top: var(--space-1, 4px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--success, #2ecc71);
+}
+
+/* Change Popup (Large) */
+.psb-balance__change-popup {
+  position: absolute;
+  top: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--success, #2ecc71);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  animation: popupBounce 0.5s var(--ease-out);
+}
+
+.psb-balance--decrease .psb-balance__change-popup {
+  background: var(--error, #e74c3c);
+  color: var(--neutral-0, #ffffff);
+}
+
+@keyframes popupBounce {
+  0% { transform: scale(0) rotate(-10deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Card Variant */
+.psb-balance--card {
+  position: relative;
+  flex-direction: column;
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.psb-balance__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.psb-balance__card-icon {
+  font-size: 28px;
+}
+
+.psb-balance__card-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-balance__card-body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.psb-balance--card .psb-balance__value {
+  font-size: var(--text-3xl, 32px);
+}
+
+.psb-balance__card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-3, 12px);
+  padding-top: var(--space-3, 12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-balance__card-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.psb-balance__card-stat-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-balance__card-stat-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-balance__card-glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .psb-balance--large {
+    padding: var(--space-4, 16px);
+  }
+  
+  .psb-balance--large .psb-balance__value {
+    font-size: var(--text-3xl, 32px);
+  }
+  
+  .psb-balance__gem {
+    font-size: 40px;
+  }
+  
+  .psb-balance--card .psb-balance__value {
+    font-size: var(--text-2xl, 28px);
+  }
+}

@@ -1,0 +1,229 @@
+/**
+ * GPS Lab Platform - PSBTransactionItem Component Styles
+ */
+
+.psb-transaction-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg, 8px);
+  transition: var(--transition-all);
+}
+
+.psb-transaction-item--clickable {
+  cursor: pointer;
+}
+
+.psb-transaction-item--clickable:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+/* Status variants */
+.psb-transaction-item--pending {
+  opacity: 0.7;
+}
+
+.psb-transaction-item--failed {
+  opacity: 0.5;
+  border-color: rgba(231, 76, 60, 0.3);
+}
+
+/* Icon */
+.psb-transaction-item__icon-wrapper {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg, 8px);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.psb-transaction-item--success .psb-transaction-item__icon-wrapper {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.psb-transaction-item--error .psb-transaction-item__icon-wrapper {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.psb-transaction-item--warning .psb-transaction-item__icon-wrapper {
+  background: rgba(241, 196, 15, 0.1);
+}
+
+.psb-transaction-item--purple .psb-transaction-item__icon-wrapper {
+  background: rgba(142, 68, 173, 0.1);
+}
+
+.psb-transaction-item--primary .psb-transaction-item__icon-wrapper {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.psb-transaction-item__icon {
+  font-size: 24px;
+}
+
+/* Content */
+.psb-transaction-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.psb-transaction-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.psb-transaction-item__label {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-100, #f0f6fc);
+}
+
+.psb-transaction-item__time {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  flex-shrink: 0;
+}
+
+.psb-transaction-item__description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-1, 4px) 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.psb-transaction-item__counterparty {
+  display: inline-block;
+  margin-top: var(--space-1, 4px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-transaction-item__hash {
+  display: inline-block;
+  margin-top: var(--space-1, 4px);
+  margin-left: var(--space-2, 8px);
+  padding: 2px var(--space-2, 8px);
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Amount */
+.psb-transaction-item__amount-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1, 4px);
+}
+
+.psb-transaction-item__amount {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+}
+
+.psb-transaction-item--positive .psb-transaction-item__amount {
+  color: var(--success, #2ecc71);
+}
+
+.psb-transaction-item--negative .psb-transaction-item__amount {
+  color: var(--error, #e74c3c);
+}
+
+.psb-transaction-item__currency {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.psb-transaction-item__price {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-transaction-item__value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Status Badge */
+.psb-transaction-item__status {
+  position: absolute;
+  top: var(--space-2, 8px);
+  right: var(--space-2, 8px);
+  padding: 2px var(--space-2, 8px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  text-transform: uppercase;
+}
+
+.psb-transaction-item__status--pending {
+  background: rgba(241, 196, 15, 0.2);
+  color: var(--warning, #f1c40f);
+}
+
+.psb-transaction-item__status--failed {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--error, #e74c3c);
+}
+
+/* Compact Variant */
+.psb-transaction-item--compact {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-md, 6px);
+}
+
+.psb-transaction-item--compact .psb-transaction-item__icon {
+  font-size: 18px;
+}
+
+.psb-transaction-item--compact .psb-transaction-item__label {
+  flex: 1;
+  font-size: var(--text-sm, 14px);
+}
+
+.psb-transaction-item--compact .psb-transaction-item__amount {
+  font-size: var(--text-base, 16px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .psb-transaction-item {
+    flex-wrap: wrap;
+  }
+  
+  .psb-transaction-item__content {
+    flex: 1 1 60%;
+  }
+  
+  .psb-transaction-item__amount-wrapper {
+    flex: 1 1 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-2, 8px);
+    margin-top: var(--space-2, 8px);
+    padding-top: var(--space-2, 8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}

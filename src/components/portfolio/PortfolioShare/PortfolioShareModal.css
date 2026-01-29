@@ -1,0 +1,305 @@
+/**
+ * GPS Lab Platform - PortfolioShareModal Component Styles
+ */
+
+/* Overlay */
+.portfolio-share-modal__overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  padding: var(--space-4, 16px);
+  animation: fadeIn 0.2s var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal */
+.portfolio-share-modal {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--neutral-800, #161b22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 12px);
+  animation: slideUp 0.3s var(--ease-out);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Header */
+.portfolio-share-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5, 20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-share-modal__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.portfolio-share-modal__title-icon {
+  font-size: 28px;
+}
+
+.portfolio-share-modal__close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.portfolio-share-modal__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Section */
+.portfolio-share-modal__section {
+  padding: var(--space-5, 20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-share-modal__section:last-child {
+  border-bottom: none;
+}
+
+.portfolio-share-modal__section-title {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-400, #a8dadc);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+/* Link Container */
+.portfolio-share-modal__link-container {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.portfolio-share-modal__link-input {
+  flex: 1;
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+}
+
+.portfolio-share-modal__link-input:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+/* Copy Button */
+.portfolio-share-modal__copy-btn {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  transition: var(--transition-all);
+  white-space: nowrap;
+}
+
+.portfolio-share-modal__copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.portfolio-share-modal__copy-btn--copied {
+  background: var(--success, #2ecc71);
+}
+
+/* Social Grid */
+.portfolio-share-modal__social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.portfolio-share-modal__social-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.portfolio-share-modal__social-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.portfolio-share-modal__social-btn--twitter:hover {
+  border-color: #1DA1F2;
+  background: rgba(29, 161, 242, 0.1);
+}
+
+.portfolio-share-modal__social-btn--linkedin:hover {
+  border-color: #0A66C2;
+  background: rgba(10, 102, 194, 0.1);
+}
+
+.portfolio-share-modal__social-btn--facebook:hover {
+  border-color: #1877F2;
+  background: rgba(24, 119, 242, 0.1);
+}
+
+.portfolio-share-modal__social-btn--whatsapp:hover {
+  border-color: #25D366;
+  background: rgba(37, 211, 102, 0.1);
+}
+
+.portfolio-share-modal__social-btn--email:hover {
+  border-color: var(--gps-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.portfolio-share-modal__social-icon {
+  font-size: 28px;
+}
+
+.portfolio-share-modal__social-name {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Embed Sizes */
+.portfolio-share-modal__embed-sizes {
+  display: flex;
+  gap: var(--space-2, 8px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.portfolio-share-modal__size-btn {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.portfolio-share-modal__size-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-share-modal__size-btn--active {
+  background: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Embed Container */
+.portfolio-share-modal__embed-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.portfolio-share-modal__embed-code {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--gps-primary, #00d4ff);
+  resize: none;
+}
+
+.portfolio-share-modal__embed-code:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+/* QR Code Section */
+.portfolio-share-modal__section--qr {
+  padding: var(--space-6, 24px);
+}
+
+.portfolio-share-modal__qr-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.portfolio-share-modal__qr-icon {
+  font-size: 48px;
+  opacity: 0.5;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.portfolio-share-modal__qr-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .portfolio-share-modal__link-container {
+    flex-direction: column;
+  }
+  
+  .portfolio-share-modal__social-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .portfolio-share-modal__embed-sizes {
+    flex-wrap: wrap;
+  }
+}

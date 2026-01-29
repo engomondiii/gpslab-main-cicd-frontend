@@ -1,0 +1,394 @@
+/**
+ * GPS Lab Platform - PSBTradeForm Component Styles
+ */
+
+.psb-trade-form {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.psb-trade-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(142, 68, 173, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.psb-trade-form__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.psb-trade-form__title-icon {
+  font-size: 24px;
+}
+
+.psb-trade-form__current-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.psb-trade-form__price-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-trade-form__price-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Type Toggle */
+.psb-trade-form__type-toggle {
+  display: flex;
+  padding: var(--space-4, 16px);
+  gap: var(--space-2, 8px);
+}
+
+.psb-trade-form__type-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-trade-form__type-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.psb-trade-form__type-btn--buy.psb-trade-form__type-btn--active {
+  background: rgba(46, 204, 113, 0.2);
+  border-color: var(--success, #2ecc71);
+  color: var(--success, #2ecc71);
+}
+
+.psb-trade-form__type-btn--sell.psb-trade-form__type-btn--active {
+  background: rgba(231, 76, 60, 0.2);
+  border-color: var(--error, #e74c3c);
+  color: var(--error, #e74c3c);
+}
+
+.psb-trade-form__type-icon {
+  font-size: 18px;
+}
+
+/* Balance */
+.psb-trade-form__balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  margin: 0 var(--space-4, 16px);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-trade-form__balance-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-trade-form__balance-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Section */
+.psb-trade-form__section {
+  padding: var(--space-4, 16px);
+}
+
+.psb-trade-form__label {
+  display: block;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+  margin-bottom: var(--space-2, 8px);
+}
+
+/* Price Type */
+.psb-trade-form__price-type {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.psb-trade-form__price-btn {
+  flex: 1;
+  padding: var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-trade-form__price-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.psb-trade-form__price-btn--active {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Input */
+.psb-trade-form__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.psb-trade-form__input {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  padding-right: var(--space-10, 40px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-0, #ffffff);
+  transition: var(--transition-all);
+}
+
+.psb-trade-form__input::placeholder {
+  color: var(--neutral-600, #6b7280);
+}
+
+.psb-trade-form__input:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.psb-trade-form__input--error {
+  border-color: var(--error, #e74c3c);
+}
+
+.psb-trade-form__input-prefix {
+  position: absolute;
+  left: var(--space-3, 12px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.psb-trade-form__input-prefix + .psb-trade-form__input {
+  padding-left: var(--space-8, 32px);
+}
+
+.psb-trade-form__input-suffix {
+  position: absolute;
+  right: var(--space-3, 12px);
+  font-size: 20px;
+}
+
+/* Error */
+.psb-trade-form__error {
+  display: block;
+  margin-top: var(--space-1, 4px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--error, #e74c3c);
+}
+
+/* Price Diff */
+.psb-trade-form__price-diff {
+  display: inline-block;
+  margin-top: var(--space-1, 4px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+}
+
+.psb-trade-form__price-diff--above {
+  color: var(--success, #2ecc71);
+}
+
+.psb-trade-form__price-diff--below {
+  color: var(--error, #e74c3c);
+}
+
+/* Percent Buttons */
+.psb-trade-form__percent-btns {
+  display: flex;
+  gap: var(--space-2, 8px);
+  margin-top: var(--space-3, 12px);
+}
+
+.psb-trade-form__percent-btn {
+  flex: 1;
+  padding: var(--space-2, 8px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-trade-form__percent-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Summary */
+.psb-trade-form__summary {
+  padding: var(--space-4, 16px);
+  margin: 0 var(--space-4, 16px);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.psb-trade-form__summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2, 8px) 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+.psb-trade-form__summary-row--total {
+  padding-top: var(--space-3, 12px);
+  margin-top: var(--space-2, 8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Actions */
+.psb-trade-form__actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+}
+
+.psb-trade-form__cancel-btn,
+.psb-trade-form__submit-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.psb-trade-form__cancel-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.psb-trade-form__cancel-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.psb-trade-form__submit-btn {
+  border: none;
+  color: var(--neutral-0, #ffffff);
+}
+
+.psb-trade-form__submit-btn--buy {
+  background: linear-gradient(135deg, var(--success, #2ecc71) 0%, #27ae60 100%);
+}
+
+.psb-trade-form__submit-btn--buy:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+}
+
+.psb-trade-form__submit-btn--sell {
+  background: linear-gradient(135deg, var(--error, #e74c3c) 0%, #c0392b 100%);
+}
+
+.psb-trade-form__submit-btn--sell:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+}
+
+.psb-trade-form__submit-btn:disabled,
+.psb-trade-form__cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.psb-trade-form__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--neutral-0, #ffffff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .psb-trade-form__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3, 12px);
+  }
+  
+  .psb-trade-form__current-price {
+    align-items: flex-start;
+  }
+  
+  .psb-trade-form__type-toggle {
+    flex-direction: column;
+  }
+  
+  .psb-trade-form__actions {
+    flex-direction: column-reverse;
+  }
+}

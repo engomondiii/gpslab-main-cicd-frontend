@@ -1,0 +1,273 @@
+/**
+ * GPS Lab Platform - ProfileEditor Component Styles
+ */
+
+.profile-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  max-width: 600px;
+}
+
+.profile-editor--saving {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Header */
+.profile-editor__header {
+  padding-bottom: var(--space-4, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-editor__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 28px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.profile-editor__title-icon {
+  font-size: 28px;
+}
+
+.profile-editor__subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: var(--space-2, 8px) 0 0;
+}
+
+/* Section */
+.profile-editor__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+}
+
+.profile-editor__section-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+/* Field */
+.profile-editor__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.profile-editor__field-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+.profile-editor__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.profile-editor__social-icon {
+  font-size: 16px;
+}
+
+/* Input */
+.profile-editor__input,
+.profile-editor__select,
+.profile-editor__textarea {
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-0, #ffffff);
+  transition: var(--transition-all);
+}
+
+.profile-editor__input::placeholder,
+.profile-editor__textarea::placeholder {
+  color: var(--neutral-500, #8b949e);
+}
+
+.profile-editor__input:focus,
+.profile-editor__select:focus,
+.profile-editor__textarea:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.profile-editor__input--error {
+  border-color: var(--error, #e74c3c);
+}
+
+/* Input Wrapper */
+.profile-editor__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-editor__input-prefix {
+  position: absolute;
+  left: var(--space-3, 12px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.profile-editor__input-wrapper .profile-editor__input {
+  padding-left: var(--space-7, 28px);
+}
+
+/* Select */
+.profile-editor__select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: var(--space-8, 32px);
+}
+
+.profile-editor__select option {
+  background: var(--neutral-800, #161b22);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Textarea */
+.profile-editor__textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+/* Error */
+.profile-editor__error {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--error, #e74c3c);
+}
+
+/* Hint */
+.profile-editor__hint {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+/* Social Links */
+.profile-editor__social-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+/* Actions */
+.profile-editor__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3, 12px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-editor__cancel-btn,
+.profile-editor__save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.profile-editor__cancel-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.profile-editor__cancel-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.profile-editor__save-btn {
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  color: var(--neutral-900, #0d1117);
+}
+
+.profile-editor__save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.profile-editor__save-btn:disabled,
+.profile-editor__cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.profile-editor__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: var(--neutral-900, #0d1117);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-editor__field-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-editor__social-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-editor__section {
+    padding: var(--space-4, 16px);
+  }
+  
+  .profile-editor__actions {
+    flex-direction: column-reverse;
+  }
+  
+  .profile-editor__cancel-btn,
+  .profile-editor__save-btn {
+    width: 100%;
+  }
+}

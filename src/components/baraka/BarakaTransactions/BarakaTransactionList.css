@@ -1,0 +1,295 @@
+/**
+ * GPS Lab Platform - BarakaTransactionList Component Styles
+ */
+
+.baraka-transaction-list {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+}
+
+/* Header */
+.baraka-transaction-list__header {
+  padding: var(--space-5, 20px);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-transaction-list__header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.baraka-transaction-list__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0;
+}
+
+.baraka-transaction-list__title-icon {
+  font-size: 24px;
+}
+
+.baraka-transaction-list__totals {
+  display: flex;
+  gap: var(--space-3, 12px);
+}
+
+.baraka-transaction-list__total {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+}
+
+.baraka-transaction-list__total--earned {
+  color: var(--success, #2ecc71);
+}
+
+.baraka-transaction-list__total--spent {
+  color: var(--error, #e74c3c);
+}
+
+/* Search */
+.baraka-transaction-list__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.baraka-transaction-list__search-icon {
+  font-size: 16px;
+}
+
+.baraka-transaction-list__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-transaction-list__search-input::placeholder {
+  color: var(--neutral-500, #8b949e);
+}
+
+.baraka-transaction-list__search-input:focus {
+  outline: none;
+}
+
+/* Filters */
+.baraka-transaction-list__filters {
+  display: flex;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.baraka-transaction-list__filters::-webkit-scrollbar {
+  display: none;
+}
+
+.baraka-transaction-list__filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  cursor: pointer;
+  transition: var(--transition-all);
+  white-space: nowrap;
+}
+
+.baraka-transaction-list__filter:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-transaction-list__filter--active {
+  background: var(--warning, #f1c40f);
+  border-color: var(--warning, #f1c40f);
+  color: var(--neutral-900, #0d1117);
+}
+
+.baraka-transaction-list__filter-icon {
+  font-size: 14px;
+}
+
+/* Content */
+.baraka-transaction-list__content {
+  flex: 1;
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.baraka-transaction-list__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.baraka-transaction-list__content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.baraka-transaction-list__content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Loading */
+.baraka-transaction-list__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10, 40px);
+  gap: var(--space-3, 12px);
+}
+
+.baraka-transaction-list__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(241, 196, 15, 0.2);
+  border-top-color: var(--warning, #f1c40f);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.baraka-transaction-list__spinner--small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.baraka-transaction-list__loading span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Empty */
+.baraka-transaction-list__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10, 40px);
+  text-align: center;
+}
+
+.baraka-transaction-list__empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.baraka-transaction-list__empty-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+}
+
+/* Groups */
+.baraka-transaction-list__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+.baraka-transaction-list__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.baraka-transaction-list__group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2, 8px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-transaction-list__group-date {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.baraka-transaction-list__group-count {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.baraka-transaction-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+/* Load More */
+.baraka-transaction-list__load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+}
+
+.baraka-transaction-list__load-more-btn {
+  padding: var(--space-2, 8px) var(--space-5, 20px);
+  background: rgba(241, 196, 15, 0.1);
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--warning, #f1c40f);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-transaction-list__load-more-btn:hover {
+  background: var(--warning, #f1c40f);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .baraka-transaction-list__header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2, 8px);
+  }
+  
+  .baraka-transaction-list__content {
+    max-height: none;
+  }
+}

@@ -1,0 +1,318 @@
+/**
+ * GPS Lab Platform - BadgeAnimation Component Styles
+ */
+
+.badge-animation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+}
+
+/* Size Variants */
+.badge-animation--small {
+  --badge-size: 80px;
+  --icon-size: 40px;
+  --name-size: 14px;
+  --rarity-size: 10px;
+}
+
+.badge-animation--medium {
+  --badge-size: 120px;
+  --icon-size: 56px;
+  --name-size: 18px;
+  --rarity-size: 12px;
+}
+
+.badge-animation--large {
+  --badge-size: 160px;
+  --icon-size: 80px;
+  --name-size: 24px;
+  --rarity-size: 14px;
+}
+
+/* Glow Effect */
+.badge-animation__glow {
+  position: absolute;
+  width: calc(var(--badge-size) * 2);
+  height: calc(var(--badge-size) * 2);
+  background: radial-gradient(circle, var(--rarity-glow) 0%, transparent 70%);
+  opacity: 0;
+  filter: blur(30px);
+  z-index: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.badge-animation--reveal .badge-animation__glow,
+.badge-animation--shimmer .badge-animation__glow,
+.badge-animation--complete .badge-animation__glow {
+  opacity: 1;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Ring Effects */
+.badge-animation__ring {
+  position: absolute;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  border: 2px solid var(--rarity-color);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.badge-animation--reveal .badge-animation__ring--1 {
+  animation: ringExpand 1s var(--ease-out) forwards;
+}
+
+.badge-animation--reveal .badge-animation__ring--2 {
+  animation: ringExpand 1s var(--ease-out) 0.2s forwards;
+}
+
+.badge-animation--reveal .badge-animation__ring--3 {
+  animation: ringExpand 1s var(--ease-out) 0.4s forwards;
+}
+
+@keyframes ringExpand {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Particles */
+.badge-animation__particles {
+  position: absolute;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  pointer-events: none;
+}
+
+.badge-animation__particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px var(--color);
+}
+
+.badge-animation--reveal .badge-animation__particle,
+.badge-animation--shimmer .badge-animation__particle {
+  animation: particleBurst var(--duration) var(--ease-out) var(--delay) forwards;
+}
+
+@keyframes particleBurst {
+  0% {
+    transform: translate(-50%, -50%) translateX(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: 
+      translate(-50%, -50%) 
+      translateX(calc(cos(var(--angle)) * var(--distance))) 
+      translateY(calc(sin(var(--angle)) * var(--distance)));
+    opacity: 0;
+  }
+}
+
+/* Badge Container */
+.badge-animation__badge {
+  position: relative;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  z-index: 1;
+}
+
+.badge-animation__badge-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--rarity-color);
+  border-radius: 50%;
+  overflow: hidden;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s var(--ease-out);
+}
+
+.badge-animation--reveal .badge-animation__badge-inner,
+.badge-animation--shimmer .badge-animation__badge-inner,
+.badge-animation--complete .badge-animation__badge-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.badge-animation--reveal .badge-animation__badge-inner {
+  animation: badgeBounce 0.6s var(--ease-out);
+}
+
+@keyframes badgeBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Icon */
+.badge-animation__icon {
+  font-size: var(--icon-size);
+  z-index: 1;
+}
+
+/* Shine Effect (Legendary) */
+.badge-animation__shine {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 60%
+  );
+  border-radius: 50%;
+  animation: shineRotate 3s linear infinite;
+}
+
+@keyframes shineRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Name */
+.badge-animation__name {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--name-size);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s var(--ease-out);
+}
+
+.badge-animation--shimmer .badge-animation__name,
+.badge-animation--complete .badge-animation__name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rarity Label */
+.badge-animation__rarity {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--rarity-size);
+  font-weight: var(--font-bold, 700);
+  color: var(--rarity-color);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s var(--ease-out) 0.1s;
+}
+
+.badge-animation--shimmer .badge-animation__rarity,
+.badge-animation--complete .badge-animation__rarity {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rarity-specific Animations */
+
+/* Common */
+.badge-animation--common .badge-animation__badge-inner {
+  background: linear-gradient(135deg, rgba(168, 218, 220, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* Uncommon */
+.badge-animation--uncommon .badge-animation__badge-inner {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* Rare */
+.badge-animation--rare .badge-animation__badge-inner {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.badge-animation--rare.badge-animation--shimmer .badge-animation__badge-inner {
+  animation: rareShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes rareShimmer {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.5); }
+}
+
+/* Epic */
+.badge-animation--epic .badge-animation__badge-inner {
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.badge-animation--epic.badge-animation--shimmer .badge-animation__badge-inner {
+  animation: epicShimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes epicShimmer {
+  0%, 100% { 
+    box-shadow: 0 0 30px rgba(142, 68, 173, 0.4);
+    border-color: #8e44ad;
+  }
+  50% { 
+    box-shadow: 0 0 50px rgba(142, 68, 173, 0.6);
+    border-color: #9b59b6;
+  }
+}
+
+/* Legendary */
+.badge-animation--legendary .badge-animation__badge-inner {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.25) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.badge-animation--legendary.badge-animation--shimmer .badge-animation__badge-inner,
+.badge-animation--legendary.badge-animation--complete .badge-animation__badge-inner {
+  animation: legendaryShimmer 1s ease-in-out infinite;
+}
+
+@keyframes legendaryShimmer {
+  0%, 100% { 
+    box-shadow: 0 0 40px rgba(241, 196, 15, 0.5), 0 0 80px rgba(241, 196, 15, 0.2);
+    border-color: #f1c40f;
+  }
+  50% { 
+    box-shadow: 0 0 60px rgba(241, 196, 15, 0.7), 0 0 100px rgba(241, 196, 15, 0.3);
+    border-color: #f39c12;
+  }
+}
+
+.badge-animation--legendary .badge-animation__name {
+  background: linear-gradient(135deg, #f1c40f 0%, #ffffff 50%, #f1c40f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .badge-animation--large {
+    --badge-size: 120px;
+    --icon-size: 56px;
+    --name-size: 20px;
+    --rarity-size: 12px;
+  }
+}

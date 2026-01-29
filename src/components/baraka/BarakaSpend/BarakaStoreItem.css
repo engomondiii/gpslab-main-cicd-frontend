@@ -1,0 +1,415 @@
+/**
+ * GPS Lab Platform - BarakaStoreItem Component Styles
+ */
+
+.baraka-store-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-xl, 12px);
+  overflow: hidden;
+  transition: var(--transition-all);
+}
+
+.baraka-store-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--rarity-color, rgba(255, 255, 255, 0.2));
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Rarity Variants */
+.baraka-store-item--legendary {
+  border-color: rgba(241, 196, 15, 0.3);
+}
+
+.baraka-store-item--epic {
+  border-color: rgba(142, 68, 173, 0.3);
+}
+
+.baraka-store-item--rare {
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+/* State Variants */
+.baraka-store-item--owned {
+  opacity: 0.7;
+}
+
+.baraka-store-item--unaffordable {
+  opacity: 0.6;
+}
+
+.baraka-store-item--unavailable {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Badges */
+.baraka-store-item__badges {
+  position: absolute;
+  top: var(--space-2, 8px);
+  left: var(--space-2, 8px);
+  right: var(--space-2, 8px);
+  display: flex;
+  gap: var(--space-1, 4px);
+  z-index: 2;
+}
+
+.baraka-store-item__badge {
+  padding: 2px var(--space-2, 8px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+}
+
+.baraka-store-item__badge--new {
+  background: var(--success, #2ecc71);
+  color: var(--neutral-900, #0d1117);
+}
+
+.baraka-store-item__badge--limited {
+  background: var(--error, #e74c3c);
+  color: var(--neutral-0, #ffffff);
+}
+
+.baraka-store-item__badge--discount {
+  background: var(--warning, #f1c40f);
+  color: var(--neutral-900, #0d1117);
+}
+
+.baraka-store-item__badge--owned {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+  margin-left: auto;
+}
+
+/* Visual */
+.baraka-store-item__visual {
+  position: relative;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.baraka-store-item__image {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.baraka-store-item:hover .baraka-store-item__image {
+  transform: scale(1.1);
+}
+
+.baraka-store-item__icon {
+  font-size: 64px;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.baraka-store-item:hover .baraka-store-item__icon {
+  transform: scale(1.1);
+}
+
+.baraka-store-item__visual-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.baraka-store-item__visual:hover .baraka-store-item__visual-overlay {
+  opacity: 1;
+}
+
+.baraka-store-item__preview-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+}
+
+/* Content */
+.baraka-store-item__content {
+  flex: 1;
+  padding: var(--space-4, 16px);
+}
+
+.baraka-store-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.baraka-store-item__rarity {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  text-transform: uppercase;
+}
+
+.baraka-store-item__category {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-transform: capitalize;
+}
+
+.baraka-store-item__name {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.baraka-store-item__description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.7);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Stock */
+.baraka-store-item__stock {
+  margin-top: var(--space-2, 8px);
+}
+
+.baraka-store-item__stock-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--warning, #f1c40f);
+}
+
+.baraka-store-item__stock-text--empty {
+  color: var(--error, #e74c3c);
+}
+
+/* Footer */
+.baraka-store-item__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.baraka-store-item__price {
+  display: flex;
+  flex-direction: column;
+}
+
+.baraka-store-item__price-current {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--warning, #f1c40f);
+}
+
+.baraka-store-item__price-original {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  text-decoration: line-through;
+}
+
+.baraka-store-item__buy-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: linear-gradient(135deg, var(--warning, #f1c40f) 0%, var(--beacon-orange, #f39c12) 100%);
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-store-item__buy-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+}
+
+.baraka-store-item__buy-btn:disabled {
+  background: var(--neutral-600, #586069);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Spinner */
+.baraka-store-item__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top-color: var(--neutral-900, #0d1117);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Confirmation Modal */
+.baraka-store-item__confirm-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+  animation: fadeIn var(--duration-fast) var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.baraka-store-item__confirm {
+  padding: var(--space-5, 20px);
+  text-align: center;
+}
+
+.baraka-store-item__confirm-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-0, #ffffff);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.baraka-store-item__confirm-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-400, #a8dadc);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.baraka-store-item__confirm-text strong {
+  color: var(--warning, #f1c40f);
+}
+
+.baraka-store-item__confirm-balance {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.baraka-store-item__confirm-actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+  justify-content: center;
+}
+
+.baraka-store-item__confirm-cancel,
+.baraka-store-item__confirm-buy {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-md, 6px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.baraka-store-item__confirm-cancel {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neutral-300, #e1e4e8);
+}
+
+.baraka-store-item__confirm-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.baraka-store-item__confirm-buy {
+  background: var(--warning, #f1c40f);
+  border: none;
+  color: var(--neutral-900, #0d1117);
+}
+
+.baraka-store-item__confirm-buy:hover {
+  background: #f39c12;
+}
+
+/* Glow */
+.baraka-store-item__glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--rarity-color, rgba(255, 255, 255, 0.1)) 0%, transparent 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Compact Variant */
+.baraka-store-item--compact {
+  flex-direction: row;
+  align-items: center;
+}
+
+.baraka-store-item--compact .baraka-store-item__visual {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.baraka-store-item--compact .baraka-store-item__icon {
+  font-size: 36px;
+}
+
+.baraka-store-item--compact .baraka-store-item__content {
+  padding: var(--space-3, 12px);
+}
+
+.baraka-store-item--compact .baraka-store-item__footer {
+  flex-direction: column;
+  padding: var(--space-3, 12px);
+  background: transparent;
+  border: none;
+}
+
+/* Featured Variant */
+.baraka-store-item--featured {
+  grid-column: span 2;
+}
+
+.baraka-store-item--featured .baraka-store-item__visual {
+  height: 200px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .baraka-store-item--featured {
+    grid-column: span 1;
+  }
+}
