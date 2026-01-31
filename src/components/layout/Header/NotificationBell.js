@@ -4,10 +4,13 @@
  * Notification bell with dropdown for recent notifications.
  * 
  * @module components/layout/Header/NotificationBell
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED: Converted footer <a href> to React Router <Link> component
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './NotificationBell.css';
 
 // =============================================================================
@@ -113,6 +116,11 @@ const NotificationBell = ({
     setIsOpen(false);
   };
   
+  // FIXED: Close dropdown when clicking view all
+  const handleViewAllClick = () => {
+    setIsOpen(false);
+  };
+  
   const classNames = [
     'notification-bell',
     isOpen && 'notification-bell--open',
@@ -193,12 +201,16 @@ const NotificationBell = ({
             )}
           </div>
           
-          {/* Footer */}
+          {/* Footer - FIXED: Using Link instead of <a> */}
           {notifications.length > 0 && (
             <div className="notification-bell__footer">
-              <a href="/notifications" className="notification-bell__view-all">
+              <Link 
+                to="/notifications" 
+                className="notification-bell__view-all"
+                onClick={handleViewAllClick}
+              >
                 View all notifications
-              </a>
+              </Link>
             </div>
           )}
         </div>

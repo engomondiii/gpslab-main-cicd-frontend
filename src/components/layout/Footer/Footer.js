@@ -1,9 +1,14 @@
 /**
  * GPS Lab Platform - Footer Component
+ * 
  * @module components/layout/Footer/Footer
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FooterLinks from './FooterLinks';
 import SocialLinks from './SocialLinks';
 import './Footer.css';
@@ -18,9 +23,9 @@ const Footer = ({ variant = 'default', showNewsletter = true, className = '', ..
       <div className="footer__container">
         {/* Main Footer Content */}
         <div className="footer__main">
-          {/* Brand Section */}
+          {/* Brand Section - FIXED: Using Link instead of <a> */}
           <div className="footer__brand">
-            <a href="/" className="footer__logo">
+            <Link to="/" className="footer__logo">
               <div className="footer__logo-icon">
                 <svg viewBox="0 0 40 40" fill="none">
                   <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2"/>
@@ -32,7 +37,7 @@ const Footer = ({ variant = 'default', showNewsletter = true, className = '', ..
                 <span className="footer__logo-gps">GPS</span>
                 <span className="footer__logo-lab">Lab</span>
               </span>
-            </a>
+            </Link>
             <p className="footer__tagline">
               Empowering the next generation of problem solvers through gamified learning and real-world impact.
             </p>
@@ -63,15 +68,15 @@ const Footer = ({ variant = 'default', showNewsletter = true, className = '', ..
           )}
         </div>
         
-        {/* Bottom Bar */}
+        {/* Bottom Bar - FIXED: Using Link instead of <a> */}
         <div className="footer__bottom">
           <div className="footer__copyright">
             © {currentYear} GPS Lab Platform. All rights reserved.
           </div>
           <div className="footer__legal">
-            <a href="/terms">Terms of Service</a>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/cookies">Cookie Policy</a>
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/cookies">Cookie Policy</Link>
           </div>
         </div>
       </div>

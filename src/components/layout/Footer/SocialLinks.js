@@ -1,6 +1,11 @@
 /**
  * GPS Lab Platform - SocialLinks Component
+ * 
  * @module components/layout/Footer/SocialLinks
+ * @version 1.0.0
+ * 
+ * NOTE: This component uses external links (target="_blank") - no changes needed
+ * External links should NOT use React Router Link
  */
 
 import React from 'react';

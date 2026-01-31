@@ -5,6 +5,8 @@
  * 
  * @module components/layout/Header/LanguageSelector
  * @version 1.0.0
+ * 
+ * NOTE: This component has no navigation links - no changes needed
  */
 
 import React, { useState, useRef, useEffect } from 'react';

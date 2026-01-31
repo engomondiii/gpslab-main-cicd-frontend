@@ -1,10 +1,10 @@
 /**
  * GPS Lab Platform - PrivateRoutes Component
  * 
- * Defines routes requiring authentication.
- * Includes dashboard, missions, projects, profile, etc.
- * 
  * @module routes/PrivateRoutes
+ * @version 1.1.0
+ * 
+ * FIXED: Page components now receive user, stats, wallets, and other props
  */
 
 import React, { Suspense, lazy } from 'react';
@@ -13,7 +13,7 @@ import DashboardLayout from '../components/layout/DashboardLayout/DashboardLayou
 import { RouteLoadingFallback, PlaceholderPage } from './PublicRoutes';
 import './PrivateRoutes.css';
 
-// Lazy load pages for code splitting
+// Lazy load pages
 const DashboardPage = lazy(() => import('../pages/DashboardPage/DashboardPage'));
 const MissionsPage = lazy(() => import('../pages/MissionsPage/MissionsPage'));
 const MissionDetailPage = lazy(() => import('../pages/MissionDetailPage/MissionDetailPage'));
@@ -377,14 +377,13 @@ const getPrivateRouteComponent = (elementName) => {
     PSBWalletPage: () => <PlaceholderPage title="PSB Account" />
   };
   
-  // Return placeholder if component not found
   return components[elementName] || (() => <PlaceholderPage title={elementName} />);
 };
 
 /**
  * PrivateRoutes Component
  * 
- * Wraps routes with authentication check and dashboard layout.
+ * FIXED: Now passes user, stats, wallets props down to page components
  */
 const PrivateRoutes = ({
   user,
@@ -401,6 +400,7 @@ const PrivateRoutes = ({
   
   /**
    * Build route elements with protection and layout
+   * FIXED: Components receive props instead of being rendered empty
    */
   const buildRouteElements = () => {
     return PRIVATE_ROUTES.map(route => {
@@ -429,7 +429,13 @@ const PrivateRoutes = ({
                 onNotificationClick={onNotificationClick}
                 pageTitle={route.title}
               >
-                <Component />
+                {/* FIXED: Pass props to page components */}
+                <Component 
+                  user={user}
+                  stats={stats}
+                  wallets={wallets}
+                  notifications={notifications}
+                />
               </DashboardLayout>
             </Suspense>
           </ProtectedRoute>

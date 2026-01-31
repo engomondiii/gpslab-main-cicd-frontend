@@ -4,14 +4,19 @@
  * Main sidebar navigation with collapsible sections.
  * 
  * @module components/layout/Sidebar/MainNav
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED:
+ * - Converted all <a href> to React Router <NavLink> components
+ * - Aligned route paths with PrivateRoutes.js definitions
  */
 
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './MainNav.css';
 
 // =============================================================================
-// CONSTANTS
+// CONSTANTS — PATHS ALIGNED WITH PrivateRoutes.js
 // =============================================================================
 
 const NAV_SECTIONS = [
@@ -37,7 +42,7 @@ const NAV_SECTIONS = [
       {
         id: 'missions',
         label: 'My Missions',
-        href: '/training/missions',
+        href: '/missions',          // FIXED: was /training/missions
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd"/>
@@ -49,7 +54,7 @@ const NAV_SECTIONS = [
       {
         id: 'stages',
         label: 'Stage Map',
-        href: '/training/stages',
+        href: '/checkpoints',       // FIXED: was /training/stages
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clipRule="evenodd"/>
@@ -59,7 +64,7 @@ const NAV_SECTIONS = [
       {
         id: 'bites',
         label: 'Knowledge Bites',
-        href: '/training/bites',
+        href: '/study',              // FIXED: was /training/bites
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
@@ -69,7 +74,7 @@ const NAV_SECTIONS = [
       {
         id: 'practice',
         label: 'Practice Arena',
-        href: '/training/practice',
+        href: '/practice',           // Keep as-is (placeholder route)
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/>
@@ -95,7 +100,7 @@ const NAV_SECTIONS = [
       {
         id: 'my-projects',
         label: 'My Projects',
-        href: '/projects/mine',
+        href: '/projects',           // FIXED: was /projects/mine
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
@@ -111,7 +116,7 @@ const NAV_SECTIONS = [
       {
         id: 'parties',
         label: 'Study Parties',
-        href: '/community/parties',
+        href: '/parties',            // FIXED: was /community/parties
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
@@ -122,7 +127,7 @@ const NAV_SECTIONS = [
       {
         id: 'mentors',
         label: 'Find Mentors',
-        href: '/community/mentors',
+        href: '/mentors',            // FIXED: was /community/mentors
         icon: (
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
@@ -152,16 +157,6 @@ const NAV_SECTIONS = [
 // COMPONENT
 // =============================================================================
 
-/**
- * MainNav component
- * 
- * @param {Object} props - Component props
- * @param {string} [props.currentPath='/'] - Current route path
- * @param {boolean} [props.isCollapsed=false] - Collapsed state
- * @param {string} [props.expandedSection] - Currently expanded section
- * @param {Function} [props.onSectionToggle] - Section toggle handler
- * @param {string} [props.className] - Additional CSS classes
- */
 const MainNav = ({
   currentPath = '/',
   isCollapsed = false,
@@ -170,8 +165,6 @@ const MainNav = ({
   className = '',
   ...props
 }) => {
-  
-  const isActive = (href) => currentPath === href || currentPath.startsWith(href + '/');
   
   const classNames = [
     'main-nav',
@@ -183,21 +176,23 @@ const MainNav = ({
     <nav className={classNames} {...props}>
       {NAV_SECTIONS.map(section => (
         <div key={section.id} className="main-nav__section">
-          {/* Section Label */}
           {section.label && !isCollapsed && (
             <div className="main-nav__section-label">
               {section.label}
             </div>
           )}
           
-          {/* Section Items */}
           <ul className="main-nav__list">
             {section.items.map(item => (
               <li key={item.id} className="main-nav__item">
-                <a
-                  href={item.href}
-                  className={`main-nav__link ${isActive(item.href) ? 'main-nav__link--active' : ''}`}
+                {/* FIXED: Using NavLink instead of <a> */}
+                <NavLink
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `main-nav__link ${isActive ? 'main-nav__link--active' : ''}`
+                  }
                   title={isCollapsed ? item.label : undefined}
+                  end={item.href === '/dashboard'}
                 >
                   <span className="main-nav__icon">{item.icon}</span>
                   {!isCollapsed && (
@@ -210,7 +205,7 @@ const MainNav = ({
                       )}
                     </>
                   )}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -220,11 +215,5 @@ const MainNav = ({
   );
 };
 
-// Export nav sections for reuse
 export { NAV_SECTIONS };
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
-
 export default MainNav;

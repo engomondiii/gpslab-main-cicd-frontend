@@ -1,9 +1,13 @@
 /**
  * GPS Lab Platform - PSBWallet Component (Problem Solving Bank)
  * @module components/layout/Sidebar/PSBWallet
+ * @version 1.1.0
+ * 
+ * FIXED: Converted <a href> to React Router <Link>
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './PSBWallet.css';
 
 const formatCurrency = (num) => {
@@ -54,9 +58,10 @@ const PSBWallet = ({ balance = 0, invested = 0, returns = 0, className = '' }) =
         )}
       </div>
       
+      {/* FIXED: Using Link instead of <a> */}
       <div className="psb-wallet__actions">
-        <a href="/wallet/psb" className="psb-wallet__action">View Details</a>
-        <a href="/wallet/psb/invest" className="psb-wallet__action psb-wallet__action--primary">Invest</a>
+        <Link to="/wallet/psb" className="psb-wallet__action">View Details</Link>
+        <Link to="/wallet/psb/invest" className="psb-wallet__action psb-wallet__action--primary">Invest</Link>
       </div>
     </div>
   );

@@ -1,22 +1,19 @@
 /**
  * GPS Lab Platform - Sidebar Component
  * 
- * Main sidebar container with navigation, stats, and wallets.
- * 
  * @module components/layout/Sidebar/Sidebar
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED: Converted logo and footer <a href> to React Router <Link>
  */
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MainNav from './MainNav';
 import QuickStats from './QuickStats';
 import BarakaWallet from './BarakaWallet';
 import PSBWallet from './PSBWallet';
 import './Sidebar.css';
-
-// =============================================================================
-// CONSTANTS
-// =============================================================================
 
 export const SIDEBAR_VARIANTS = {
   DEFAULT: 'default',
@@ -24,25 +21,6 @@ export const SIDEBAR_VARIANTS = {
   EXPANDED: 'expanded'
 };
 
-// =============================================================================
-// COMPONENT
-// =============================================================================
-
-/**
- * Sidebar component
- * 
- * @param {Object} props - Component props
- * @param {string} [props.variant='default'] - Sidebar variant
- * @param {boolean} [props.isOpen=true] - Open state (for mobile)
- * @param {boolean} [props.isCollapsed=false] - Collapsed state (for desktop)
- * @param {Function} [props.onToggle] - Toggle handler
- * @param {Function} [props.onClose] - Close handler (mobile)
- * @param {Object} [props.user] - User data
- * @param {Object} [props.stats] - User stats
- * @param {Object} [props.wallets] - Wallet data
- * @param {string} [props.currentPath] - Current route path
- * @param {string} [props.className] - Additional CSS classes
- */
 const Sidebar = ({
   variant = SIDEBAR_VARIANTS.DEFAULT,
   isOpen = true,
@@ -82,11 +60,11 @@ const Sidebar = ({
         />
       )}
       
-      {/* Sidebar */}
       <aside className={classNames} {...props}>
         {/* Header */}
         <div className="sidebar__header">
-          <a href="/" className="sidebar__logo">
+          {/* FIXED: Using Link instead of <a> */}
+          <Link to="/" className="sidebar__logo">
             <div className="sidebar__logo-icon">
               <svg viewBox="0 0 40 40" fill="none">
                 <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2"/>
@@ -100,7 +78,7 @@ const Sidebar = ({
                 <span className="sidebar__logo-lab">Lab</span>
               </span>
             )}
-          </a>
+          </Link>
           
           {/* Collapse Toggle (Desktop) */}
           <button
@@ -166,13 +144,13 @@ const Sidebar = ({
           </div>
         )}
         
-        {/* Footer */}
+        {/* Footer — FIXED: Using Link instead of <a> */}
         <div className="sidebar__footer">
           {!isCollapsed && (
             <div className="sidebar__footer-links">
-              <a href="/help">Help</a>
-              <a href="/terms">Terms</a>
-              <a href="/privacy">Privacy</a>
+              <Link to="/help">Help</Link>
+              <Link to="/terms">Terms</Link>
+              <Link to="/privacy">Privacy</Link>
             </div>
           )}
           <div className="sidebar__version">
@@ -183,9 +161,5 @@ const Sidebar = ({
     </>
   );
 };
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
 export default Sidebar;

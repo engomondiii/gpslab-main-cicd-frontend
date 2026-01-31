@@ -4,32 +4,37 @@
  * Main navigation menu with support for desktop and mobile variants.
  * 
  * @module components/layout/Header/Navigation
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED: 
+ * - Converted all <a href> to React Router <Link>/<NavLink> components
+ * - Aligned route paths with PrivateRoutes.js definitions
  */
 
 import React, { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Navigation.css';
 
 // =============================================================================
 // CONSTANTS
 // =============================================================================
 
-// Main navigation items
+// Main navigation items - FIXED: Paths aligned with PrivateRoutes.js
 const NAV_ITEMS = [
   {
     id: 'training',
     label: 'Training',
-    href: '/training',
+    href: '/dashboard',  // FIXED: was /training
     icon: (
       <svg viewBox="0 0 20 20" fill="currentColor">
         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
       </svg>
     ),
     children: [
-      { id: 'missions', label: 'My Missions', href: '/training/missions' },
-      { id: 'stages', label: 'Stage Map', href: '/training/stages' },
-      { id: 'bites', label: 'Knowledge Bites', href: '/training/bites' },
-      { id: 'practice', label: 'Practice Arena', href: '/training/practice' }
+      { id: 'missions', label: 'My Missions', href: '/missions' },         // FIXED: was /training/missions
+      { id: 'stages', label: 'Stage Map', href: '/checkpoints' },          // FIXED: was /training/stages
+      { id: 'bites', label: 'Knowledge Bites', href: '/study' },           // FIXED: was /training/bites
+      { id: 'practice', label: 'Practice Arena', href: '/practice' }       // FIXED: was /training/practice
     ]
   },
   {
@@ -43,7 +48,7 @@ const NAV_ITEMS = [
       </svg>
     ),
     children: [
-      { id: 'gpo', label: 'GPO Projects', href: '/projects/gpo' },
+      { id: 'gpo', label: 'GPO Projects', href: '/projects' },             // FIXED: was /projects/gpo
       { id: 'my-projects', label: 'My Projects', href: '/projects/mine' },
       { id: 'browse', label: 'Browse All', href: '/projects/browse' }
     ]
@@ -58,8 +63,8 @@ const NAV_ITEMS = [
       </svg>
     ),
     children: [
-      { id: 'parties', label: 'Study Parties', href: '/community/parties' },
-      { id: 'mentors', label: 'Find Mentors', href: '/community/mentors' },
+      { id: 'parties', label: 'Study Parties', href: '/parties' },          // FIXED: was /community/parties
+      { id: 'mentors', label: 'Find Mentors', href: '/mentors' },           // FIXED: was /community/mentors
       { id: 'forums', label: 'Forums', href: '/community/forums' },
       { id: 'events', label: 'Events', href: '/community/events' }
     ]
@@ -107,6 +112,7 @@ const Navigation = ({
   
   const [openDropdown, setOpenDropdown] = useState(null);
   const [expandedMobile, setExpandedMobile] = useState(null);
+  const navigate = useNavigate();
   
   // Handle dropdown toggle
   const handleDropdownToggle = (id) => {
@@ -118,14 +124,11 @@ const Navigation = ({
     setExpandedMobile(prev => prev === id ? null : id);
   };
   
-  // Handle navigation click
-  const handleNavClick = (href, e) => {
-    if (onNavigate) {
-      e.preventDefault();
-      onNavigate(href);
-    }
+  // Handle navigation click - FIXED: Use React Router navigate
+  const handleNavClick = (href) => {
     setOpenDropdown(null);
     setExpandedMobile(null);
+    onNavigate?.();
   };
   
   const classNames = [
@@ -146,10 +149,13 @@ const Navigation = ({
               onMouseEnter={() => item.children && setOpenDropdown(item.id)}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <a
-                href={item.href}
-                className={`navigation__link ${openDropdown === item.id ? 'navigation__link--active' : ''}`}
-                onClick={(e) => handleNavClick(item.href, e)}
+              {/* FIXED: Using NavLink instead of <a> */}
+              <NavLink
+                to={item.href}
+                className={({ isActive }) => 
+                  `navigation__link ${isActive ? 'navigation__link--active' : ''} ${openDropdown === item.id ? 'navigation__link--dropdown-open' : ''}`
+                }
+                onClick={() => handleNavClick(item.href)}
               >
                 <span className="navigation__link-icon">{item.icon}</span>
                 <span className="navigation__link-text">{item.label}</span>
@@ -160,21 +166,21 @@ const Navigation = ({
                     </svg>
                   </span>
                 )}
-              </a>
+              </NavLink>
               
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu - FIXED: Using Link instead of <a> */}
               {item.children && openDropdown === item.id && (
                 <div className="navigation__dropdown">
                   <ul className="navigation__dropdown-list">
                     {item.children.map(child => (
                       <li key={child.id} className="navigation__dropdown-item">
-                        <a
-                          href={child.href}
+                        <Link
+                          to={child.href}
                           className="navigation__dropdown-link"
-                          onClick={(e) => handleNavClick(child.href, e)}
+                          onClick={() => handleNavClick(child.href)}
                         >
                           {child.label}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -194,21 +200,28 @@ const Navigation = ({
         {NAV_ITEMS.map(item => (
           <li key={item.id} className="navigation__item">
             <div className="navigation__item-header">
-              <a
-                href={item.href}
-                className="navigation__link"
-                onClick={(e) => {
-                  if (item.children) {
-                    e.preventDefault();
-                    handleMobileExpand(item.id);
-                  } else {
-                    handleNavClick(item.href, e);
+              {/* FIXED: Using NavLink instead of <a> */}
+              {item.children ? (
+                <button
+                  type="button"
+                  className="navigation__link navigation__link--button"
+                  onClick={() => handleMobileExpand(item.id)}
+                >
+                  <span className="navigation__link-icon">{item.icon}</span>
+                  <span className="navigation__link-text">{item.label}</span>
+                </button>
+              ) : (
+                <NavLink
+                  to={item.href}
+                  className={({ isActive }) => 
+                    `navigation__link ${isActive ? 'navigation__link--active' : ''}`
                   }
-                }}
-              >
-                <span className="navigation__link-icon">{item.icon}</span>
-                <span className="navigation__link-text">{item.label}</span>
-              </a>
+                  onClick={() => handleNavClick(item.href)}
+                >
+                  <span className="navigation__link-icon">{item.icon}</span>
+                  <span className="navigation__link-text">{item.label}</span>
+                </NavLink>
+              )}
               
               {item.children && (
                 <button
@@ -224,18 +237,18 @@ const Navigation = ({
               )}
             </div>
             
-            {/* Mobile Submenu */}
+            {/* Mobile Submenu - FIXED: Using Link instead of <a> */}
             {item.children && expandedMobile === item.id && (
               <ul className="navigation__submenu">
                 {item.children.map(child => (
                   <li key={child.id} className="navigation__submenu-item">
-                    <a
-                      href={child.href}
+                    <Link
+                      to={child.href}
                       className="navigation__submenu-link"
-                      onClick={(e) => handleNavClick(child.href, e)}
+                      onClick={() => handleNavClick(child.href)}
                     >
                       {child.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

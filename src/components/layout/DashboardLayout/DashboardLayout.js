@@ -5,6 +5,11 @@
  * Used for authenticated user pages.
  * 
  * @module components/layout/DashboardLayout/DashboardLayout
+ * @version 1.0.0
+ * 
+ * NOTE: This component has no <a href> tags - no navigation fixes needed.
+ * It delegates navigation to child components (Header, Sidebar, Breadcrumbs)
+ * which have been individually fixed.
  */
 
 import React, { useState, useCallback } from 'react';

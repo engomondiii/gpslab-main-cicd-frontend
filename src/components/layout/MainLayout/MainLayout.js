@@ -5,6 +5,11 @@
  * Used for public pages like landing, about, etc.
  * 
  * @module components/layout/MainLayout/MainLayout
+ * @version 1.0.0
+ * 
+ * NOTE: This component has no <a href> tags - no navigation fixes needed.
+ * It delegates navigation to child components (Header, Footer) which 
+ * have been individually fixed.
  */
 
 import React from 'react';

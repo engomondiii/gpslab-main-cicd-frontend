@@ -1,9 +1,13 @@
 /**
  * GPS Lab Platform - BarakaWallet Component
  * @module components/layout/Sidebar/BarakaWallet
+ * @version 1.1.0
+ * 
+ * FIXED: Converted <a href> to React Router <Link>
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './BarakaWallet.css';
 
 const BARAKA_TIERS = {
@@ -56,9 +60,10 @@ const BarakaWallet = ({ balance = 0, pending = 0, tier, className = '' }) => {
         </div>
       )}
       <div className="baraka-wallet__actions">
-        <a href="/wallet/baraka" className="baraka-wallet__action">
+        {/* FIXED: Using Link instead of <a> */}
+        <Link to="/wallet/baraka" className="baraka-wallet__action">
           View Details
-        </a>
+        </Link>
       </div>
     </div>
   );

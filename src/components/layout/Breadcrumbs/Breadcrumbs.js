@@ -1,9 +1,14 @@
 /**
  * GPS Lab Platform - Breadcrumbs Component
+ * 
  * @module components/layout/Breadcrumbs/Breadcrumbs
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Breadcrumbs.css';
 
 const Breadcrumbs = ({
@@ -75,10 +80,11 @@ const Breadcrumbs = ({
                   <span>{item.label}</span>
                 </span>
               ) : (
-                <a href={item.href} className="breadcrumbs__link">
+                /* FIXED: Using Link instead of <a> */
+                <Link to={item.href} className="breadcrumbs__link">
                   {item.icon && renderIcon(item.icon)}
                   <span>{item.label}</span>
-                </a>
+                </Link>
               )}
             </li>
           );

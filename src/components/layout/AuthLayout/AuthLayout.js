@@ -5,9 +5,13 @@
  * Features split design with branding and form.
  * 
  * @module components/layout/AuthLayout/AuthLayout
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './AuthLayout.css';
 
 const AuthLayout = ({
@@ -28,8 +32,8 @@ const AuthLayout = ({
       {showBranding && (
         <div className="auth-layout__branding">
           <div className="auth-layout__branding-content">
-            {/* Logo */}
-            <a href="/" className="auth-layout__logo">
+            {/* Logo - FIXED: Using Link instead of <a> */}
+            <Link to="/" className="auth-layout__logo">
               <div className="auth-layout__logo-icon">
                 <svg viewBox="0 0 40 40" fill="none">
                   <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2"/>
@@ -41,7 +45,7 @@ const AuthLayout = ({
                 <span className="auth-layout__logo-gps">GPS</span>
                 <span className="auth-layout__logo-lab">Lab</span>
               </span>
-            </a>
+            </Link>
             
             {/* Custom Branding Content or Default */}
             {brandingContent || (
@@ -105,8 +109,8 @@ const AuthLayout = ({
       {/* Form Side */}
       <div className="auth-layout__form-side">
         <div className="auth-layout__form-container">
-          {/* Mobile Logo */}
-          <a href="/" className="auth-layout__mobile-logo">
+          {/* Mobile Logo - FIXED: Using Link instead of <a> */}
+          <Link to="/" className="auth-layout__mobile-logo">
             <div className="auth-layout__mobile-logo-icon">
               <svg viewBox="0 0 40 40" fill="none">
                 <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2"/>
@@ -115,7 +119,7 @@ const AuthLayout = ({
               </svg>
             </div>
             <span className="auth-layout__mobile-logo-text">GPS Lab</span>
-          </a>
+          </Link>
           
           {/* Title */}
           {title && (

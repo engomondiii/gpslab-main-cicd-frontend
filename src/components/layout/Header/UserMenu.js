@@ -4,17 +4,20 @@
  * User dropdown menu with profile, settings, and logout options.
  * 
  * @module components/layout/Header/UserMenu
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './UserMenu.css';
 
 // =============================================================================
 // CONSTANTS
 // =============================================================================
 
-// Menu items
+// Menu items with route paths
 const MENU_ITEMS = [
   {
     id: 'profile',
@@ -101,6 +104,7 @@ const UserMenu = ({
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const navigate = useNavigate();
   
   // Close menu on outside click
   useEffect(() => {
@@ -135,9 +139,9 @@ const UserMenu = ({
   
   const toggleMenu = () => setIsOpen(prev => !prev);
   
-  const handleMenuClick = (item) => {
+  // FIXED: Close menu on navigation
+  const handleMenuClick = () => {
     setIsOpen(false);
-    // Navigation would be handled here
   };
   
   const handleLogout = () => {
@@ -203,7 +207,7 @@ const UserMenu = ({
             </div>
           </div>
           
-          {/* Menu Items */}
+          {/* Menu Items - FIXED: Using Link instead of <a> */}
           <div className="user-menu__items">
             {MENU_ITEMS.map(item => {
               if (item.type === 'divider') {
@@ -211,15 +215,15 @@ const UserMenu = ({
               }
               
               return (
-                <a
+                <Link
                   key={item.id}
-                  href={item.href}
+                  to={item.href}
                   className="user-menu__item"
-                  onClick={() => handleMenuClick(item)}
+                  onClick={handleMenuClick}
                 >
                   <span className="user-menu__item-icon">{item.icon}</span>
                   <span className="user-menu__item-label">{item.label}</span>
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -244,6 +248,9 @@ const UserMenu = ({
     </div>
   );
 };
+
+// Export menu items for reuse
+export { MENU_ITEMS };
 
 // =============================================================================
 // EXPORTS

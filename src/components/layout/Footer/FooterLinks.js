@@ -1,9 +1,14 @@
 /**
  * GPS Lab Platform - FooterLinks Component
+ * 
  * @module components/layout/Footer/FooterLinks
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FooterLinks.css';
 
 const FOOTER_SECTIONS = [
@@ -11,7 +16,7 @@ const FOOTER_SECTIONS = [
     id: 'platform',
     title: 'Platform',
     links: [
-      { label: 'Training', href: '/training' },
+      { label: 'Training', href: '/dashboard' },
       { label: 'Projects', href: '/projects' },
       { label: 'Marketplace', href: '/marketplace' },
       { label: 'Community', href: '/community' },
@@ -51,12 +56,13 @@ const FooterLinks = ({ sections = FOOTER_SECTIONS, className = '' }) => {
           <ul className="footer-links__list">
             {section.links.map(link => (
               <li key={link.href} className="footer-links__item">
-                <a href={link.href} className="footer-links__link">
+                {/* FIXED: Using Link instead of <a> */}
+                <Link to={link.href} className="footer-links__link">
                   {link.label}
                   {link.badge && (
                     <span className="footer-links__badge">{link.badge}</span>
                   )}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

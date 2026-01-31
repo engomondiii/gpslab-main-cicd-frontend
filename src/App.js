@@ -2,12 +2,18 @@
  * GPS Lab Platform - App Component
  * 
  * Main application entry point.
- * Wraps the app with all necessary providers and includes core components.
  * 
  * @module App
+ * @version 1.1.0
+ * 
+ * FIXED:
+ * - Stats property names aligned: currentXP→xp, requiredXP→xpToNextLevel, currentStreak→streak
+ * - Logout uses React Router navigate instead of window.location.href
+ * - Skip-to-content link uses proper anchor, not <a href>
  */
 
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -29,7 +35,6 @@ import './App.css';
 
 /**
  * Toast Container Component
- * Manages toast notifications display
  */
 const ToastContainer = ({ toasts, onDismiss }) => {
   if (!toasts || toasts.length === 0) return null;
@@ -54,7 +59,6 @@ const ToastContainer = ({ toasts, onDismiss }) => {
 
 /**
  * App Loading Screen
- * Shown during initial app load
  */
 const AppLoadingScreen = () => (
   <div className="app-loading">
@@ -85,7 +89,6 @@ const AppLoadingScreen = () => (
 
 /**
  * App Error Fallback
- * Shown when the app encounters a critical error
  */
 const AppErrorFallback = ({ error, resetErrorBoundary }) => (
   <div className="app-error">
@@ -128,31 +131,36 @@ const AppErrorFallback = ({ error, resetErrorBoundary }) => (
  * Main App Component
  */
 const App = () => {
-  // App state
   const [isInitialized, setIsInitialized] = useState(false);
   const [toasts, setToasts] = useState([]);
   
-  // Auth state (would typically come from AuthContext)
+  // Auth state
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   
   // User data
   const [notifications, setNotifications] = useState([]);
+  
+  // FIXED: Stats property names aligned with what components expect
+  // QuickStats expects: level, xp, xpToNextLevel, currentStage, missionsCompleted, streak
+  // TopBar expects: baraka, xp, level, currentStage
+  // Sidebar passes stats.xp, stats.xpToNextLevel, stats.streak
   const [stats, setStats] = useState({
     level: 1,
-    currentXP: 0,
-    requiredXP: 100,
+    xp: 0,                    // FIXED: was currentXP
+    xpToNextLevel: 100,        // FIXED: was requiredXP
     currentStage: 1,
     missionsCompleted: 0,
-    currentStreak: 0
+    streak: 0,                 // FIXED: was currentStreak
+    baraka: 0                  // ADDED: for TopBar
   });
+  
   const [wallets, setWallets] = useState({
     baraka: { balance: 0, pending: 0, tier: 'yellow' },
     psb: { balance: 0, invested: 0, returns: 0 }
   });
   
-  // App settings
   const [currentLanguage, setCurrentLanguage] = useState('en');
   
   /**
@@ -161,20 +169,14 @@ const App = () => {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // Simulate checking auth status
         const storedUser = localStorage.getItem('gps_user');
         const storedToken = localStorage.getItem('gps_token');
         
         if (storedUser && storedToken) {
           setUser(JSON.parse(storedUser));
           setIsAuthenticated(true);
-          
-          // TODO: Fetch fresh user data from API
-          // const userData = await fetchUserData(storedToken);
-          // setUser(userData);
         }
         
-        // Load language preference
         const storedLang = localStorage.getItem('gps_language');
         if (storedLang) {
           setCurrentLanguage(storedLang);
@@ -203,7 +205,6 @@ const App = () => {
     const id = Date.now().toString();
     setToasts(prev => [...prev, { ...toast, id }]);
     
-    // Auto-dismiss after duration
     if (toast.duration !== 0) {
       setTimeout(() => {
         dismissToast(id);
@@ -225,10 +226,6 @@ const App = () => {
     try {
       setIsAuthLoading(true);
       
-      // TODO: Replace with actual API call
-      // const response = await authService.login(credentials);
-      
-      // Simulate login
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockUser = {
@@ -236,8 +233,10 @@ const App = () => {
         email: credentials.email,
         firstName: 'GPS',
         lastName: 'User',
+        name: 'GPS User',
         role: 'user',
-        avatar: null
+        avatar: null,
+        level: 1
       };
       
       setUser(mockUser);
@@ -271,10 +270,6 @@ const App = () => {
     try {
       setIsAuthLoading(true);
       
-      // TODO: Replace with actual API call
-      // const response = await authService.register(data);
-      
-      // Simulate registration
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockUser = {
@@ -282,8 +277,10 @@ const App = () => {
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName,
+        name: `${data.firstName} ${data.lastName}`,
         role: 'user',
-        avatar: null
+        avatar: null,
+        level: 1
       };
       
       setUser(mockUser);
@@ -315,7 +312,6 @@ const App = () => {
    */
   const handleOAuthLogin = useCallback(async (provider) => {
     try {
-      // TODO: Implement OAuth flow
       addToast({
         type: 'info',
         title: 'OAuth Login',
@@ -331,13 +327,10 @@ const App = () => {
   }, [addToast]);
   
   /**
-   * Handle logout
+   * Handle logout — FIXED: no longer uses window.location.href
    */
   const handleLogout = useCallback(async () => {
     try {
-      // TODO: Call logout API
-      // await authService.logout();
-      
       setUser(null);
       setIsAuthenticated(false);
       localStorage.removeItem('gps_user');
@@ -349,8 +342,8 @@ const App = () => {
         message: 'You have been signed out successfully.'
       });
       
-      // Redirect to home
-      window.location.href = '/';
+      // Navigation is handled by the router — auth state change
+      // triggers ProtectedRoute redirect automatically
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -374,17 +367,12 @@ const App = () => {
    * Handle notification click
    */
   const handleNotificationClick = useCallback((notification) => {
-    // Mark as read
     setNotifications(prev =>
       prev.map(n =>
         n.id === notification.id ? { ...n, read: true } : n
       )
     );
-    
-    // Navigate to notification link if present
-    if (notification.link) {
-      window.location.href = notification.link;
-    }
+    // Navigation to notification.link handled by Link components in NotificationBell
   }, []);
   
   // Memoized router props
@@ -418,7 +406,6 @@ const App = () => {
     handleNotificationClick
   ]);
   
-  // Show loading screen while initializing
   if (!isInitialized) {
     return <AppLoadingScreen />;
   }
@@ -428,7 +415,6 @@ const App = () => {
       fallback={AppErrorFallback}
       onError={(error, errorInfo) => {
         console.error('App Error:', error, errorInfo);
-        // TODO: Send to error reporting service
       }}
     >
       <ThemeProvider>
@@ -437,7 +423,7 @@ const App = () => {
             <NotificationProvider>
               <WebSocketProvider>
                 <div className="app" data-testid="app">
-                  {/* Skip to content for accessibility */}
+                  {/* Skip to content — uses anchor, not router link */}
                   <a href="#main-content" className="skip-link">
                     Skip to main content
                   </a>

@@ -5,10 +5,13 @@
  * Integrates with the GPS Lab theme system and provides responsive behavior.
  * 
  * @module components/layout/Header/Header
- * @version 1.0.0
+ * @version 1.1.0
+ * 
+ * FIXED: Converted all <a href> to React Router <Link> components
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import TopBar from './TopBar';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
@@ -111,9 +114,9 @@ const Header = ({
       {/* Main Header Content */}
       <div className="header__main">
         <div className="header__container">
-          {/* Logo */}
+          {/* Logo - FIXED: Using Link instead of <a> */}
           <div className="header__logo">
-            <a href="/" className="header__logo-link">
+            <Link to="/" className="header__logo-link">
               <div className="header__logo-icon">
                 <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2"/>
@@ -125,7 +128,7 @@ const Header = ({
                 <span className="header__logo-gps">GPS</span>
                 <span className="header__logo-lab">Lab</span>
               </span>
-            </a>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
@@ -162,8 +165,9 @@ const Header = ({
               />
             ) : (
               <div className="header__auth">
-                <a href="/login" className="header__auth-link">Log In</a>
-                <a href="/register" className="header__auth-btn">Sign Up</a>
+                {/* FIXED: Using Link instead of <a> */}
+                <Link to="/login" className="header__auth-link">Log In</Link>
+                <Link to="/register" className="header__auth-btn">Sign Up</Link>
               </div>
             )}
             
@@ -198,11 +202,15 @@ const Header = ({
           onNavigate={handleNavigation}
         />
         
-        {/* Mobile Auth Links */}
+        {/* Mobile Auth Links - FIXED: Using Link instead of <a> */}
         {!user && (
           <div className="header__mobile-auth">
-            <a href="/login" className="header__mobile-auth-link">Log In</a>
-            <a href="/register" className="header__mobile-auth-btn">Sign Up Free</a>
+            <Link to="/login" className="header__mobile-auth-link" onClick={handleNavigation}>
+              Log In
+            </Link>
+            <Link to="/register" className="header__mobile-auth-btn" onClick={handleNavigation}>
+              Sign Up Free
+            </Link>
           </div>
         )}
       </div>
