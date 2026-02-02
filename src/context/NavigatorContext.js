@@ -1,7 +1,8 @@
 /**
  * GPS Lab Platform - NavigatorContext
  * 
- * Provides AI Navigator (guide character) state and interactions.
+ * AI Navigator companion state management.
+ * Manages the AI assistant persona, conversation state, and guidance hints.
  * 
  * @module context/NavigatorContext
  * @version 1.0.0
@@ -14,150 +15,116 @@ import React, { createContext, useContext, useReducer, useCallback, useMemo } fr
 // =============================================================================
 
 const initialState = {
+  navigator: null,
   isActive: false,
-  currentCharacter: {
-    id: 'mama-amani',
-    name: 'Mama Amani',
-    role: 'Primary Guide',
-    avatar: null,
-    personality: 'warm',
-    greeting: 'Karibu! Welcome to GPS Lab. I am Mama Amani, your guide on this journey.'
-  },
-  messages: [],
-  suggestions: [
-    { id: 'sug-1', text: 'What should I work on next?', type: 'guidance' },
-    { id: 'sug-2', text: 'Explain my current mission', type: 'mission' },
-    { id: 'sug-3', text: 'Show my progress', type: 'stats' }
-  ],
-  isTyping: false,
-  isMinimized: true,
+  conversation: [],
+  hints: [],
+  personality: 'default',
+  isLoading: false,
   error: null
+};
+
+// =============================================================================
+// ACTION TYPES
+// =============================================================================
+
+const NAVIGATOR_ACTIONS = {
+  SET_NAVIGATOR: 'navigator/set',
+  ACTIVATE: 'navigator/activate',
+  DEACTIVATE: 'navigator/deactivate',
+  ADD_MESSAGE: 'navigator/addMessage',
+  SET_HINTS: 'navigator/setHints',
+  CLEAR_HINTS: 'navigator/clearHints',
+  SET_PERSONALITY: 'navigator/setPersonality',
+  SET_LOADING: 'navigator/setLoading',
+  SET_ERROR: 'navigator/setError',
+  CLEAR_CONVERSATION: 'navigator/clearConversation',
+  RESET: 'navigator/reset'
 };
 
 // =============================================================================
 // REDUCER
 // =============================================================================
 
-const NAV_ACTIONS = {
-  TOGGLE: 'navigator/toggle',
-  MINIMIZE: 'navigator/minimize',
-  ADD_MESSAGE: 'navigator/addMessage',
-  SET_TYPING: 'navigator/setTyping',
-  SET_CHARACTER: 'navigator/setCharacter',
-  SET_ERROR: 'navigator/setError',
-  CLEAR_MESSAGES: 'navigator/clearMessages'
-};
-
 const navigatorReducer = (state, action) => {
   switch (action.type) {
-    case NAV_ACTIONS.TOGGLE:
-      return { ...state, isActive: !state.isActive, isMinimized: false };
-      
-    case NAV_ACTIONS.MINIMIZE:
-      return { ...state, isMinimized: action.payload ?? !state.isMinimized };
-      
-    case NAV_ACTIONS.ADD_MESSAGE:
-      return { ...state, messages: [...state.messages, action.payload], isTyping: false };
-      
-    case NAV_ACTIONS.SET_TYPING:
-      return { ...state, isTyping: action.payload };
-      
-    case NAV_ACTIONS.SET_CHARACTER:
-      return { ...state, currentCharacter: action.payload };
-      
-    case NAV_ACTIONS.SET_ERROR:
-      return { ...state, error: action.payload, isTyping: false };
-      
-    case NAV_ACTIONS.CLEAR_MESSAGES:
-      return { ...state, messages: [] };
-      
+    case NAVIGATOR_ACTIONS.SET_NAVIGATOR:
+      return { ...state, navigator: action.payload };
+    case NAVIGATOR_ACTIONS.ACTIVATE:
+      return { ...state, isActive: true };
+    case NAVIGATOR_ACTIONS.DEACTIVATE:
+      return { ...state, isActive: false };
+    case NAVIGATOR_ACTIONS.ADD_MESSAGE:
+      return { ...state, conversation: [...state.conversation, action.payload] };
+    case NAVIGATOR_ACTIONS.SET_HINTS:
+      return { ...state, hints: action.payload };
+    case NAVIGATOR_ACTIONS.CLEAR_HINTS:
+      return { ...state, hints: [] };
+    case NAVIGATOR_ACTIONS.SET_PERSONALITY:
+      return { ...state, personality: action.payload };
+    case NAVIGATOR_ACTIONS.SET_LOADING:
+      return { ...state, isLoading: action.payload };
+    case NAVIGATOR_ACTIONS.SET_ERROR:
+      return { ...state, error: action.payload, isLoading: false };
+    case NAVIGATOR_ACTIONS.CLEAR_CONVERSATION:
+      return { ...state, conversation: [] };
+    case NAVIGATOR_ACTIONS.RESET:
+      return initialState;
     default:
       return state;
   }
 };
 
 // =============================================================================
-// CONTEXT
+// CONTEXT & PROVIDER
 // =============================================================================
 
 const NavigatorContext = createContext(null);
 
-// =============================================================================
-// PROVIDER
-// =============================================================================
-
 export const NavigatorProvider = ({ children }) => {
   const [state, dispatch] = useReducer(navigatorReducer, initialState);
-  
-  const toggle = useCallback(() => {
-    dispatch({ type: NAV_ACTIONS.TOGGLE });
-  }, []);
-  
-  const minimize = useCallback((value) => {
-    dispatch({ type: NAV_ACTIONS.MINIMIZE, payload: value });
-  }, []);
-  
-  const sendMessage = useCallback(async (text) => {
-    // Add user message
-    dispatch({
-      type: NAV_ACTIONS.ADD_MESSAGE,
-      payload: { id: Date.now().toString(), role: 'user', text, timestamp: new Date().toISOString() }
-    });
-    
-    // Simulate AI response
-    dispatch({ type: NAV_ACTIONS.SET_TYPING, payload: true });
-    
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-    
-    const responses = [
-      "That's a great question! Let me help you with that.",
-      "You're making excellent progress. Keep going!",
-      "I'd recommend focusing on your current mission first.",
-      "Remember, every problem solver starts where you are now.",
-      "Let me guide you through the next steps."
-    ];
-    
-    dispatch({
-      type: NAV_ACTIONS.ADD_MESSAGE,
-      payload: {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        text: responses[Math.floor(Math.random() * responses.length)],
-        character: state.currentCharacter.name,
-        timestamp: new Date().toISOString()
-      }
-    });
-  }, [state.currentCharacter]);
-  
-  const clearMessages = useCallback(() => {
-    dispatch({ type: NAV_ACTIONS.CLEAR_MESSAGES });
-  }, []);
-  
-  const contextValue = useMemo(() => ({
-    ...state,
-    toggle,
-    minimize,
-    sendMessage,
-    clearMessages
-  }), [state, toggle, minimize, sendMessage, clearMessages]);
-  
-  return (
-    <NavigatorContext.Provider value={contextValue}>
-      {children}
-    </NavigatorContext.Provider>
-  );
-};
 
-// =============================================================================
-// HOOK
-// =============================================================================
+  const setNavigator = useCallback((nav) => {
+    dispatch({ type: NAVIGATOR_ACTIONS.SET_NAVIGATOR, payload: nav });
+  }, []);
+  const activate = useCallback(() => {
+    dispatch({ type: NAVIGATOR_ACTIONS.ACTIVATE });
+  }, []);
+  const deactivate = useCallback(() => {
+    dispatch({ type: NAVIGATOR_ACTIONS.DEACTIVATE });
+  }, []);
+  const addMessage = useCallback((message) => {
+    dispatch({ type: NAVIGATOR_ACTIONS.ADD_MESSAGE, payload: message });
+  }, []);
+  const setHints = useCallback((hints) => {
+    dispatch({ type: NAVIGATOR_ACTIONS.SET_HINTS, payload: hints });
+  }, []);
+  const clearHints = useCallback(() => {
+    dispatch({ type: NAVIGATOR_ACTIONS.CLEAR_HINTS });
+  }, []);
+  const setPersonality = useCallback((personality) => {
+    dispatch({ type: NAVIGATOR_ACTIONS.SET_PERSONALITY, payload: personality });
+  }, []);
+  const clearConversation = useCallback(() => {
+    dispatch({ type: NAVIGATOR_ACTIONS.CLEAR_CONVERSATION });
+  }, []);
+  const reset = useCallback(() => {
+    dispatch({ type: NAVIGATOR_ACTIONS.RESET });
+  }, []);
+
+  const value = useMemo(() => ({
+    ...state, setNavigator, activate, deactivate, addMessage,
+    setHints, clearHints, setPersonality, clearConversation, reset
+  }), [state, setNavigator, activate, deactivate, addMessage, setHints, clearHints, setPersonality, clearConversation, reset]);
+
+  return <NavigatorContext.Provider value={value}>{children}</NavigatorContext.Provider>;
+};
 
 export const useNavigatorContext = () => {
-  const context = useContext(NavigatorContext);
-  if (!context) {
-    throw new Error('useNavigatorContext must be used within a NavigatorProvider');
-  }
-  return context;
+  const ctx = useContext(NavigatorContext);
+  if (!ctx) throw new Error('useNavigatorContext must be used within a NavigatorProvider');
+  return ctx;
 };
 
+export { NAVIGATOR_ACTIONS };
 export default NavigatorContext;

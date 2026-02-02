@@ -3,7 +3,9 @@
  * @module components/layout/Sidebar/PSBWallet
  * @version 1.1.0
  * 
- * FIXED: Converted <a href> to React Router <Link>
+ * FIXED v1.1.0:
+ * - Converted "View Details" <a href="/wallet/psb"> to <Link to="/wallet/psb">
+ * - Converted "Invest" <a href="/wallet/psb/invest"> to <Link to="/wallet/psb/invest">
  */
 
 import React from 'react';
@@ -58,8 +60,8 @@ const PSBWallet = ({ balance = 0, invested = 0, returns = 0, className = '' }) =
         )}
       </div>
       
-      {/* FIXED: Using Link instead of <a> */}
       <div className="psb-wallet__actions">
+        {/* FIXED: Using Link instead of <a> */}
         <Link to="/wallet/psb" className="psb-wallet__action">View Details</Link>
         <Link to="/wallet/psb/invest" className="psb-wallet__action psb-wallet__action--primary">Invest</Link>
       </div>

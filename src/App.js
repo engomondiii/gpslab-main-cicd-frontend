@@ -2,18 +2,27 @@
  * GPS Lab Platform - App Component
  * 
  * Main application entry point.
+ * Wraps the app with all necessary providers and includes core components.
  * 
  * @module App
- * @version 1.1.0
+ * @version 1.2.0
  * 
- * FIXED:
- * - Stats property names aligned: currentXP→xp, requiredXP→xpToNextLevel, currentStreak→streak
- * - Logout uses React Router navigate instead of window.location.href
- * - Skip-to-content link uses proper anchor, not <a href>
+ * FIXED v1.2.0:
+ * - Removed useNavigate() from AppInner — it renders ABOVE <BrowserRouter>
+ * - Logout now clears state + lets auth guards redirect (no navigate() needed)
+ * - Notification navigation uses pendingNavigate prop consumed inside AppRouter
+ * 
+ * FIXED v1.1.0:
+ * - Stats property names aligned to match QuickStats/Sidebar expectations:
+ *     currentXP     → xp
+ *     requiredXP    → xpToNextLevel
+ *     currentStreak → streak
+ * - Logout redirect: window.location.href → useNavigate for SPA behavior
+ * - Notification click: window.location.href → navigate()
+ * - AuthProvider: removed user/isAuthenticated props (AuthContext manages internally)
  */
 
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // Providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -35,6 +44,7 @@ import './App.css';
 
 /**
  * Toast Container Component
+ * Manages toast notifications display
  */
 const ToastContainer = ({ toasts, onDismiss }) => {
   if (!toasts || toasts.length === 0) return null;
@@ -59,6 +69,7 @@ const ToastContainer = ({ toasts, onDismiss }) => {
 
 /**
  * App Loading Screen
+ * Shown during initial app load
  */
 const AppLoadingScreen = () => (
   <div className="app-loading">
@@ -89,6 +100,7 @@ const AppLoadingScreen = () => (
 
 /**
  * App Error Fallback
+ * Shown when the app encounters a critical error
  */
 const AppErrorFallback = ({ error, resetErrorBoundary }) => (
   <div className="app-error">
@@ -128,13 +140,20 @@ const AppErrorFallback = ({ error, resetErrorBoundary }) => (
 );
 
 /**
- * Main App Component
+ * Main App Component (inner, with access to router hooks)
  */
-const App = () => {
+const AppInner = () => {
+  // NOTE: useNavigate() CANNOT be used here because AppInner renders
+  // *above* <BrowserRouter> (which lives inside AppRouter).
+  // Navigation for logout/notification-click is handled via:
+  //   - Logout: clear state → AppRouter's auth guard redirects to "/" naturally
+  //   - Notification click: pass link via routerProps.pendingNavigate → AppRouter handles it
+  
+  // App state
   const [isInitialized, setIsInitialized] = useState(false);
   const [toasts, setToasts] = useState([]);
   
-  // Auth state
+  // Auth state (would typically come from AuthContext)
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -142,25 +161,21 @@ const App = () => {
   // User data
   const [notifications, setNotifications] = useState([]);
   
-  // FIXED: Stats property names aligned with what components expect
-  // QuickStats expects: level, xp, xpToNextLevel, currentStage, missionsCompleted, streak
-  // TopBar expects: baraka, xp, level, currentStage
-  // Sidebar passes stats.xp, stats.xpToNextLevel, stats.streak
+  // FIXED: Stats property names aligned to QuickStats/Sidebar expectations
   const [stats, setStats] = useState({
     level: 1,
-    xp: 0,                    // FIXED: was currentXP
-    xpToNextLevel: 100,        // FIXED: was requiredXP
+    xp: 0,                 // was: currentXP
+    xpToNextLevel: 100,    // was: requiredXP
     currentStage: 1,
     missionsCompleted: 0,
-    streak: 0,                 // FIXED: was currentStreak
-    baraka: 0                  // ADDED: for TopBar
+    streak: 0              // was: currentStreak
   });
-  
   const [wallets, setWallets] = useState({
     baraka: { balance: 0, pending: 0, tier: 'yellow' },
     psb: { balance: 0, invested: 0, returns: 0 }
   });
   
+  // App settings
   const [currentLanguage, setCurrentLanguage] = useState('en');
   
   /**
@@ -226,6 +241,7 @@ const App = () => {
     try {
       setIsAuthLoading(true);
       
+      // Simulate login
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockUser = {
@@ -233,10 +249,8 @@ const App = () => {
         email: credentials.email,
         firstName: 'GPS',
         lastName: 'User',
-        name: 'GPS User',
         role: 'user',
-        avatar: null,
-        level: 1
+        avatar: null
       };
       
       setUser(mockUser);
@@ -277,10 +291,8 @@ const App = () => {
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName,
-        name: `${data.firstName} ${data.lastName}`,
         role: 'user',
-        avatar: null,
-        level: 1
+        avatar: null
       };
       
       setUser(mockUser);
@@ -327,7 +339,8 @@ const App = () => {
   }, [addToast]);
   
   /**
-   * Handle logout — FIXED: no longer uses window.location.href
+   * Handle logout
+   * Clears auth state — AppRouter's auth guards will redirect to "/" automatically.
    */
   const handleLogout = useCallback(async () => {
     try {
@@ -342,8 +355,9 @@ const App = () => {
         message: 'You have been signed out successfully.'
       });
       
-      // Navigation is handled by the router — auth state change
-      // triggers ProtectedRoute redirect automatically
+      // Auth guard in AppRouter will redirect private routes to "/"
+      // For immediate redirect if already on a public page, use:
+      window.history.pushState({}, '', '/');
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -365,14 +379,21 @@ const App = () => {
   
   /**
    * Handle notification click
+   * Marks as read and stores pendingNavigate for AppRouter to handle.
    */
+  const [pendingNavigate, setPendingNavigate] = useState(null);
+  
   const handleNotificationClick = useCallback((notification) => {
     setNotifications(prev =>
       prev.map(n =>
         n.id === notification.id ? { ...n, read: true } : n
       )
     );
-    // Navigation to notification.link handled by Link components in NotificationBell
+    
+    // Store the target path — NavigationHandler inside AppRouter will pick it up
+    if (notification.link) {
+      setPendingNavigate(notification.link);
+    }
   }, []);
   
   // Memoized router props
@@ -389,7 +410,9 @@ const App = () => {
     wallets,
     currentLanguage,
     onLanguageChange: handleLanguageChange,
-    onNotificationClick: handleNotificationClick
+    onNotificationClick: handleNotificationClick,
+    pendingNavigate,
+    onNavigateComplete: () => setPendingNavigate(null)
   }), [
     user,
     isAuthenticated,
@@ -403,13 +426,48 @@ const App = () => {
     wallets,
     currentLanguage,
     handleLanguageChange,
-    handleNotificationClick
+    handleNotificationClick,
+    pendingNavigate
   ]);
   
   if (!isInitialized) {
     return <AppLoadingScreen />;
   }
   
+  return (
+    <div className="app" data-testid="app">
+      {/* Skip to content for accessibility */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      
+      {/* Main Router */}
+      <Suspense fallback={<RouteLoadingFallback />}>
+        <main id="main-content">
+          <AppRouter {...routerProps} />
+        </main>
+      </Suspense>
+      
+      {/* Toast Notifications */}
+      <ToastContainer
+        toasts={toasts}
+        onDismiss={dismissToast}
+      />
+    </div>
+  );
+};
+
+/**
+ * App wrapper - providers at outer level.
+ * 
+ * FIXED v1.2.0: Removed useNavigate() from AppInner since it renders
+ * ABOVE <BrowserRouter> (which lives inside AppRouter). Navigation is
+ * handled via:
+ *   - Logout: clearing auth state triggers AppRouter's auth guards
+ *   - Notification click: pendingNavigate prop consumed by NavigationHandler
+ *     inside AppRouter (which IS inside BrowserRouter)
+ */
+const App = () => {
   return (
     <ErrorBoundary
       fallback={AppErrorFallback}
@@ -418,29 +476,11 @@ const App = () => {
       }}
     >
       <ThemeProvider>
-        <I18nProvider language={currentLanguage}>
-          <AuthProvider user={user} isAuthenticated={isAuthenticated}>
+        <I18nProvider language="en">
+          <AuthProvider>
             <NotificationProvider>
               <WebSocketProvider>
-                <div className="app" data-testid="app">
-                  {/* Skip to content — uses anchor, not router link */}
-                  <a href="#main-content" className="skip-link">
-                    Skip to main content
-                  </a>
-                  
-                  {/* Main Router */}
-                  <Suspense fallback={<RouteLoadingFallback />}>
-                    <main id="main-content">
-                      <AppRouter {...routerProps} />
-                    </main>
-                  </Suspense>
-                  
-                  {/* Toast Notifications */}
-                  <ToastContainer
-                    toasts={toasts}
-                    onDismiss={dismissToast}
-                  />
-                </div>
+                <AppInner />
               </WebSocketProvider>
             </NotificationProvider>
           </AuthProvider>

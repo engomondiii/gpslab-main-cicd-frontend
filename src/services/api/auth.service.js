@@ -4,8 +4,11 @@
  * Authentication service for login, register, logout, token refresh,
  * and OAuth integration.
  * 
+ * MOCK MODE: When REACT_APP_USE_MOCK_DATA=true or API is unreachable,
+ * all methods return realistic mock data for frontend-only development.
+ * 
  * @module services/api/auth.service
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 import apiClient, { setTokens, clearTokens, getRefreshToken } from './client';
@@ -15,7 +18,68 @@ import { logUserAction, authLogger } from '../../utils/error/error.logger';
 import { createError, ERROR_TYPES } from '../../utils/error/error.handler';
 
 // =============================================================================
-// CONFIGURATION
+// MOCK MODE CONFIGURATION
+// =============================================================================
+
+const USE_MOCK = process.env.REACT_APP_USE_MOCK_DATA === 'true' ||
+                 process.env.NODE_ENV === 'development';
+
+/**
+ * Mock user data for frontend-only development
+ */
+const MOCK_USER = {
+  id: 'usr_mock_001',
+  email: 'gps.solver@gpslab.dev',
+  username: 'GPSExplorer',
+  firstName: 'GPS',
+  lastName: 'Explorer',
+  displayName: 'GPS Explorer',
+  avatarUrl: null,
+  locale: 'en',
+  role: 'student',
+  tier: 'explorer',
+  emailVerified: true,
+  isActive: true,
+  university: {
+    id: 'uni_001',
+    name: 'Handong Global University',
+    code: 'HGU'
+  },
+  preferences: {
+    language: 'en',
+    theme: 'light',
+    notifications: true
+  },
+  createdAt: '2025-09-01T08:00:00Z',
+  lastLoginAt: new Date().toISOString()
+};
+
+/**
+ * Mock tokens
+ */
+const MOCK_TOKENS = {
+  accessToken: 'mock_access_token_' + Date.now(),
+  refreshToken: 'mock_refresh_token_' + Date.now(),
+  expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+};
+
+/**
+ * Simulates API delay for realistic mock responses
+ * @param {number} ms - Delay in milliseconds
+ * @returns {Promise<void>}
+ */
+const mockDelay = (ms = 300) => new Promise(r => setTimeout(r, ms));
+
+/**
+ * Logs mock mode usage
+ * @param {string} method - Method name
+ */
+const logMock = (method) => {
+  console.info(`[AuthService:MOCK] ${method}`);
+};
+
+// =============================================================================
+// OAUTH CONFIGURATION
 // =============================================================================
 
 /**
@@ -73,7 +137,7 @@ const generateOAuthState = () => {
  * Builds OAuth URL
  * @param {string} provider - OAuth provider
  * @param {Object} additionalParams - Additional URL params
- * @returns {string} OAuth URL
+ * @returns {Object} OAuth URL and state
  */
 const buildOAuthUrl = (provider, additionalParams = {}) => {
   const config = OAUTH_PROVIDERS[provider];
@@ -102,7 +166,7 @@ const buildOAuthUrl = (provider, additionalParams = {}) => {
 };
 
 /**
- * Processes auth response
+ * Processes auth response - stores tokens and user data
  * @param {Object} response - API response
  * @returns {Object} Processed user data
  */
@@ -126,6 +190,18 @@ const processAuthResponse = (response) => {
   return data;
 };
 
+/**
+ * Processes mock auth response - same side effects as real
+ * @param {Object} user - Mock user
+ * @param {Object} tokens - Mock tokens
+ * @returns {Object} Mock auth response data
+ */
+const processMockAuthResponse = (user, tokens) => {
+  setTokens(tokens);
+  setUser(user);
+  return { user, ...tokens };
+};
+
 // =============================================================================
 // LOGIN / REGISTER
 // =============================================================================
@@ -133,11 +209,27 @@ const processAuthResponse = (response) => {
 /**
  * Logs in user with email and password
  * @param {Object} credentials - Login credentials
- * @returns {Promise<Object>} User data
+ * @returns {Promise<Object>} User data with tokens
  */
 export const login = async ({ email, password, rememberMe = false }) => {
   authLogger.info('Login attempt', { email });
   
+  // --- MOCK MODE ---
+  if (USE_MOCK) {
+    logMock('login');
+    await mockDelay(500);
+    
+    const mockUser = { ...MOCK_USER, email, lastLoginAt: new Date().toISOString() };
+    const data = processMockAuthResponse(mockUser, { ...MOCK_TOKENS });
+    
+    authLogger.info('Login successful (mock)', { userId: mockUser.id });
+    logUserAction('login', { method: 'email', mock: true });
+    window.dispatchEvent(new CustomEvent('auth:login', { detail: mockUser }));
+    
+    return data;
+  }
+  
+  // --- LIVE API ---
   try {
     const response = await apiClient.post(ENDPOINTS.login, {
       email,
@@ -149,8 +241,6 @@ export const login = async ({ email, password, rememberMe = false }) => {
     
     authLogger.info('Login successful', { userId: data.user?.id });
     logUserAction('login', { method: 'email' });
-    
-    // Dispatch auth event
     window.dispatchEvent(new CustomEvent('auth:login', { detail: data.user }));
     
     return data;
@@ -163,7 +253,7 @@ export const login = async ({ email, password, rememberMe = false }) => {
 /**
  * Registers new user
  * @param {Object} userData - User registration data
- * @returns {Promise<Object>} User data
+ * @returns {Promise<Object>} User data with tokens
  */
 export const register = async ({
   email,
@@ -178,6 +268,33 @@ export const register = async ({
 }) => {
   authLogger.info('Registration attempt', { email });
   
+  // --- MOCK MODE ---
+  if (USE_MOCK) {
+    logMock('register');
+    await mockDelay(700);
+    
+    const mockUser = {
+      ...MOCK_USER,
+      id: 'usr_mock_' + Date.now(),
+      email,
+      firstName,
+      lastName,
+      username: username || MOCK_USER.username,
+      displayName: `${firstName} ${lastName}`,
+      locale,
+      emailVerified: false,
+      createdAt: new Date().toISOString()
+    };
+    const data = processMockAuthResponse(mockUser, { ...MOCK_TOKENS });
+    
+    authLogger.info('Registration successful (mock)', { userId: mockUser.id });
+    logUserAction('register', { method: 'email', mock: true });
+    window.dispatchEvent(new CustomEvent('auth:register', { detail: mockUser }));
+    
+    return data;
+  }
+  
+  // --- LIVE API ---
   try {
     const response = await apiClient.post(ENDPOINTS.register, {
       email,
@@ -196,8 +313,6 @@ export const register = async ({
     
     authLogger.info('Registration successful', { userId: data.user?.id });
     logUserAction('register', { method: 'email' });
-    
-    // Dispatch auth event
     window.dispatchEvent(new CustomEvent('auth:register', { detail: data.user }));
     
     return data;
@@ -218,22 +333,23 @@ export const register = async ({
 export const logout = async () => {
   authLogger.info('Logout');
   
-  try {
-    // Call logout endpoint to invalidate token on server
-    await apiClient.post(ENDPOINTS.logout);
-  } catch (error) {
-    // Log but don't throw - we still want to clear local state
-    authLogger.warn('Logout API call failed', { error: error.message });
+  if (!USE_MOCK) {
+    try {
+      await apiClient.post(ENDPOINTS.logout);
+    } catch (error) {
+      authLogger.warn('Logout API call failed', { error: error.message });
+    }
+  } else {
+    logMock('logout');
+    await mockDelay(200);
   }
   
-  // Clear local auth state
+  // Clear local auth state (always runs)
   clearTokens();
   removeItem(STORAGE_KEYS.user);
   removeItem(STORAGE_KEYS.userProfile);
   
   logUserAction('logout');
-  
-  // Dispatch auth event
   window.dispatchEvent(new CustomEvent('auth:logout'));
 };
 
@@ -246,6 +362,21 @@ export const logout = async () => {
  * @returns {Promise<Object>} New tokens
  */
 export const refreshToken = async () => {
+  // --- MOCK MODE ---
+  if (USE_MOCK) {
+    logMock('refreshToken');
+    await mockDelay(200);
+    
+    const newTokens = {
+      accessToken: 'mock_access_token_' + Date.now(),
+      refreshToken: 'mock_refresh_token_' + Date.now(),
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+    };
+    setTokens(newTokens);
+    return newTokens;
+  }
+  
+  // --- LIVE API ---
   const currentRefreshToken = getRefreshToken();
   
   if (!currentRefreshToken) {
@@ -270,10 +401,7 @@ export const refreshToken = async () => {
     return response.data;
   } catch (error) {
     authLogger.error('Token refresh failed', { error: error.message });
-    
-    // Clear tokens on refresh failure
     clearTokens();
-    
     throw error;
   }
 };
@@ -283,6 +411,11 @@ export const refreshToken = async () => {
  * @returns {Promise<boolean>} True if valid
  */
 export const validateToken = async () => {
+  if (USE_MOCK) {
+    logMock('validateToken');
+    return true;
+  }
+  
   try {
     await apiClient.get(ENDPOINTS.validateToken);
     return true;
@@ -303,10 +436,15 @@ export const validateToken = async () => {
 export const forgotPassword = async (email) => {
   authLogger.info('Password reset requested', { email });
   
+  if (USE_MOCK) {
+    logMock('forgotPassword');
+    await mockDelay(500);
+    logUserAction('forgot_password', { email });
+    return { success: true, message: 'Password reset email sent (mock)' };
+  }
+  
   const response = await apiClient.post(ENDPOINTS.forgotPassword, { email });
-  
   logUserAction('forgot_password', { email });
-  
   return response.data;
 };
 
@@ -318,13 +456,15 @@ export const forgotPassword = async (email) => {
 export const resetPassword = async ({ token, password }) => {
   authLogger.info('Password reset attempt');
   
-  const response = await apiClient.post(ENDPOINTS.resetPassword, {
-    token,
-    password
-  });
+  if (USE_MOCK) {
+    logMock('resetPassword');
+    await mockDelay(500);
+    logUserAction('reset_password');
+    return { success: true, message: 'Password reset successful (mock)' };
+  }
   
+  const response = await apiClient.post(ENDPOINTS.resetPassword, { token, password });
   logUserAction('reset_password');
-  
   return response.data;
 };
 
@@ -336,13 +476,18 @@ export const resetPassword = async ({ token, password }) => {
 export const changePassword = async ({ currentPassword, newPassword }) => {
   authLogger.info('Password change attempt');
   
+  if (USE_MOCK) {
+    logMock('changePassword');
+    await mockDelay(500);
+    logUserAction('change_password');
+    return { success: true, message: 'Password changed successfully (mock)' };
+  }
+  
   const response = await apiClient.post(ENDPOINTS.changePassword, {
     currentPassword,
     newPassword
   });
-  
   logUserAction('change_password');
-  
   return response.data;
 };
 
@@ -358,15 +503,22 @@ export const changePassword = async ({ currentPassword, newPassword }) => {
 export const verifyEmail = async (token) => {
   authLogger.info('Email verification attempt');
   
+  if (USE_MOCK) {
+    logMock('verifyEmail');
+    await mockDelay(500);
+    const verifiedUser = { ...MOCK_USER, emailVerified: true };
+    setUser(verifiedUser);
+    logUserAction('verify_email');
+    return { success: true, user: verifiedUser };
+  }
+  
   const response = await apiClient.post(ENDPOINTS.verifyEmail, { token });
   
-  // Update user data if verified
   if (response.data.user) {
     setUser(response.data.user);
   }
   
   logUserAction('verify_email');
-  
   return response.data;
 };
 
@@ -378,10 +530,15 @@ export const verifyEmail = async (token) => {
 export const resendVerification = async (email) => {
   authLogger.info('Resend verification requested', { email });
   
+  if (USE_MOCK) {
+    logMock('resendVerification');
+    await mockDelay(400);
+    logUserAction('resend_verification', { email });
+    return { success: true, message: 'Verification email resent (mock)' };
+  }
+  
   const response = await apiClient.post(ENDPOINTS.resendVerification, { email });
-  
   logUserAction('resend_verification', { email });
-  
   return response.data;
 };
 
@@ -400,10 +557,8 @@ export const initiateGoogleOAuth = ({ returnUrl, pendingAction } = {}) => {
     prompt: 'consent'
   });
   
-  // Save state for validation
   saveOAuthState(state, { provider: 'google', returnUrl });
   
-  // Save pending action if provided
   if (pendingAction) {
     savePendingAction(pendingAction);
   }
@@ -424,10 +579,8 @@ export const initiateAppleOAuth = ({ returnUrl, pendingAction } = {}) => {
     response_mode: 'form_post'
   });
   
-  // Save state for validation
   saveOAuthState(state, { provider: 'apple', returnUrl });
   
-  // Save pending action if provided
   if (pendingAction) {
     savePendingAction(pendingAction);
   }
@@ -444,7 +597,6 @@ export const initiateAppleOAuth = ({ returnUrl, pendingAction } = {}) => {
  * @returns {Promise<Object>} User data
  */
 export const handleOAuthCallback = async ({ provider, code, state, error }) => {
-  // Check for OAuth error
   if (error) {
     authLogger.error('OAuth error', { provider, error });
     throw createError(ERROR_TYPES.AUTH_ERROR, {
@@ -452,7 +604,28 @@ export const handleOAuthCallback = async ({ provider, code, state, error }) => {
     });
   }
   
-  // Validate state
+  // --- MOCK MODE ---
+  if (USE_MOCK) {
+    logMock('handleOAuthCallback');
+    await mockDelay(600);
+    
+    const mockUser = {
+      ...MOCK_USER,
+      oauthProvider: provider,
+      lastLoginAt: new Date().toISOString()
+    };
+    const data = processMockAuthResponse(mockUser, { ...MOCK_TOKENS });
+    
+    authLogger.info('OAuth successful (mock)', { provider });
+    logUserAction('oauth_login', { provider, mock: true });
+    window.dispatchEvent(new CustomEvent('auth:login', {
+      detail: { ...mockUser, oauthProvider: provider }
+    }));
+    
+    return { ...data, returnUrl: '/dashboard' };
+  }
+  
+  // --- LIVE API ---
   const savedData = validateOAuthState(state);
   
   if (!savedData) {
@@ -462,7 +635,6 @@ export const handleOAuthCallback = async ({ provider, code, state, error }) => {
     });
   }
   
-  // Exchange code for tokens
   const endpoint = provider === 'google' ? ENDPOINTS.oauthGoogle : ENDPOINTS.oauthApple;
   
   try {
@@ -471,9 +643,7 @@ export const handleOAuthCallback = async ({ provider, code, state, error }) => {
     
     authLogger.info('OAuth successful', { provider, userId: data.user?.id });
     logUserAction('oauth_login', { provider });
-    
-    // Dispatch auth event
-    window.dispatchEvent(new CustomEvent('auth:login', { 
+    window.dispatchEvent(new CustomEvent('auth:login', {
       detail: { ...data.user, oauthProvider: provider }
     }));
     
@@ -496,9 +666,15 @@ export const handleOAuthCallback = async ({ provider, code, state, error }) => {
  * @returns {Promise<Object>} User data
  */
 export const getCurrentUser = async () => {
+  if (USE_MOCK) {
+    logMock('getCurrentUser');
+    await mockDelay(200);
+    setUser(MOCK_USER);
+    return { ...MOCK_USER };
+  }
+  
   const response = await apiClient.get(ENDPOINTS.me);
   
-  // Update stored user data
   if (response.data) {
     setUser(response.data);
   }
@@ -511,6 +687,10 @@ export const getCurrentUser = async () => {
  * @returns {boolean} True if authenticated
  */
 export const isAuthenticated = () => {
+  if (USE_MOCK) {
+    return true;
+  }
+  
   const { getItem } = require('../storage/localStorage.service');
   const token = getItem(STORAGE_KEYS.accessToken);
   return !!token;

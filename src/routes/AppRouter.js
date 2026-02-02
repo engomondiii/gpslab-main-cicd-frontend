@@ -7,8 +7,8 @@
  * @module routes/AppRouter
  */
 
-import React, { Suspense, useCallback, useMemo } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { Suspense, useCallback, useMemo, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 // Route configurations
 import PublicRoutes, { PUBLIC_ROUTES, RouteLoadingFallback } from './PublicRoutes';
@@ -50,6 +50,24 @@ const RouteTransition = ({ children }) => {
 };
 
 /**
+ * NavigationHandler — renders inside BrowserRouter.
+ * Consumes pendingNavigate from App.js (which is outside the router)
+ * and performs SPA navigation via useNavigate().
+ */
+const NavigationHandler = ({ pendingNavigate, onNavigateComplete }) => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (pendingNavigate) {
+      navigate(pendingNavigate);
+      if (onNavigateComplete) onNavigateComplete();
+    }
+  }, [pendingNavigate, navigate, onNavigateComplete]);
+  
+  return null;
+};
+
+/**
  * AppRouter Component
  * 
  * Main application router that combines all route groups.
@@ -67,11 +85,17 @@ const AppRouter = ({
   wallets = {},
   currentLanguage = 'en',
   onLanguageChange,
-  onNotificationClick
+  onNotificationClick,
+  pendingNavigate = null,
+  onNavigateComplete
 }) => {
   
   /**
-   * Handle successful login - redirect to intended destination
+   * Handle successful login - redirect to intended destination.
+   * NOTE: window.location.href is intentional here since AppRouter
+   * creates <BrowserRouter> — it is not itself inside one, so
+   * useNavigate() cannot be called at this scope.
+   * TODO: Refactor to pass navigate via NavigationHandler if SPA nav needed.
    */
   const handleLoginSuccess = useCallback(() => {
     const redirectPath = getRedirectAfterLogin('/dashboard');
@@ -254,6 +278,10 @@ const AppRouter = ({
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <NavigationHandler 
+        pendingNavigate={pendingNavigate} 
+        onNavigateComplete={onNavigateComplete} 
+      />
       <div className="app-router">
         <Suspense fallback={<RouteLoadingFallback />}>
           <Routes>

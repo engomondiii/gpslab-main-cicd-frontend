@@ -1,8 +1,8 @@
 /**
  * GPS Lab Platform - UserContext
  * 
- * Provides user profile, preferences, and progress state.
- * Complements AuthContext (which handles auth flow) with user data.
+ * User profile and stats state management.
+ * Provides user data, preferences, achievements, and profile operations.
  * 
  * @module context/UserContext
  * @version 1.0.0
@@ -15,195 +15,137 @@ import React, { createContext, useContext, useReducer, useCallback, useMemo } fr
 // =============================================================================
 
 const initialState = {
-  profile: {
-    id: null,
-    firstName: '',
-    lastName: '',
-    email: '',
-    avatar: null,
-    bio: '',
-    location: '',
-    joinedAt: null,
-    role: 'user'
-  },
-  preferences: {
-    theme: 'light',
-    language: 'en',
-    soundEnabled: true,
-    notificationsEnabled: true,
-    emailDigest: 'weekly',
-    showOnlineStatus: true
-  },
-  progress: {
+  profile: null,
+  stats: {
     level: 1,
     xp: 0,
     xpToNextLevel: 100,
     currentStage: 1,
-    currentAdventure: 1,
     missionsCompleted: 0,
-    bitesCompleted: 0,
-    checkpointsPassed: 0,
-    streak: 0,
-    longestStreak: 0,
-    totalStudyTime: 0,
-    badges: [],
-    achievements: []
+    streak: 0
+  },
+  badges: [],
+  achievements: [],
+  preferences: {
+    theme: 'light',
+    locale: 'en',
+    soundEnabled: true,
+    notificationsEnabled: true
   },
   isLoading: false,
   error: null
 };
 
 // =============================================================================
-// REDUCER
+// ACTION TYPES
 // =============================================================================
 
 const USER_ACTIONS = {
   SET_PROFILE: 'user/setProfile',
   UPDATE_PROFILE: 'user/updateProfile',
-  SET_PREFERENCES: 'user/setPreferences',
-  UPDATE_PREFERENCE: 'user/updatePreference',
-  SET_PROGRESS: 'user/setProgress',
-  UPDATE_PROGRESS: 'user/updateProgress',
-  ADD_XP: 'user/addXP',
+  SET_STATS: 'user/setStats',
+  UPDATE_STATS: 'user/updateStats',
+  SET_BADGES: 'user/setBadges',
   ADD_BADGE: 'user/addBadge',
+  SET_ACHIEVEMENTS: 'user/setAchievements',
+  SET_PREFERENCES: 'user/setPreferences',
+  UPDATE_PREFERENCES: 'user/updatePreferences',
   SET_LOADING: 'user/setLoading',
   SET_ERROR: 'user/setError',
+  CLEAR_ERROR: 'user/clearError',
   RESET: 'user/reset'
 };
+
+// =============================================================================
+// REDUCER
+// =============================================================================
 
 const userReducer = (state, action) => {
   switch (action.type) {
     case USER_ACTIONS.SET_PROFILE:
-      return { ...state, profile: { ...state.profile, ...action.payload }, isLoading: false };
-      
+      return { ...state, profile: action.payload, isLoading: false };
     case USER_ACTIONS.UPDATE_PROFILE:
       return { ...state, profile: { ...state.profile, ...action.payload } };
-      
-    case USER_ACTIONS.SET_PREFERENCES:
-      return { ...state, preferences: { ...state.preferences, ...action.payload } };
-      
-    case USER_ACTIONS.UPDATE_PREFERENCE:
-      return {
-        ...state,
-        preferences: { ...state.preferences, [action.payload.key]: action.payload.value }
-      };
-      
-    case USER_ACTIONS.SET_PROGRESS:
-      return { ...state, progress: { ...state.progress, ...action.payload } };
-      
-    case USER_ACTIONS.UPDATE_PROGRESS:
-      return { ...state, progress: { ...state.progress, ...action.payload } };
-      
-    case USER_ACTIONS.ADD_XP: {
-      const newXP = state.progress.xp + action.payload;
-      const xpToNext = state.progress.xpToNextLevel;
-      const leveledUp = newXP >= xpToNext;
-      return {
-        ...state,
-        progress: {
-          ...state.progress,
-          xp: leveledUp ? newXP - xpToNext : newXP,
-          level: leveledUp ? state.progress.level + 1 : state.progress.level,
-          xpToNextLevel: leveledUp ? Math.round(xpToNext * 1.5) : xpToNext
-        }
-      };
-    }
-      
+    case USER_ACTIONS.SET_STATS:
+      return { ...state, stats: action.payload };
+    case USER_ACTIONS.UPDATE_STATS:
+      return { ...state, stats: { ...state.stats, ...action.payload } };
+    case USER_ACTIONS.SET_BADGES:
+      return { ...state, badges: action.payload };
     case USER_ACTIONS.ADD_BADGE:
-      return {
-        ...state,
-        progress: {
-          ...state.progress,
-          badges: [...state.progress.badges, action.payload]
-        }
-      };
-      
+      return { ...state, badges: [...state.badges, action.payload] };
+    case USER_ACTIONS.SET_ACHIEVEMENTS:
+      return { ...state, achievements: action.payload };
+    case USER_ACTIONS.SET_PREFERENCES:
+      return { ...state, preferences: action.payload };
+    case USER_ACTIONS.UPDATE_PREFERENCES:
+      return { ...state, preferences: { ...state.preferences, ...action.payload } };
     case USER_ACTIONS.SET_LOADING:
       return { ...state, isLoading: action.payload };
-      
     case USER_ACTIONS.SET_ERROR:
       return { ...state, error: action.payload, isLoading: false };
-      
+    case USER_ACTIONS.CLEAR_ERROR:
+      return { ...state, error: null };
     case USER_ACTIONS.RESET:
       return initialState;
-      
     default:
       return state;
   }
 };
 
 // =============================================================================
-// CONTEXT
+// CONTEXT & PROVIDER
 // =============================================================================
 
 const UserContext = createContext(null);
 
-// =============================================================================
-// PROVIDER
-// =============================================================================
-
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
-  
+
+  const setProfile = useCallback((profile) => {
+    dispatch({ type: USER_ACTIONS.SET_PROFILE, payload: profile });
+  }, []);
   const updateProfile = useCallback((updates) => {
     dispatch({ type: USER_ACTIONS.UPDATE_PROFILE, payload: updates });
   }, []);
-  
-  const updatePreference = useCallback((key, value) => {
-    dispatch({ type: USER_ACTIONS.UPDATE_PREFERENCE, payload: { key, value } });
+  const setStats = useCallback((stats) => {
+    dispatch({ type: USER_ACTIONS.SET_STATS, payload: stats });
   }, []);
-  
-  const addXP = useCallback((amount) => {
-    dispatch({ type: USER_ACTIONS.ADD_XP, payload: amount });
+  const updateStats = useCallback((updates) => {
+    dispatch({ type: USER_ACTIONS.UPDATE_STATS, payload: updates });
   }, []);
-  
+  const setBadges = useCallback((badges) => {
+    dispatch({ type: USER_ACTIONS.SET_BADGES, payload: badges });
+  }, []);
   const addBadge = useCallback((badge) => {
     dispatch({ type: USER_ACTIONS.ADD_BADGE, payload: badge });
   }, []);
-  
-  const updateProgress = useCallback((updates) => {
-    dispatch({ type: USER_ACTIONS.UPDATE_PROGRESS, payload: updates });
+  const setPreferences = useCallback((prefs) => {
+    dispatch({ type: USER_ACTIONS.SET_PREFERENCES, payload: prefs });
   }, []);
-  
-  const resetUser = useCallback(() => {
+  const updatePreferences = useCallback((updates) => {
+    dispatch({ type: USER_ACTIONS.UPDATE_PREFERENCES, payload: updates });
+  }, []);
+  const clearError = useCallback(() => {
+    dispatch({ type: USER_ACTIONS.CLEAR_ERROR });
+  }, []);
+  const reset = useCallback(() => {
     dispatch({ type: USER_ACTIONS.RESET });
   }, []);
-  
-  const contextValue = useMemo(() => ({
-    ...state,
-    updateProfile,
-    updatePreference,
-    addXP,
-    addBadge,
-    updateProgress,
-    resetUser,
-    // Computed
-    displayName: state.profile.firstName
-      ? `${state.profile.firstName} ${state.profile.lastName}`.trim()
-      : state.profile.email || 'User',
-    levelProgress: state.progress.xpToNextLevel > 0
-      ? Math.round((state.progress.xp / state.progress.xpToNextLevel) * 100)
-      : 0,
-    badgeCount: state.progress.badges.length
-  }), [state, updateProfile, updatePreference, addXP, addBadge, updateProgress, resetUser]);
-  
-  return (
-    <UserContext.Provider value={contextValue}>
-      {children}
-    </UserContext.Provider>
-  );
-};
 
-// =============================================================================
-// HOOK
-// =============================================================================
+  const value = useMemo(() => ({
+    ...state, setProfile, updateProfile, setStats, updateStats,
+    setBadges, addBadge, setPreferences, updatePreferences, clearError, reset
+  }), [state, setProfile, updateProfile, setStats, updateStats, setBadges, addBadge, setPreferences, updatePreferences, clearError, reset]);
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
 
 export const useUserContext = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error('useUserContext must be used within a UserProvider');
-  }
-  return context;
+  const ctx = useContext(UserContext);
+  if (!ctx) throw new Error('useUserContext must be used within a UserProvider');
+  return ctx;
 };
 
+export { USER_ACTIONS };
 export default UserContext;

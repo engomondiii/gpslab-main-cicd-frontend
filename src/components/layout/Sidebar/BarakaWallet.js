@@ -3,7 +3,8 @@
  * @module components/layout/Sidebar/BarakaWallet
  * @version 1.1.0
  * 
- * FIXED: Converted <a href> to React Router <Link>
+ * FIXED v1.1.0:
+ * - Converted "View Details" <a href="/wallet/baraka"> to <Link to="/wallet/baraka">
  */
 
 import React from 'react';
