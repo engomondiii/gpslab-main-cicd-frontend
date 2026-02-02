@@ -1,68 +1,70 @@
 /**
  * GPS Lab Platform - StudyModuleList Component Styles
+ * LIGHT MODE ONLY
  */
 
 .study-module-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
 }
 
-/* Header */
 .study-module-list__header {
-  padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+  border: var(--border-thin) solid var(--neutral-300);
 }
 
 .study-module-list__progress-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-2, 8px);
+  margin-bottom: var(--space-2);
 }
 
 .study-module-list__progress-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--neutral-800);
 }
 
 .study-module-list__progress-count {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .study-module-list__progress-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full, 9999px);
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .study-module-list__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
-  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(90deg, var(--beacon-purple) 0%, var(--gps-primary) 100%);
+  border-radius: var(--radius-full);
   transition: width var(--duration-slow) var(--ease-out);
 }
 
-/* Items */
 .study-module-list__items {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 12px);
+  gap: var(--space-3);
 }
 
 .study-module-list--compact .study-module-list__items {
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
-/* Empty State */
 .study-module-list__empty {
-  padding: var(--space-8, 32px);
+  padding: var(--space-8);
   text-align: center;
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+  border: var(--border-thin) solid var(--neutral-300);
 }

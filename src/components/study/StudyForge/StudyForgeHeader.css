@@ -1,19 +1,21 @@
 /**
  * GPS Lab Platform - StudyForgeHeader Component Styles
+ * LIGHT MODE ONLY - Professional header with light backgrounds
  */
 
 .study-forge-header {
-  background: linear-gradient(180deg, var(--neutral-800, #0d1b2a) 0%, rgba(13, 27, 42, 0.8) 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-6, 24px);
+  background: linear-gradient(180deg, var(--neutral-0) 0%, var(--neutral-50) 100%);
+  border-bottom: var(--border-default) solid var(--neutral-300);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Top Section */
 .study-forge-header__top {
   display: flex;
   align-items: center;
-  gap: var(--space-6, 24px);
-  margin-bottom: var(--space-6, 24px);
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
 .study-forge-header__back-btn {
@@ -22,18 +24,18 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg, 8px);
-  color: var(--neutral-400, #a8dadc);
+  background: var(--neutral-100);
+  border: var(--border-thin) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
   flex-shrink: 0;
 }
 
 .study-forge-header__back-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .study-forge-header__back-btn svg {
@@ -45,7 +47,7 @@
 .study-forge-header__title-section {
   display: flex;
   align-items: center;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
   flex: 1;
 }
 
@@ -55,10 +57,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--beacon-indigo, #9b59b6) 100%);
-  border-radius: var(--radius-xl, 12px);
-  color: var(--neutral-0, #ffffff);
+  background: linear-gradient(135deg, var(--beacon-purple) 0%, var(--beacon-indigo) 100%);
+  border-radius: var(--radius-xl);
+  color: var(--neutral-0);
   flex-shrink: 0;
+  box-shadow: var(--shadow-md);
 }
 
 .study-forge-header__icon svg {
@@ -67,25 +70,25 @@
 }
 
 .study-forge-header__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-2xl, 32px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
   margin: 0;
 }
 
 .study-forge-header__subtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
-  margin: var(--space-1, 4px) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-600);
+  margin: var(--space-1) 0 0;
 }
 
 /* Stats */
 .study-forge-header__stats {
   display: flex;
   align-items: center;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
 }
 
 .study-forge-header__stat {
@@ -93,26 +96,27 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  padding: var(--space-3, 12px) var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-3) var(--space-5);
+  background: var(--neutral-0);
+  border: var(--border-thin) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
   min-width: 90px;
+  box-shadow: var(--shadow-sm);
 }
 
 .study-forge-header__stat-value {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
   line-height: 1;
 }
 
 .study-forge-header__stat-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
-  margin-top: var(--space-1, 4px);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--neutral-600);
+  margin-top: var(--space-1);
 }
 
 .study-forge-header__stat-icon {
@@ -125,111 +129,112 @@
 /* Retry Stats */
 .study-forge-header__retry-stats {
   display: flex;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
 .study-forge-header__retry-badge {
   display: flex;
   align-items: center;
-  gap: var(--space-1, 4px);
-  padding: var(--space-2, 8px) var(--space-3, 12px);
-  border-radius: var(--radius-full, 9999px);
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid var(--gps-primary, #00d4ff);
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--gps-primary-pale);
+  border: var(--border-thin) solid var(--gps-primary);
 }
 
 .study-forge-header__retry-badge--pr2r {
-  background: rgba(241, 196, 15, 0.1);
-  border-color: var(--warning, #f1c40f);
+  background: var(--warning-pale);
+  border-color: var(--warning);
 }
 
 .study-forge-header__retry-count {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-lg, 20px);
-  font-weight: var(--font-bold, 700);
-  color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
 }
 
 .study-forge-header__retry-badge--pr2r .study-forge-header__retry-count {
-  color: var(--warning, #f1c40f);
+  color: var(--warning);
 }
 
 .study-forge-header__retry-label {
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--neutral-800);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide, 0.025em);
+  letter-spacing: var(--tracking-wide);
 }
 
 /* Progress Bar */
 .study-forge-header__progress {
-  margin-bottom: var(--space-5, 20px);
+  margin-bottom: var(--space-5);
 }
 
 .study-forge-header__progress-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-2, 8px);
+  margin-bottom: var(--space-2);
 }
 
 .study-forge-header__progress-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--neutral-800);
 }
 
 .study-forge-header__progress-value {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .study-forge-header__progress-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full, 9999px);
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .study-forge-header__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
-  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(90deg, var(--beacon-purple) 0%, var(--gps-primary) 100%);
+  border-radius: var(--radius-full);
   transition: width var(--duration-slow) var(--ease-out);
 }
 
 /* Search and Filter Controls */
 .study-forge-header__controls {
   display: flex;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
   flex-wrap: wrap;
 }
 
 .study-forge-header__search {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
   flex: 1;
   min-width: 250px;
-  padding: var(--space-3, 12px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-3) var(--space-4);
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
   transition: border-color var(--duration-fast) var(--ease-out);
 }
 
 .study-forge-header__search:focus-within {
-  border-color: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary);
+  box-shadow: 0 0 0 3px var(--gps-primary-pale);
 }
 
 .study-forge-header__search svg {
   width: 20px;
   height: 20px;
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   flex-shrink: 0;
 }
 
@@ -237,45 +242,46 @@
   flex: 1;
   background: transparent;
   border: none;
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-900);
   outline: none;
 }
 
 .study-forge-header__search-input::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
 }
 
 .study-forge-header__filters {
   display: flex;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
 .study-forge-header__filter-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg, 8px);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--neutral-100);
+  border: var(--border-thin) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .study-forge-header__filter-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .study-forge-header__filter-btn--active {
-  background: rgba(142, 68, 173, 0.2);
-  border-color: var(--beacon-purple, #8e44ad);
-  color: var(--neutral-0, #ffffff);
+  background: var(--gps-primary-pale);
+  border-color: var(--gps-primary);
+  color: var(--gps-primary-dark);
+  font-weight: var(--font-semibold);
 }
 
 .study-forge-header__filter-icon {
@@ -292,13 +298,13 @@
     order: 3;
     width: 100%;
     justify-content: flex-start;
-    margin-top: var(--space-4, 16px);
+    margin-top: var(--space-4);
   }
 }
 
 @media (max-width: 768px) {
   .study-forge-header {
-    padding: var(--space-4, 16px);
+    padding: var(--space-4);
   }
   
   .study-forge-header__title-section {
@@ -308,16 +314,16 @@
   }
   
   .study-forge-header__title {
-    font-size: var(--text-xl, 24px);
+    font-size: var(--text-xl);
   }
   
   .study-forge-header__stat {
     min-width: 70px;
-    padding: var(--space-2, 8px) var(--space-3, 12px);
+    padding: var(--space-2) var(--space-3);
   }
   
   .study-forge-header__stat-value {
-    font-size: var(--text-lg, 20px);
+    font-size: var(--text-lg);
   }
   
   .study-forge-header__search {
@@ -327,7 +333,7 @@
   .study-forge-header__filters {
     width: 100%;
     overflow-x: auto;
-    padding-bottom: var(--space-2, 8px);
+    padding-bottom: var(--space-2);
   }
   
   .study-forge-header__filter-btn {

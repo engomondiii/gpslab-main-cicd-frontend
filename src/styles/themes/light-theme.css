@@ -1,29 +1,168 @@
 /* ============================================
-   GPS LAB - Light Theme (Default)
-   All light theme variables (already in variables.css)
+   GPS LAB - Light Theme (Default and Only Theme)
+   Comprehensive light mode styling
    ============================================ */
 
-/* Light theme is the default and all variables are 
-   already defined in variables.css */
+/**
+ * GPS Lab Platform uses LIGHT MODE ONLY
+ * All styles optimized for light backgrounds
+ */
 
 :root,
 [data-theme="light"] {
-  /* This file serves as a reference that light theme
-     is the default. All color variables in variables.css
-     represent the light theme values. */
-  
-  /* If you need to override any specific values for
-     light theme, add them here */
+  /* This is the default and only theme for GPS Lab */
+  /* All variables are defined in variables.css */
+  /* This file provides explicit light theme styling */
 }
 
 /* ==========================================
-   LIGHT THEME SPECIFIC STYLES
+   LIGHT THEME BODY & BASE STYLES
    ========================================== */
 
 [data-theme="light"] body {
   background-color: var(--neutral-100);
   color: var(--neutral-900);
 }
+
+/* ==========================================
+   LIGHT THEME COMPONENT STYLES
+   ========================================== */
+
+/* Cards */
+[data-theme="light"] .card {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  border-color: var(--neutral-300);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modals */
+[data-theme="light"] .modal {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+}
+
+[data-theme="light"] .modal-overlay {
+  background: var(--overlay-dark);
+}
+
+/* Inputs & Forms */
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea,
+[data-theme="light"] .form-select {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  border-color: var(--neutral-300);
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-textarea:focus,
+[data-theme="light"] .form-select:focus {
+  border-color: var(--gps-primary);
+  box-shadow: 0 0 0 3px var(--gps-primary-pale);
+}
+
+[data-theme="light"] .form-input::placeholder,
+[data-theme="light"] .form-textarea::placeholder {
+  color: var(--neutral-500);
+}
+
+[data-theme="light"] .form-label {
+  color: var(--neutral-900);
+}
+
+/* Buttons */
+[data-theme="light"] .btn-primary {
+  background: linear-gradient(135deg, var(--gps-primary) 0%, var(--gps-primary-dark) 100%);
+  color: var(--neutral-0);
+  border: none;
+}
+
+[data-theme="light"] .btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: var(--shadow-primary);
+}
+
+[data-theme="light"] .btn-secondary {
+  background: transparent;
+  color: var(--gps-primary);
+  border: var(--border-default) solid var(--gps-primary);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: var(--gps-primary-pale);
+}
+
+/* Navigation & Header */
+[data-theme="light"] header,
+[data-theme="light"] .header {
+  background-color: var(--neutral-0);
+  border-bottom: var(--border-thin) solid var(--neutral-300);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .sidebar {
+  background-color: var(--neutral-0);
+  border-right: var(--border-thin) solid var(--neutral-300);
+}
+
+/* Footer */
+[data-theme="light"] footer,
+[data-theme="light"] .footer {
+  background-color: var(--neutral-50);
+  border-top: var(--border-thin) solid var(--neutral-300);
+  color: var(--neutral-700);
+}
+
+/* Code Blocks */
+[data-theme="light"] code {
+  background-color: var(--neutral-100);
+  color: var(--error);
+}
+
+[data-theme="light"] pre {
+  background-color: var(--neutral-100);
+  border: var(--border-thin) solid var(--neutral-300);
+}
+
+/* Blockquotes */
+[data-theme="light"] blockquote {
+  border-left-color: var(--gps-primary);
+  color: var(--neutral-600);
+  background-color: var(--neutral-50);
+}
+
+/* Horizontal Rules */
+[data-theme="light"] hr {
+  border-top-color: var(--neutral-300);
+}
+
+/* Tables */
+[data-theme="light"] table {
+  background-color: var(--neutral-0);
+}
+
+[data-theme="light"] th {
+  background-color: var(--neutral-100);
+  color: var(--neutral-900);
+  border-color: var(--neutral-300);
+}
+
+[data-theme="light"] td {
+  border-color: var(--neutral-300);
+  color: var(--neutral-700);
+}
+
+[data-theme="light"] tr:hover {
+  background-color: var(--neutral-50);
+}
+
+/* ==========================================
+   LIGHT THEME UTILITY CLASSES
+   ========================================== */
 
 [data-theme="light"] .theme-aware-bg {
   background-color: var(--neutral-0);
@@ -35,6 +174,220 @@
 
 [data-theme="light"] .theme-aware-border {
   border-color: var(--neutral-300);
+}
+
+[data-theme="light"] .theme-aware-shadow {
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================
+   LIGHT THEME SCROLLBAR
+   ========================================== */
+
+[data-theme="light"] ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--neutral-200);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--neutral-400);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--neutral-200);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-500);
+}
+
+/* ==========================================
+   LIGHT THEME SELECTION
+   ========================================== */
+
+[data-theme="light"] ::selection {
+  background-color: var(--gps-primary);
+  color: var(--neutral-0);
+}
+
+[data-theme="light"] ::-moz-selection {
+  background-color: var(--gps-primary);
+  color: var(--neutral-0);
+}
+
+/* ==========================================
+   LIGHT THEME LINKS
+   ========================================== */
+
+[data-theme="light"] a {
+  color: var(--gps-primary);
+}
+
+[data-theme="light"] a:hover {
+  color: var(--gps-primary-dark);
+}
+
+[data-theme="light"] a:focus-visible {
+  outline-color: var(--gps-primary);
+}
+
+/* ==========================================
+   LIGHT THEME BADGES
+   ========================================== */
+
+[data-theme="light"] .badge {
+  background-color: var(--neutral-100);
+  color: var(--neutral-900);
+  border: var(--border-thin) solid var(--neutral-300);
+}
+
+[data-theme="light"] .badge-primary {
+  background-color: var(--gps-primary-pale);
+  color: var(--gps-primary-dark);
+}
+
+[data-theme="light"] .badge-success {
+  background-color: var(--success-pale);
+  color: var(--success-dark);
+}
+
+[data-theme="light"] .badge-warning {
+  background-color: var(--warning-pale);
+  color: var(--warning-dark);
+}
+
+[data-theme="light"] .badge-error {
+  background-color: var(--error-pale);
+  color: var(--error-dark);
+}
+
+/* ==========================================
+   LIGHT THEME TOOLTIPS & POPOVERS
+   ========================================== */
+
+[data-theme="light"] .tooltip-content {
+  background-color: var(--neutral-900);
+  color: var(--neutral-0);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .popover {
+  background-color: var(--neutral-0);
+  border: var(--border-thin) solid var(--neutral-300);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ==========================================
+   LIGHT THEME DROPDOWNS
+   ========================================== */
+
+[data-theme="light"] .dropdown-menu {
+  background-color: var(--neutral-0);
+  border: var(--border-thin) solid var(--neutral-300);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .dropdown-item:hover {
+  background-color: var(--neutral-100);
+}
+
+/* ==========================================
+   LIGHT THEME PROGRESS BARS
+   ========================================== */
+
+[data-theme="light"] .progress-bar {
+  background-color: var(--neutral-200);
+}
+
+[data-theme="light"] .progress-fill {
+  background: linear-gradient(90deg, var(--gps-primary) 0%, var(--gps-primary-dark) 100%);
+}
+
+/* ==========================================
+   LIGHT THEME LOADING STATES
+   ========================================== */
+
+[data-theme="light"] .skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--neutral-200) 0%,
+    var(--neutral-100) 50%,
+    var(--neutral-200) 100%
+  );
+}
+
+[data-theme="light"] .loading-spinner {
+  border-color: rgba(0, 212, 255, 0.2);
+  border-top-color: var(--gps-primary);
+}
+
+/* ==========================================
+   GPS LAB SPECIFIC COMPONENTS - LIGHT MODE
+   ========================================== */
+
+/* Command Center */
+[data-theme="light"] .command-center {
+  background-color: var(--neutral-50);
+}
+
+/* Study Forge */
+[data-theme="light"] .study-forge {
+  background-color: var(--neutral-0);
+}
+
+/* Checkpoint Arena */
+[data-theme="light"] .checkpoint-arena {
+  background-color: var(--neutral-0);
+}
+
+/* Project Dashboard */
+[data-theme="light"] .project-dashboard {
+  background-color: var(--neutral-50);
+}
+
+/* Mission Cards */
+[data-theme="light"] .mission-card {
+  background-color: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+}
+
+[data-theme="light"] .mission-card:hover {
+  border-color: var(--gps-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Bite Board */
+[data-theme="light"] .bite-board {
+  background-color: var(--neutral-100);
+}
+
+[data-theme="light"] .bite-card {
+  background-color: var(--neutral-0);
+}
+
+/* Party Cards */
+[data-theme="light"] .party-card {
+  background-color: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+}
+
+/* Navigator Chat */
+[data-theme="light"] .navigator-chat {
+  background-color: var(--neutral-0);
+  border: var(--border-thin) solid var(--neutral-300);
+}
+
+[data-theme="light"] .navigator-message {
+  background-color: var(--gps-primary-pale);
+  color: var(--neutral-900);
+}
+
+/* Baraka Wallet */
+[data-theme="light"] .baraka-wallet {
+  background: linear-gradient(135deg, var(--baraka-base), var(--baraka-green));
+  color: var(--neutral-900);
 }
 
 /* ==========================================

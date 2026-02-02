@@ -25,9 +25,10 @@
 /* 6. Responsive - breakpoint-specific styles */
 @import './responsive.css';
 
-/* 7. Themes - color scheme variants */
+/* 7. Themes - LIGHT MODE ONLY */
 @import './themes/light-theme.css';
-@import './themes/dark-theme.css';
+/* Dark theme removed - GPS Lab uses light mode only */
+/* High contrast theme kept for accessibility */
 @import './themes/high-contrast.css';
 
 /* ==========================================
@@ -48,8 +49,7 @@ body {
   color: var(--neutral-900);
   background-color: var(--neutral-100);
   overflow-x: hidden;
-  transition: background-color var(--duration-base) var(--ease-out),
-              color var(--duration-base) var(--ease-out);
+  /* Removed theme transition - light mode only */
 }
 
 /* ==========================================

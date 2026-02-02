@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - SubStudyMission Component Styles
+ * LIGHT MODE ONLY
  */
 
 .sub-study-mission {
@@ -8,51 +9,55 @@
 
 /* Depth Variants */
 .sub-study-mission--depth-0 .sub-study-mission__card {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: var(--neutral-0);
+  border-color: var(--neutral-300);
 }
 
 .sub-study-mission--depth-1 .sub-study-mission__card {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-  margin-left: var(--space-6, 24px);
+  background: var(--neutral-50);
+  border-color: var(--neutral-200);
+  margin-left: var(--space-6);
 }
 
 .sub-study-mission--depth-2 .sub-study-mission__card {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.08);
-  margin-left: var(--space-10, 40px);
+  background: var(--neutral-100);
+  border-color: var(--neutral-200);
+  margin-left: var(--space-10);
 }
 
 .sub-study-mission--depth-3 .sub-study-mission__card {
-  background: rgba(255, 255, 255, 0.01);
-  border-color: rgba(255, 255, 255, 0.05);
-  margin-left: var(--space-12, 48px);
+  background: var(--neutral-100);
+  border-color: var(--neutral-300);
+  margin-left: var(--space-12);
 }
 
 /* Card */
 .sub-study-mission__card {
   display: flex;
   align-items: center;
-  gap: var(--space-3, 12px);
-  padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg, 8px);
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
   transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
 }
 
 .sub-study-mission__card:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  box-shadow: var(--shadow-md);
 }
 
 /* Status Variants */
 .sub-study-mission--completed .sub-study-mission__card {
-  border-color: rgba(42, 157, 143, 0.3);
+  border-color: var(--success);
+  background: var(--success-pale);
 }
 
 .sub-study-mission--in_progress .sub-study-mission__card {
-  border-color: rgba(0, 212, 255, 0.3);
+  border-color: var(--gps-primary);
+  border-width: var(--border-thick);
 }
 
 /* Toggle */
@@ -62,18 +67,18 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
   border: none;
-  border-radius: var(--radius-md, 6px);
-  color: var(--neutral-400, #a8dadc);
+  border-radius: var(--radius-md);
+  color: var(--neutral-600);
   cursor: pointer;
   transition: var(--transition-all);
   flex-shrink: 0;
 }
 
 .sub-study-mission__toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .sub-study-mission__toggle svg {
@@ -102,17 +107,17 @@
 }
 
 .sub-study-mission--completed .sub-study-mission__status-indicator {
-  color: var(--success, #2a9d8f);
+  color: var(--success);
 }
 
 .sub-study-mission--in_progress .sub-study-mission__status-indicator {
-  color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary);
 }
 
 .sub-study-mission__bullet {
   width: 12px;
   height: 12px;
-  background: var(--neutral-600, #2d4263);
+  background: var(--neutral-400);
   border-radius: 50%;
 }
 
@@ -134,18 +139,18 @@
 }
 
 .sub-study-mission__title {
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
-  margin: 0 0 var(--space-1, 4px);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-1);
 }
 
 .sub-study-mission__description {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
-  margin: 0 0 var(--space-2, 8px);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  margin: 0 0 var(--space-2);
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -154,48 +159,48 @@
 
 .sub-study-mission__meta {
   display: flex;
-  gap: var(--space-3, 12px);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--neutral-600);
 }
 
 /* Action */
 .sub-study-mission__action {
-  padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md, 6px);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  padding: var(--space-2) var(--space-4);
+  background: var(--neutral-100);
+  border: var(--border-thin) solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--neutral-800);
   cursor: pointer;
   transition: var(--transition-all);
   flex-shrink: 0;
 }
 
 .sub-study-mission__action:hover {
-  background: var(--gps-primary, #00d4ff);
-  border-color: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary);
+  border-color: var(--gps-primary);
+  color: var(--neutral-0);
 }
 
 .sub-study-mission--in_progress .sub-study-mission__action {
-  background: var(--gps-primary, #00d4ff);
-  border-color: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary);
+  border-color: var(--gps-primary);
+  color: var(--neutral-0);
 }
 
 /* Children */
 .sub-study-mission__children {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2, 8px);
-  margin-top: var(--space-2, 8px);
-  padding-left: var(--space-4, 16px);
-  border-left: 2px solid rgba(255, 255, 255, 0.1);
-  margin-left: var(--space-4, 16px);
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-left: var(--space-4);
+  border-left: var(--border-default) solid var(--neutral-200);
+  margin-left: var(--space-4);
 }
 
 /* Responsive */
@@ -203,7 +208,7 @@
   .sub-study-mission--depth-1 .sub-study-mission__card,
   .sub-study-mission--depth-2 .sub-study-mission__card,
   .sub-study-mission--depth-3 .sub-study-mission__card {
-    margin-left: var(--space-4, 16px);
+    margin-left: var(--space-4);
   }
   
   .sub-study-mission__description {

@@ -38,25 +38,25 @@
   --beacon-purple: #8E44AD;     /* Stage 31-35: Venture Capitalization */
 
   /* ==========================================
-     NEUTRAL COLORS (UI FOUNDATION)
+     NEUTRAL COLORS (UI FOUNDATION) - LIGHT MODE ONLY
      ========================================== */
   
-  /* Dark Neutrals - Backgrounds, Headers */
-  --neutral-900: #0D1117;
-  --neutral-800: #0D1B2A;
-  --neutral-700: #1B263B;
-  --neutral-600: #2D4263;
+  /* Text Colors - Dark for readability on light backgrounds */
+  --neutral-900: #1A202C;       /* Primary text - darkest */
+  --neutral-800: #2D3748;       /* Secondary text */
+  --neutral-700: #4A5568;       /* Tertiary text */
+  --neutral-600: #718096;       /* Muted text */
   
   /* Mid Neutrals - Borders, Disabled States */
-  --neutral-500: #8B949E;
-  --neutral-400: #A8DADC;
-  --neutral-300: #E1E4E8;
-  --neutral-200: #F0F4F8;
+  --neutral-500: #A0AEC0;       /* Disabled text, subtle icons */
+  --neutral-400: #CBD5E0;       /* Subtle borders */
+  --neutral-300: #E2E8F0;       /* Default borders, dividers */
+  --neutral-200: #EDF2F7;       /* Light borders */
   
-  /* Light Neutrals - Backgrounds */
-  --neutral-100: #F7FAFF;
-  --neutral-50: #FAFBFC;
-  --neutral-0: #FFFFFF;
+  /* Background Colors - Light */
+  --neutral-100: #F7FAFC;       /* Page background */
+  --neutral-50: #FAFBFE;        /* Card background */
+  --neutral-0: #FFFFFF;         /* Pure white - cards, modals */
 
   /* ==========================================
      SEMANTIC COLORS (Feedback & Status)
@@ -109,17 +109,17 @@
      OVERLAY & SHADOW COLORS
      ========================================== */
   
-  /* Overlays */
-  --overlay-dark: rgba(13, 17, 23, 0.85);
-  --overlay-light: rgba(255, 255, 255, 0.9);
-  --overlay-gradient: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(42, 157, 143, 0.1) 100%);
+  /* Overlays - Optimized for light mode */
+  --overlay-dark: rgba(26, 32, 44, 0.85);
+  --overlay-light: rgba(255, 255, 255, 0.95);
+  --overlay-gradient: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(42, 157, 143, 0.05) 100%);
   
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(13, 17, 23, 0.1);
-  --shadow-md: 0 4px 6px rgba(13, 17, 23, 0.1);
-  --shadow-lg: 0 8px 16px rgba(13, 17, 23, 0.15);
-  --shadow-xl: 0 12px 24px rgba(13, 17, 23, 0.2);
-  --shadow-2xl: 0 20px 40px rgba(13, 17, 23, 0.25);
+  /* Shadows - Optimized for light backgrounds */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   
   /* Colored Shadows */
   --shadow-primary: 0 4px 12px rgba(0, 212, 255, 0.3);
