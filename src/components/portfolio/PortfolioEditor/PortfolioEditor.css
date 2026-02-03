@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - PortfolioEditor Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - PortfolioEditor Component Styles
  */
 
 .portfolio-editor {
@@ -17,7 +17,7 @@
 /* Header */
 .portfolio-editor__header {
   padding-bottom: var(--space-4, 16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--neutral-100);
 }
 
 .portfolio-editor__title {
@@ -27,7 +27,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 28px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -38,7 +38,7 @@
 .portfolio-editor__subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: var(--space-2, 8px) 0 0;
 }
 
@@ -48,16 +48,17 @@
   flex-direction: column;
   gap: var(--space-4, 16px);
   padding: var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .portfolio-editor__section-title {
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -78,7 +79,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 /* Input */
@@ -86,18 +87,18 @@
 .portfolio-editor__select,
 .portfolio-editor__textarea {
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   transition: var(--transition-all);
 }
 
 .portfolio-editor__input::placeholder,
 .portfolio-editor__textarea::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .portfolio-editor__input:focus,
@@ -105,7 +106,7 @@
 .portfolio-editor__textarea:focus {
   outline: none;
   border-color: var(--gps-primary, #00d4ff);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
 }
 
 .portfolio-editor__input--error {
@@ -117,7 +118,7 @@
 }
 
 .portfolio-editor__select option {
-  background: var(--neutral-800, #161b22);
+  background: var(--neutral-50);
 }
 
 .portfolio-editor__textarea {
@@ -136,7 +137,7 @@
 .portfolio-editor__hint {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Thumbnail Preview */
@@ -159,8 +160,8 @@
   flex-wrap: wrap;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   min-height: 48px;
 }
@@ -193,8 +194,8 @@
 }
 
 .portfolio-editor__tag-remove:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .portfolio-editor__tags-input {
@@ -205,11 +206,11 @@
   border: none;
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .portfolio-editor__tags-input::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .portfolio-editor__tags-input:focus {
@@ -234,8 +235,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--neutral-50);
+  border: var(--border-default) solid var(--neutral-300);
   border-radius: var(--radius-md, 6px);
   font-size: 14px;
   font-weight: bold;
@@ -246,13 +247,13 @@
 .portfolio-editor__checkbox-label input:checked + .portfolio-editor__checkbox-box {
   background: var(--gps-primary, #00d4ff);
   border-color: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .portfolio-editor__checkbox-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 /* Actions */
@@ -261,7 +262,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .portfolio-editor__actions-right {
@@ -286,19 +287,19 @@
 }
 
 .portfolio-editor__cancel-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--neutral-300, #e1e4e8);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-800);
 }
 
 .portfolio-editor__cancel-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .portfolio-editor__save-btn {
   background: var(--gps-primary, #00d4ff);
   border: none;
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .portfolio-editor__save-btn:hover:not(:disabled) {
@@ -327,7 +328,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  border-top-color: var(--neutral-900, #0d1117);
+  border-top-color: var(--neutral-0);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

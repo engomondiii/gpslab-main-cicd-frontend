@@ -4,7 +4,7 @@
 
 .checkpoint-page {
   min-height: 100vh;
-  background: var(--neutral-900, #0d1117);
+  background: var(--neutral-0);
 }
 
 /* Loading State */
@@ -37,7 +37,7 @@
 .checkpoint-page__loader p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-lg, 20px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0;
 }
 
@@ -57,14 +57,14 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 32px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-3, 12px);
 }
 
 .checkpoint-page__error p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0 0 var(--space-6, 24px);
 }
 
@@ -89,8 +89,8 @@
 /* Feedback View */
 .checkpoint-page--feedback {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
-  color: var(--neutral-0, #ffffff);
+  background: linear-gradient(180deg, var(--neutral-50) 0%, var(--neutral-100) 100%);
+  color: var(--neutral-900);
 }
 
 .checkpoint-page__feedback-header {
@@ -98,9 +98,9 @@
   top: 0;
   z-index: var(--z-sticky, 200);
   padding: var(--space-4, 16px) var(--space-6, 24px);
-  background: rgba(13, 27, 42, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--neutral-200);
 }
 
 .checkpoint-page__back-btn {
@@ -108,10 +108,10 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-700);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   cursor: pointer;
@@ -119,8 +119,8 @@
 }
 
 .checkpoint-page__back-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 .checkpoint-page__back-btn svg {

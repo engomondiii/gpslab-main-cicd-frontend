@@ -1,0 +1,97 @@
+/**
+ * GPS Lab Platform - CheckpointArena Component Styles
+ * LIGHT MODE ONLY
+ */
+
+.checkpoint-arena {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--neutral-50);
+  color: var(--neutral-900);
+}
+
+.checkpoint-arena__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkpoint-arena__content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Loading State */
+.checkpoint-arena__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: var(--space-12);
+}
+
+.checkpoint-arena__spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--neutral-200);
+  border-top-color: var(--gps-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error State */
+.checkpoint-arena__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: var(--space-12);
+  text-align: center;
+}
+
+.checkpoint-arena__error-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--error);
+  margin-bottom: var(--space-4);
+}
+
+.checkpoint-arena__error-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-2);
+}
+
+.checkpoint-arena__error-message {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-700);
+  margin: 0 0 var(--space-4);
+}
+
+.checkpoint-arena__error-btn {
+  padding: var(--space-3) var(--space-6);
+  background: var(--gps-primary);
+  color: var(--neutral-0);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.checkpoint-arena__error-btn:hover {
+  background: var(--gps-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}

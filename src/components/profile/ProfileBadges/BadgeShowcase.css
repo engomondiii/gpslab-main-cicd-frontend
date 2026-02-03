@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - BadgeShowcase Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - BadgeShowcase Component Styles
  */
 
 .badge-showcase {
@@ -22,7 +22,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .badge-showcase__view-all:hover {
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Grid */
@@ -76,9 +76,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid var(--badge-color, rgba(255, 255, 255, 0.1));
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 2px solid var(--badge-color, var(--neutral-200));
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
@@ -150,7 +151,7 @@
 }
 
 .badge-showcase__badge--empty .badge-showcase__badge-icon {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   font-size: 24px;
 }
 
@@ -164,10 +165,10 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-3, 12px);
-  background: var(--neutral-800, #161b22);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px var(--neutral-200);
   z-index: 100;
   white-space: nowrap;
   animation: tooltipFade 0.2s var(--ease-out);
@@ -185,20 +186,20 @@
   left: 50%;
   transform: translateX(-50%);
   border: 8px solid transparent;
-  border-top-color: var(--neutral-800, #161b22);
+  border-top-color: var(--neutral-50);
 }
 
 .badge-showcase__tooltip-name {
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .badge-showcase__tooltip-desc {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin-top: var(--space-1, 4px);
   max-width: 200px;
   white-space: normal;
@@ -224,7 +225,8 @@
   justify-content: center;
   background: rgba(0, 212, 255, 0.1);
   border: 2px dashed rgba(0, 212, 255, 0.3);
-  border-radius: var(--radius-xl, 12px);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
   transition: var(--transition-all);
 }
@@ -244,7 +246,7 @@
 .badge-showcase__more-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 /* Empty State */
@@ -265,14 +267,14 @@
 .badge-showcase__empty-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0;
 }
 
 .badge-showcase__empty-hint {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin-top: var(--space-2, 8px);
 }
 
@@ -283,7 +285,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--neutral-200);
   backdrop-filter: blur(4px);
   z-index: 1000;
   animation: fadeIn 0.2s var(--ease-out);
@@ -301,9 +303,10 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-8, 32px);
-  background: var(--neutral-800, #161b22);
-  border: 2px solid var(--badge-color, rgba(255, 255, 255, 0.1));
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 2px solid var(--badge-color, var(--neutral-200));
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   max-width: 320px;
   animation: modalSlide 0.3s var(--ease-out);
 }
@@ -322,17 +325,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
   border: none;
   border-radius: 50%;
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .badge-showcase__modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .badge-showcase__modal-badge {
@@ -341,9 +344,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 3px solid var(--badge-color, rgba(255, 255, 255, 0.1));
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 3px solid var(--badge-color, var(--neutral-200));
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-4, 16px);
 }
 
@@ -355,7 +359,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
   text-align: center;
 }
@@ -372,7 +376,7 @@
 .badge-showcase__modal-desc {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   text-align: center;
   margin: var(--space-4, 16px) 0 0;
   line-height: 1.5;
@@ -381,7 +385,7 @@
 .badge-showcase__modal-date {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin-top: var(--space-4, 16px);
 }
 

@@ -10,7 +10,7 @@
 
 /* Header */
 .missions-page__header {
-  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a), var(--neutral-900, #0d1117));
+  background: linear-gradient(135deg, var(--neutral-0) 0%, var(--neutral-100) 100%);
   padding: var(--space-8, 32px) var(--space-6, 24px);
   display: flex;
   flex-direction: column;
@@ -29,13 +29,13 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-3xl, 36px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-2, 8px);
 }
 
 .missions-page__subtitle {
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0;
 }
 
@@ -50,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-3, 12px) var(--space-4, 16px);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--neutral-800);
   border-radius: var(--radius-lg, 8px);
 }
 
@@ -58,7 +58,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 32px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .missions-page__quick-stat-value--progress {
@@ -71,7 +71,7 @@
 
 .missions-page__quick-stat-label {
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider, 0.05em);
 }
@@ -81,7 +81,7 @@
   display: flex;
   gap: var(--space-2, 8px);
   padding: var(--space-4, 16px) var(--space-6, 24px);
-  background-color: var(--neutral-0, #ffffff);
+  background-color: var(--neutral-900);
   border-bottom: 1px solid var(--neutral-200, #f0f4f8);
   overflow-x: auto;
 }
@@ -90,7 +90,7 @@
   padding: var(--space-2, 8px) var(--space-4, 16px);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   background: none;
   border: none;
   border-radius: var(--radius-full, 9999px);
@@ -101,7 +101,7 @@
 
 .missions-page__stage-tab:hover {
   color: var(--neutral-700, #1b263b);
-  background-color: var(--neutral-100, #f7faff);
+  background-color: var(--neutral-800);
 }
 
 .missions-page__stage-tab--active {
@@ -118,17 +118,17 @@
 
 /* Dark Theme */
 [data-theme="dark"] .missions-page {
-  background-color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-900);
 }
 
 [data-theme="dark"] .missions-page__stage-tabs {
-  background-color: var(--neutral-800, #0d1b2a);
+  background-color: var(--neutral-50);
   border-color: var(--neutral-700, #1b263b);
 }
 
 [data-theme="dark"] .missions-page__stage-tab:hover {
-  color: var(--neutral-200, #f0f4f8);
-  background-color: var(--neutral-700, #1b263b);
+  color: var(--neutral-700);
+  background-color: var(--neutral-800);
 }
 
 /* Reduced Motion */

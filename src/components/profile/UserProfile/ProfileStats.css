@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - ProfileStats Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProfileStats Component Styles
  */
 
 .profile-stats {
@@ -10,9 +10,10 @@
 
 /* Section */
 .profile-stats__section {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   padding: var(--space-5, 20px);
 }
 
@@ -23,7 +24,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-4, 16px);
 }
 
@@ -48,14 +49,14 @@
   flex-direction: column;
   gap: var(--space-2, 8px);
   padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-lg, 8px);
   transition: var(--transition-all);
 }
 
 .profile-stats__item:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--neutral-100);
   border-color: rgba(0, 212, 255, 0.2);
 }
 
@@ -89,14 +90,14 @@
 .profile-stats__item-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 .profile-stats__item-value {
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 28px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .profile-stats__item-value--highlight {
@@ -124,14 +125,14 @@
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-normal, 400);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin-left: var(--space-1, 4px);
 }
 
 /* Progress Bar */
 .profile-stats__progress-bar {
   height: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
   border-radius: var(--radius-full, 9999px);
   overflow: hidden;
   margin-top: var(--space-2, 8px);
@@ -164,7 +165,7 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-3, 12px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--neutral-50);
   border-radius: var(--radius-lg, 8px);
   min-width: 80px;
 }
@@ -179,7 +180,7 @@
 .profile-stats__compact-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide, 0.025em);
 }

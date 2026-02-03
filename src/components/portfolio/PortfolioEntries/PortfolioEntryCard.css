@@ -1,14 +1,15 @@
 /**
- * GPS Lab Platform - PortfolioEntryCard Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - PortfolioEntryCard Component Styles
  */
 
 .portfolio-entry-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   cursor: pointer;
   transition: var(--transition-all);
@@ -17,7 +18,7 @@
 .portfolio-entry-card:hover {
   transform: translateY(-4px);
   border-color: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px var(--neutral-200);
 }
 
 .portfolio-entry-card--featured {
@@ -29,7 +30,7 @@
 .portfolio-entry-card__thumbnail {
   position: relative;
   aspect-ratio: 16/9;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--neutral-100);
   overflow: hidden;
 }
 
@@ -69,17 +70,17 @@
 
 .portfolio-entry-card__badge {
   padding: var(--space-1, 4px) var(--space-2, 8px);
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--neutral-100);
   backdrop-filter: blur(4px);
   border-radius: var(--radius-full, 9999px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .portfolio-entry-card__badge--featured {
   background: var(--warning, #f1c40f);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
   font-weight: var(--font-bold, 700);
 }
 
@@ -98,7 +99,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--neutral-100);
   backdrop-filter: blur(4px);
   border-radius: 50%;
   font-size: 14px;
@@ -117,7 +118,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -128,7 +129,7 @@
 .portfolio-entry-card__description {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -149,7 +150,7 @@
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Tags */
@@ -170,8 +171,8 @@
 }
 
 .portfolio-entry-card__tag--more {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-400, #a8dadc);
+  background: var(--neutral-100);
+  color: var(--neutral-700);
 }
 
 /* Footer */
@@ -181,13 +182,13 @@
   align-items: center;
   margin-top: auto;
   padding-top: var(--space-3, 12px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .portfolio-entry-card__date {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .portfolio-entry-card__stats {
@@ -201,7 +202,7 @@
   gap: 4px;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -245,8 +246,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--neutral-800, #161b22);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-md, 6px);
   font-size: 14px;
   cursor: pointer;
@@ -254,7 +255,7 @@
 }
 
 .portfolio-entry-card__action:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .portfolio-entry-card__action--danger:hover {
@@ -283,7 +284,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -293,7 +294,7 @@
 .portfolio-entry-card--compact .portfolio-entry-card__compact-type {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .portfolio-entry-card--compact .portfolio-entry-card__compact-stats {
@@ -301,7 +302,7 @@
   gap: var(--space-3, 12px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 /* Featured Variant */

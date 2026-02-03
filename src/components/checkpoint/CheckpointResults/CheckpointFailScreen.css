@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - CheckpointFailScreen Component Styles
+ * LIGHT MODE ONLY
  */
 
 .checkpoint-fail-screen {
@@ -7,10 +8,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8, 32px);
+  padding: var(--space-8);
   background: linear-gradient(180deg, 
-    rgba(231, 76, 60, 0.05) 0%, 
-    rgba(13, 27, 42, 0.95) 100%
+    var(--warning-pale) 0%, 
+    var(--neutral-0) 100%
   );
 }
 
@@ -21,14 +22,18 @@
   text-align: center;
   max-width: 600px;
   width: 100%;
+  background: var(--neutral-0);
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Icon */
 .checkpoint-fail-screen__icon {
   width: 80px;
   height: 80px;
-  color: var(--warning, #f1c40f);
-  margin-bottom: var(--space-4, 16px);
+  color: var(--warning);
+  margin-bottom: var(--space-4);
   opacity: 0;
   transform: scale(0.8);
   transition: all 0.5s var(--ease-out);
@@ -49,11 +54,11 @@
 
 /* Title */
 .checkpoint-fail-screen__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-3xl, 36px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
-  margin: 0 0 var(--space-2, 8px);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-2);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out) 0.1s;
@@ -68,10 +73,10 @@
 }
 
 .checkpoint-fail-screen__subtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-lg, 20px);
-  color: var(--neutral-300, #e1e4e8);
-  margin: 0 0 var(--space-6, 24px);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--neutral-700);
+  margin: 0 0 var(--space-6);
   font-style: italic;
   opacity: 0;
   transform: translateY(20px);
@@ -89,11 +94,11 @@
 /* Score */
 .checkpoint-fail-screen__score {
   width: 100%;
-  padding: var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xl, 12px);
-  margin-bottom: var(--space-6, 24px);
+  padding: var(--space-5);
+  background: var(--neutral-50);
+  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -107,21 +112,21 @@
 }
 
 .checkpoint-fail-screen__score-visual {
-  margin-bottom: var(--space-4, 16px);
+  margin-bottom: var(--space-4);
 }
 
 .checkpoint-fail-screen__score-bar {
   position: relative;
   height: 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full, 9999px);
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
   overflow: visible;
 }
 
 .checkpoint-fail-screen__score-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--error, #e74c3c) 0%, var(--warning, #f1c40f) 100%);
-  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(90deg, var(--error) 0%, var(--warning) 100%);
+  border-radius: var(--radius-full);
   transition: width 1s var(--ease-out);
 }
 
@@ -130,7 +135,7 @@
   top: -8px;
   bottom: -8px;
   width: 3px;
-  background: var(--success, #2a9d8f);
+  background: var(--success);
   transform: translateX(-50%);
 }
 
@@ -144,7 +149,7 @@
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid var(--success, #2a9d8f);
+  border-top: 6px solid var(--success);
 }
 
 .checkpoint-fail-screen__score-target-label {
@@ -152,71 +157,71 @@
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-xs, 12px);
-  font-weight: var(--font-bold, 700);
-  color: var(--success, #2a9d8f);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  color: var(--success);
   white-space: nowrap;
 }
 
 .checkpoint-fail-screen__score-details {
   display: flex;
   justify-content: space-around;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
 }
 
 .checkpoint-fail-screen__score-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1, 4px);
+  gap: var(--space-1);
 }
 
 .checkpoint-fail-screen__score-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--neutral-600);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide, 0.025em);
+  letter-spacing: var(--tracking-wide);
 }
 
 .checkpoint-fail-screen__score-value {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
 }
 
 .checkpoint-fail-screen__score-value--current {
-  color: var(--warning, #f1c40f);
+  color: var(--warning);
 }
 
 .checkpoint-fail-screen__score-value--needed {
-  color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary);
 }
 
 /* Sections */
 .checkpoint-fail-screen__section-title {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
-  margin: 0 0 var(--space-3, 12px);
+  gap: var(--space-2);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-3);
 }
 
 .checkpoint-fail-screen__section-title svg {
   width: 20px;
   height: 20px;
-  color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary);
 }
 
 /* Weak Areas */
 .checkpoint-fail-screen__weak-areas {
   width: 100%;
   text-align: left;
-  margin-bottom: var(--space-6, 24px);
+  margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -238,27 +243,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-3, 12px);
-  background: rgba(231, 76, 60, 0.1);
-  border-left: 3px solid var(--error, #e74c3c);
-  margin-bottom: var(--space-2, 8px);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-300, #e1e4e8);
+  padding: var(--space-3);
+  background: var(--error-pale);
+  border-left: 3px solid var(--error);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-800);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 }
 
 .checkpoint-fail-screen__weak-score {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-bold, 700);
-  color: var(--error, #e74c3c);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--error);
 }
 
 /* Recommendations */
 .checkpoint-fail-screen__recommendations {
   width: 100%;
   text-align: left;
-  margin-bottom: var(--space-6, 24px);
+  margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -273,59 +279,60 @@
 .checkpoint-fail-screen__study-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
 .checkpoint-fail-screen__study-item {
   display: flex;
   align-items: center;
-  gap: var(--space-3, 12px);
-  padding: var(--space-3, 12px) var(--space-4, 16px);
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  border-radius: var(--radius-lg, 8px);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--gps-primary-pale);
+  border: var(--border-thin) solid var(--gps-primary);
+  border-radius: var(--radius-lg);
   cursor: pointer;
   transition: var(--transition-all);
   text-align: left;
 }
 
 .checkpoint-fail-screen__study-item:hover {
-  background: rgba(0, 212, 255, 0.15);
-  border-color: var(--gps-primary, #00d4ff);
+  background: var(--gps-primary-pale);
+  border-color: var(--gps-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .checkpoint-fail-screen__study-title {
   flex: 1;
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--neutral-900);
 }
 
 .checkpoint-fail-screen__study-type {
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-xs, 12px);
-  font-weight: var(--font-bold, 700);
-  color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide, 0.025em);
-  padding: var(--space-1, 4px) var(--space-2, 8px);
-  background: rgba(0, 212, 255, 0.2);
-  border-radius: var(--radius-sm, 4px);
+  letter-spacing: var(--tracking-wide);
+  padding: var(--space-1) var(--space-2);
+  background: var(--gps-primary-pale);
+  border-radius: var(--radius-sm);
 }
 
 .checkpoint-fail-screen__study-item svg {
   width: 16px;
   height: 16px;
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-600);
 }
 
 /* Retry Options */
 .checkpoint-fail-screen__retry-options {
   display: flex;
   justify-content: center;
-  gap: var(--space-4, 16px);
-  margin-bottom: var(--space-6, 24px);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -339,16 +346,16 @@
 .checkpoint-fail-screen__retry-badge {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid var(--gps-primary, #00d4ff);
-  border-radius: var(--radius-full, 9999px);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--gps-primary-pale);
+  border: var(--border-thin) solid var(--gps-primary);
+  border-radius: var(--radius-full);
 }
 
 .checkpoint-fail-screen__retry-badge--pr2r {
-  background: rgba(241, 196, 15, 0.1);
-  border-color: var(--warning, #f1c40f);
+  background: var(--warning-pale);
+  border-color: var(--warning);
 }
 
 .checkpoint-fail-screen__retry-icon {
@@ -356,30 +363,30 @@
 }
 
 .checkpoint-fail-screen__retry-count {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-lg, 20px);
-  font-weight: var(--font-bold, 700);
-  color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
 }
 
 .checkpoint-fail-screen__retry-badge--pr2r .checkpoint-fail-screen__retry-count {
-  color: var(--warning, #f1c40f);
+  color: var(--warning);
 }
 
 .checkpoint-fail-screen__retry-label {
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-300, #e1e4e8);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-700);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide, 0.025em);
+  letter-spacing: var(--tracking-wide);
 }
 
 /* Actions */
 .checkpoint-fail-screen__actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 12px);
+  gap: var(--space-3);
   width: 100%;
   max-width: 400px;
   opacity: 0;
@@ -396,12 +403,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-3, 12px) var(--space-6, 24px);
-  border-radius: var(--radius-lg, 8px);
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
   cursor: pointer;
   transition: var(--transition-all);
   border: none;
@@ -413,52 +420,53 @@
 }
 
 .checkpoint-fail-screen__btn--primary {
-  background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--gps-primary-dark, #00a3cc) 100%);
-  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary);
+  color: var(--neutral-0);
 }
 
 .checkpoint-fail-screen__btn--primary:hover {
+  background: var(--gps-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .checkpoint-fail-screen__btn--secondary {
-  background: rgba(42, 157, 143, 0.15);
-  color: var(--success, #2a9d8f);
-  border: 2px solid var(--success, #2a9d8f);
+  background: var(--success-pale);
+  color: var(--success);
+  border: var(--border-default) solid var(--success);
 }
 
 .checkpoint-fail-screen__btn--secondary:hover {
-  background: rgba(42, 157, 143, 0.25);
+  background: var(--success-pale);
 }
 
 .checkpoint-fail-screen__btn--tertiary {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-300, #e1e4e8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border: var(--border-thin) solid var(--neutral-300);
 }
 
 .checkpoint-fail-screen__btn--tertiary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .checkpoint-fail-screen__btn--ghost {
   background: transparent;
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-600);
 }
 
 .checkpoint-fail-screen__btn--ghost:hover {
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .checkpoint-fail-screen {
-    padding: var(--space-6, 24px);
+    padding: var(--space-6);
   }
   
   .checkpoint-fail-screen__title {
-    font-size: var(--text-2xl, 32px);
+    font-size: var(--text-2xl);
   }
   
   .checkpoint-fail-screen__score-details {

@@ -1,0 +1,102 @@
+/**
+ * GPS Lab Platform - ProjectStats Component Styles
+ * LIGHT MODE ONLY
+ */
+
+.project-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Stats Grid */
+.project-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+/* Stat Card */
+.project-stats__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-all);
+}
+
+.project-stats__card:hover {
+  background: var(--neutral-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-stats__card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.project-stats__card-icon {
+  font-size: 24px;
+  color: var(--gps-primary);
+}
+
+.project-stats__card-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+}
+
+.project-stats__card-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+}
+
+.project-stats__card-change {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+}
+
+.project-stats__card-change--positive {
+  color: var(--success);
+}
+
+.project-stats__card-change--negative {
+  color: var(--error);
+}
+
+/* Chart */
+.project-stats__chart {
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-stats__chart-title {
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-stats__grid {
+    grid-template-columns: 1fr;
+  }
+}

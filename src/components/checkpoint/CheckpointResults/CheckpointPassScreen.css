@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - CheckpointPassScreen Component Styles
+ * LIGHT MODE ONLY
  */
 
 .checkpoint-pass-screen {
@@ -7,12 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8, 32px);
+  padding: var(--space-8);
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, 
-    rgba(42, 157, 143, 0.1) 0%, 
-    rgba(13, 27, 42, 0.95) 100%
+    var(--success-pale) 0%, 
+    var(--neutral-0) 100%
   );
 }
 
@@ -65,6 +66,10 @@
   align-items: center;
   text-align: center;
   max-width: 600px;
+  background: var(--neutral-0);
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Badge */
@@ -72,7 +77,7 @@
   position: relative;
   width: 120px;
   height: 120px;
-  margin-bottom: var(--space-6, 24px);
+  margin-bottom: var(--space-6);
   opacity: 0;
   transform: scale(0.5);
   transition: all 0.5s var(--ease-bounce);
@@ -89,7 +94,7 @@
 .checkpoint-pass-screen__badge-glow {
   position: absolute;
   inset: -20px;
-  background: radial-gradient(circle, rgba(42, 157, 143, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--success-pale) 0%, transparent 70%);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -102,7 +107,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  color: var(--success, #2a9d8f);
+  color: var(--success);
   animation: float 3s ease-in-out infinite;
 }
 
@@ -118,11 +123,11 @@
 
 /* Title */
 .checkpoint-pass-screen__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-4xl, 48px);
-  font-weight: var(--font-bold, 700);
-  margin: 0 0 var(--space-3, 12px);
-  background: linear-gradient(135deg, var(--success, #2a9d8f) 0%, var(--gps-primary, #00d4ff) 100%);
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  margin: 0 0 var(--space-3);
+  background: linear-gradient(135deg, var(--success) 0%, var(--gps-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -140,10 +145,10 @@
 }
 
 .checkpoint-pass-screen__subtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-lg, 20px);
-  color: var(--neutral-300, #e1e4e8);
-  margin: 0 0 var(--space-8, 32px);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--neutral-700);
+  margin: 0 0 var(--space-8);
   max-width: 450px;
   opacity: 0;
   transform: translateY(20px);
@@ -163,8 +168,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4, 16px);
-  margin-bottom: var(--space-8, 32px);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.5s var(--ease-out);
@@ -201,43 +206,43 @@
 }
 
 .checkpoint-pass-screen__score-number {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-3xl, 36px);
-  font-weight: var(--font-bold, 700);
-  color: var(--success, #2a9d8f);
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--success);
 }
 
 .checkpoint-pass-screen__score-percent {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-lg, 20px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: var(--neutral-600);
 }
 
 .checkpoint-pass-screen__score-details {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-1, 4px);
+  gap: var(--space-1);
 }
 
 .checkpoint-pass-screen__score-label {
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider, 0.05em);
+  letter-spacing: var(--tracking-wider);
 }
 
 .checkpoint-pass-screen__score-points {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  color: var(--neutral-900);
 }
 
 /* Rewards */
 .checkpoint-pass-screen__rewards {
   width: 100%;
-  margin-bottom: var(--space-8, 32px);
+  margin-bottom: var(--space-8);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -250,17 +255,17 @@
 }
 
 .checkpoint-pass-screen__rewards-title {
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-lg, 20px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
-  margin: 0 0 var(--space-4, 16px);
+  font-family: var(--font-subheading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-4);
 }
 
 .checkpoint-pass-screen__rewards-grid {
   display: flex;
   justify-content: center;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
   flex-wrap: wrap;
 }
 
@@ -268,11 +273,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-4, 16px) var(--space-6, 24px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xl, 12px);
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  background: var(--neutral-50);
+  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-xl);
   min-width: 100px;
 }
 
@@ -281,31 +286,31 @@
 }
 
 .checkpoint-pass-screen__reward-value {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
 }
 
 .checkpoint-pass-screen__reward-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .checkpoint-pass-screen__reward--badge {
-  background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
-  border-color: var(--warning, #f1c40f);
+  background: linear-gradient(135deg, var(--warning-pale) 0%, var(--error-pale) 100%);
+  border-color: var(--warning);
 }
 
 .checkpoint-pass-screen__reward--badge .checkpoint-pass-screen__reward-value {
-  color: var(--warning, #f1c40f);
-  font-size: var(--text-sm, 14px);
+  color: var(--warning);
+  font-size: var(--text-sm);
 }
 
 /* Next Stage */
 .checkpoint-pass-screen__next-stage {
-  margin-bottom: var(--space-8, 32px);
+  margin-bottom: var(--space-8);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s var(--ease-out);
@@ -319,46 +324,46 @@
 
 .checkpoint-pass-screen__next-label {
   display: block;
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider, 0.05em);
-  margin-bottom: var(--space-2, 8px);
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-2);
 }
 
 .checkpoint-pass-screen__next-card {
   display: flex;
   align-items: center;
-  gap: var(--space-3, 12px);
-  padding: var(--space-3, 12px) var(--space-5, 20px);
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid var(--gps-primary, #00d4ff);
-  border-radius: var(--radius-lg, 8px);
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: var(--gps-primary-pale);
+  border: var(--border-thin) solid var(--gps-primary);
+  border-radius: var(--radius-lg);
 }
 
 .checkpoint-pass-screen__next-stage-num {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-bold, 700);
-  color: var(--gps-primary, #00d4ff);
-  padding: var(--space-1, 4px) var(--space-2, 8px);
-  background: rgba(0, 212, 255, 0.2);
-  border-radius: var(--radius-sm, 4px);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
+  padding: var(--space-1) var(--space-2);
+  background: var(--gps-primary-pale);
+  border-radius: var(--radius-sm);
 }
 
 .checkpoint-pass-screen__next-stage-title {
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
 }
 
 /* Actions */
 .checkpoint-pass-screen__actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 12px);
+  gap: var(--space-3);
   width: 100%;
   max-width: 400px;
   opacity: 0;
@@ -375,12 +380,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-4, 16px) var(--space-6, 24px);
-  border-radius: var(--radius-xl, 12px);
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-bold, 700);
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
   cursor: pointer;
   transition: var(--transition-all);
   border: none;
@@ -392,34 +397,34 @@
 }
 
 .checkpoint-pass-screen__btn--primary {
-  background: linear-gradient(135deg, var(--success, #2a9d8f) 0%, var(--gps-primary, #00d4ff) 100%);
-  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--success) 0%, var(--gps-primary) 100%);
+  color: var(--neutral-0);
 }
 
 .checkpoint-pass-screen__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(42, 157, 143, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .checkpoint-pass-screen__btn--secondary {
   background: transparent;
-  color: var(--neutral-300, #e1e4e8);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--neutral-700);
+  border: var(--border-default) solid var(--neutral-300);
 }
 
 .checkpoint-pass-screen__btn--secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--neutral-100);
+  border-color: var(--neutral-400);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .checkpoint-pass-screen {
-    padding: var(--space-6, 24px);
+    padding: var(--space-6);
   }
   
   .checkpoint-pass-screen__title {
-    font-size: var(--text-3xl, 36px);
+    font-size: var(--text-3xl);
   }
   
   .checkpoint-pass-screen__badge {

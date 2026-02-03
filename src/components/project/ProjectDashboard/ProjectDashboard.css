@@ -1,0 +1,91 @@
+/**
+ * GPS Lab Platform - ProjectDashboard Component Styles
+ * LIGHT MODE ONLY
+ */
+
+.project-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--neutral-50);
+  min-height: 100vh;
+}
+
+/* Header */
+.project-dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-5);
+  border-bottom: var(--border-thin) solid var(--neutral-200);
+}
+
+.project-dashboard__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin: 0;
+}
+
+.project-dashboard__actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.project-dashboard__action-btn {
+  padding: var(--space-3) var(--space-5);
+  background: var(--gps-primary);
+  color: var(--neutral-0);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.project-dashboard__action-btn:hover {
+  background: var(--gps-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Grid */
+.project-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-5);
+}
+
+/* Widget */
+.project-dashboard__widget {
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-dashboard__widget-title {
+  font-family: var(--font-subheading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-dashboard__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+}

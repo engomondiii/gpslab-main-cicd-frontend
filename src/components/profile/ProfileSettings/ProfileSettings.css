@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - ProfileSettings Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProfileSettings Component Styles
  */
 
 .profile-settings {
@@ -13,7 +13,7 @@
 /* Header */
 .profile-settings__header {
   padding-bottom: var(--space-4, 16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--neutral-100);
 }
 
 .profile-settings__title {
@@ -23,7 +23,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 28px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -34,7 +34,7 @@
 .profile-settings__subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: var(--space-2, 8px) 0 0;
 }
 
@@ -65,15 +65,15 @@
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
   text-align: left;
 }
 
 .profile-settings__nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 .profile-settings__nav-item--active {
@@ -102,7 +102,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -113,16 +113,17 @@
 .profile-settings__section-subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: var(--space-2, 8px) 0 0;
 }
 
 /* Section */
 .profile-settings__section {
   padding: var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-4, 16px);
 }
 
@@ -144,7 +145,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-3, 12px);
 }
 
@@ -157,7 +158,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   margin-bottom: var(--space-2, 8px);
 }
 
@@ -165,23 +166,23 @@
 .profile-settings__input {
   width: 100%;
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   transition: var(--transition-all);
 }
 
 .profile-settings__input::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .profile-settings__input:focus {
   outline: none;
   border-color: var(--gps-primary, #00d4ff);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
 }
 
 .profile-settings__input--error {
@@ -205,7 +206,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-semibold, 600);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
   cursor: pointer;
   transition: var(--transition-all);
 }
@@ -224,7 +225,7 @@
 .profile-settings__danger-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0 0 var(--space-4, 16px);
 }
 
@@ -243,7 +244,7 @@
 
 .profile-settings__delete-btn:hover {
   background: var(--error, #e74c3c);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Appearance */
@@ -258,8 +259,8 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 2px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   cursor: pointer;
   transition: var(--transition-all);
@@ -282,7 +283,7 @@
 
 .profile-settings__theme-preview--dark {
   background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--neutral-200);
 }
 
 .profile-settings__theme-preview--light {
@@ -293,7 +294,7 @@
 .profile-settings__theme-option span {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 /* Color Options */
@@ -316,7 +317,7 @@
 }
 
 .profile-settings__color-option--active {
-  border-color: var(--neutral-0, #ffffff);
+  border-color: var(--neutral-900);
 }
 
 .profile-settings__color-option--cyan { background: #00d4ff; }
@@ -329,7 +330,7 @@
 .profile-settings__data-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0 0 var(--space-4, 16px);
 }
 
@@ -351,7 +352,7 @@
 
 .profile-settings__export-btn:hover {
   background: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .profile-settings__data-list {
@@ -367,7 +368,7 @@
   padding: var(--space-2, 8px) 0;
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 .profile-settings__data-list li::before {
@@ -382,16 +383,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--neutral-200);
   backdrop-filter: blur(4px);
   z-index: 1000;
 }
 
 .profile-settings__modal {
   padding: var(--space-6, 24px);
-  background: var(--neutral-800, #161b22);
+  background: var(--neutral-50);
   border: 1px solid rgba(231, 76, 60, 0.3);
-  border-radius: var(--radius-xl, 12px);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   max-width: 400px;
   text-align: center;
 }
@@ -407,7 +409,7 @@
 .profile-settings__modal-text {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0 0 var(--space-5, 20px);
 }
 
@@ -429,15 +431,15 @@
 }
 
 .profile-settings__modal-cancel {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--neutral-300, #e1e4e8);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-800);
 }
 
 .profile-settings__modal-confirm {
   background: var(--error, #e74c3c);
   border: none;
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Responsive */
@@ -452,7 +454,7 @@
     position: static;
     padding-bottom: var(--space-2, 8px);
     margin-bottom: var(--space-2, 8px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--neutral-100);
   }
   
   .profile-settings__nav-item {

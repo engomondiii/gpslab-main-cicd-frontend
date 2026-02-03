@@ -1,12 +1,13 @@
 /**
- * GPS Lab Platform - PortfolioHeader Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - PortfolioHeader Component Styles
  */
 
 .portfolio-header {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
@@ -49,7 +50,7 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--neutral-800, #161b22);
+  border: 4px solid var(--neutral-50);
   background: linear-gradient(135deg, var(--gps-primary, #00d4ff) 0%, var(--beacon-purple, #8e44ad) 100%);
 }
 
@@ -60,7 +61,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-3xl, 32px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .portfolio-header__user-info {
@@ -71,14 +72,14 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 28px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
 .portfolio-header__username {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin: var(--space-1, 4px) 0 0;
 }
 
@@ -112,7 +113,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .portfolio-header__stat--featured .portfolio-header__stat-value {
@@ -122,7 +123,7 @@
 .portfolio-header__stat-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide, 0.025em);
 }
@@ -138,25 +139,25 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .portfolio-header__action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .portfolio-header__action-btn--primary {
   background: var(--gps-primary, #00d4ff);
   border-color: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .portfolio-header__action-btn--primary:hover {

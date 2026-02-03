@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - ProjectOverview Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProjectOverview Component Styles
  */
 
 .project-overview {
@@ -54,7 +54,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-3xl, 40px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-3, 12px);
 }
 
@@ -97,7 +97,7 @@
 }
 
 .project-overview__status--archived {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .project-overview__edit-btn {
@@ -105,19 +105,19 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .project-overview__edit-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .project-overview__edit-btn svg {
@@ -128,7 +128,7 @@
 /* Progress */
 .project-overview__progress-section {
   padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--neutral-50);
   border-radius: var(--radius-xl, 12px);
 }
 
@@ -142,7 +142,7 @@
 .project-overview__progress-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 .project-overview__progress-value {
@@ -154,7 +154,7 @@
 
 .project-overview__progress-bar {
   height: 12px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
   border-radius: var(--radius-full, 9999px);
   overflow: hidden;
 }
@@ -169,8 +169,8 @@
 /* Sections */
 .project-overview__section {
   padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-xl, 12px);
 }
 
@@ -187,7 +187,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0 0 var(--space-3, 12px);
 }
 
@@ -202,7 +202,7 @@
 .project-overview__audience {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   line-height: var(--leading-relaxed, 1.7);
   margin: 0;
 }
@@ -223,7 +223,7 @@
 
 .project-overview__invite-btn:hover {
   background: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .project-overview__team {
@@ -237,7 +237,7 @@
   align-items: center;
   gap: var(--space-3, 12px);
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--neutral-50);
   border-radius: var(--radius-lg, 8px);
   min-width: 200px;
 }
@@ -246,14 +246,14 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--neutral-700, #1d2939);
+  background: var(--neutral-100);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   background-size: cover;
   background-position: center;
 }
@@ -267,7 +267,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .project-overview__member-role {
@@ -280,7 +280,7 @@
 .project-overview__team-empty {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin: 0;
 }
 
@@ -305,7 +305,7 @@
   display: flex;
   gap: var(--space-6, 24px);
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-overview__date {
@@ -317,13 +317,13 @@
 .project-overview__date-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .project-overview__date-value {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 /* Responsive */

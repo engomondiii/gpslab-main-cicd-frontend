@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - ProfileEditor Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProfileEditor Component Styles
  */
 
 .profile-editor {
@@ -17,7 +17,7 @@
 /* Header */
 .profile-editor__header {
   padding-bottom: var(--space-4, 16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--neutral-100);
 }
 
 .profile-editor__title {
@@ -27,7 +27,7 @@
   font-family: var(--font-heading, 'Orbitron', sans-serif);
   font-size: var(--text-2xl, 28px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -38,7 +38,7 @@
 .profile-editor__subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: var(--space-2, 8px) 0 0;
 }
 
@@ -48,16 +48,17 @@
   flex-direction: column;
   gap: var(--space-4, 16px);
   padding: var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .profile-editor__section-title {
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -81,7 +82,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 .profile-editor__social-icon {
@@ -93,18 +94,18 @@
 .profile-editor__select,
 .profile-editor__textarea {
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   transition: var(--transition-all);
 }
 
 .profile-editor__input::placeholder,
 .profile-editor__textarea::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .profile-editor__input:focus,
@@ -112,7 +113,7 @@
 .profile-editor__textarea:focus {
   outline: none;
   border-color: var(--gps-primary, #00d4ff);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
 }
 
 .profile-editor__input--error {
@@ -131,7 +132,7 @@
   left: var(--space-3, 12px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 .profile-editor__input-wrapper .profile-editor__input {
@@ -149,8 +150,8 @@
 }
 
 .profile-editor__select option {
-  background: var(--neutral-800, #161b22);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-50);
+  color: var(--neutral-900);
 }
 
 /* Textarea */
@@ -171,7 +172,7 @@
 .profile-editor__hint {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Social Links */
@@ -187,7 +188,7 @@
   justify-content: flex-end;
   gap: var(--space-3, 12px);
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .profile-editor__cancel-btn,
@@ -206,19 +207,19 @@
 }
 
 .profile-editor__cancel-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--neutral-300, #e1e4e8);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-800);
 }
 
 .profile-editor__cancel-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .profile-editor__save-btn {
   background: var(--gps-primary, #00d4ff);
   border: none;
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .profile-editor__save-btn:hover:not(:disabled) {
@@ -237,7 +238,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  border-top-color: var(--neutral-900, #0d1117);
+  border-top-color: var(--neutral-0);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

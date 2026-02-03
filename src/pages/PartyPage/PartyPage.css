@@ -4,8 +4,8 @@
 
 .party-page {
   min-height: 100vh;
-  background: var(--neutral-900, #0d1117);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-0);
+  color: var(--neutral-900);
   padding: var(--space-6, 24px);
   max-width: var(--container-xl, 1280px);
   margin: 0 auto;
@@ -18,19 +18,19 @@
   gap: var(--space-2, 8px);
   margin-bottom: var(--space-5, 20px);
   padding: var(--space-2, 8px) var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .party-page__back-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 /* Create View */
@@ -67,7 +67,7 @@
 .party-page__modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;

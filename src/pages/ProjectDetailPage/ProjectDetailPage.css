@@ -4,8 +4,8 @@
 
 .project-detail-page {
   min-height: 100vh;
-  background: var(--neutral-900, #0d1117);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-0);
+  color: var(--neutral-900);
   padding: var(--space-6, 24px);
   max-width: var(--container-xl, 1280px);
   margin: 0 auto;
@@ -37,7 +37,7 @@
 .project-detail-page__loading p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0;
 }
 
@@ -68,7 +68,7 @@
 .project-detail-page__error p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0 0 var(--space-6, 24px);
 }
 
@@ -92,14 +92,14 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-700);
   margin: 0 0 var(--space-2, 8px);
 }
 
 .project-detail-page__not-found p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: 0 0 var(--space-6, 24px);
 }
 

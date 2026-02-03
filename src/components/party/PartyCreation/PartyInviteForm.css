@@ -3,10 +3,11 @@
  */
 
 .party-invite-form {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-0);
+  border: var(--border-default);
   border-radius: var(--radius-xl, 12px);
   padding: var(--space-6, 24px);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Header */
@@ -16,7 +17,7 @@
   gap: var(--space-4, 16px);
   margin-bottom: var(--space-5, 20px);
   padding-bottom: var(--space-4, 16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--neutral-200);
 }
 
 .party-invite-form__icon {
@@ -27,7 +28,7 @@
   justify-content: center;
   background: linear-gradient(135deg, var(--beacon-purple, #8e44ad) 0%, var(--gps-primary, #00d4ff) 100%);
   border-radius: var(--radius-lg, 8px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   flex-shrink: 0;
 }
 
@@ -44,14 +45,14 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
 .party-invite-form__subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   margin: var(--space-1, 4px) 0 0;
 }
 
@@ -65,18 +66,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
   border: none;
   border-radius: var(--radius-md, 6px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   font-size: 16px;
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .party-invite-form__close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 /* Methods */
@@ -93,19 +94,19 @@
   justify-content: center;
   gap: var(--space-2, 8px);
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-0);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .party-invite-form__method:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-50);
+  color: var(--neutral-900);
 }
 
 .party-invite-form__method--active {
@@ -131,7 +132,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-700);
   margin-bottom: var(--space-2, 8px);
 }
 
@@ -150,12 +151,12 @@
 .party-invite-form__link-input {
   flex: 1;
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-700);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -188,7 +189,7 @@
 .party-invite-form__link-note {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   margin: 0;
 }
 
@@ -206,23 +207,23 @@
 .party-invite-form__input {
   flex: 1;
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   transition: var(--transition-all);
 }
 
 .party-invite-form__input::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
 }
 
 .party-invite-form__input:focus {
   outline: none;
   border-color: var(--gps-primary, #00d4ff);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--neutral-100);
 }
 
 .party-invite-form__add-btn {
@@ -251,7 +252,7 @@
 .party-invite-form__remaining {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   margin-top: var(--space-2, 8px);
 }
 
@@ -304,7 +305,7 @@
 
 .party-invite-form__invite-remove:hover {
   background: var(--error, #e74c3c);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 /* Message Section */
@@ -315,19 +316,19 @@
 
 .party-invite-form__textarea {
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: var(--border-default);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   min-height: 100px;
   resize: vertical;
   transition: var(--transition-all);
 }
 
 .party-invite-form__textarea::placeholder {
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
 }
 
 .party-invite-form__textarea:focus {
@@ -338,7 +339,7 @@
 .party-invite-form__char-count {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   text-align: right;
   margin-top: var(--space-1, 4px);
 }
@@ -369,7 +370,7 @@
   gap: var(--space-3, 12px);
   justify-content: flex-end;
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--neutral-200);
 }
 
 .party-invite-form__cancel-btn {
@@ -379,14 +380,14 @@
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .party-invite-form__cancel-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-50);
+  color: var(--neutral-900);
 }
 
 .party-invite-form__submit-btn {
@@ -400,7 +401,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   cursor: pointer;
   transition: var(--transition-all);
 }
@@ -420,7 +421,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: var(--neutral-0, #ffffff);
+  border-top-color: var(--neutral-900);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

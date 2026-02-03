@@ -1,11 +1,12 @@
 /**
  * GPS Lab Platform - CheckpointRubric Component Styles
+ * LIGHT MODE ONLY
  */
 
 .checkpoint-rubric {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6, 24px);
+  gap: var(--space-6);
 }
 
 .checkpoint-rubric--disabled {
@@ -18,7 +19,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
   flex-wrap: wrap;
 }
 
@@ -27,42 +28,42 @@
 }
 
 .checkpoint-rubric__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
-  margin: 0 0 var(--space-1, 4px);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin: 0 0 var(--space-1);
 }
 
 .checkpoint-rubric__subtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .checkpoint-rubric__header-actions {
   display: flex;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
 .checkpoint-rubric__action-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1, 4px);
-  padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md, 6px);
-  color: var(--neutral-400, #a8dadc);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--neutral-100);
+  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  color: var(--neutral-600);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .checkpoint-rubric__action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .checkpoint-rubric__action-btn svg {
@@ -74,50 +75,51 @@
 .checkpoint-rubric__criteria-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
 }
 
 /* Summary */
 .checkpoint-rubric__summary {
-  padding: var(--space-6, 24px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-6);
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .checkpoint-rubric__summary-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-4, 16px);
+  margin-bottom: var(--space-4);
 }
 
 .checkpoint-rubric__summary h3 {
-  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
-  font-size: var(--text-lg, 20px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-subheading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
   margin: 0;
 }
 
 .checkpoint-rubric__progress-text {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .checkpoint-rubric__progress-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full, 9999px);
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
   overflow: hidden;
-  margin-bottom: var(--space-6, 24px);
+  margin-bottom: var(--space-6);
 }
 
 .checkpoint-rubric__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--gps-primary, #00d4ff) 0%, var(--gps-accent, #2a9d8f) 100%);
-  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(90deg, var(--gps-primary) 0%, var(--gps-accent) 100%);
+  border-radius: var(--radius-full);
   transition: width var(--duration-base) var(--ease-out);
 }
 
@@ -125,8 +127,8 @@
 .checkpoint-rubric__score-display {
   display: flex;
   align-items: center;
-  gap: var(--space-8, 32px);
-  margin-bottom: var(--space-6, 24px);
+  gap: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .checkpoint-rubric__score-circle {
@@ -150,17 +152,18 @@
 }
 
 .checkpoint-rubric__score-number {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-3xl, 36px);
-  font-weight: var(--font-bold, 700);
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
   line-height: 1;
+  color: var(--neutral-900);
 }
 
 .checkpoint-rubric__score-percent {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-lg, 20px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--neutral-600);
   margin-left: 2px;
 }
 
@@ -168,15 +171,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 12px);
+  gap: var(--space-3);
 }
 
 .checkpoint-rubric__score-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-2, 8px) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-thin) solid var(--neutral-100);
 }
 
 .checkpoint-rubric__score-row:last-child {
@@ -184,70 +187,70 @@
 }
 
 .checkpoint-rubric__score-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 .checkpoint-rubric__score-stat {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
 }
 
 .checkpoint-rubric__score-status {
-  font-family: var(--font-accent, 'Rajdhani', sans-serif);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-bold, 700);
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide, 0.025em);
-  padding: var(--space-1, 4px) var(--space-3, 12px);
-  border-radius: var(--radius-full, 9999px);
+  letter-spacing: var(--tracking-wide);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
 }
 
 .checkpoint-rubric__score-status--passing {
-  background: rgba(42, 157, 143, 0.15);
-  color: var(--success, #2a9d8f);
+  background: var(--success-pale);
+  color: var(--success);
 }
 
 .checkpoint-rubric__score-status--failing {
-  background: rgba(231, 76, 60, 0.15);
-  color: var(--error, #e74c3c);
+  background: var(--error-pale);
+  color: var(--error);
 }
 
 /* Legend */
 .checkpoint-rubric__legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4, 16px);
-  padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: var(--border-thin) solid var(--neutral-200);
 }
 
 .checkpoint-rubric__legend-item {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
 }
 
 .checkpoint-rubric__legend-color {
   width: 16px;
   height: 16px;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
 }
 
 .checkpoint-rubric__legend-value {
-  font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
 }
 
 .checkpoint-rubric__legend-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
 /* Responsive */
@@ -277,16 +280,16 @@
 
 @media (max-width: 480px) {
   .checkpoint-rubric__summary {
-    padding: var(--space-4, 16px);
+    padding: var(--space-4);
   }
   
   .checkpoint-rubric__legend {
     flex-direction: column;
-    gap: var(--space-2, 8px);
+    gap: var(--space-2);
   }
 }
 
 /* Complete State */
 .checkpoint-rubric--complete .checkpoint-rubric__progress-fill {
-  background: var(--gps-accent, #2a9d8f);
+  background: var(--gps-accent);
 }

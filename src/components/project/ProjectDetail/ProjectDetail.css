@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - ProjectDetail Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProjectDetail Component Styles
  */
 
 .project-detail {
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   min-height: 400px;
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Header */
@@ -23,7 +23,7 @@
   gap: var(--space-4, 16px);
   padding-bottom: var(--space-5, 20px);
   margin-bottom: var(--space-5, 20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--neutral-100);
   flex-wrap: wrap;
 }
 
@@ -32,19 +32,19 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .project-detail__back-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .project-detail__back-btn svg {
@@ -71,25 +71,25 @@
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-4, 16px);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
   white-space: nowrap;
 }
 
 .project-detail__tab:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 .project-detail__tab--active {
   background: var(--beacon-color, var(--gps-primary));
   border-color: var(--beacon-color, var(--gps-primary));
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .project-detail__tab-icon {
@@ -108,17 +108,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .project-detail__action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-200);
+  color: var(--neutral-900);
 }
 
 .project-detail__action-btn--danger:hover {
@@ -158,7 +158,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -177,7 +177,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-semibold, 600);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
   cursor: pointer;
   transition: var(--transition-all);
 }
@@ -204,16 +204,16 @@
   align-items: center;
   gap: var(--space-3, 12px);
   padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-lg, 8px);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .project-detail__mission-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-100);
+  border-color: var(--neutral-200);
 }
 
 .project-detail__mission-card--completed {
@@ -225,7 +225,7 @@
 }
 
 .project-detail__mission-card--pending {
-  border-left: 3px solid var(--neutral-500, #8b949e);
+  border-left: 3px solid var(--neutral-600);
 }
 
 .project-detail__mission-status {
@@ -234,7 +234,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
   border-radius: 50%;
   font-size: 14px;
 }
@@ -260,13 +260,13 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .project-detail__mission-stage {
   font-family: var(--font-accent, 'Rajdhani', sans-serif);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide, 0.025em);
 }
@@ -281,7 +281,7 @@
 .project-detail__mission-progress-bar {
   flex: 1;
   height: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
   border-radius: var(--radius-full, 9999px);
   overflow: hidden;
 }
@@ -296,7 +296,7 @@
 .project-detail__mission-progress-value {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   min-width: 36px;
   text-align: right;
 }
@@ -304,12 +304,12 @@
 .project-detail__mission-arrow {
   width: 20px;
   height: 20px;
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   transition: var(--transition-all);
 }
 
 .project-detail__mission-card:hover .project-detail__mission-arrow {
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   transform: translateX(4px);
 }
 
@@ -321,8 +321,8 @@
   justify-content: center;
   padding: var(--space-12, 48px);
   text-align: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px dashed var(--neutral-200);
   border-radius: var(--radius-xl, 12px);
 }
 
@@ -335,14 +335,14 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   margin: 0 0 var(--space-2, 8px);
 }
 
 .project-detail__missions-empty p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
   margin: 0 0 var(--space-5, 20px);
 }
 
@@ -354,7 +354,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   cursor: pointer;
   transition: var(--transition-all);
 }
@@ -368,7 +368,7 @@
 .project-detail__footer {
   padding-top: var(--space-5, 20px);
   margin-top: var(--space-5, 20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-detail__quick-stats {
@@ -394,7 +394,7 @@
 .project-detail__quick-stat-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 /* Responsive */

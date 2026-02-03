@@ -49,7 +49,7 @@
 
 .bite-board-page__subtitle {
   font-size: var(--text-base, 16px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-500);
   margin: 0;
 }
 
@@ -58,7 +58,7 @@
   display: flex;
   gap: var(--space-1, 4px);
   padding: var(--space-1, 4px);
-  background-color: var(--neutral-200, #f0f4f8);
+  background-color: var(--neutral-700);
   border-radius: 8px;
 }
 
@@ -69,7 +69,7 @@
   padding: var(--space-2, 8px) var(--space-3, 12px);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-600, #2d4263);
+  color: var(--neutral-400);
   background: none;
   border: none;
   border-radius: 6px;
@@ -78,13 +78,13 @@
 }
 
 .bite-board-page__view-btn:hover {
-  background-color: var(--neutral-100, #f7faff);
+  background-color: var(--neutral-800);
 }
 
 .bite-board-page__view-btn--active {
   color: var(--gps-primary, #00d4ff);
-  background-color: var(--neutral-0, #ffffff);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--neutral-900);
+  box-shadow: var(--shadow-sm);
 }
 
 .bite-board-page__view-btn svg {
@@ -102,27 +102,27 @@
 
 /* Dark Theme */
 [data-theme="dark"] .bite-board-page {
-  background-color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-900);
 }
 
 [data-theme="dark"] .bite-board-page__title {
-  color: var(--neutral-100, #f7faff);
+  color: var(--neutral-800);
 }
 
 [data-theme="dark"] .bite-board-page__header-actions {
-  background-color: var(--neutral-800, #0d1b2a);
+  background-color: var(--neutral-50);
 }
 
 [data-theme="dark"] .bite-board-page__view-btn {
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-400);
 }
 
 [data-theme="dark"] .bite-board-page__view-btn:hover {
-  background-color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-800);
 }
 
 [data-theme="dark"] .bite-board-page__view-btn--active {
-  background-color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-800);
 }
 
 @media (prefers-reduced-motion: reduce) {

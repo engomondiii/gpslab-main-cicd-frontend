@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - PrivacySettings Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - PrivacySettings Component Styles
  */
 
 .privacy-settings {
@@ -16,7 +16,7 @@
 /* Header */
 .privacy-settings__header {
   padding-bottom: var(--space-4, 16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--neutral-100);
 }
 
 .privacy-settings__title {
@@ -26,7 +26,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-xl, 24px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -37,7 +37,7 @@
 .privacy-settings__subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: var(--space-2, 8px) 0 0;
 }
 
@@ -47,16 +47,17 @@
   flex-direction: column;
   gap: var(--space-4, 16px);
   padding: var(--space-5, 20px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .privacy-settings__section-title {
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -72,15 +73,15 @@
   align-items: flex-start;
   gap: var(--space-3, 12px);
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .privacy-settings__radio-option:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--neutral-100);
   border-color: rgba(0, 212, 255, 0.3);
 }
 
@@ -130,13 +131,13 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .privacy-settings__radio-desc {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Toggles */
@@ -151,15 +152,15 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-lg, 8px);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .privacy-settings__toggle:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--neutral-100);
 }
 
 .privacy-settings__toggle--disabled {
@@ -186,13 +187,13 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-medium, 500);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .privacy-settings__toggle-desc {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Toggle Switch */
@@ -208,7 +209,7 @@
   display: block;
   width: 48px;
   height: 26px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
   border-radius: var(--radius-full, 9999px);
   position: relative;
   transition: var(--transition-all);
@@ -221,7 +222,7 @@
   left: 3px;
   width: 20px;
   height: 20px;
-  background: var(--neutral-300, #e1e4e8);
+  background: var(--neutral-800);
   border-radius: 50%;
   transition: var(--transition-all);
 }
@@ -232,7 +233,7 @@
 
 .privacy-settings__toggle-switch input:checked + .privacy-settings__toggle-slider::after {
   transform: translateX(22px);
-  background: var(--neutral-900, #0d1117);
+  background: var(--neutral-0);
 }
 
 /* Actions */
@@ -241,7 +242,7 @@
   justify-content: flex-end;
   gap: var(--space-3, 12px);
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .privacy-settings__cancel-btn,
@@ -260,19 +261,19 @@
 }
 
 .privacy-settings__cancel-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--neutral-300, #e1e4e8);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-800);
 }
 
 .privacy-settings__cancel-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
 }
 
 .privacy-settings__save-btn {
   background: var(--gps-primary, #00d4ff);
   border: none;
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 .privacy-settings__save-btn:hover:not(:disabled) {
@@ -291,7 +292,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  border-top-color: var(--neutral-900, #0d1117);
+  border-top-color: var(--neutral-0);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

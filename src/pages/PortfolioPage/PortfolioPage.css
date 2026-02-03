@@ -4,7 +4,7 @@
 
 .portfolio-page {
   min-height: 100vh;
-  background: var(--neutral-900, #0d1117);
+  background: var(--neutral-0);
   padding: var(--space-6, 24px);
 }
 

@@ -1,0 +1,215 @@
+/**
+ * GPS Lab Platform - ChatInput Component Styles (Light Mode)
+ */
+
+.chat-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: var(--space-4, 16px);
+  background: var(--neutral-0);
+  border-top: var(--border-default);
+  position: relative;
+}
+
+/* Input Container */
+.chat-input__container {
+  display: flex;
+  gap: var(--space-2, 8px);
+  align-items: flex-end;
+}
+
+.chat-input__field-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.chat-input__textarea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 120px;
+  padding: var(--space-3, 12px) var(--space-12, 48px) var(--space-3, 12px) var(--space-3, 12px);
+  background: var(--neutral-50);
+  border: var(--border-default);
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-900);
+  resize: none;
+  transition: var(--transition-all);
+}
+
+.chat-input__textarea::placeholder {
+  color: var(--neutral-500);
+}
+
+.chat-input__textarea:focus {
+  outline: none;
+  border-color: var(--gps-primary);
+  box-shadow: 0 0 0 3px var(--gps-primary-pale);
+  background: var(--neutral-0);
+}
+
+.chat-input__textarea--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Char Count */
+.chat-input__char-count {
+  position: absolute;
+  bottom: var(--space-2, 8px);
+  right: var(--space-3, 12px);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500);
+  pointer-events: none;
+}
+
+.chat-input__char-count--warning {
+  color: var(--warning);
+}
+
+.chat-input__char-count--error {
+  color: var(--error);
+}
+
+/* Attachment Button */
+.chat-input__attach-btn {
+  position: absolute;
+  right: var(--space-10, 40px);
+  bottom: var(--space-2, 8px);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.chat-input__attach-btn:hover:not(:disabled) {
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+.chat-input__attach-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-input__attach-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Send Button */
+.chat-input__send-btn {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gps-primary);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  color: var(--neutral-0);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.chat-input__send-btn:hover:not(:disabled) {
+  background: var(--gps-primary-light);
+  transform: scale(1.05);
+}
+
+.chat-input__send-btn:disabled {
+  background: var(--neutral-300);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.chat-input__send-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Attachments Preview */
+.chat-input__attachments {
+  display: flex;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.chat-input__attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--neutral-100);
+  border: var(--border-thin);
+  border-radius: var(--radius-md, 6px);
+}
+
+.chat-input__attachment-icon {
+  font-size: 16px;
+}
+
+.chat-input__attachment-name {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-900);
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-input__attachment-remove {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.chat-input__attachment-remove:hover {
+  background: var(--error-pale);
+  color: var(--error);
+}
+
+.chat-input__attachment-remove svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Typing Indicator */
+.chat-input__typing {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .chat-input {
+    padding: var(--space-3, 12px);
+  }
+  
+  .chat-input__send-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

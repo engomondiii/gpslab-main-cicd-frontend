@@ -1,5 +1,5 @@
 /**
- * GPS Lab Platform - PortfolioEntryList Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - PortfolioEntryList Component Styles
  */
 
 .portfolio-entry-list {
@@ -29,25 +29,25 @@
   align-items: center;
   gap: var(--space-1, 4px);
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-full, 9999px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .portfolio-entry-list__filter:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--neutral-0, #ffffff);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
 }
 
 .portfolio-entry-list__filter--active {
   background: var(--gps-primary, #00d4ff);
   border-color: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 /* Right Controls */
@@ -60,17 +60,17 @@
 /* Sort */
 .portfolio-entry-list__sort {
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg, 8px);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   cursor: pointer;
 }
 
 .portfolio-entry-list__sort option {
-  background: var(--neutral-800, #161b22);
+  background: var(--neutral-50);
 }
 
 /* View Modes */
@@ -78,7 +78,7 @@
   display: flex;
   gap: 2px;
   padding: 2px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--neutral-50);
   border-radius: var(--radius-lg, 8px);
 }
 
@@ -88,18 +88,18 @@
   border: none;
   border-radius: var(--radius-md, 6px);
   font-size: 16px;
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .portfolio-entry-list__view-btn:hover {
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .portfolio-entry-list__view-btn--active {
   background: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 /* Results */
@@ -110,7 +110,7 @@
 .portfolio-entry-list__count {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Grid */
@@ -140,9 +140,10 @@
   justify-content: center;
   padding: var(--space-10, 40px);
   text-align: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-xl, 12px);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
 }
 
 .portfolio-entry-list__empty-icon {
@@ -154,7 +155,7 @@
 .portfolio-entry-list__empty p {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-base, 16px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   margin: 0;
 }
 
@@ -173,7 +174,7 @@
 
 .portfolio-entry-list__clear-filter:hover {
   background: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 /* Responsive */

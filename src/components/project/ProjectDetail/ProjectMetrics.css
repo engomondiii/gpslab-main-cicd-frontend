@@ -1,13 +1,13 @@
 /**
- * GPS Lab Platform - ProjectMetrics Component Styles
+ * GPS Lab Platform - LIGHT MODE ONLY - ProjectMetrics Component Styles
  */
 
 .project-metrics {
   display: flex;
   flex-direction: column;
   gap: var(--space-6, 24px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-xl, 12px);
   padding: var(--space-5, 20px);
 }
@@ -28,7 +28,7 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-lg, 20px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   margin: 0;
 }
 
@@ -40,7 +40,7 @@
 
 .project-metrics__period-selector {
   display: flex;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
   border-radius: var(--radius-lg, 8px);
   overflow: hidden;
 }
@@ -51,18 +51,18 @@
   border: none;
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
   cursor: pointer;
   transition: var(--transition-all);
 }
 
 .project-metrics__period-btn:hover {
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .project-metrics__period-btn--active {
   background: var(--gps-primary, #00d4ff);
-  color: var(--neutral-900, #0d1117);
+  color: var(--neutral-0);
 }
 
 /* Key Metrics */
@@ -76,13 +76,13 @@
   display: flex;
   gap: var(--space-3, 12px);
   padding: var(--space-4, 16px);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--neutral-50);
   border-radius: var(--radius-lg, 8px);
   transition: var(--transition-all);
 }
 
 .project-metrics__metric:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
 }
 
 .project-metrics__metric-icon {
@@ -99,14 +99,14 @@
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-2xl, 32px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
   line-height: 1;
 }
 
 .project-metrics__metric-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 .project-metrics__metric-change {
@@ -128,14 +128,14 @@
   font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
   font-size: var(--text-base, 16px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
   margin: 0 0 var(--space-3, 12px);
 }
 
 /* GPS Metrics */
 .project-metrics__gps-section {
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-metrics__gps-metrics {
@@ -168,13 +168,13 @@
 .project-metrics__gps-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 /* Economy Metrics */
 .project-metrics__economy-section {
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-metrics__economy-metrics {
@@ -203,7 +203,7 @@
 .project-metrics__economy-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 .project-metrics__economy-value {
@@ -216,13 +216,13 @@
 /* Chart */
 .project-metrics__chart-section {
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-metrics__chart {
   height: 150px;
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--neutral-50);
   border-radius: var(--radius-lg, 8px);
 }
 
@@ -254,13 +254,13 @@
 .project-metrics__chart-label {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Milestones */
 .project-metrics__milestones-section {
   padding-top: var(--space-4, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--neutral-100);
 }
 
 .project-metrics__milestones {
@@ -274,14 +274,14 @@
   align-items: center;
   gap: var(--space-3, 12px);
   padding: var(--space-3, 12px);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
   border-radius: var(--radius-lg, 8px);
   transition: var(--transition-all);
 }
 
 .project-metrics__milestone:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--neutral-100);
 }
 
 .project-metrics__milestone--completed {
@@ -295,17 +295,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--neutral-200);
   border-radius: 50%;
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-sm, 14px);
   font-weight: var(--font-bold, 700);
-  color: var(--neutral-400, #a8dadc);
+  color: var(--neutral-700);
 }
 
 .project-metrics__milestone--completed .project-metrics__milestone-icon {
   background: var(--success, #2a9d8f);
-  color: var(--neutral-0, #ffffff);
+  color: var(--neutral-900);
 }
 
 .project-metrics__milestone-content {
@@ -318,7 +318,7 @@
 .project-metrics__milestone-name {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--text-sm, 14px);
-  color: var(--neutral-300, #e1e4e8);
+  color: var(--neutral-800);
 }
 
 .project-metrics__milestone--completed .project-metrics__milestone-name {
@@ -328,7 +328,7 @@
 .project-metrics__milestone-date {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: var(--text-xs, 12px);
-  color: var(--neutral-500, #8b949e);
+  color: var(--neutral-600);
 }
 
 /* Responsive */
