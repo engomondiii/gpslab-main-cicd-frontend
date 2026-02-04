@@ -1,0 +1,272 @@
+/**
+ * GPS Lab Platform - GPOCallSuccessPage Component Styles
+ */
+
+.gpo-success-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+  background: linear-gradient(135deg, 
+    rgba(0, 212, 255, 0.1) 0%, 
+    rgba(42, 157, 143, 0.1) 100%
+  );
+}
+
+.gpo-success-page__container {
+  max-width: 800px;
+  width: 100%;
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-8, 32px);
+  box-shadow: var(--shadow-2xl);
+  text-align: center;
+}
+
+/* Icon */
+.gpo-success-page__icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto var(--space-6, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--gps-accent, #2a9d8f));
+  border-radius: 50%;
+  color: var(--neutral-0, #ffffff);
+  animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gpo-success-page__icon svg {
+  width: 56px;
+  height: 56px;
+}
+
+/* Content */
+.gpo-success-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+.gpo-success-page__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.gpo-success-page__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+/* Stats */
+.gpo-success-page__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+}
+
+.gpo-success-page__stat {
+  text-align: center;
+}
+
+.gpo-success-page__stat-value {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.gpo-success-page__stat-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #8b949e);
+}
+
+/* Achievement */
+.gpo-success-page__achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(241, 196, 15, 0.1));
+  border: 2px solid var(--warning, #f39c12);
+  border-radius: var(--radius-lg, 8px);
+  text-align: left;
+}
+
+.gpo-success-page__achievement-icon {
+  font-size: 48px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.gpo-success-page__achievement-content {
+  flex: 1;
+}
+
+.gpo-success-page__achievement-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.gpo-success-page__achievement-text {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+/* Next Steps */
+.gpo-success-page__next-steps {
+  padding: var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  text-align: left;
+}
+
+.gpo-success-page__next-steps-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-4, 16px);
+  text-align: center;
+}
+
+.gpo-success-page__steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.gpo-success-page__steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-700, #1b263b);
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+.gpo-success-page__step-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Actions */
+.gpo-success-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  padding-top: var(--space-5, 20px);
+  border-top: 2px solid var(--neutral-200, #f0f4f8);
+}
+
+.gpo-success-page__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.gpo-success-page__button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gpo-success-page__button--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.gpo-success-page__button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.gpo-success-page__button--secondary {
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-0, #ffffff);
+  border: 2px solid var(--neutral-300, #d0d7de);
+}
+
+.gpo-success-page__button--secondary:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gpo-success-page__container {
+    padding: var(--space-6, 24px);
+  }
+
+  .gpo-success-page__title {
+    font-size: var(--text-xl, 24px);
+  }
+
+  .gpo-success-page__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .gpo-success-page__achievement {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .gpo-success-page__achievement-content {
+    text-align: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .gpo-success-page__icon {
+    animation: none;
+  }
+
+  .gpo-success-page__button {
+    transition: none;
+  }
+
+  .gpo-success-page__button:hover {
+    transform: none;
+  }
+}

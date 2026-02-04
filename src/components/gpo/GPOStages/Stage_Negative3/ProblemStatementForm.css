@@ -1,0 +1,261 @@
+/**
+ * GPS Lab Platform - ProblemStatementForm Component Styles
+ */
+
+.problem-statement-form {
+  width: 100%;
+}
+
+.problem-statement-form__container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Steps Indicator */
+.problem-statement-form__steps {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 20px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.problem-statement-form__step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.problem-statement-form__step-number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-500, #8b949e);
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: 50%;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.problem-statement-form__step-label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #8b949e);
+}
+
+.problem-statement-form__step--active .problem-statement-form__step-number {
+  color: var(--neutral-0, #ffffff);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.problem-statement-form__step--active .problem-statement-form__step-label {
+  color: var(--neutral-900, #0d1117);
+  font-weight: var(--font-semibold, 600);
+}
+
+.problem-statement-form__step--completed .problem-statement-form__step-number {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--success, #2a9d8f);
+}
+
+/* Content */
+.problem-statement-form__content {
+  margin-bottom: var(--space-6, 24px);
+}
+
+/* Instructions */
+.problem-statement-form__instructions {
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(42, 157, 143, 0.1));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.problem-statement-form__instructions-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.problem-statement-form__instructions-text {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-700, #1b263b);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+/* Fields */
+.problem-statement-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+}
+
+.problem-statement-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.problem-statement-form__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.problem-statement-form__label-icon {
+  font-size: 20px;
+}
+
+.problem-statement-form__required {
+  color: var(--error, #e74c3c);
+}
+
+.problem-statement-form__field-hint {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+.problem-statement-form__textarea {
+  width: 100%;
+  padding: var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 2px solid var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-md, 6px);
+  resize: vertical;
+  min-height: 150px;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.problem-statement-form__textarea:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.problem-statement-form__textarea::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.problem-statement-form__textarea--error {
+  border-color: var(--error, #e74c3c);
+}
+
+.problem-statement-form__textarea--error:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.problem-statement-form__field-meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.problem-statement-form__char-count {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.problem-statement-form__char-count--warning {
+  color: var(--warning, #f39c12);
+  font-weight: var(--font-semibold, 600);
+}
+
+.problem-statement-form__error {
+  font-size: var(--text-sm, 14px);
+  color: var(--error, #e74c3c);
+  font-weight: var(--font-medium, 500);
+}
+
+/* Actions */
+.problem-statement-form__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  padding-top: var(--space-5, 20px);
+  border-top: 2px solid var(--neutral-200, #f0f4f8);
+}
+
+.problem-statement-form__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.problem-statement-form__button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.problem-statement-form__button--secondary {
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-0, #ffffff);
+  border: 2px solid var(--neutral-300, #d0d7de);
+}
+
+.problem-statement-form__button--secondary:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.problem-statement-form__button--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.problem-statement-form__button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .problem-statement-form__steps {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .problem-statement-form__actions {
+    flex-direction: column;
+  }
+
+  .problem-statement-form__button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .problem-statement-form__step-number,
+  .problem-statement-form__textarea,
+  .problem-statement-form__button {
+    transition: none;
+  }
+
+  .problem-statement-form__button:hover {
+    transform: none;
+  }
+}

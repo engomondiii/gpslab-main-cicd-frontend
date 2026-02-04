@@ -4,37 +4,47 @@
  * Main navigation menu with support for desktop and mobile variants.
  * 
  * @module components/layout/Header/Navigation
- * @version 1.1.0
+ * @version 1.2.0
  * 
- * FIXED: 
- * - Converted all <a href> to React Router <Link>/<NavLink> components
- * - Aligned route paths with PrivateRoutes.js definitions
+ * UPDATED v1.2.0:
+ * - Added GPO Call to navigation
+ * - Aligned all routes with PrivateRoutes definitions
  */
 
 import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 // =============================================================================
 // CONSTANTS
 // =============================================================================
 
-// Main navigation items - FIXED: Paths aligned with PrivateRoutes.js
 const NAV_ITEMS = [
+  {
+    id: 'gpo-call',
+    label: 'GPO Call',
+    href: '/gpo-call',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+    ),
+    featured: true
+  },
   {
     id: 'training',
     label: 'Training',
-    href: '/dashboard',  // FIXED: was /training
+    href: '/dashboard',
     icon: (
       <svg viewBox="0 0 20 20" fill="currentColor">
         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
       </svg>
     ),
     children: [
-      { id: 'missions', label: 'My Missions', href: '/missions' },         // FIXED: was /training/missions
-      { id: 'stages', label: 'Stage Map', href: '/checkpoints' },          // FIXED: was /training/stages
-      { id: 'bites', label: 'Knowledge Bites', href: '/study' },           // FIXED: was /training/bites
-      { id: 'practice', label: 'Practice Arena', href: '/practice' }       // FIXED: was /training/practice
+      { id: 'missions', label: 'My Missions', href: '/missions' },
+      { id: 'stages', label: 'Stage Map', href: '/checkpoints' },
+      { id: 'bites', label: 'Knowledge Bites', href: '/study' },
+      { id: 'practice', label: 'Practice Arena', href: '/practice' }
     ]
   },
   {
@@ -48,7 +58,7 @@ const NAV_ITEMS = [
       </svg>
     ),
     children: [
-      { id: 'gpo', label: 'GPO Projects', href: '/projects' },             // FIXED: was /projects/gpo
+      { id: 'gpo', label: 'GPO Projects', href: '/projects' },
       { id: 'my-projects', label: 'My Projects', href: '/projects/mine' },
       { id: 'browse', label: 'Browse All', href: '/projects/browse' }
     ]
@@ -63,8 +73,8 @@ const NAV_ITEMS = [
       </svg>
     ),
     children: [
-      { id: 'parties', label: 'Study Parties', href: '/parties' },          // FIXED: was /community/parties
-      { id: 'mentors', label: 'Find Mentors', href: '/mentors' },           // FIXED: was /community/mentors
+      { id: 'parties', label: 'Study Parties', href: '/parties' },
+      { id: 'mentors', label: 'Find Mentors', href: '/mentors' },
       { id: 'forums', label: 'Forums', href: '/community/forums' },
       { id: 'events', label: 'Events', href: '/community/events' }
     ]
@@ -95,14 +105,6 @@ const NAV_ITEMS = [
 // COMPONENT
 // =============================================================================
 
-/**
- * Navigation component
- * 
- * @param {Object} props - Component props
- * @param {string} [props.variant='desktop'] - Navigation variant
- * @param {Function} [props.onNavigate] - Navigation handler
- * @param {string} [props.className] - Additional CSS classes
- */
 const Navigation = ({
   variant = 'desktop',
   onNavigate,
@@ -112,19 +114,15 @@ const Navigation = ({
   
   const [openDropdown, setOpenDropdown] = useState(null);
   const [expandedMobile, setExpandedMobile] = useState(null);
-  const navigate = useNavigate();
   
-  // Handle dropdown toggle
   const handleDropdownToggle = (id) => {
     setOpenDropdown(prev => prev === id ? null : id);
   };
   
-  // Handle mobile expand
   const handleMobileExpand = (id) => {
     setExpandedMobile(prev => prev === id ? null : id);
   };
   
-  // Handle navigation click - FIXED: Use React Router navigate
   const handleNavClick = (href) => {
     setOpenDropdown(null);
     setExpandedMobile(null);
@@ -149,11 +147,10 @@ const Navigation = ({
               onMouseEnter={() => item.children && setOpenDropdown(item.id)}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              {/* FIXED: Using NavLink instead of <a> */}
               <NavLink
                 to={item.href}
                 className={({ isActive }) => 
-                  `navigation__link ${isActive ? 'navigation__link--active' : ''} ${openDropdown === item.id ? 'navigation__link--dropdown-open' : ''}`
+                  `navigation__link ${isActive ? 'navigation__link--active' : ''} ${openDropdown === item.id ? 'navigation__link--dropdown-open' : ''} ${item.featured ? 'navigation__link--featured' : ''}`
                 }
                 onClick={() => handleNavClick(item.href)}
               >
@@ -168,7 +165,6 @@ const Navigation = ({
                 )}
               </NavLink>
               
-              {/* Dropdown Menu - FIXED: Using Link instead of <a> */}
               {item.children && openDropdown === item.id && (
                 <div className="navigation__dropdown">
                   <ul className="navigation__dropdown-list">
@@ -200,11 +196,10 @@ const Navigation = ({
         {NAV_ITEMS.map(item => (
           <li key={item.id} className="navigation__item">
             <div className="navigation__item-header">
-              {/* FIXED: Using NavLink instead of <a> */}
               {item.children ? (
                 <button
                   type="button"
-                  className="navigation__link navigation__link--button"
+                  className={`navigation__link navigation__link--button ${item.featured ? 'navigation__link--featured' : ''}`}
                   onClick={() => handleMobileExpand(item.id)}
                 >
                   <span className="navigation__link-icon">{item.icon}</span>
@@ -214,7 +209,7 @@ const Navigation = ({
                 <NavLink
                   to={item.href}
                   className={({ isActive }) => 
-                    `navigation__link ${isActive ? 'navigation__link--active' : ''}`
+                    `navigation__link ${isActive ? 'navigation__link--active' : ''} ${item.featured ? 'navigation__link--featured' : ''}`
                   }
                   onClick={() => handleNavClick(item.href)}
                 >
@@ -237,7 +232,6 @@ const Navigation = ({
               )}
             </div>
             
-            {/* Mobile Submenu - FIXED: Using Link instead of <a> */}
             {item.children && expandedMobile === item.id && (
               <ul className="navigation__submenu">
                 {item.children.map(child => (
@@ -260,11 +254,6 @@ const Navigation = ({
   );
 };
 
-// Export navigation items for reuse
 export { NAV_ITEMS };
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
 export default Navigation;

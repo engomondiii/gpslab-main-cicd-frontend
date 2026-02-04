@@ -5,21 +5,11 @@
  * Wraps the app with all necessary providers and includes core components.
  * 
  * @module App
- * @version 1.2.0
+ * @version 1.3.0
  * 
- * FIXED v1.2.0:
- * - Removed useNavigate() from AppInner — it renders ABOVE <BrowserRouter>
- * - Logout now clears state + lets auth guards redirect (no navigate() needed)
- * - Notification navigation uses pendingNavigate prop consumed inside AppRouter
- * 
- * FIXED v1.1.0:
- * - Stats property names aligned to match QuickStats/Sidebar expectations:
- *     currentXP     → xp
- *     requiredXP    → xpToNextLevel
- *     currentStreak → streak
- * - Logout redirect: window.location.href → useNavigate for SPA behavior
- * - Notification click: window.location.href → navigate()
- * - AuthProvider: removed user/isAuthenticated props (AuthContext manages internally)
+ * UPDATED v1.3.0:
+ * - Added GPO Call feature integration
+ * - Maintained all existing functionality
  */
 
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
@@ -143,17 +133,11 @@ const AppErrorFallback = ({ error, resetErrorBoundary }) => (
  * Main App Component (inner, with access to router hooks)
  */
 const AppInner = () => {
-  // NOTE: useNavigate() CANNOT be used here because AppInner renders
-  // *above* <BrowserRouter> (which lives inside AppRouter).
-  // Navigation for logout/notification-click is handled via:
-  //   - Logout: clear state → AppRouter's auth guard redirects to "/" naturally
-  //   - Notification click: pass link via routerProps.pendingNavigate → AppRouter handles it
-  
   // App state
   const [isInitialized, setIsInitialized] = useState(false);
   const [toasts, setToasts] = useState([]);
   
-  // Auth state (would typically come from AuthContext)
+  // Auth state
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -161,15 +145,15 @@ const AppInner = () => {
   // User data
   const [notifications, setNotifications] = useState([]);
   
-  // FIXED: Stats property names aligned to QuickStats/Sidebar expectations
   const [stats, setStats] = useState({
     level: 1,
-    xp: 0,                 // was: currentXP
-    xpToNextLevel: 100,    // was: requiredXP
+    xp: 0,
+    xpToNextLevel: 100,
     currentStage: 1,
     missionsCompleted: 0,
-    streak: 0              // was: currentStreak
+    streak: 0
   });
+  
   const [wallets, setWallets] = useState({
     baraka: { balance: 0, pending: 0, tier: 'yellow' },
     psb: { balance: 0, invested: 0, returns: 0 }
@@ -241,7 +225,6 @@ const AppInner = () => {
     try {
       setIsAuthLoading(true);
       
-      // Simulate login
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockUser = {
@@ -340,7 +323,6 @@ const AppInner = () => {
   
   /**
    * Handle logout
-   * Clears auth state — AppRouter's auth guards will redirect to "/" automatically.
    */
   const handleLogout = useCallback(async () => {
     try {
@@ -355,8 +337,6 @@ const AppInner = () => {
         message: 'You have been signed out successfully.'
       });
       
-      // Auth guard in AppRouter will redirect private routes to "/"
-      // For immediate redirect if already on a public page, use:
       window.history.pushState({}, '', '/');
     } catch (error) {
       console.error('Logout error:', error);
@@ -379,7 +359,6 @@ const AppInner = () => {
   
   /**
    * Handle notification click
-   * Marks as read and stores pendingNavigate for AppRouter to handle.
    */
   const [pendingNavigate, setPendingNavigate] = useState(null);
   
@@ -390,7 +369,6 @@ const AppInner = () => {
       )
     );
     
-    // Store the target path — NavigationHandler inside AppRouter will pick it up
     if (notification.link) {
       setPendingNavigate(notification.link);
     }
@@ -436,19 +414,16 @@ const AppInner = () => {
   
   return (
     <div className="app" data-testid="app">
-      {/* Skip to content for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
       
-      {/* Main Router */}
       <Suspense fallback={<RouteLoadingFallback />}>
         <main id="main-content">
           <AppRouter {...routerProps} />
         </main>
       </Suspense>
       
-      {/* Toast Notifications */}
       <ToastContainer
         toasts={toasts}
         onDismiss={dismissToast}
@@ -458,14 +433,7 @@ const AppInner = () => {
 };
 
 /**
- * App wrapper - providers at outer level.
- * 
- * FIXED v1.2.0: Removed useNavigate() from AppInner since it renders
- * ABOVE <BrowserRouter> (which lives inside AppRouter). Navigation is
- * handled via:
- *   - Logout: clearing auth state triggers AppRouter's auth guards
- *   - Notification click: pendingNavigate prop consumed by NavigationHandler
- *     inside AppRouter (which IS inside BrowserRouter)
+ * App wrapper - providers at outer level
  */
 const App = () => {
   return (

@@ -1,0 +1,281 @@
+/**
+ * GPS Lab Platform - SelfieVideoRecorder Component Styles
+ */
+
+.selfie-video-recorder {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(8px);
+  padding: var(--space-4, 16px);
+}
+
+.selfie-video-recorder__container {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-6, 24px);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Header */
+.selfie-video-recorder__header {
+  text-align: center;
+  margin-bottom: var(--space-5, 20px);
+}
+
+.selfie-video-recorder__title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.selfie-video-recorder__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+}
+
+/* Video Preview */
+.selfie-video-recorder__preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--neutral-900, #0d1117);
+  border-radius: var(--radius-lg, 8px);
+  overflow: hidden;
+  margin-bottom: var(--space-5, 20px);
+}
+
+.selfie-video-recorder__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Recording Indicator */
+.selfie-video-recorder__recording-indicator {
+  position: absolute;
+  top: var(--space-3, 12px);
+  left: var(--space-3, 12px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background-color: var(--error, #e74c3c);
+  color: var(--neutral-0, #ffffff);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.selfie-video-recorder__recording-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: 50%;
+  animation: recordingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes recordingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Timer */
+.selfie-video-recorder__timer {
+  position: absolute;
+  top: var(--space-3, 12px);
+  right: var(--space-3, 12px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background-color: rgba(13, 17, 23, 0.8);
+  color: var(--neutral-0, #ffffff);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  border-radius: var(--radius-md, 6px);
+}
+
+.selfie-video-recorder__time {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.selfie-video-recorder__max-time {
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Error */
+.selfie-video-recorder__error {
+  position: absolute;
+  bottom: var(--space-4, 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: var(--error, #e74c3c);
+  color: var(--neutral-0, #ffffff);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
+  max-width: 90%;
+}
+
+.selfie-video-recorder__error svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Controls */
+.selfie-video-recorder__controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.selfie-video-recorder__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.selfie-video-recorder__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.selfie-video-recorder__button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.selfie-video-recorder__button--start {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--error, #e74c3c);
+}
+
+.selfie-video-recorder__button--start:hover:not(:disabled) {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.selfie-video-recorder__button--pause {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--warning, #f39c12);
+}
+
+.selfie-video-recorder__button--pause:hover {
+  background-color: #e67e22;
+}
+
+.selfie-video-recorder__button--stop {
+  color: var(--neutral-0, #ffffff);
+  background-color: var(--neutral-700, #1b263b);
+}
+
+.selfie-video-recorder__button--stop:hover {
+  background-color: var(--neutral-800, #0d1b2a);
+}
+
+.selfie-video-recorder__button--retry {
+  color: var(--neutral-700, #1b263b);
+  background-color: var(--neutral-200, #f0f4f8);
+  border: 2px solid var(--neutral-300, #d0d7de);
+}
+
+.selfie-video-recorder__button--retry:hover {
+  background-color: var(--neutral-300, #d0d7de);
+}
+
+.selfie-video-recorder__button--save {
+  color: var(--neutral-0, #ffffff);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.selfie-video-recorder__button--save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+/* Hints */
+.selfie-video-recorder__hints {
+  margin-bottom: var(--space-4, 16px);
+}
+
+.selfie-video-recorder__hint {
+  padding: var(--space-3, 12px);
+  background-color: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-md, 6px);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-700, #1b263b);
+  margin: 0;
+}
+
+.selfie-video-recorder__hint--warning {
+  background-color: rgba(243, 156, 18, 0.1);
+  border-color: var(--warning, #f39c12);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* Actions */
+.selfie-video-recorder__actions {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.selfie-video-recorder__button--cancel {
+  color: var(--neutral-700, #1b263b);
+  background-color: transparent;
+  border: 2px solid var(--neutral-300, #d0d7de);
+}
+
+.selfie-video-recorder__button--cancel:hover {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .selfie-video-recorder__controls {
+    flex-wrap: wrap;
+  }
+
+  .selfie-video-recorder__button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .selfie-video-recorder__recording-dot {
+    animation: none;
+  }
+
+  .selfie-video-recorder__button {
+    transition: none;
+  }
+
+  .selfie-video-recorder__button:hover {
+    transform: none;
+  }
+}

@@ -4,10 +4,10 @@
  * Main sidebar navigation with collapsible sections.
  * 
  * @module components/layout/Sidebar/MainNav
- * @version 1.2.0
+ * @version 1.3.0
  * 
- * UPDATED v1.2.0:
- * - Added GPO Call navigation item
+ * UPDATED v1.3.0:
+ * - Added GPO Call navigation item with prominence
  */
 
 import React from 'react';
@@ -37,6 +37,7 @@ const NAV_SECTIONS = [
   {
     id: 'gpo',
     label: 'GPO Call',
+    featured: true,
     items: [
       {
         id: 'gpo-call',
@@ -47,7 +48,8 @@ const NAV_SECTIONS = [
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
           </svg>
         ),
-        badge: null
+        badge: { text: 'New', variant: 'success' },
+        featured: true
       }
     ]
   },
@@ -173,16 +175,6 @@ const NAV_SECTIONS = [
 // COMPONENT
 // =============================================================================
 
-/**
- * MainNav component
- * 
- * @param {Object} props - Component props
- * @param {string} [props.currentPath='/'] - Current route path (kept for compatibility)
- * @param {boolean} [props.isCollapsed=false] - Collapsed state
- * @param {string} [props.expandedSection] - Currently expanded section
- * @param {Function} [props.onSectionToggle] - Section toggle handler
- * @param {string} [props.className] - Additional CSS classes
- */
 const MainNav = ({
   currentPath = '/',
   isCollapsed = false,
@@ -201,22 +193,23 @@ const MainNav = ({
   return (
     <nav className={classNames} {...props}>
       {NAV_SECTIONS.map(section => (
-        <div key={section.id} className="main-nav__section">
-          {/* Section Label */}
+        <div 
+          key={section.id} 
+          className={`main-nav__section ${section.featured ? 'main-nav__section--featured' : ''}`}
+        >
           {section.label && !isCollapsed && (
             <div className="main-nav__section-label">
               {section.label}
             </div>
           )}
           
-          {/* Section Items - Using NavLink for active state */}
           <ul className="main-nav__list">
             {section.items.map(item => (
               <li key={item.id} className="main-nav__item">
                 <NavLink
                   to={item.to}
                   className={({ isActive }) =>
-                    `main-nav__link ${isActive ? 'main-nav__link--active' : ''}`
+                    `main-nav__link ${isActive ? 'main-nav__link--active' : ''} ${item.featured ? 'main-nav__link--featured' : ''}`
                   }
                   title={isCollapsed ? item.label : undefined}
                   end={item.to === '/dashboard' || item.to === '/projects'}
@@ -227,7 +220,7 @@ const MainNav = ({
                       <span className="main-nav__label">{item.label}</span>
                       {item.badge && (
                         <span className={`main-nav__badge main-nav__badge--${item.badge.variant}`}>
-                          {item.badge.count}
+                          {item.badge.count || item.badge.text}
                         </span>
                       )}
                     </>
@@ -242,11 +235,6 @@ const MainNav = ({
   );
 };
 
-// Export nav sections for reuse
 export { NAV_SECTIONS };
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
 export default MainNav;

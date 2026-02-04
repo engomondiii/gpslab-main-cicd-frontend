@@ -1,0 +1,238 @@
+/**
+ * GPS Lab Platform - IntroductionForm Component Styles
+ */
+
+.introduction-form {
+  width: 100%;
+}
+
+.introduction-form__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Instructions */
+.introduction-form__instructions {
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(42, 157, 143, 0.1));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.introduction-form__instructions-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.introduction-form__instructions-text {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-700, #1b263b);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+/* Fields */
+.introduction-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.introduction-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.introduction-form__label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+}
+
+.introduction-form__required {
+  color: var(--error, #e74c3c);
+}
+
+.introduction-form__input,
+.introduction-form__textarea {
+  width: 100%;
+  padding: var(--space-3, 12px);
+  font-size: var(--text-base, 16px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--neutral-900, #0d1117);
+  background-color: var(--neutral-0, #ffffff);
+  border: 2px solid var(--neutral-300, #d0d7de);
+  border-radius: var(--radius-md, 6px);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.introduction-form__input:focus,
+.introduction-form__textarea:focus {
+  outline: none;
+  border-color: var(--gps-primary, #00d4ff);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.introduction-form__input::placeholder,
+.introduction-form__textarea::placeholder {
+  color: var(--neutral-400, #a8dadc);
+}
+
+.introduction-form__input--error,
+.introduction-form__textarea--error {
+  border-color: var(--error, #e74c3c);
+}
+
+.introduction-form__input--error:focus,
+.introduction-form__textarea--error:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.introduction-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.introduction-form__field-hint {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+.introduction-form__field-meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.introduction-form__char-count {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+}
+
+.introduction-form__char-count--warning {
+  color: var(--warning, #f39c12);
+  font-weight: var(--font-semibold, 600);
+}
+
+.introduction-form__error {
+  font-size: var(--text-sm, 14px);
+  color: var(--error, #e74c3c);
+  font-weight: var(--font-medium, 500);
+}
+
+/* Video Button */
+.introduction-form__video-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-0, #ffffff);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.introduction-form__video-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.introduction-form__video-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.introduction-form__video-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background-color: rgba(42, 157, 143, 0.1);
+  border: 1px solid var(--success, #2a9d8f);
+  border-radius: var(--radius-md, 6px);
+  margin-top: var(--space-2, 8px);
+  font-size: var(--text-sm, 14px);
+  color: var(--success, #2a9d8f);
+  font-weight: var(--font-medium, 500);
+}
+
+.introduction-form__check-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Actions */
+.introduction-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3, 12px);
+  padding-top: var(--space-5, 20px);
+  border-top: 2px solid var(--neutral-200, #f0f4f8);
+}
+
+.introduction-form__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.introduction-form__button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.introduction-form__button--primary {
+  color: var(--neutral-900, #0d1117);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+}
+
+.introduction-form__button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .introduction-form__actions {
+    flex-direction: column;
+  }
+
+  .introduction-form__button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .introduction-form__input,
+  .introduction-form__textarea,
+  .introduction-form__video-button,
+  .introduction-form__button {
+    transition: none;
+  }
+
+  .introduction-form__video-button:hover,
+  .introduction-form__button:hover {
+    transform: none;
+  }
+}

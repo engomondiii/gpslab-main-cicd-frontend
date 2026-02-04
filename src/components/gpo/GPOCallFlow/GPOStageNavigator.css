@@ -1,0 +1,191 @@
+/**
+ * GPS Lab Platform - GPOStageNavigator Component Styles
+ */
+
+.gpo-stage-navigator {
+  padding: var(--space-6, 24px);
+  background-color: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+/* Track */
+.gpo-stage-navigator__track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4, 16px);
+}
+
+/* Node */
+.gpo-stage-navigator__node {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.gpo-stage-navigator__node:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.gpo-stage-navigator__node:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.gpo-stage-navigator__node-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid var(--neutral-300, #d0d7de);
+  background-color: var(--neutral-0, #ffffff);
+  transition: all var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.gpo-stage-navigator__node-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* Node States */
+.gpo-stage-navigator__node--completed .gpo-stage-navigator__node-inner {
+  border-color: var(--success, #2a9d8f);
+  background-color: var(--success, #2a9d8f);
+  color: var(--neutral-0, #ffffff);
+  box-shadow: 0 0 20px rgba(42, 157, 143, 0.3);
+}
+
+.gpo-stage-navigator__node--current .gpo-stage-navigator__node-inner {
+  border-color: var(--gps-primary, #00d4ff);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  color: var(--neutral-900, #0d1117);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+}
+
+.gpo-stage-navigator__node--available .gpo-stage-navigator__node-inner {
+  border-color: var(--gps-primary, #00d4ff);
+  background-color: var(--neutral-0, #ffffff);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.gpo-stage-navigator__node--locked .gpo-stage-navigator__node-inner {
+  border-color: var(--neutral-300, #d0d7de);
+  background-color: var(--neutral-100, #f7faff);
+  color: var(--neutral-400, #a8dadc);
+}
+
+/* Current Node Pulse */
+.gpo-stage-navigator__node-pulse {
+  position: absolute;
+  inset: -4px;
+  border: 3px solid var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: gpoPulse 2s ease-out infinite;
+}
+
+@keyframes gpoPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Connection Line */
+.gpo-stage-navigator__line {
+  flex: 1;
+  height: 3px;
+  background-color: var(--neutral-300, #d0d7de);
+  margin: 0 var(--space-2, 8px);
+  transition: background-color var(--duration-normal, 250ms) var(--ease-out);
+}
+
+.gpo-stage-navigator__line--completed {
+  background: linear-gradient(90deg, var(--success, #2a9d8f), var(--gps-primary, #00d4ff));
+}
+
+/* Labels */
+.gpo-stage-navigator__labels {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+}
+
+.gpo-stage-navigator__label {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-2, 8px);
+}
+
+.gpo-stage-navigator__label-number {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-1, 4px);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.gpo-stage-navigator__label-title {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+  line-height: var(--leading-tight, 1.4);
+}
+
+.gpo-stage-navigator__label--current .gpo-stage-navigator__label-number {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.gpo-stage-navigator__label--current .gpo-stage-navigator__label-title {
+  color: var(--neutral-900, #0d1117);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gpo-stage-navigator__track {
+    overflow-x: auto;
+    padding-bottom: var(--space-2, 8px);
+  }
+
+  .gpo-stage-navigator__node {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .gpo-stage-navigator__node-icon {
+    font-size: 20px;
+  }
+
+  .gpo-stage-navigator__labels {
+    display: none;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .gpo-stage-navigator__node {
+    transition: none;
+  }
+
+  .gpo-stage-navigator__node-pulse {
+    animation: none;
+  }
+
+  .gpo-stage-navigator__line {
+    transition: none;
+  }
+}

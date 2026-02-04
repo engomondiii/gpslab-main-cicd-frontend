@@ -1,0 +1,155 @@
+/**
+ * GPS Lab Platform - GPOCallFlow Component Styles
+ * Light theme only, following GPS Lab design system
+ */
+
+.gpo-call-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6, 24px);
+}
+
+/* Header */
+.gpo-call-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6, 24px);
+  padding: var(--space-5, 20px);
+  background: linear-gradient(135deg, #f7faff, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-6, 24px);
+  box-shadow: var(--shadow-sm);
+}
+
+.gpo-call-flow__branding {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.gpo-call-flow__icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.gpo-call-flow__title-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.gpo-call-flow__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+.gpo-call-flow__subtitle {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+}
+
+/* Progress */
+.gpo-call-flow__progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  min-width: 200px;
+}
+
+.gpo-call-flow__progress-bar {
+  height: 8px;
+  background-color: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.gpo-call-flow__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+.gpo-call-flow__progress-text {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  text-align: right;
+}
+
+/* Content */
+.gpo-call-flow__content {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-6, 24px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Stage Header */
+.gpo-call-flow__stage-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding-bottom: var(--space-5, 20px);
+  margin-bottom: var(--space-5, 20px);
+  border-bottom: 2px solid var(--neutral-200, #f0f4f8);
+}
+
+.gpo-call-flow__stage-icon {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.gpo-call-flow__stage-info {
+  flex: 1;
+}
+
+.gpo-call-flow__stage-title {
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.gpo-call-flow__stage-description {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0;
+  line-height: var(--leading-relaxed, 1.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gpo-call-flow {
+    padding: var(--space-4, 16px);
+  }
+
+  .gpo-call-flow__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gpo-call-flow__progress {
+    width: 100%;
+  }
+
+  .gpo-call-flow__stage-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .gpo-call-flow__progress-fill {
+    transition: none;
+  }
+}

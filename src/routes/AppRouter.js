@@ -5,6 +5,10 @@
  * Handles route matching, navigation, and 404 handling.
  * 
  * @module routes/AppRouter
+ * @version 1.1.0
+ * 
+ * UPDATED v1.1.0:
+ * - Added GPO Call routes
  */
 
 import React, { Suspense, useCallback, useMemo, useEffect } from 'react';
@@ -50,9 +54,7 @@ const RouteTransition = ({ children }) => {
 };
 
 /**
- * NavigationHandler — renders inside BrowserRouter.
- * Consumes pendingNavigate from App.js (which is outside the router)
- * and performs SPA navigation via useNavigate().
+ * NavigationHandler – renders inside BrowserRouter
  */
 const NavigationHandler = ({ pendingNavigate, onNavigateComplete }) => {
   const navigate = useNavigate();
@@ -69,8 +71,6 @@ const NavigationHandler = ({ pendingNavigate, onNavigateComplete }) => {
 
 /**
  * AppRouter Component
- * 
- * Main application router that combines all route groups.
  */
 const AppRouter = ({
   user = null,
@@ -90,21 +90,11 @@ const AppRouter = ({
   onNavigateComplete
 }) => {
   
-  /**
-   * Handle successful login - redirect to intended destination.
-   * NOTE: window.location.href is intentional here since AppRouter
-   * creates <BrowserRouter> — it is not itself inside one, so
-   * useNavigate() cannot be called at this scope.
-   * TODO: Refactor to pass navigate via NavigationHandler if SPA nav needed.
-   */
   const handleLoginSuccess = useCallback(() => {
     const redirectPath = getRedirectAfterLogin('/dashboard');
     window.location.href = redirectPath;
   }, []);
   
-  /**
-   * Handle login with success callback
-   */
   const handleLogin = useCallback(async (credentials) => {
     if (onLogin) {
       const result = await onLogin(credentials);
@@ -115,23 +105,16 @@ const AppRouter = ({
     }
   }, [onLogin, handleLoginSuccess]);
   
-  /**
-   * Handle registration with success callback
-   */
   const handleRegister = useCallback(async (data) => {
     if (onRegister) {
       const result = await onRegister(data);
       if (result?.success) {
-        // Redirect to onboarding or dashboard after registration
         window.location.href = '/onboarding';
       }
       return result;
     }
   }, [onRegister]);
   
-  /**
-   * Common props for route components
-   */
   const routeProps = useMemo(() => ({
     user,
     isAuthenticated,
@@ -145,21 +128,15 @@ const AppRouter = ({
     onNotificationClick
   }), [user, isAuthenticated, isLoading, notifications, stats, wallets, currentLanguage, onLanguageChange, onLogout, onNotificationClick]);
   
-  /**
-   * Build public route elements
-   */
   const publicRouteElements = useMemo(() => {
     return PUBLIC_ROUTES.map(route => {
-      // Lazy load components
       const LazyComponent = React.lazy(() => {
-        // Map element names to actual component imports
         const componentMap = {
           HomePage: () => import('../pages/HomePage/HomePage'),
           LoginPage: () => import('../pages/LoginPage/LoginPage'),
           RegisterPage: () => import('../pages/RegisterPage/RegisterPage'),
           ForgotPasswordPage: () => import('../pages/ForgotPasswordPage/ForgotPasswordPage'),
           ResetPasswordPage: () => import('../pages/ResetPasswordPage/ResetPasswordPage'),
-          // Add placeholder pages
           AboutPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
             default: () => <div className="placeholder-page"><h1>About GPS Lab</h1><p>Coming soon...</p></div> 
           })),
@@ -188,7 +165,6 @@ const AppRouter = ({
           : Promise.resolve({ default: () => <div className="placeholder-page"><h1>{route.title}</h1><p>Coming soon...</p></div> });
       });
       
-      // Add props for auth pages
       const getPageProps = () => {
         if (route.element === 'LoginPage') {
           return { onLogin: handleLogin, onOAuthLogin };
@@ -196,11 +172,9 @@ const AppRouter = ({
         if (route.element === 'RegisterPage') {
           return { onRegister: handleRegister, onOAuthLogin };
         }
-        // HomePage now uses useNavigate internally, so no props needed
         return {};
       };
       
-      // Redirect authenticated users from auth pages
       if (['LoginPage', 'RegisterPage', 'ForgotPasswordPage', 'ResetPasswordPage'].includes(route.element)) {
         return (
           <Route
@@ -233,9 +207,6 @@ const AppRouter = ({
     });
   }, [isAuthenticated, handleLogin, handleRegister, onOAuthLogin]);
   
-  /**
-   * Build private route elements
-   */
   const privateRouteElements = useMemo(() => {
     const { routes } = PrivateRoutes(routeProps);
     return routes.map(route => (
@@ -247,9 +218,6 @@ const AppRouter = ({
     ));
   }, [routeProps]);
   
-  /**
-   * Build admin route elements
-   */
   const adminRouteElements = useMemo(() => {
     const { routes } = AdminRoutes(routeProps);
     return routes.map(route => (
@@ -261,9 +229,6 @@ const AppRouter = ({
     ));
   }, [routeProps]);
   
-  /**
-   * Build university route elements
-   */
   const universityRouteElements = useMemo(() => {
     const { routes } = UniversityRoutes(routeProps);
     return routes.map(route => (
@@ -288,13 +253,13 @@ const AppRouter = ({
             {/* Public Routes */}
             {publicRouteElements}
             
-            {/* Private Routes (require authentication) */}
+            {/* Private Routes */}
             {privateRouteElements}
             
-            {/* Admin Routes (require admin role) */}
+            {/* Admin Routes */}
             {adminRouteElements}
             
-            {/* University Routes (require university role) */}
+            {/* University Routes */}
             {universityRouteElements}
             
             {/* Onboarding Route */}
@@ -323,7 +288,7 @@ const AppRouter = ({
               element={<ErrorPage />}
             />
             
-            {/* 404 Not Found - must be last */}
+            {/* 404 Not Found */}
             <Route
               path="*"
               element={<NotFoundPage />}
@@ -335,9 +300,6 @@ const AppRouter = ({
   );
 };
 
-/**
- * Get all registered routes for navigation/sitemap
- */
 export const getAllRoutes = () => ({
   public: PUBLIC_ROUTES,
   private: PRIVATE_ROUTES,
@@ -345,9 +307,6 @@ export const getAllRoutes = () => ({
   university: UNIVERSITY_ROUTES
 });
 
-/**
- * Find route by path
- */
 export const findRouteByPath = (path) => {
   const allRoutes = [
     ...PUBLIC_ROUTES,
@@ -357,16 +316,12 @@ export const findRouteByPath = (path) => {
   ];
   
   return allRoutes.find(route => {
-    // Handle dynamic segments
     const routePattern = route.path.replace(/:\w+/g, '[^/]+');
     const regex = new RegExp(`^${routePattern}$`);
     return regex.test(path);
   });
 };
 
-/**
- * Get navigation items for sidebar/header
- */
 export const getNavigationItems = (userRole = 'user') => {
   const privateNavItems = PRIVATE_ROUTES
     .filter(route => route.showInNav)
@@ -376,7 +331,6 @@ export const getNavigationItems = (userRole = 'user') => {
       icon: route.icon
     }));
   
-  // Add admin nav item if user is admin
   if (['admin', 'super_admin'].includes(userRole)) {
     privateNavItems.push({
       path: '/admin',
@@ -385,7 +339,6 @@ export const getNavigationItems = (userRole = 'user') => {
     });
   }
   
-  // Add university nav item if user has university role
   if (['university_admin', 'professor', 'teaching_assistant'].includes(userRole)) {
     privateNavItems.push({
       path: '/university',

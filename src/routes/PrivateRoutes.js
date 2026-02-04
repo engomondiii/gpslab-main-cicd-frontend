@@ -2,14 +2,12 @@
  * GPS Lab Platform - PrivateRoutes Component
  * 
  * Defines routes requiring authentication.
- * Includes dashboard, missions, projects, profile, etc.
  * 
  * @module routes/PrivateRoutes
- * @version 1.1.0
+ * @version 1.2.0
  * 
- * FIXED v1.1.0:
- * - Page components now receive relevant props (user, stats, wallets, etc.)
- * - DashboardLayout receives correctly-named stats props
+ * UPDATED v1.2.0:
+ * - Added GPO Call routes
  */
 
 import React, { Suspense, lazy } from 'react';
@@ -18,7 +16,7 @@ import DashboardLayout from '../components/layout/DashboardLayout/DashboardLayou
 import { RouteLoadingFallback, PlaceholderPage } from './PublicRoutes';
 import './PrivateRoutes.css';
 
-// Lazy load pages for code splitting
+// Lazy load pages
 const DashboardPage = lazy(() => import('../pages/DashboardPage/DashboardPage'));
 const MissionsPage = lazy(() => import('../pages/MissionsPage/MissionsPage'));
 const MissionDetailPage = lazy(() => import('../pages/MissionDetailPage/MissionDetailPage'));
@@ -36,11 +34,20 @@ const SubscriptionPage = lazy(() => import('../pages/SubscriptionPage/Subscripti
 const MentorPage = lazy(() => import('../pages/MentorPage/MentorPage'));
 const HelpPage = lazy(() => import('../pages/HelpPage/HelpPage'));
 
+// GPO Call pages
+const GPOCallPage = lazy(() => import('../pages/GPOCallPage/GPOCallPage'));
+const GPOCallSuccessPage = lazy(() => import('../pages/GPOCallPage/GPOCallSuccessPage'));
+
 /**
  * Private route configuration
  */
 export const PRIVATE_ROUTES = [
   { path: '/dashboard', element: 'DashboardPage', title: 'Dashboard', description: 'Your GPS Lab command center', icon: 'dashboard', showInNav: true, breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }] },
+  
+  // GPO Call Routes
+  { path: '/gpo-call', element: 'GPOCallPage', title: 'GPO Call', description: 'Submit your problem showcase', icon: 'gpo-call', showInNav: true, breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }, { label: 'GPO Call', href: '/gpo-call' }] },
+  { path: '/gpo-call/success', element: 'GPOCallSuccessPage', title: 'Submission Success', description: 'GPO submission confirmed', breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }, { label: 'GPO Call', href: '/gpo-call' }, { label: 'Success', href: '/gpo-call/success' }] },
+  
   { path: '/missions', element: 'MissionsPage', title: 'Missions', description: 'Browse and accept missions', icon: 'missions', showInNav: true, breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }, { label: 'Missions', href: '/missions' }] },
   { path: '/missions/:missionId', element: 'MissionDetailPage', title: 'Mission Details', description: 'View mission details', breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }, { label: 'Missions', href: '/missions' }, { label: 'Mission', href: '' }] },
   { path: '/missions/:missionId/bites', element: 'BiteBoardPage', title: 'Bite Board', description: 'Manage mission bites', breadcrumbs: [{ label: 'Dashboard', href: '/dashboard' }, { label: 'Missions', href: '/missions' }, { label: 'Bites', href: '' }] },
@@ -89,6 +96,8 @@ const getPrivateRouteComponent = (elementName) => {
     SubscriptionPage,
     MentorPage,
     HelpPage,
+    GPOCallPage,
+    GPOCallSuccessPage,
     MarketplacePage: () => <PlaceholderPage title="Marketplace" />,
     WalletPage: () => <PlaceholderPage title="Wallet" />,
     BarakaWalletPage: () => <PlaceholderPage title="Baraka Wallet" />,
@@ -100,8 +109,6 @@ const getPrivateRouteComponent = (elementName) => {
 
 /**
  * PrivateRoutes Component
- * 
- * FIXED v1.1.0: Page components now receive relevant props via pageProps
  */
 const PrivateRoutes = ({
   user,
@@ -120,7 +127,6 @@ const PrivateRoutes = ({
     return PRIVATE_ROUTES.map(route => {
       const Component = getPrivateRouteComponent(route.element);
       
-      // FIXED: Props to pass to page components
       const pageProps = {
         user,
         stats,
@@ -152,7 +158,6 @@ const PrivateRoutes = ({
                 onNotificationClick={onNotificationClick}
                 pageTitle={route.title}
               >
-                {/* FIXED: Components receive relevant props */}
                 <Component {...pageProps} />
               </DashboardLayout>
             </Suspense>

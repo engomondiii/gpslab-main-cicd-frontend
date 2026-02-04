@@ -1,0 +1,159 @@
+/**
+ * GPS Lab Platform - GPOCallPage Component Styles
+ */
+
+.gpo-call-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
+}
+
+/* Hero Section */
+.gpo-call-page__hero {
+  padding: var(--space-8, 32px) var(--space-6, 24px);
+  background: linear-gradient(135deg, 
+    rgba(0, 212, 255, 0.1) 0%, 
+    rgba(42, 157, 143, 0.1) 100%
+  );
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.gpo-call-page__hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gpo-call-page__hero-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 48px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-4, 16px);
+  line-height: var(--leading-tight, 1.25);
+}
+
+.gpo-call-page__hero-subtitle {
+  font-size: var(--text-lg, 20px);
+  color: var(--neutral-600, #8b949e);
+  margin: 0 0 var(--space-6, 24px);
+  line-height: var(--leading-relaxed, 1.8);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Features */
+.gpo-call-page__hero-features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gpo-call-page__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: var(--shadow-sm);
+}
+
+.gpo-call-page__feature-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.gpo-call-page__feature-text {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-700, #1b263b);
+}
+
+/* Content */
+.gpo-call-page__content {
+  padding: var(--space-8, 32px) var(--space-6, 24px);
+}
+
+/* Submitting Overlay */
+.gpo-call-page__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 17, 23, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.gpo-call-page__loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-8, 32px);
+  background-color: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.gpo-call-page__spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--neutral-200, #f0f4f8);
+  border-top-color: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: gpoSpin 1s linear infinite;
+}
+
+@keyframes gpoSpin {
+  to { transform: rotate(360deg); }
+}
+
+.gpo-call-page__loader-text {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gpo-call-page__hero {
+    padding: var(--space-6, 24px) var(--space-4, 16px);
+  }
+
+  .gpo-call-page__hero-title {
+    font-size: var(--text-2xl, 32px);
+  }
+
+  .gpo-call-page__hero-subtitle {
+    font-size: var(--text-base, 16px);
+  }
+
+  .gpo-call-page__hero-features {
+    gap: var(--space-2, 8px);
+  }
+
+  .gpo-call-page__feature {
+    flex: 1 1 calc(50% - var(--space-2, 8px));
+    min-width: 150px;
+  }
+
+  .gpo-call-page__content {
+    padding: var(--space-6, 24px) var(--space-4, 16px);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .gpo-call-page__spinner {
+    animation: none;
+    border-top-color: var(--gps-primary, #00d4ff);
+  }
+}
