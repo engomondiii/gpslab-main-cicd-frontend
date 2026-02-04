@@ -1,12 +1,13 @@
 /* ============================================
    GPS LAB - Stages Constants
-   35 stages configuration with beacon phases
+   -4 to 35 stages configuration with GPO Call
    ============================================ */
 
 /**
- * Beacon phases (7 phases)
+ * Beacon phases (8 phases including GPO Call)
  */
 export const BeaconPhases = {
+  GPO_CALL: 'GPO Call',
   GPS_101: 'GPS 101',
   GPS_PREP: 'GPS Prep',
   GPS_SIMULATION: 'GPS Simulation',
@@ -17,9 +18,10 @@ export const BeaconPhases = {
 };
 
 /**
- * Beacon colors
+ * Beacon colors (GPO Call has NO beacon color - it's pre-training)
  */
 export const BeaconColors = {
+  [BeaconPhases.GPO_CALL]: null,  // No beacon - pre-training phase
   [BeaconPhases.GPS_101]: '#FF6B6B',              // Red
   [BeaconPhases.GPS_PREP]: '#FF8C42',             // Orange
   [BeaconPhases.GPS_SIMULATION]: '#F1C40F',       // Yellow
@@ -27,19 +29,6 @@ export const BeaconColors = {
   [BeaconPhases.GPS_CAPSTONE_2]: '#00D4FF',       // Blue
   [BeaconPhases.VENTURE_ACCELERATION]: '#9B59B6', // Indigo
   [BeaconPhases.VENTURE_CAPITALIZATION]: '#8E44AD', // Purple
-};
-
-/**
- * Beacon CSS variables
- */
-export const BeaconCSSVars = {
-  [BeaconPhases.GPS_101]: '--beacon-red',
-  [BeaconPhases.GPS_PREP]: '--beacon-orange',
-  [BeaconPhases.GPS_SIMULATION]: '--beacon-yellow',
-  [BeaconPhases.GPS_CAPSTONE_1]: '--beacon-green',
-  [BeaconPhases.GPS_CAPSTONE_2]: '--beacon-blue',
-  [BeaconPhases.VENTURE_ACCELERATION]: '--beacon-indigo',
-  [BeaconPhases.VENTURE_CAPITALIZATION]: '--beacon-purple',
 };
 
 /**
@@ -53,14 +42,61 @@ export const STAGES_PER_PHASE = 5;
 export const MISSIONS_PER_STAGE = 5;
 
 /**
- * Total number of stages
+ * Total number of stages (including GPO Call)
  */
-export const TOTAL_STAGES = 35;
+export const TOTAL_STAGES = 40; // -4 to 0 (5) + 1 to 35 (35) = 40
 
 /**
- * 35 Stages configuration
+ * All Stages configuration (-4 to 35)
  */
 export const Stages = {
+  // GPO CALL (No Beacon) - Stages -4 to 0
+  '-4': {
+    number: -4,
+    name: 'Who are you?',
+    beacon: BeaconPhases.GPO_CALL,
+    color: null,
+    description: 'Introduce yourself and your community',
+    missions: 1,
+    isGPO: true
+  },
+  '-3': {
+    number: -3,
+    name: 'What is your problem?',
+    beacon: BeaconPhases.GPO_CALL,
+    color: null,
+    description: 'Define the problem clearly',
+    missions: 1,
+    isGPO: true
+  },
+  '-2': {
+    number: -2,
+    name: 'Whose pain?',
+    beacon: BeaconPhases.GPO_CALL,
+    color: null,
+    description: 'Show who is affected by this problem',
+    missions: 1,
+    isGPO: true
+  },
+  '-1': {
+    number: -1,
+    name: 'What future?',
+    beacon: BeaconPhases.GPO_CALL,
+    color: null,
+    description: 'Paint a picture of the solution',
+    missions: 1,
+    isGPO: true
+  },
+  '0': {
+    number: 0,
+    name: 'How can GPS help?',
+    beacon: BeaconPhases.GPO_CALL,
+    color: null,
+    description: 'Invite Global Problem Solvers to collaborate',
+    missions: 1,
+    isGPO: true
+  },
+
   // GPS 101 (Red Beacon) - Stages 1-5
   1: {
     number: 1,
@@ -69,6 +105,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_101],
     description: 'Learn the fundamentals of problem-solving',
     missions: 5,
+    isGPO: false
   },
   2: {
     number: 2,
@@ -77,6 +114,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_101],
     description: 'Develop skills to identify real problems',
     missions: 5,
+    isGPO: false
   },
   3: {
     number: 3,
@@ -85,6 +123,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_101],
     description: 'Explore various solution approaches',
     missions: 5,
+    isGPO: false
   },
   4: {
     number: 4,
@@ -93,6 +132,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_101],
     description: 'Execute solutions effectively',
     missions: 5,
+    isGPO: false
   },
   5: {
     number: 5,
@@ -101,6 +141,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_101],
     description: 'Assess solution effectiveness',
     missions: 5,
+    isGPO: false
   },
 
   // GPS Prep (Orange Beacon) - Stages 6-10
@@ -111,6 +152,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_PREP],
     description: 'Understand market needs and opportunities',
     missions: 5,
+    isGPO: false
   },
   7: {
     number: 7,
@@ -119,6 +161,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_PREP],
     description: 'Champion customer perspectives',
     missions: 5,
+    isGPO: false
   },
   8: {
     number: 8,
@@ -127,6 +170,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_PREP],
     description: 'Create minimum viable solutions',
     missions: 5,
+    isGPO: false
   },
   9: {
     number: 9,
@@ -135,6 +179,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_PREP],
     description: 'Validate solutions with real users',
     missions: 5,
+    isGPO: false
   },
   10: {
     number: 10,
@@ -143,8 +188,10 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_PREP],
     description: 'Refine based on feedback',
     missions: 5,
+    isGPO: false
   },
 
+  // (Continue with stages 11-35 as before...)
   // GPS Simulation (Yellow Beacon) - Stages 11-15
   11: {
     number: 11,
@@ -153,6 +200,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_SIMULATION],
     description: 'Design sustainable business models',
     missions: 5,
+    isGPO: false
   },
   12: {
     number: 12,
@@ -161,6 +209,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_SIMULATION],
     description: 'Plan and manage finances',
     missions: 5,
+    isGPO: false
   },
   13: {
     number: 13,
@@ -169,6 +218,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_SIMULATION],
     description: 'Assemble and lead teams',
     missions: 5,
+    isGPO: false
   },
   14: {
     number: 14,
@@ -177,6 +227,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_SIMULATION],
     description: 'Promote solutions effectively',
     missions: 5,
+    isGPO: false
   },
   15: {
     number: 15,
@@ -185,6 +236,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_SIMULATION],
     description: 'Drive rapid growth',
     missions: 5,
+    isGPO: false
   },
 
   // GPS Capstone 1 (Green Beacon) - Stages 16-20
@@ -195,6 +247,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_1],
     description: 'Manage complex projects',
     missions: 5,
+    isGPO: false
   },
   17: {
     number: 17,
@@ -203,6 +256,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_1],
     description: 'Solve real-world problems',
     missions: 5,
+    isGPO: false
   },
   18: {
     number: 18,
@@ -211,6 +265,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_1],
     description: 'Quantify solution impact',
     missions: 5,
+    isGPO: false
   },
   19: {
     number: 19,
@@ -219,6 +274,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_1],
     description: 'Ensure long-term viability',
     missions: 5,
+    isGPO: false
   },
   20: {
     number: 20,
@@ -227,6 +283,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_1],
     description: 'Build engaged communities',
     missions: 5,
+    isGPO: false
   },
 
   // GPS Capstone 2 (Blue Beacon) - Stages 21-25
@@ -237,6 +294,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_2],
     description: 'Develop long-term strategies',
     missions: 5,
+    isGPO: false
   },
   22: {
     number: 22,
@@ -245,6 +303,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_2],
     description: 'Create comprehensive systems',
     missions: 5,
+    isGPO: false
   },
   23: {
     number: 23,
@@ -253,6 +312,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_2],
     description: 'Drive organizational change',
     missions: 5,
+    isGPO: false
   },
   24: {
     number: 24,
@@ -261,6 +321,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_2],
     description: 'Pioneer new approaches',
     missions: 5,
+    isGPO: false
   },
   25: {
     number: 25,
@@ -269,6 +330,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.GPS_CAPSTONE_2],
     description: 'Complete major capstone project',
     missions: 5,
+    isGPO: false
   },
 
   // Venture Acceleration (Indigo Beacon) - Stages 26-30
@@ -279,6 +341,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_ACCELERATION],
     description: 'Launch your venture',
     missions: 5,
+    isGPO: false
   },
   27: {
     number: 27,
@@ -287,6 +350,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_ACCELERATION],
     description: 'Build customer base',
     missions: 5,
+    isGPO: false
   },
   28: {
     number: 28,
@@ -295,6 +359,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_ACCELERATION],
     description: 'Generate sustainable revenue',
     missions: 5,
+    isGPO: false
   },
   29: {
     number: 29,
@@ -303,6 +368,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_ACCELERATION],
     description: 'Scale operations efficiently',
     missions: 5,
+    isGPO: false
   },
   30: {
     number: 30,
@@ -311,6 +377,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_ACCELERATION],
     description: 'Dominate your market segment',
     missions: 5,
+    isGPO: false
   },
 
   // Venture Capitalization (Purple Beacon) - Stages 31-35
@@ -321,6 +388,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_CAPITALIZATION],
     description: 'Secure investment capital',
     missions: 5,
+    isGPO: false
   },
   32: {
     number: 32,
@@ -329,6 +397,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_CAPITALIZATION],
     description: 'Build organizational infrastructure',
     missions: 5,
+    isGPO: false
   },
   33: {
     number: 33,
@@ -337,6 +406,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_CAPITALIZATION],
     description: 'Expand to new markets',
     missions: 5,
+    isGPO: false
   },
   34: {
     number: 34,
@@ -345,6 +415,7 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_CAPITALIZATION],
     description: 'Multiply social impact',
     missions: 5,
+    isGPO: false
   },
   35: {
     number: 35,
@@ -353,41 +424,40 @@ export const Stages = {
     color: BeaconColors[BeaconPhases.VENTURE_CAPITALIZATION],
     description: 'Achieve GPS mastery',
     missions: 5,
+    isGPO: false
   },
 };
 
 /**
- * Get stage by number
- * @param {number} stageNumber - Stage number (1-35)
- * @returns {Object|null} Stage configuration
+ * Get stage by number (including GPO stages)
  */
 export const getStage = (stageNumber) => {
-  return Stages[stageNumber] || null;
+  return Stages[stageNumber.toString()] || null;
 };
 
 /**
- * Get stages by beacon phase
- * @param {string} beaconPhase - Beacon phase name
- * @returns {Array} Array of stages
+ * Check if stage is GPO Call stage
  */
-export const getStagesByBeacon = (beaconPhase) => {
-  return Object.values(Stages).filter(stage => stage.beacon === beaconPhase);
+export const isGPOStage = (stageNumber) => {
+  return stageNumber >= -4 && stageNumber <= 0;
 };
 
 /**
- * Get beacon phase for stage number
- * @param {number} stageNumber - Stage number
- * @returns {string} Beacon phase name
+ * Get GPO stages only
  */
-export const getBeaconPhase = (stageNumber) => {
-  const stage = getStage(stageNumber);
-  return stage ? stage.beacon : null;
+export const getGPOStages = () => {
+  return Object.values(Stages).filter(stage => stage.isGPO);
 };
 
 /**
- * Get beacon color for stage number
- * @param {number} stageNumber - Stage number
- * @returns {string} Beacon color hex code
+ * Get GPS training stages only (1-35)
+ */
+export const getGPSStages = () => {
+  return Object.values(Stages).filter(stage => !stage.isGPO);
+};
+
+/**
+ * Get beacon color for stage (GPO stages return null)
  */
 export const getBeaconColor = (stageNumber) => {
   const stage = getStage(stageNumber);
@@ -395,68 +465,31 @@ export const getBeaconColor = (stageNumber) => {
 };
 
 /**
- * Check if stage is in beacon phase
- * @param {number} stageNumber - Stage number
- * @param {string} beaconPhase - Beacon phase name
- * @returns {boolean}
- */
-export const isStageInBeacon = (stageNumber, beaconPhase) => {
-  const stage = getStage(stageNumber);
-  return stage ? stage.beacon === beaconPhase : false;
-};
-
-/**
- * Get next stage
- * @param {number} currentStage - Current stage number
- * @returns {Object|null} Next stage or null if at end
- */
-export const getNextStage = (currentStage) => {
-  if (currentStage >= TOTAL_STAGES) return null;
-  return getStage(currentStage + 1);
-};
-
-/**
- * Get previous stage
- * @param {number} currentStage - Current stage number
- * @returns {Object|null} Previous stage or null if at start
- */
-export const getPreviousStage = (currentStage) => {
-  if (currentStage <= 1) return null;
-  return getStage(currentStage - 1);
-};
-
-/**
- * Get all stages as array
- * @returns {Array} Array of all stages
- */
-export const getAllStages = () => {
-  return Object.values(Stages).sort((a, b) => a.number - b.number);
-};
-
-/**
- * Calculate stage progress percentage
- * @param {number} currentStage - Current stage number
- * @returns {number} Progress percentage (0-100)
+ * Calculate stage progress percentage (including GPO)
  */
 export const calculateStagePercentage = (currentStage) => {
-  return (currentStage / TOTAL_STAGES) * 100;
+  // Adjust for GPO stages: -4 to 0 is 0-12.5%, 1-35 is 12.5-100%
+  if (currentStage < 1) {
+    // GPO stages: -4 to 0
+    const gpoProgress = ((currentStage + 4) / 5) * 12.5; // 0-12.5%
+    return gpoProgress;
+  }
+  // GPS stages: 1 to 35
+  const gpsProgress = 12.5 + ((currentStage / 35) * 87.5); // 12.5-100%
+  return gpsProgress;
 };
 
 export default {
   BeaconPhases,
   BeaconColors,
-  BeaconCSSVars,
   STAGES_PER_PHASE,
   MISSIONS_PER_STAGE,
   TOTAL_STAGES,
   Stages,
   getStage,
-  getStagesByBeacon,
-  getBeaconPhase,
+  isGPOStage,
+  getGPOStages,
+  getGPSStages,
   getBeaconColor,
-  isStageInBeacon,
-  getNextStage,
-  getPreviousStage,
-  getAllStages,
   calculateStagePercentage,
 };

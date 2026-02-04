@@ -4,18 +4,10 @@
  * Main sidebar navigation with collapsible sections.
  * 
  * @module components/layout/Sidebar/MainNav
- * @version 1.1.0
+ * @version 1.2.0
  * 
- * FIXED v1.1.0:
- * - Converted all <a href> to React Router <NavLink> components
- * - Aligned route paths to match PrivateRoutes.js definitions:
- *     /training/missions  → /missions
- *     /training/stages    → /checkpoints
- *     /training/bites     → /study
- *     /training/practice  → /study (practice subpath)
- *     /community/parties  → /parties
- *     /community/mentors  → /mentors
- *     /projects/mine      → /projects (root projects)
+ * UPDATED v1.2.0:
+ * - Added GPO Call navigation item
  */
 
 import React from 'react';
@@ -39,6 +31,23 @@ const NAV_SECTIONS = [
             <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
           </svg>
         )
+      }
+    ]
+  },
+  {
+    id: 'gpo',
+    label: 'GPO Call',
+    items: [
+      {
+        id: 'gpo-call',
+        label: 'Problem Showcase',
+        to: '/gpo-call',
+        icon: (
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        ),
+        badge: null
       }
     ]
   },
@@ -200,7 +209,7 @@ const MainNav = ({
             </div>
           )}
           
-          {/* Section Items - FIXED: Using NavLink for active state */}
+          {/* Section Items - Using NavLink for active state */}
           <ul className="main-nav__list">
             {section.items.map(item => (
               <li key={item.id} className="main-nav__item">

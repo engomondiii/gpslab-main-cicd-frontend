@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - CommandCenter Component Styles
+ * UPDATED: Larger globe section with better spacing
  */
 
 .command-center {
@@ -64,9 +65,9 @@
   color: var(--success, #2a9d8f);
 }
 
-/* Map Section */
-.command-center__map-section {
-  padding: var(--space-4, 16px);
+/* Globe Section - UPDATED with more padding */
+.command-center__globe-section {
+  padding: var(--space-6, 24px); /* Increased from 16px */
 }
 
 /* Content */

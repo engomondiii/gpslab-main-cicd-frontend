@@ -1,12 +1,25 @@
 /**
  * GPS Lab Platform - QuickStats Component
  * @module components/layout/Sidebar/QuickStats
+ * @version 1.1.0
+ * 
+ * UPDATED v1.1.0:
+ * - Added GPO Call completion status
  */
 
 import React from 'react';
 import './QuickStats.css';
 
-const QuickStats = ({ level = 1, xp = 0, xpToNextLevel = 100, currentStage = 1, missionsCompleted = 0, streak = 0, className = '' }) => {
+const QuickStats = ({ 
+  level = 1, 
+  xp = 0, 
+  xpToNextLevel = 100, 
+  currentStage = 1, 
+  missionsCompleted = 0, 
+  streak = 0,
+  gpoCallCompleted = false,
+  className = '' 
+}) => {
   const xpProgress = xpToNextLevel > 0 ? (xp / xpToNextLevel) * 100 : 0;
   
   return (
@@ -25,8 +38,8 @@ const QuickStats = ({ level = 1, xp = 0, xpToNextLevel = 100, currentStage = 1, 
       </div>
       <div className="quick-stats__grid">
         <div className="quick-stats__stat">
-          <span className="quick-stats__stat-value">{currentStage}</span>
-          <span className="quick-stats__stat-label">Stage</span>
+          <span className="quick-stats__stat-value">{gpoCallCompleted ? '✓' : currentStage < 1 ? 'GPO' : currentStage}</span>
+          <span className="quick-stats__stat-label">{gpoCallCompleted ? 'GPO Done' : currentStage < 1 ? 'Call' : 'Stage'}</span>
         </div>
         <div className="quick-stats__stat">
           <span className="quick-stats__stat-value">{missionsCompleted}</span>

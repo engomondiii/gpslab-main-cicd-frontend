@@ -1,6 +1,6 @@
 /* ============================================
    GPS LAB - Mission Constants
-   Mission states, types, and configuration
+   Mission states, types (including GPO), and configuration
    ============================================ */
 
 /**
@@ -55,9 +55,10 @@ export const MissionStateColors = {
 };
 
 /**
- * Mission types
+ * Mission types (ADDED GPO)
  */
 export const MissionTypes = {
+  GPO: 'gpo',                       // GPO Call mission
   STANDARD: 'standard',             // Regular mission
   CAPSTONE: 'capstone',             // Capstone mission
   VENTURE: 'venture',               // Venture mission
@@ -86,9 +87,10 @@ export const MissionPriority = {
 };
 
 /**
- * Mission duration in days (typical)
+ * Mission duration in days (typical) - ADDED GPO
  */
 export const MissionDurations = {
+  [MissionTypes.GPO]: 7,            // 1 week for GPO stages
   [MissionTypes.STANDARD]: 14,      // 2 weeks
   [MissionTypes.CAPSTONE]: 30,      // 1 month
   [MissionTypes.VENTURE]: 90,       // 3 months
@@ -97,9 +99,10 @@ export const MissionDurations = {
 };
 
 /**
- * Bites per mission (default)
+ * Bites per mission (default) - ADDED GPO
  */
 export const BITES_PER_MISSION = {
+  [MissionTypes.GPO]: 5,            // Simplified for GPO
   [MissionTypes.STANDARD]: 10,
   [MissionTypes.CAPSTONE]: 15,
   [MissionTypes.VENTURE]: 20,

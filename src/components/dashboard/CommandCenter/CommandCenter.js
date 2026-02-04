@@ -1,13 +1,15 @@
 /**
  * GPS Lab Platform - CommandCenter Component
  * 
- * Central command center showing current mission, map, and objectives.
+ * Central command center showing current mission, 3D globe, and objectives.
+ * Features full Cesium globe with real problem beacons!
  * 
  * @module components/dashboard/CommandCenter
  */
 
 import React, { useMemo } from 'react';
-import CommandCenterMap from './CommandCenterMap';
+import PropTypes from 'prop-types';
+import CommandCenterGlobe from './CommandCenterGlobe';
 import './CommandCenter.css';
 
 /**
@@ -67,14 +69,11 @@ const CommandCenter = ({
         </div>
       </div>
       
-      {/* Map Section */}
-      <div className="command-center__map-section">
-        <CommandCenterMap
+      {/* Globe Section - Full 3D Cesium Globe */}
+      <div className="command-center__globe-section">
+        <CommandCenterGlobe
           currentStage={currentStage}
-          currentMission={currentMission}
-          upcomingNodes={upcomingMissions}
-          completedNodes={completedMissions}
-          onNodeClick={onMissionClick}
+          onProblemClick={onMissionClick}
         />
       </div>
       
@@ -205,6 +204,20 @@ const CommandCenter = ({
       </div>
     </div>
   );
+};
+
+CommandCenter.propTypes = {
+  user: PropTypes.object,
+  currentStage: PropTypes.number,
+  currentMission: PropTypes.object,
+  upcomingMissions: PropTypes.array,
+  completedMissions: PropTypes.array,
+  objectives: PropTypes.array,
+  navigatorMessage: PropTypes.string,
+  onMissionClick: PropTypes.func,
+  onStartMission: PropTypes.func,
+  onViewObjectives: PropTypes.func,
+  className: PropTypes.string
 };
 
 export default CommandCenter;
