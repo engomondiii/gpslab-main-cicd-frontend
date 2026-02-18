@@ -1,0 +1,41 @@
+/* InvitationVideoRecorder.css */
+.invitation-video-recorder { width: 100%; }
+.ivr__header { margin-bottom: var(--space-5, 20px); }
+.ivr__title { font-family: var(--font-subheading, 'Space Grotesk', sans-serif); font-size: var(--text-xl, 24px); font-weight: var(--font-bold, 700); color: var(--neutral-900, #0d1117); margin: 0 0 var(--space-2, 8px); }
+.ivr__subtitle { font-size: var(--text-base, 16px); color: var(--neutral-600, #8b949e); margin: 0; line-height: var(--leading-relaxed, 1.8); }
+.ivr__script { padding: var(--space-4, 16px); background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(42,157,143,0.08)); border: 1px solid rgba(0,212,255,0.2); border-radius: var(--radius-lg, 8px); margin-bottom: var(--space-5, 20px); }
+.ivr__script-header { display: flex; align-items: center; gap: var(--space-2, 8px); margin-bottom: var(--space-3, 12px); }
+.ivr__script-icon { font-size: 20px; }
+.ivr__script-title { font-size: var(--text-sm, 14px); font-weight: var(--font-bold, 700); color: var(--neutral-700, #1b263b); }
+.ivr__script-list { list-style: decimal; padding-left: var(--space-5, 20px); margin: 0; display: flex; flex-direction: column; gap: var(--space-2, 8px); }
+.ivr__script-list li { font-size: var(--text-sm, 14px); color: var(--neutral-600, #8b949e); font-style: italic; line-height: var(--leading-relaxed, 1.8); }
+.ivr__video-area { position: relative; width: 100%; aspect-ratio: 16/9; background-color: var(--neutral-900, #0d1117); border-radius: var(--radius-lg, 8px); overflow: hidden; margin-bottom: var(--space-5, 20px); }
+.ivr__video { width: 100%; height: 100%; object-fit: cover; }
+.ivr__rec-badge { position: absolute; top: 12px; left: 12px; display: flex; align-items: center; gap: 6px; padding: 6px 12px; background-color: var(--error, #e74c3c); color: white; font-size: 13px; font-weight: 700; border-radius: 9999px; }
+.ivr__rec-dot { width: 8px; height: 8px; background: white; border-radius: 50%; animation: ivrPulse 1.5s ease-in-out infinite; }
+@keyframes ivrPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+.ivr__paused-badge { position: absolute; top: 12px; left: 12px; padding: 6px 12px; background-color: var(--warning, #f39c12); color: white; font-size: 13px; font-weight: 700; border-radius: 9999px; }
+.ivr__timer-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background-color: rgba(255,255,255,0.2); }
+.ivr__timer-fill { height: 100%; background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f)); transition: width 1s linear; }
+.ivr__timer { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background-color: rgba(13,17,23,0.8); border-radius: 6px; font-family: monospace; }
+.ivr__timer-current { color: var(--gps-primary, #00d4ff); font-weight: 700; font-size: 16px; }
+.ivr__timer-max { color: rgba(255,255,255,0.5); font-size: 14px; }
+.ivr__camera-error { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); padding: 10px 16px; background-color: var(--error, #e74c3c); color: white; font-size: 13px; border-radius: 8px; max-width: 90%; text-align: center; }
+.ivr__controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; }
+.ivr__btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; font-size: 16px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: all 150ms ease-out; }
+.ivr__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ivr__btn svg { width: 20px; height: 20px; }
+.ivr__btn--record { color: white; background-color: var(--error, #e74c3c); }
+.ivr__btn--record:hover:not(:disabled) { background-color: #c0392b; }
+.ivr__btn--pause { color: white; background-color: var(--warning, #f39c12); }
+.ivr__btn--stop { color: white; background-color: var(--neutral-700, #1b263b); }
+.ivr__btn--retry { color: var(--neutral-700, #1b263b); background-color: var(--neutral-200, #f0f4f8); border: 2px solid var(--neutral-300, #d0d7de); }
+.ivr__btn--save { color: var(--neutral-900, #0d1117); background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f)); }
+.ivr__btn--save:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,212,255,0.3); }
+.ivr__warn { text-align: center; font-size: 14px; color: var(--warning, #f39c12); margin: 0; }
+.ivr__field-error { text-align: center; font-size: 14px; color: var(--error, #e74c3c); font-weight: 500; margin: 4px 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .ivr__rec-dot { animation: none; }
+  .ivr__timer-fill { transition: none; }
+  .ivr__btn--save:hover { transform: none; }
+}
