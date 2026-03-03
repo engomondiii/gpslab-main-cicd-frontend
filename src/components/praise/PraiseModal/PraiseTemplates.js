@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - PraiseTemplates Component
+ * GPS 101 INTEGRATION: GPS 101-specific praise templates for milestone achievements
  * 
  * Pre-written culturally-appropriate praise message templates
  * supporting English, Korean, and Swahili.
@@ -38,6 +39,17 @@ const PRAISE_TEMPLATES = {
       { id: 'en-char-2', emoji: '🙏', text: 'Your integrity shines through in everything you do!' },
       { id: 'en-char-3', emoji: '💎', text: 'Your humility is truly admirable!' },
       { id: 'en-char-4', emoji: '🦁', text: 'Your courage inspires us all!' }
+    ],
+    // NEW: GPS 101 praise templates
+    gps101: [
+      { id: 'en-gps101-1', emoji: '🎓', text: 'Your purpose discovery journey is inspiring to watch!', isGPS101: true },
+      { id: 'en-gps101-2', emoji: '💫', text: 'The depth of your self-reflection is remarkable!', isGPS101: true },
+      { id: 'en-gps101-3', emoji: '🌟', text: 'Your authentic identity statement moved me!', isGPS101: true },
+      { id: 'en-gps101-4', emoji: '❤️', text: 'The problem you chose shows such compassion!', isGPS101: true },
+      { id: 'en-gps101-5', emoji: '🎯', text: 'Your purpose statement is powerful and clear!', isGPS101: true },
+      { id: 'en-gps101-6', emoji: '🟠', text: 'Congrats on unlocking the Orange Beacon! Well deserved!', isGPS101: true },
+      { id: 'en-gps101-7', emoji: '🚀', text: 'Your purpose-driven project idea is brilliant!', isGPS101: true },
+      { id: 'en-gps101-8', emoji: '💡', text: 'The way you connected identity to purpose is beautiful!', isGPS101: true }
     ]
   },
   ko: {
@@ -64,6 +76,17 @@ const PRAISE_TEMPLATES = {
       { id: 'ko-char-2', emoji: '🙏', text: '모든 일에서 진실성이 빛나요!' },
       { id: 'ko-char-3', emoji: '💎', text: '당신의 겸손함은 정말 존경스러워요!' },
       { id: 'ko-char-4', emoji: '🦁', text: '당신의 용기가 우리 모두를 감동시켜요!' }
+    ],
+    // NEW: GPS 101 praise templates (Korean)
+    gps101: [
+      { id: 'ko-gps101-1', emoji: '🎓', text: '당신의 목적 발견 여정이 정말 감동적이에요!', isGPS101: true },
+      { id: 'ko-gps101-2', emoji: '💫', text: '자기 성찰의 깊이가 놀라워요!', isGPS101: true },
+      { id: 'ko-gps101-3', emoji: '🌟', text: '진정성 있는 정체성 선언문에 감동받았어요!', isGPS101: true },
+      { id: 'ko-gps101-4', emoji: '❤️', text: '선택하신 문제에서 큰 연민이 느껴져요!', isGPS101: true },
+      { id: 'ko-gps101-5', emoji: '🎯', text: '목적 선언문이 강력하고 명확해요!', isGPS101: true },
+      { id: 'ko-gps101-6', emoji: '🟠', text: '오렌지 비콘 획득을 축하합니다! 정말 자격이 있어요!', isGPS101: true },
+      { id: 'ko-gps101-7', emoji: '🚀', text: '목적 중심 프로젝트 아이디어가 훌륭해요!', isGPS101: true },
+      { id: 'ko-gps101-8', emoji: '💡', text: '정체성과 목적을 연결한 방식이 아름다워요!', isGPS101: true }
     ]
   },
   sw: {
@@ -90,6 +113,17 @@ const PRAISE_TEMPLATES = {
       { id: 'sw-char-2', emoji: '🙏', text: 'Uaminifu wako unaonekana kila mahali!' },
       { id: 'sw-char-3', emoji: '💎', text: 'Unyenyekevu wako unaheshimika!' },
       { id: 'sw-char-4', emoji: '🦁', text: 'Ujasiri wako unatutia moyo!' }
+    ],
+    // NEW: GPS 101 praise templates (Swahili)
+    gps101: [
+      { id: 'sw-gps101-1', emoji: '🎓', text: 'Safari yako ya kugundua kusudi ni ya kuvutia!', isGPS101: true },
+      { id: 'sw-gps101-2', emoji: '💫', text: 'Kina cha mawazo yako ni cha ajabu!', isGPS101: true },
+      { id: 'sw-gps101-3', emoji: '🌟', text: 'Tamko lako la utambulisho ni la kweli!', isGPS101: true },
+      { id: 'sw-gps101-4', emoji: '❤️', text: 'Tatizo ulilochagua linaonyesha huruma kubwa!', isGPS101: true },
+      { id: 'sw-gps101-5', emoji: '🎯', text: 'Tamko la kusudi lako ni lenye nguvu na wazi!', isGPS101: true },
+      { id: 'sw-gps101-6', emoji: '🟠', text: 'Hongera kwa kufungua Orange Beacon! Unastahili!', isGPS101: true },
+      { id: 'sw-gps101-7', emoji: '🚀', text: 'Wazo lako la mradi ni bora sana!', isGPS101: true },
+      { id: 'sw-gps101-8', emoji: '💡', text: 'Jinsi ulivyounganisha utambulisho na kusudi ni nzuri!', isGPS101: true }
     ]
   }
 };
@@ -102,19 +136,22 @@ const CATEGORY_LABELS = {
     encouragement: 'Encouragement',
     achievement: 'Achievement',
     teamwork: 'Teamwork',
-    character: 'Character'
+    character: 'Character',
+    gps101: 'GPS 101' // NEW
   },
   ko: {
     encouragement: '격려',
     achievement: '성취',
     teamwork: '팀워크',
-    character: '인격'
+    character: '인격',
+    gps101: 'GPS 101' // NEW
   },
   sw: {
     encouragement: 'Motisha',
     achievement: 'Mafanikio',
     teamwork: 'Timu',
-    character: 'Tabia'
+    character: 'Tabia',
+    gps101: 'GPS 101' // NEW
   }
 };
 
@@ -125,7 +162,8 @@ const CATEGORY_ICONS = {
   encouragement: '💪',
   achievement: '🏆',
   teamwork: '🤝',
-  character: '❤️'
+  character: '❤️',
+  gps101: '🎓' // NEW
 };
 
 /**
@@ -135,13 +173,28 @@ const PraiseTemplates = ({
   language = 'en',
   selectedTemplate = null,
   onSelectTemplate,
+  // NEW: GPS 101 props
+  showGPS101Category = false,
+  isGPS101Context = false,
+  defaultCategory = null,
   className = '',
   ...props
 }) => {
-  const [activeCategory, setActiveCategory] = useState('encouragement');
+  const [activeCategory, setActiveCategory] = useState(
+    defaultCategory || (isGPS101Context ? 'gps101' : 'encouragement')
+  );
   
   const templates = PRAISE_TEMPLATES[language] || PRAISE_TEMPLATES.en;
   const categoryLabels = CATEGORY_LABELS[language] || CATEGORY_LABELS.en;
+  
+  // Filter categories based on showGPS101Category
+  const availableCategories = React.useMemo(() => {
+    const categories = Object.keys(templates);
+    if (!showGPS101Category) {
+      return categories.filter(cat => cat !== 'gps101');
+    }
+    return categories;
+  }, [templates, showGPS101Category]);
   
   const handleSelectTemplate = useCallback((template) => {
     if (onSelectTemplate) {
@@ -151,6 +204,7 @@ const PraiseTemplates = ({
   
   const classNames = [
     'praise-templates',
+    isGPS101Context && 'praise-templates--gps101-context',
     className
   ].filter(Boolean).join(' ');
   
@@ -158,11 +212,11 @@ const PraiseTemplates = ({
     <div className={classNames} {...props}>
       {/* Category Tabs */}
       <div className="praise-templates__categories">
-        {Object.keys(templates).map((category) => (
+        {availableCategories.map((category) => (
           <button
             key={category}
             type="button"
-            className={`praise-templates__category ${activeCategory === category ? 'praise-templates__category--active' : ''}`}
+            className={`praise-templates__category ${activeCategory === category ? 'praise-templates__category--active' : ''} ${category === 'gps101' ? 'praise-templates__category--gps101' : ''}`}
             onClick={() => setActiveCategory(category)}
           >
             <span className="praise-templates__category-icon">
@@ -175,19 +229,41 @@ const PraiseTemplates = ({
         ))}
       </div>
       
+      {/* NEW: GPS 101 Category Header */}
+      {activeCategory === 'gps101' && (
+        <div className="praise-templates__gps101-header">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+          </svg>
+          <div>
+            <h4 className="praise-templates__gps101-title">Purpose Discovery Praise</h4>
+            <p className="praise-templates__gps101-subtitle">
+              Celebrate GPS 101 milestones and achievements
+            </p>
+          </div>
+        </div>
+      )}
+      
       {/* Templates List */}
       <div className="praise-templates__list">
         {templates[activeCategory]?.map((template) => (
           <button
             key={template.id}
             type="button"
-            className={`praise-templates__item ${selectedTemplate?.id === template.id ? 'praise-templates__item--selected' : ''}`}
+            className={`praise-templates__item ${selectedTemplate?.id === template.id ? 'praise-templates__item--selected' : ''} ${template.isGPS101 ? 'praise-templates__item--gps101' : ''}`}
             onClick={() => handleSelectTemplate(template)}
           >
             <span className="praise-templates__item-emoji">{template.emoji}</span>
             <span className="praise-templates__item-text">{template.text}</span>
             {selectedTemplate?.id === template.id && (
               <span className="praise-templates__item-check">✓</span>
+            )}
+            {template.isGPS101 && (
+              <span className="praise-templates__item-gps101-badge">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                </svg>
+              </span>
             )}
           </button>
         ))}

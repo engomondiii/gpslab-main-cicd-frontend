@@ -1,40 +1,86 @@
 /**
  * GPS Lab Platform - MainNav Component
- * 
- * Main sidebar navigation with collapsible sections.
- * 
- * @module components/layout/Sidebar/MainNav
- * @version 1.3.0
- * 
- * UPDATED v1.3.0:
- * - Added GPO Call navigation item with prominence
+ * * Main sidebar navigation with collapsible sections.
+ * * UPDATED: GPS 101 Integration - Always visible. Prompts enrollment if not enrolled.
+ * * @module components/layout/Sidebar/MainNav
+ * @version 2.1.0
  */
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './MainNav.css';
 
-// =============================================================================
-// CONSTANTS
-// =============================================================================
+/**
+ * Build navigation sections dynamically based on GPS 101 enrollment
+ */
+const buildNavSections = (gps101Enrolled = false, gps101Progress = 0) => {
+  const sections = [
+    {
+      id: 'main',
+      items: [
+        {
+          id: 'dashboard',
+          label: 'Dashboard',
+          to: '/dashboard',
+          icon: (
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+            </svg>
+          )
+        }
+      ]
+    }
+  ];
 
-const NAV_SECTIONS = [
-  {
-    id: 'main',
+  // GPS 101 Section - ALWAYS VISIBLE
+  sections.push({
+    id: 'gps101',
+    label: 'GPS 101',
+    featured: true,
     items: [
       {
-        id: 'dashboard',
-        label: 'Dashboard',
-        to: '/dashboard',
+        id: 'gps101-journey',
+        label: gps101Enrolled ? 'My GPS 101 Journey' : 'Discover Purpose',
+        to: '/gps101', // Your routing naturally handles redirecting this to the enroll page
         icon: (
-          <svg viewBox="0 0 20 20" fill="currentColor">
-            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/>
+            <circle cx="12" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+          </svg>
+        ),
+        badge: !gps101Enrolled 
+          ? { text: 'START', variant: 'primary' }
+          : gps101Progress < 100 
+            ? { text: `${Math.floor(gps101Progress)}%`, variant: 'gps101' } 
+            : { text: '✓', variant: 'success' },
+        featured: true
+      },
+      {
+        id: 'gps101-checkpoints',
+        label: 'Checkpoints',
+        to: '/gps101/checkpoints',
+        icon: (
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          </svg>
+        )
+      },
+      {
+        id: 'gps101-deliverables',
+        label: 'Deliverables',
+        to: '/gps101/deliverables',
+        icon: (
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
           </svg>
         )
       }
     ]
-  },
-  {
+  });
+
+  // GPO Call Section
+  sections.push({
     id: 'gpo',
     label: 'GPO Call',
     featured: true,
@@ -52,8 +98,10 @@ const NAV_SECTIONS = [
         featured: true
       }
     ]
-  },
-  {
+  });
+
+  // Training Section
+  sections.push({
     id: 'training',
     label: 'Training',
     items: [
@@ -100,8 +148,10 @@ const NAV_SECTIONS = [
         )
       }
     ]
-  },
-  {
+  });
+
+  // Projects Section
+  sections.push({
     id: 'projects',
     label: 'Projects',
     items: [
@@ -126,8 +176,10 @@ const NAV_SECTIONS = [
         )
       }
     ]
-  },
-  {
+  });
+
+  // Community Section
+  sections.push({
     id: 'community',
     label: 'Community',
     items: [
@@ -153,8 +205,10 @@ const NAV_SECTIONS = [
         )
       }
     ]
-  },
-  {
+  });
+
+  // Marketplace Section
+  sections.push({
     id: 'marketplace',
     items: [
       {
@@ -168,21 +222,26 @@ const NAV_SECTIONS = [
         )
       }
     ]
-  }
-];
+  });
 
-// =============================================================================
-// COMPONENT
-// =============================================================================
+  return sections;
+};
 
+/**
+ * MainNav Component
+ */
 const MainNav = ({
   currentPath = '/',
   isCollapsed = false,
+  gps101Enrolled = false,
+  gps101Progress = 0,
   expandedSection,
   onSectionToggle,
   className = '',
   ...props
 }) => {
+  
+  const NAV_SECTIONS = buildNavSections(gps101Enrolled, gps101Progress);
   
   const classNames = [
     'main-nav',
@@ -234,7 +293,5 @@ const MainNav = ({
     </nav>
   );
 };
-
-export { NAV_SECTIONS };
 
 export default MainNav;

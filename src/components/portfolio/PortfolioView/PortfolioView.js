@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - PortfolioView Component
+ * GPS 101 INTEGRATION: Display GPS 101 deliverables section, completion indicator
  * 
  * Complete portfolio view with header, entries list,
  * and filtering options.
@@ -8,6 +9,7 @@
  */
 
 import React, { useState, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PortfolioHeader from './PortfolioHeader';
 import './PortfolioView.css';
 
@@ -30,12 +32,30 @@ const SORT_OPTIONS = [
 ];
 
 /**
+ * NEW: GPS 101 deliverable names
+ */
+const GPS101_DELIVERABLES = {
+  1: 'Identity Statement',
+  2: 'Life Problem Candidate',
+  3: 'Problem Owner Story',
+  4: 'Life Purpose Statement',
+  5: 'Purpose-Driven Project'
+};
+
+/**
  * PortfolioView Component
  */
 const PortfolioView = ({
   user = {},
   entries = [],
   categories = [],
+  // NEW: GPS 101 props
+  isGPS101Enrolled = false,
+  gps101Deliverables = [],
+  gps101Progress = 0,
+  gps101CurrentStage = 1,
+  orangeBeaconUnlocked = false,
+  showGPS101Section = true,
   isOwnPortfolio = false,
   onEditPortfolio,
   onAddEntry,
@@ -43,22 +63,29 @@ const PortfolioView = ({
   onDeleteEntry,
   onEntryClick,
   onShare,
+  // NEW: GPS 101 handlers
+  onViewGPS101,
+  onEditGPS101Deliverable,
   isLoading = false,
   className = '',
   ...props
 }) => {
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState('grid');
   const [sortBy, setSortBy] = useState('newest');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showGPS101Only, setShowGPS101Only] = useState(false);
   
   // Calculate stats
   const portfolioStats = useMemo(() => ({
     totalEntries: entries.length,
     totalViews: entries.reduce((sum, e) => sum + (e.views || 0), 0),
     totalLikes: entries.reduce((sum, e) => sum + (e.likes || 0), 0),
-    featuredCount: entries.filter((e) => e.isFeatured).length
-  }), [entries]);
+    featuredCount: entries.filter((e) => e.isFeatured).length,
+    // NEW: GPS 101 stats
+    gps101Count: gps101Deliverables.filter(d => d.isCompleted).length
+  }), [entries, gps101Deliverables]);
   
   // Get unique categories from entries
   const allCategories = useMemo(() => {
@@ -72,6 +99,11 @@ const PortfolioView = ({
   // Filter and sort entries
   const filteredEntries = useMemo(() => {
     let result = entries;
+    
+    // NEW: Filter for GPS 101 deliverables only
+    if (showGPS101Only) {
+      result = result.filter(e => e.isGPS101Deliverable);
+    }
     
     // Filter by category
     if (selectedCategory !== 'all') {
@@ -104,7 +136,7 @@ const PortfolioView = ({
     });
     
     return result;
-  }, [entries, selectedCategory, searchQuery, sortBy]);
+  }, [entries, selectedCategory, searchQuery, sortBy, showGPS101Only]);
   
   const handleEntryClick = useCallback((entry) => {
     if (onEntryClick) {
@@ -115,6 +147,7 @@ const PortfolioView = ({
   const classNames = [
     'portfolio-view',
     isLoading && 'portfolio-view--loading',
+    isGPS101Enrolled && showGPS101Section && 'portfolio-view--with-gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -125,10 +158,140 @@ const PortfolioView = ({
         user={user}
         portfolioStats={portfolioStats}
         isOwnPortfolio={isOwnPortfolio}
+        // NEW: GPS 101 props
+        isGPS101Enrolled={isGPS101Enrolled}
+        gps101Progress={gps101Progress}
+        orangeBeaconUnlocked={orangeBeaconUnlocked}
         onEditPortfolio={onEditPortfolio}
         onAddEntry={onAddEntry}
         onShare={onShare}
+        onViewGPS101={onViewGPS101}
       />
+      
+      {/* NEW: GPS 101 Deliverables Section */}
+      {isGPS101Enrolled && showGPS101Section && (
+        <section className="portfolio-view__gps101-section">
+          <div className="portfolio-view__gps101-header">
+            <div className="portfolio-view__gps101-title-section">
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+              </svg>
+              <div>
+                <h3 className="portfolio-view__gps101-title">GPS 101 Deliverables</h3>
+                <p className="portfolio-view__gps101-subtitle">Purpose Discovery Journey Artifacts</p>
+              </div>
+            </div>
+            
+            <div className="portfolio-view__gps101-stats">
+              <div className="portfolio-view__gps101-progress">
+                <span className="portfolio-view__gps101-progress-text">
+                  {portfolioStats.gps101Count}/5 Complete
+                </span>
+                <div className="portfolio-view__gps101-progress-bar">
+                  <div 
+                    className="portfolio-view__gps101-progress-fill"
+                    style={{ width: `${gps101Progress}%` }}
+                  />
+                </div>
+              </div>
+              
+              {orangeBeaconUnlocked && (
+                <div className="portfolio-view__gps101-beacon">
+                  <span className="portfolio-view__gps101-beacon-icon">🟠</span>
+                  <span className="portfolio-view__gps101-beacon-label">Orange Beacon</span>
+                </div>
+              )}
+            </div>
+            
+            {onViewGPS101 && (
+              <button
+                type="button"
+                className="portfolio-view__gps101-view-btn"
+                onClick={onViewGPS101}
+              >
+                View GPS 101 Dashboard →
+              </button>
+            )}
+          </div>
+          
+          <div className="portfolio-view__gps101-deliverables">
+            {gps101Deliverables.map((deliverable, index) => (
+              <article
+                key={deliverable.stageNumber || index}
+                className={`portfolio-view__gps101-deliverable ${deliverable.isCompleted ? 'portfolio-view__gps101-deliverable--completed' : ''} ${deliverable.stageNumber === gps101CurrentStage ? 'portfolio-view__gps101-deliverable--current' : ''}`}
+                onClick={() => {
+                  if (deliverable.isCompleted && deliverable.entryId) {
+                    const entry = entries.find(e => e.id === deliverable.entryId);
+                    if (entry) handleEntryClick(entry);
+                  }
+                }}
+              >
+                <div className="portfolio-view__gps101-deliverable-header">
+                  <div className="portfolio-view__gps101-deliverable-stage">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                    </svg>
+                    <span>Stage {deliverable.stageNumber}</span>
+                  </div>
+                  
+                  {deliverable.isCompleted ? (
+                    <span className="portfolio-view__gps101-deliverable-status portfolio-view__gps101-deliverable-status--complete">
+                      <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                      </svg>
+                      Complete
+                    </span>
+                  ) : deliverable.stageNumber === gps101CurrentStage ? (
+                    <span className="portfolio-view__gps101-deliverable-status portfolio-view__gps101-deliverable-status--current">
+                      In Progress
+                    </span>
+                  ) : (
+                    <span className="portfolio-view__gps101-deliverable-status portfolio-view__gps101-deliverable-status--locked">
+                      <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
+                      </svg>
+                      Locked
+                    </span>
+                  )}
+                </div>
+                
+                <h4 className="portfolio-view__gps101-deliverable-title">
+                  {GPS101_DELIVERABLES[deliverable.stageNumber]}
+                </h4>
+                
+                {deliverable.description && (
+                  <p className="portfolio-view__gps101-deliverable-description">
+                    {deliverable.description}
+                  </p>
+                )}
+                
+                {deliverable.isCompleted && deliverable.submittedDate && (
+                  <span className="portfolio-view__gps101-deliverable-date">
+                    Submitted {new Date(deliverable.submittedDate).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </span>
+                )}
+                
+                {isOwnPortfolio && deliverable.isCompleted && onEditGPS101Deliverable && (
+                  <button
+                    type="button"
+                    className="portfolio-view__gps101-deliverable-edit"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEditGPS101Deliverable(deliverable);
+                    }}
+                  >
+                    ✏️ Edit
+                  </button>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       
       {/* Filters & Controls */}
       <div className="portfolio-view__controls">
@@ -143,6 +306,20 @@ const PortfolioView = ({
             className="portfolio-view__search-input"
           />
         </div>
+        
+        {/* NEW: GPS 101 Filter Toggle */}
+        {isGPS101Enrolled && (
+          <button
+            type="button"
+            className={`portfolio-view__gps101-filter ${showGPS101Only ? 'portfolio-view__gps101-filter--active' : ''}`}
+            onClick={() => setShowGPS101Only(!showGPS101Only)}
+          >
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+            GPS 101 Only
+          </button>
+        )}
         
         {/* Categories */}
         <div className="portfolio-view__categories">
@@ -202,9 +379,22 @@ const PortfolioView = ({
           {filteredEntries.map((entry) => (
             <article
               key={entry.id}
-              className={`portfolio-view__entry ${entry.isFeatured ? 'portfolio-view__entry--featured' : ''}`}
+              className={`portfolio-view__entry ${entry.isFeatured ? 'portfolio-view__entry--featured' : ''} ${entry.isGPS101Deliverable ? 'portfolio-view__entry--gps101' : ''}`}
               onClick={() => handleEntryClick(entry)}
             >
+              {/* NEW: GPS 101 Badge */}
+              {entry.isGPS101Deliverable && (
+                <div className="portfolio-view__entry-gps101-badge">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                  </svg>
+                  <span>GPS 101</span>
+                  {entry.gps101StageNumber && (
+                    <span className="portfolio-view__entry-gps101-stage">S{entry.gps101StageNumber}</span>
+                  )}
+                </div>
+              )}
+              
               {/* Thumbnail */}
               {entry.thumbnailUrl && (
                 <div className="portfolio-view__entry-thumbnail">
@@ -281,9 +471,11 @@ const PortfolioView = ({
           {/* Empty State */}
           {filteredEntries.length === 0 && (
             <div className="portfolio-view__empty">
-              <span className="portfolio-view__empty-icon">📁</span>
+              <span className="portfolio-view__empty-icon">
+                {showGPS101Only ? '🎓' : '📁'}
+              </span>
               <h3>No entries found</h3>
-              {searchQuery || selectedCategory !== 'all' ? (
+              {searchQuery || selectedCategory !== 'all' || showGPS101Only ? (
                 <p>Try adjusting your filters</p>
               ) : (
                 <>
@@ -311,5 +503,5 @@ const PortfolioView = ({
   );
 };
 
-export { VIEW_MODES, SORT_OPTIONS };
+export { VIEW_MODES, SORT_OPTIONS, GPS101_DELIVERABLES };
 export default PortfolioView;

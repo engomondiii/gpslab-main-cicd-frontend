@@ -1,0 +1,353 @@
+/**
+ * Journey Timeline Styles
+ */
+
+.journey-timeline {
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.timeline-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.timeline-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Timeline Container */
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Timeline Stage */
+.timeline-stage {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.timeline-stage:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline Connector */
+.timeline-connector {
+  position: absolute;
+  left: 28px;
+  top: -3rem;
+  width: 4px;
+  height: 3rem;
+  background: #e0e0e0;
+}
+
+.timeline-connector.completed {
+  background: linear-gradient(to bottom, #4CAF50, #45a049);
+}
+
+.timeline-connector.current {
+  background: linear-gradient(to bottom, #4CAF50, #667eea);
+}
+
+/* Stage Node Wrapper */
+.stage-node-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Stage Node */
+.stage-node {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-stage.completed .stage-node {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.timeline-stage.current .stage-node {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  animation: pulse-node 2s ease-in-out infinite;
+}
+
+.timeline-stage.upcoming .stage-node {
+  background: white;
+  border: 4px solid #e0e0e0;
+}
+
+@keyframes pulse-node {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
+  }
+}
+
+.stage-node-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.node-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.timeline-stage.completed .node-number,
+.timeline-stage.current .node-number {
+  color: white;
+}
+
+.timeline-stage.upcoming .node-number {
+  color: #999;
+}
+
+/* Current Indicator */
+.current-indicator {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.indicator-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #667eea;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.indicator-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Stage Content */
+.stage-timeline-content {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.timeline-stage.completed .stage-timeline-content {
+  background: linear-gradient(to bottom, #f1f8f4, white);
+  border-color: #4CAF50;
+}
+
+.timeline-stage.current .stage-timeline-content {
+  background: linear-gradient(to bottom, #f0f3ff, white);
+  border-color: #667eea;
+}
+
+.stage-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.stage-timeline-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.projected-date {
+  font-size: 0.875rem;
+  color: #666;
+  background: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+.stage-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+/* Milestones */
+.stage-milestones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.milestone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+}
+
+.milestone.completed {
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.milestone-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.milestone-title {
+  flex: 1;
+}
+
+.milestone-badge {
+  font-size: 0.75rem;
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Deliverable Info */
+.stage-deliverable-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.deliverable-icon {
+  font-size: 1.25rem;
+}
+
+.deliverable-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Journey Stats */
+.journey-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e0e0e0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .journey-timeline {
+    padding: 1rem;
+  }
+
+  .timeline-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .timeline-stage {
+    gap: 1rem;
+  }
+
+  .stage-node {
+    width: 48px;
+    height: 48px;
+  }
+
+  .node-icon,
+  .node-number {
+    font-size: 1.25rem;
+  }
+
+  .stage-timeline-content {
+    padding: 1rem;
+  }
+
+  .journey-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .timeline-connector {
+    left: 22px;
+  }
+}

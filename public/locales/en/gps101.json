@@ -1,0 +1,300 @@
+{
+  "gps101": {
+    "title": "GPS 101 Basic",
+    "subtitle": "15-Week Purpose Discovery Journey",
+    "description": "Discover your life purpose through a structured 5-stage journey of self-reflection, problem identification, and project creation.",
+    
+    "enrollment": {
+      "title": "Enroll in GPS 101",
+      "description": "Begin your 15-week purpose discovery journey",
+      "benefits": {
+        "title": "What You'll Gain",
+        "items": [
+          "Clear understanding of your core identity",
+          "A meaningful problem to solve",
+          "Connection with problem owners",
+          "Your life purpose statement",
+          "A concrete purpose-driven project"
+        ]
+      },
+      "commitment": {
+        "title": "Time Commitment",
+        "duration": "15 weeks",
+        "weekly": "3-5 hours per week",
+        "total": "30 missions, 150 checkpoints"
+      },
+      "reward": {
+        "title": "Completion Reward",
+        "beacon": "Orange Beacon",
+        "baraka": "5,000 Baraka",
+        "description": "Plus GPS 101 completion badges"
+      },
+      "cta": "Start GPS 101 Journey"
+    },
+    
+    "stages": {
+      "1": {
+        "name": "Identity",
+        "title": "Who Am I?",
+        "question": "Who am I at my core?",
+        "description": "Deep self-reflection to understand your values, strengths, and passions",
+        "deliverable": "Identity Statement",
+        "duration": "Week 1-3",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "This stage is about authentic self-discovery. Explore who you are beyond roles and titles.",
+        "reflectionPrompts": [
+          "What do people come to you for help with?",
+          "What activities make you lose track of time?",
+          "What injustices or problems make you angry or sad?",
+          "If you could change one thing about the world, what would it be?",
+          "What would you do if you knew you couldn't fail?"
+        ]
+      },
+      "2": {
+        "name": "Problem",
+        "title": "What Breaks My Heart?",
+        "question": "What problem breaks my heart?",
+        "description": "Identify a meaningful problem that resonates with your identity",
+        "deliverable": "Life Problem Candidate",
+        "duration": "Week 4-6",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Choose a problem that genuinely moves you. It should connect to who you are.",
+        "reflectionPrompts": [
+          "What problems do you see that others seem to ignore?",
+          "What suffering have you witnessed that stays with you?",
+          "What problem, if solved, would make you feel like your life had meaning?",
+          "What issue do you find yourself talking about even when no one asks?",
+          "What problem connects to a personal experience in your life?"
+        ]
+      },
+      "3": {
+        "name": "Owner",
+        "title": "Who Needs This Solved?",
+        "question": "Who is the problem owner?",
+        "description": "Understand and tell the story of someone experiencing your problem",
+        "deliverable": "Problem Owner Story",
+        "duration": "Week 7-9",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "This is about empathy. Tell a real, specific story that shows the human impact.",
+        "reflectionPrompts": [
+          "Who is most affected by this problem?",
+          "What does a typical day look like for them?",
+          "What barriers do they face? What have they tried?",
+          "How does this problem make them feel?",
+          "What do they dream of that this problem prevents?"
+        ]
+      },
+      "4": {
+        "name": "Purpose",
+        "title": "Why Am I Here?",
+        "question": "What is my life purpose?",
+        "description": "Synthesize identity and problem into a clear purpose statement",
+        "deliverable": "Life Purpose Statement",
+        "duration": "Week 10-12",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Connect your identity to your problem. Be specific about your intended impact.",
+        "reflectionPrompts": [
+          "How does your identity uniquely position you for this problem?",
+          "What impact do you want to have in 10 years?",
+          "What legacy do you want to leave?",
+          "What would success look like?",
+          "How will you know you're living your purpose?"
+        ]
+      },
+      "5": {
+        "name": "Project",
+        "title": "What Will I Create?",
+        "question": "What purpose-driven project will I launch?",
+        "description": "Design a concrete project that embodies your purpose",
+        "deliverable": "Purpose-Driven Project",
+        "duration": "Week 13-15",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Make it actionable. Describe something you can actually build and launch.",
+        "reflectionPrompts": [
+          "What concrete solution could you create in 6-12 months?",
+          "Who would be your first users/beneficiaries?",
+          "What resources do you already have?",
+          "What would version 1.0 look like?",
+          "How will you measure impact?"
+        ]
+      }
+    },
+    
+    "deliverables": {
+      "title": "GPS 101 Deliverables",
+      "subtitle": "Your Purpose Discovery Artifacts",
+      "identity": {
+        "title": "Identity Statement",
+        "description": "A clear articulation of who you are at your core",
+        "minLength": 100,
+        "maxLength": 500,
+        "placeholder": "I am someone who...",
+        "tips": [
+          "Focus on your authentic self, not roles",
+          "Include core values and what drives you",
+          "Be specific and personal"
+        ]
+      },
+      "problem": {
+        "title": "Life Problem Candidate",
+        "description": "A problem that deeply resonates with your identity",
+        "minLength": 150,
+        "maxLength": 1000,
+        "placeholder": "The problem that breaks my heart is...",
+        "tips": [
+          "Choose something that genuinely moves you",
+          "Explain why it matters to you personally",
+          "Consider scope and impact"
+        ]
+      },
+      "owner": {
+        "title": "Problem Owner Story",
+        "description": "A narrative about someone experiencing your problem",
+        "minLength": 200,
+        "maxLength": 1500,
+        "placeholder": "Meet [name], who struggles with...",
+        "tips": [
+          "Tell a specific, real story",
+          "Show the human impact",
+          "Include concrete details and emotions"
+        ]
+      },
+      "purpose": {
+        "title": "Life Purpose Statement",
+        "description": "Your unique purpose in addressing this problem",
+        "minLength": 100,
+        "maxLength": 500,
+        "placeholder": "My purpose is to...",
+        "tips": [
+          "Connect identity to problem",
+          "Be specific about impact",
+          "Make it authentic and inspiring"
+        ]
+      },
+      "project": {
+        "title": "Purpose-Driven Project",
+        "description": "A concrete project embodying your purpose",
+        "minLength": 300,
+        "maxLength": 2000,
+        "placeholder": "I will create/build/launch...",
+        "tips": [
+          "Describe something specific and actionable",
+          "Explain how it addresses your problem",
+          "Include your vision for impact"
+        ]
+      }
+    },
+    
+    "progress": {
+      "currentStage": "Current Stage",
+      "stagesComplete": "{{count}} of 5 stages complete",
+      "missionsComplete": "{{count}} of 30 missions complete",
+      "checkpointsComplete": "{{count}} of 150 checkpoints complete",
+      "weeklyProgress": "Week {{week}} of 15",
+      "overallProgress": "{{percent}}% Complete",
+      "nextMilestone": "Next: {{milestone}}"
+    },
+    
+    "checkpoint": {
+      "title": "GPS 101 Checkpoint",
+      "subtitle": "Stage {{stage}} Reflection",
+      "instructions": "Answer all reflection questions thoughtfully. Take your time - quality matters more than speed.",
+      "questions": {
+        "understanding": "What did you learn about yourself in this stage?",
+        "application": "How will you apply this learning?",
+        "challenges": "What challenges did you face?",
+        "insights": "What was your biggest insight?",
+        "next": "What are you excited about in the next stage?"
+      },
+      "validation": {
+        "minLength": "Please provide at least {{min}} characters for each answer",
+        "required": "All questions must be answered",
+        "thoughtful": "Take time to reflect deeply on your answers"
+      },
+      "submit": "Submit Checkpoint",
+      "retry": "Use R2R to Retry"
+    },
+    
+    "navigator": {
+      "greeting": "Welcome to GPS 101, {{name}}!",
+      "stageGuidance": "You're on Stage {{stage}}: {{stageName}}",
+      "tips": {
+        "reflection": "Take time for deep reflection",
+        "authenticity": "Be authentic, not perfect",
+        "connection": "Connect each stage to the next",
+        "patience": "This is a journey, not a race"
+      },
+      "encouragement": [
+        "You're making great progress!",
+        "Your reflection shows real depth",
+        "This insight is powerful",
+        "Keep pushing deeper",
+        "You're on the right track"
+      ]
+    },
+    
+    "celebration": {
+      "stageComplete": {
+        "title": "Stage {{stage}} Complete!",
+        "subtitle": "{{stageName}} - Completed",
+        "message": "Excellent work on completing Stage {{stage}}. Your {{deliverable}} has been saved.",
+        "next": "Ready for Stage {{nextStage}}?"
+      },
+      "journeyComplete": {
+        "title": "GPS 101 Journey Complete!",
+        "subtitle": "Orange Beacon Unlocked",
+        "message": "Congratulations! You've discovered your life purpose through GPS 101 Basic.",
+        "rewards": "You've earned the Orange Beacon and 5,000 Baraka",
+        "quote": "\"The two most important days in your life are the day you are born and the day you find out why.\""
+      }
+    },
+    
+    "actions": {
+      "viewDashboard": "View GPS 101 Dashboard",
+      "continueJourney": "Continue Journey",
+      "viewDeliverables": "View Deliverables",
+      "editDeliverable": "Edit Deliverable",
+      "submitCheckpoint": "Submit Checkpoint",
+      "viewGuidance": "View Stage Guidance",
+      "askNavigator": "Ask Navigator"
+    },
+    
+    "status": {
+      "notEnrolled": "Not Enrolled",
+      "enrolled": "Enrolled",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "locked": "Locked",
+      "available": "Available",
+      "current": "Current"
+    },
+    
+    "rewards": {
+      "orangeBeacon": {
+        "name": "Orange Beacon",
+        "description": "Awarded for completing GPS 101 Basic",
+        "baraka": 5000
+      },
+      "stageBadges": {
+        "stage1": "Identity Explorer",
+        "stage2": "Problem Finder",
+        "stage3": "Story Weaver",
+        "stage4": "Purpose Discoverer",
+        "stage5": "Project Launcher"
+      }
+    },
+    
+    "errors": {
+      "notEnrolled": "You must enroll in GPS 101 to access this content",
+      "stageLocked": "Complete Stage {{stage}} to unlock this stage",
+      "checkpointIncomplete": "Complete all checkpoints to proceed",
+      "deliverableRequired": "Submit your deliverable to continue",
+      "loadError": "Failed to load GPS 101 data. Please try again."
+    }
+  }
+}

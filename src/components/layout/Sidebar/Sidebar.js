@@ -3,12 +3,10 @@
  * 
  * Main sidebar container with navigation, stats, and wallets.
  * 
- * @module components/layout/Sidebar/Sidebar
- * @version 1.1.0
+ * UPDATED: GPS 101 Integration - Passes GPS 101 props to children
  * 
- * FIXED v1.1.0:
- * - Converted logo <a href="/"> to <Link to="/">
- * - Converted footer <a href> links to <Link to> for Help, Terms, Privacy
+ * @module components/layout/Sidebar/Sidebar
+ * @version 2.0.0
  */
 
 import React, { useState } from 'react';
@@ -19,34 +17,14 @@ import BarakaWallet from './BarakaWallet';
 import PSBWallet from './PSBWallet';
 import './Sidebar.css';
 
-// =============================================================================
-// CONSTANTS
-// =============================================================================
-
 export const SIDEBAR_VARIANTS = {
   DEFAULT: 'default',
   COMPACT: 'compact',
   EXPANDED: 'expanded'
 };
 
-// =============================================================================
-// COMPONENT
-// =============================================================================
-
 /**
- * Sidebar component
- * 
- * @param {Object} props - Component props
- * @param {string} [props.variant='default'] - Sidebar variant
- * @param {boolean} [props.isOpen=true] - Open state (for mobile)
- * @param {boolean} [props.isCollapsed=false] - Collapsed state (for desktop)
- * @param {Function} [props.onToggle] - Toggle handler
- * @param {Function} [props.onClose] - Close handler (mobile)
- * @param {Object} [props.user] - User data
- * @param {Object} [props.stats] - User stats
- * @param {Object} [props.wallets] - Wallet data
- * @param {string} [props.currentPath] - Current route path
- * @param {string} [props.className] - Additional CSS classes
+ * Sidebar component with GPS 101 integration
  */
 const Sidebar = ({
   variant = SIDEBAR_VARIANTS.DEFAULT,
@@ -58,6 +36,11 @@ const Sidebar = ({
   stats,
   wallets,
   currentPath = '/',
+  // GPS 101 Props
+  gps101Enrolled = false,
+  gps101CurrentStage = 1,
+  gps101Progress = 0,
+  gps101OrangeBeaconProgress = 0,
   className = '',
   ...props
 }) => {
@@ -73,6 +56,7 @@ const Sidebar = ({
     `sidebar--${variant}`,
     isOpen && 'sidebar--open',
     isCollapsed && 'sidebar--collapsed',
+    gps101Enrolled && 'sidebar--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -89,7 +73,7 @@ const Sidebar = ({
       
       {/* Sidebar */}
       <aside className={classNames} {...props}>
-        {/* Header - FIXED: Logo uses Link */}
+        {/* Header */}
         <div className="sidebar__header">
           <Link to="/" className="sidebar__logo">
             <div className="sidebar__logo-icon">
@@ -136,7 +120,7 @@ const Sidebar = ({
           </button>
         </div>
         
-        {/* Quick Stats */}
+        {/* Quick Stats with GPS 101 */}
         {stats && !isCollapsed && (
           <QuickStats
             level={stats.level}
@@ -145,13 +129,18 @@ const Sidebar = ({
             currentStage={stats.currentStage}
             missionsCompleted={stats.missionsCompleted}
             streak={stats.streak}
+            gps101Enrolled={gps101Enrolled}
+            gps101CurrentStage={gps101CurrentStage}
+            gps101OrangeBeaconProgress={gps101OrangeBeaconProgress}
           />
         )}
         
-        {/* Main Navigation */}
+        {/* Main Navigation with GPS 101 */}
         <MainNav
           currentPath={currentPath}
           isCollapsed={isCollapsed}
+          gps101Enrolled={gps101Enrolled}
+          gps101Progress={gps101Progress}
           expandedSection={expandedSection}
           onSectionToggle={handleSectionToggle}
         />
@@ -171,7 +160,7 @@ const Sidebar = ({
           </div>
         )}
         
-        {/* Footer - FIXED: Using Link for internal routes */}
+        {/* Footer */}
         <div className="sidebar__footer">
           {!isCollapsed && (
             <div className="sidebar__footer-links">
@@ -181,16 +170,12 @@ const Sidebar = ({
             </div>
           )}
           <div className="sidebar__version">
-            {isCollapsed ? 'v1' : 'v1.0.0'}
+            {isCollapsed ? 'v2' : 'v2.0.0'}
           </div>
         </div>
       </aside>
     </>
   );
 };
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
 export default Sidebar;

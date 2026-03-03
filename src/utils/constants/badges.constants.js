@@ -1,720 +1,346 @@
 /**
- * GPS Lab Platform - Badges Constants
+ * Badges Constants
  * 
- * Character badges, achievements, and recognition system for the 
- * GPS Lab MMORPG educational platform.
- * 
- * Includes all 35 character badges (one per stage) plus special badges.
- * 
- * @module utils/constants/badges.constants
- * @version 1.0.0
+ * Badge definitions for achievements, character traits, and milestones.
  */
 
-// =============================================================================
-// CHARACTER BADGES (35 Stages)
-// =============================================================================
+import { GPS_101_BADGES } from './gps101.constants';
 
-/**
- * Character badge definitions - one badge per stage
- * Each badge represents a character trait developed in that stage
- */
-export const CHARACTER_BADGES = {
-  // Stage 1 - GPO Call
-  1: {
-    id: 'badge-seeker',
-    stageNumber: 1,
-    name: 'Seeker',
-    title: 'The Seeker',
-    description: 'One who answers the call to solve global problems',
-    trait: 'Curiosity',
-    icon: '🔍',
-    rarity: 'common',
-    color: '#ef4444'
-  },
-  
-  // Stage 2 - GPS 101 begins
-  2: {
-    id: 'badge-observer',
-    stageNumber: 2,
-    name: 'Observer',
-    title: 'The Observer',
-    description: 'One who sees problems others overlook',
-    trait: 'Awareness',
-    icon: '👁️',
-    rarity: 'common',
-    color: '#f97316'
-  },
-  
-  3: {
-    id: 'badge-selector',
-    stageNumber: 3,
-    name: 'Selector',
-    title: 'The Selector',
-    description: 'One who chooses problems with wisdom',
-    trait: 'Discernment',
-    icon: '🎯',
-    rarity: 'common',
-    color: '#f97316'
-  },
-  
-  4: {
-    id: 'badge-researcher',
-    stageNumber: 4,
-    name: 'Researcher',
-    title: 'The Researcher',
-    description: 'One who seeks truth through inquiry',
-    trait: 'Thoroughness',
-    icon: '📚',
-    rarity: 'common',
-    color: '#f97316'
-  },
-  
-  5: {
-    id: 'badge-ideator',
-    stageNumber: 5,
-    name: 'Ideator',
-    title: 'The Ideator',
-    description: 'One who generates creative solutions',
-    trait: 'Creativity',
-    icon: '💡',
-    rarity: 'common',
-    color: '#f97316'
-  },
-  
-  6: {
-    id: 'badge-builder',
-    stageNumber: 6,
-    name: 'Builder',
-    title: 'The Builder',
-    description: 'One who transforms ideas into reality',
-    trait: 'Action',
-    icon: '🔨',
-    rarity: 'common',
-    color: '#f97316'
-  },
-  
-  // Stage 7-11 - GPS Prep
-  7: {
-    id: 'badge-strategist',
-    stageNumber: 7,
-    name: 'Strategist',
-    title: 'The Strategist',
-    description: 'One who plans with foresight',
-    trait: 'Planning',
-    icon: '♟️',
-    rarity: 'uncommon',
-    color: '#eab308'
-  },
-  
-  8: {
-    id: 'badge-communicator',
-    stageNumber: 8,
-    name: 'Communicator',
-    title: 'The Communicator',
-    description: 'One who shares ideas with clarity',
-    trait: 'Expression',
-    icon: '🗣️',
-    rarity: 'uncommon',
-    color: '#eab308'
-  },
-  
-  9: {
-    id: 'badge-analyzer',
-    stageNumber: 9,
-    name: 'Analyzer',
-    title: 'The Analyzer',
-    description: 'One who breaks down complexity',
-    trait: 'Analysis',
-    icon: '📊',
-    rarity: 'uncommon',
-    color: '#eab308'
-  },
-  
-  10: {
-    id: 'badge-validator',
-    stageNumber: 10,
-    name: 'Validator',
-    title: 'The Validator',
-    description: 'One who tests assumptions rigorously',
-    trait: 'Verification',
-    icon: '✅',
-    rarity: 'uncommon',
-    color: '#eab308'
-  },
-  
-  11: {
-    id: 'badge-preparer',
-    stageNumber: 11,
-    name: 'Preparer',
-    title: 'The Preparer',
-    description: 'One who is ready for challenges',
-    trait: 'Readiness',
-    icon: '🎒',
-    rarity: 'uncommon',
-    color: '#eab308'
-  },
-  
-  // Stage 12-15 - GPS Simulation
-  12: {
-    id: 'badge-simulator',
-    stageNumber: 12,
-    name: 'Simulator',
-    title: 'The Simulator',
-    description: 'One who tests in controlled environments',
-    trait: 'Experimentation',
-    icon: '🧪',
-    rarity: 'rare',
-    color: '#22c55e'
-  },
-  
-  13: {
-    id: 'badge-adaptor',
-    stageNumber: 13,
-    name: 'Adaptor',
-    title: 'The Adaptor',
-    description: 'One who adjusts to changing conditions',
-    trait: 'Flexibility',
-    icon: '🔄',
-    rarity: 'rare',
-    color: '#22c55e'
-  },
-  
-  14: {
-    id: 'badge-iterator',
-    stageNumber: 14,
-    name: 'Iterator',
-    title: 'The Iterator',
-    description: 'One who improves through repetition',
-    trait: 'Persistence',
-    icon: '🔁',
-    rarity: 'rare',
-    color: '#22c55e'
-  },
-  
-  15: {
-    id: 'badge-optimizer',
-    stageNumber: 15,
-    name: 'Optimizer',
-    title: 'The Optimizer',
-    description: 'One who refines for excellence',
-    trait: 'Refinement',
-    icon: '⚡',
-    rarity: 'rare',
-    color: '#22c55e'
-  },
-  
-  // Stage 16-20 - GPS Capstone 1
-  16: {
-    id: 'badge-founder',
-    stageNumber: 16,
-    name: 'Founder',
-    title: 'The Founder',
-    description: 'One who establishes new ventures',
-    trait: 'Initiative',
-    icon: '🏛️',
-    rarity: 'epic',
-    color: '#3b82f6'
-  },
-  
-  17: {
-    id: 'badge-leader',
-    stageNumber: 17,
-    name: 'Leader',
-    title: 'The Leader',
-    description: 'One who guides others forward',
-    trait: 'Leadership',
-    icon: '👑',
-    rarity: 'epic',
-    color: '#3b82f6'
-  },
-  
-  18: {
-    id: 'badge-presenter',
-    stageNumber: 18,
-    name: 'Presenter',
-    title: 'The Presenter',
-    description: 'One who inspires through storytelling',
-    trait: 'Persuasion',
-    icon: '🎤',
-    rarity: 'epic',
-    color: '#3b82f6'
-  },
-  
-  19: {
-    id: 'badge-networker',
-    stageNumber: 19,
-    name: 'Networker',
-    title: 'The Networker',
-    description: 'One who builds valuable connections',
-    trait: 'Connection',
-    icon: '🌐',
-    rarity: 'epic',
-    color: '#3b82f6'
-  },
-  
-  20: {
-    id: 'badge-achiever',
-    stageNumber: 20,
-    name: 'Achiever',
-    title: 'The Achiever',
-    description: 'One who delivers on commitments',
-    trait: 'Delivery',
-    icon: '🏆',
-    rarity: 'epic',
-    color: '#3b82f6'
-  },
-  
-  // Stage 21-25 - GPS Capstone 2
-  21: {
-    id: 'badge-collaborator',
-    stageNumber: 21,
-    name: 'Collaborator',
-    title: 'The Collaborator',
-    description: 'One who multiplies through teamwork',
-    trait: 'Collaboration',
-    icon: '🤝',
-    rarity: 'epic',
-    color: '#6366f1'
-  },
-  
-  22: {
-    id: 'badge-mentor',
-    stageNumber: 22,
-    name: 'Mentor',
-    title: 'The Mentor',
-    description: 'One who develops others',
-    trait: 'Teaching',
-    icon: '🎓',
-    rarity: 'epic',
-    color: '#6366f1'
-  },
-  
-  23: {
-    id: 'badge-innovator',
-    stageNumber: 23,
-    name: 'Innovator',
-    title: 'The Innovator',
-    description: 'One who creates breakthrough solutions',
-    trait: 'Innovation',
+// ==================== BADGE CATEGORIES ====================
+
+export const BADGE_CATEGORIES = {
+  CHARACTER: 'character',
+  ACHIEVEMENT: 'achievement',
+  MILESTONE: 'milestone',
+  SPECIAL: 'special',
+  COURSE: 'course',
+  BEACON: 'beacon'
+};
+
+// ==================== CHARACTER BADGES (LQ Traits - 35 Total) ====================
+
+export const CHARACTER_BADGES = [
+  { id: 'courage', name: 'Courage', category: 'character', icon: '🦁' },
+  { id: 'humility', name: 'Humility', category: 'character', icon: '🙏' },
+  { id: 'integrity', name: 'Integrity', category: 'character', icon: '⚖️' },
+  { id: 'excellence', name: 'Excellence', category: 'character', icon: '⭐' },
+  { id: 'compassion', name: 'Compassion', category: 'character', icon: '💝' },
+  { id: 'wisdom', name: 'Wisdom', category: 'character', icon: '🦉' },
+  { id: 'stewardship', name: 'Stewardship', category: 'character', icon: '🌱' },
+  { id: 'resilience', name: 'Resilience', category: 'character', icon: '💪' },
+  { id: 'justice', name: 'Justice', category: 'character', icon: '⚖️' },
+  { id: 'gratitude', name: 'Gratitude', category: 'character', icon: '🙏' },
+  { id: 'patience', name: 'Patience', category: 'character', icon: '⏳' },
+  { id: 'generosity', name: 'Generosity', category: 'character', icon: '🎁' },
+  { id: 'forgiveness', name: 'Forgiveness', category: 'character', icon: '🕊️' },
+  { id: 'faithfulness', name: 'Faithfulness', category: 'character', icon: '🤝' },
+  { id: 'hope', name: 'Hope', category: 'character', icon: '🌟' },
+  { id: 'love', name: 'Love', category: 'character', icon: '❤️' },
+  { id: 'peace', name: 'Peace', category: 'character', icon: '☮️' },
+  { id: 'joy', name: 'Joy', category: 'character', icon: '😊' },
+  { id: 'kindness', name: 'Kindness', category: 'character', icon: '💕' },
+  { id: 'goodness', name: 'Goodness', category: 'character', icon: '✨' },
+  { id: 'gentleness', name: 'Gentleness', category: 'character', icon: '🌸' },
+  { id: 'self-control', name: 'Self-Control', category: 'character', icon: '🎯' },
+  { id: 'perseverance', name: 'Perseverance', category: 'character', icon: '🏔️' },
+  { id: 'diligence', name: 'Diligence', category: 'character', icon: '📊' },
+  { id: 'authenticity', name: 'Authenticity', category: 'character', icon: '🎭' },
+  { id: 'empathy', name: 'Empathy', category: 'character', icon: '🤗' },
+  { id: 'accountability', name: 'Accountability', category: 'character', icon: '📋' },
+  { id: 'servant-leadership', name: 'Servant Leadership', category: 'character', icon: '👥' },
+  { id: 'vision', name: 'Vision', category: 'character', icon: '🔭' },
+  { id: 'creativity', name: 'Creativity', category: 'character', icon: '🎨' },
+  { id: 'collaboration', name: 'Collaboration', category: 'character', icon: '🤝' },
+  { id: 'discernment', name: 'Discernment', category: 'character', icon: '👁️' },
+  { id: 'boldness', name: 'Boldness', category: 'character', icon: '🦅' },
+  { id: 'trust', name: 'Trust', category: 'character', icon: '🔒' },
+  { id: 'sacrifice', name: 'Sacrifice', category: 'character', icon: '🕯️' }
+];
+
+// ==================== ACHIEVEMENT BADGES ====================
+
+export const ACHIEVEMENT_BADGES = [
+  {
+    id: 'pioneer',
+    name: 'Pioneer',
+    description: 'Early GPS Lab member',
+    category: 'achievement',
     icon: '🚀',
-    rarity: 'epic',
-    color: '#6366f1'
+    rarity: 'legendary'
   },
-  
-  24: {
-    id: 'badge-integrator',
-    stageNumber: 24,
-    name: 'Integrator',
-    title: 'The Integrator',
-    description: 'One who combines diverse elements',
-    trait: 'Synthesis',
-    icon: '🧩',
-    rarity: 'epic',
-    color: '#6366f1'
-  },
-  
-  25: {
-    id: 'badge-transformer',
-    stageNumber: 25,
-    name: 'Transformer',
-    title: 'The Transformer',
-    description: 'One who creates lasting change',
-    trait: 'Transformation',
-    icon: '🦋',
-    rarity: 'epic',
-    color: '#6366f1'
-  },
-  
-  // Stage 26-30 - Venture Acceleration
-  26: {
-    id: 'badge-launcher',
-    stageNumber: 26,
-    name: 'Launcher',
-    title: 'The Launcher',
-    description: 'One who brings solutions to market',
-    trait: 'Execution',
-    icon: '🎯',
-    rarity: 'legendary',
-    color: '#8b5cf6'
-  },
-  
-  27: {
-    id: 'badge-scaler',
-    stageNumber: 27,
-    name: 'Scaler',
-    title: 'The Scaler',
-    description: 'One who grows impact exponentially',
-    trait: 'Growth',
-    icon: '📈',
-    rarity: 'legendary',
-    color: '#8b5cf6'
-  },
-  
-  28: {
-    id: 'badge-steward',
-    stageNumber: 28,
-    name: 'Steward',
-    title: 'The Steward',
-    description: 'One who manages resources wisely',
-    trait: 'Stewardship',
-    icon: '🌱',
-    rarity: 'legendary',
-    color: '#8b5cf6'
-  },
-  
-  29: {
-    id: 'badge-negotiator',
-    stageNumber: 29,
-    name: 'Negotiator',
-    title: 'The Negotiator',
-    description: 'One who creates win-win outcomes',
-    trait: 'Negotiation',
-    icon: '⚖️',
-    rarity: 'legendary',
-    color: '#8b5cf6'
-  },
-  
-  30: {
-    id: 'badge-accelerator',
-    stageNumber: 30,
-    name: 'Accelerator',
-    title: 'The Accelerator',
-    description: 'One who speeds progress forward',
-    trait: 'Momentum',
-    icon: '⚡',
-    rarity: 'legendary',
-    color: '#8b5cf6'
-  },
-  
-  // Stage 31-35 - Venture Capitalization
-  31: {
-    id: 'badge-financier',
-    stageNumber: 31,
-    name: 'Financier',
-    title: 'The Financier',
-    description: 'One who secures resources for impact',
-    trait: 'Funding',
-    icon: '💰',
-    rarity: 'mythic',
-    color: '#f59e0b'
-  },
-  
-  32: {
-    id: 'badge-visionary',
-    stageNumber: 32,
-    name: 'Visionary',
-    title: 'The Visionary',
-    description: 'One who sees the future clearly',
-    trait: 'Vision',
-    icon: '🔮',
-    rarity: 'mythic',
-    color: '#f59e0b'
-  },
-  
-  33: {
-    id: 'badge-architect',
-    stageNumber: 33,
-    name: 'Architect',
-    title: 'The Architect',
-    description: 'One who designs lasting structures',
-    trait: 'Design',
-    icon: '🏗️',
-    rarity: 'mythic',
-    color: '#f59e0b'
-  },
-  
-  34: {
-    id: 'badge-ambassador',
-    stageNumber: 34,
-    name: 'Ambassador',
-    title: 'The Ambassador',
-    description: 'One who represents the mission globally',
-    trait: 'Representation',
-    icon: '🌍',
-    rarity: 'mythic',
-    color: '#f59e0b'
-  },
-  
-  35: {
-    id: 'badge-luminary',
-    stageNumber: 35,
-    name: 'Luminary',
-    title: 'The GPS Luminary',
-    description: 'One who illuminates the path for all',
-    trait: 'Wisdom',
-    icon: '✨',
-    rarity: 'mythic',
-    color: '#f59e0b'
-  }
-};
-
-// =============================================================================
-// BADGE RARITY SYSTEM
-// =============================================================================
-
-/**
- * Badge rarity definitions
- */
-export const BADGE_RARITY = {
-  common: {
-    name: 'Common',
-    color: '#9ca3af',
-    borderColor: '#6b7280',
-    stages: [1, 2, 3, 4, 5, 6],
-    dropRate: 1.0
-  },
-  uncommon: {
-    name: 'Uncommon',
-    color: '#eab308',
-    borderColor: '#ca8a04',
-    stages: [7, 8, 9, 10, 11],
-    dropRate: 1.0
-  },
-  rare: {
-    name: 'Rare',
-    color: '#22c55e',
-    borderColor: '#16a34a',
-    stages: [12, 13, 14, 15],
-    dropRate: 1.0
-  },
-  epic: {
-    name: 'Epic',
-    color: '#3b82f6',
-    borderColor: '#2563eb',
-    stages: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-    dropRate: 1.0
-  },
-  legendary: {
-    name: 'Legendary',
-    color: '#8b5cf6',
-    borderColor: '#7c3aed',
-    stages: [26, 27, 28, 29, 30],
-    dropRate: 1.0
-  },
-  mythic: {
-    name: 'Mythic',
-    color: '#f59e0b',
-    borderColor: '#d97706',
-    stages: [31, 32, 33, 34, 35],
-    dropRate: 1.0
-  }
-};
-
-// =============================================================================
-// SPECIAL BADGES
-// =============================================================================
-
-/**
- * Special achievement badges (not tied to stages)
- */
-export const SPECIAL_BADGES = {
-  // Completion badges
-  adventureCompleter: {
-    id: 'badge-adventure-completer',
-    name: 'Adventure Completer',
-    description: 'Complete any adventure',
-    icon: '🏅',
-    rarity: 'rare',
-    repeatable: true
-  },
-  
-  allAdventures: {
-    id: 'badge-all-adventures',
-    name: 'Grand Explorer',
-    description: 'Complete all adventures',
-    icon: '🌟',
-    rarity: 'mythic',
-    repeatable: false
-  },
-  
-  // Streak badges
-  weekStreak: {
-    id: 'badge-week-streak',
-    name: 'Week Warrior',
-    description: '7-day activity streak',
-    icon: '🔥',
-    rarity: 'common',
-    repeatable: true
-  },
-  
-  monthStreak: {
-    id: 'badge-month-streak',
-    name: 'Monthly Marvel',
-    description: '30-day activity streak',
-    icon: '🔥',
-    rarity: 'uncommon',
-    repeatable: true
-  },
-  
-  quarterStreak: {
-    id: 'badge-quarter-streak',
-    name: 'Quarterly Champion',
-    description: '90-day activity streak',
-    icon: '🔥',
-    rarity: 'epic',
-    repeatable: true
-  },
-  
-  // Social badges
-  firstHonor: {
-    id: 'badge-first-honor',
-    name: 'First Honor',
-    description: 'Receive your first honor',
-    icon: '🙏',
-    rarity: 'common',
-    repeatable: false
-  },
-  
-  honoredMany: {
-    id: 'badge-honored-many',
-    name: 'Beloved',
-    description: 'Receive 100 honors',
-    icon: '💝',
-    rarity: 'epic',
-    repeatable: false
-  },
-  
-  generousHonorer: {
-    id: 'badge-generous-honorer',
-    name: 'Generous Spirit',
-    description: 'Give 100 honors to others',
-    icon: '🌟',
-    rarity: 'rare',
-    repeatable: false
-  },
-  
-  // Party badges
-  partyFounder: {
-    id: 'badge-party-founder',
-    name: 'Party Founder',
-    description: 'Create your first party',
-    icon: '👥',
-    rarity: 'uncommon',
-    repeatable: false
-  },
-  
-  partySuccess: {
-    id: 'badge-party-success',
-    name: 'Party Champion',
-    description: 'Complete a stage with party',
-    icon: '🎉',
-    rarity: 'rare',
-    repeatable: true
-  },
-  
-  // Speed badges
-  speedRunner: {
-    id: 'badge-speed-runner',
-    name: 'Speed Runner',
-    description: 'Complete mission 50% faster than average',
-    icon: '⚡',
-    rarity: 'rare',
-    repeatable: true
-  },
-  
-  // Quality badges
-  perfectionist: {
-    id: 'badge-perfectionist',
-    name: 'Perfectionist',
-    description: 'Perfect score on all checkpoints in a mission',
-    icon: '💯',
-    rarity: 'rare',
-    repeatable: true
-  },
-  
-  // Baraka badges
-  barakaBeginner: {
-    id: 'badge-baraka-beginner',
-    name: 'Baraka Beginner',
-    description: 'Earn 1,000 Baraka',
-    icon: '🪙',
-    rarity: 'common',
-    repeatable: false
-  },
-  
-  barakaAdvanced: {
-    id: 'badge-baraka-advanced',
-    name: 'Baraka Advanced',
-    description: 'Earn 100,000 Baraka',
-    icon: '💎',
-    rarity: 'epic',
-    repeatable: false
-  },
-  
-  barakaMaster: {
-    id: 'badge-baraka-master',
-    name: 'Baraka Master',
-    description: 'Earn 1,000,000 Baraka',
+  {
+    id: 'founding-member',
+    name: 'Founding Member',
+    description: 'Joined in first 1000 users',
+    category: 'achievement',
     icon: '👑',
-    rarity: 'mythic',
-    repeatable: false
+    rarity: 'legendary'
+  },
+  {
+    id: 'first-project',
+    name: 'First Project',
+    description: 'Created first purpose-driven project',
+    category: 'achievement',
+    icon: '🎯',
+    rarity: 'common'
+  },
+  {
+    id: 'first-customer',
+    name: 'First Customer',
+    description: 'Acquired first customer',
+    category: 'achievement',
+    icon: '🎊',
+    rarity: 'uncommon'
+  },
+  {
+    id: '1k-customers',
+    name: '1K Customers',
+    description: 'Reached 1,000 customers',
+    category: 'achievement',
+    icon: '📈',
+    rarity: 'rare'
+  },
+  {
+    id: '10k-customers',
+    name: '10K Customers',
+    description: 'Reached 10,000 customers',
+    category: 'achievement',
+    icon: '🚀',
+    rarity: 'epic'
+  },
+  {
+    id: 'funded-founder',
+    name: 'Funded Founder',
+    description: 'Raised funding for purpose-driven venture',
+    category: 'achievement',
+    icon: '💰',
+    rarity: 'epic'
+  },
+  {
+    id: 'gps-graduate',
+    name: 'GPS Graduate',
+    description: 'Completed full GPS Program (all 35 stages)',
+    category: 'achievement',
+    icon: '🎓',
+    rarity: 'legendary'
   }
+];
+
+// ==================== GPS 101 COURSE BADGES ====================
+
+export const GPS_101_COURSE_BADGES = GPS_101_BADGES.map(badge => ({
+  ...badge,
+  category: 'course'
+}));
+
+// ==================== GPO CALL BADGES ====================
+
+export const GPO_CALL_BADGES = [
+  {
+    id: 'problem-owner',
+    name: 'Problem Owner',
+    description: 'Completed GPO Call showcase',
+    category: 'course',
+    icon: '🎯',
+    rarity: 'uncommon'
+  }
+];
+
+// ==================== BEACON BADGES ====================
+
+export const BEACON_BADGES = [
+  {
+    id: 'white-beacon',
+    name: 'White Beacon',
+    description: 'Starting your GPS journey',
+    category: 'beacon',
+    threshold: 0,
+    color: '#FFFFFF',
+    icon: '⚪',
+    rarity: 'common'
+  },
+  {
+    id: 'orange-beacon',
+    name: 'Orange Beacon',
+    description: 'Earned 5,000 Baraka - Completed GPS 101',
+    category: 'beacon',
+    threshold: 5000,
+    color: '#FFA500',
+    icon: '🟠',
+    rarity: 'rare'
+  },
+  {
+    id: 'red-beacon',
+    name: 'Red Beacon',
+    description: 'Earned 10,000 Baraka - Completed GPS Prep',
+    category: 'beacon',
+    threshold: 10000,
+    color: '#FF0000',
+    icon: '🔴',
+    rarity: 'epic'
+  },
+  {
+    id: 'purple-beacon',
+    name: 'Purple Beacon',
+    description: 'Earned 50,000 Baraka - GPS Program mastery',
+    category: 'beacon',
+    threshold: 50000,
+    color: '#9370DB',
+    icon: '🟣',
+    rarity: 'legendary'
+  }
+];
+
+// ==================== MILESTONE BADGES ====================
+
+export const MILESTONE_BADGES = [
+  {
+    id: 'first-mission',
+    name: 'First Mission',
+    description: 'Completed your first mission',
+    category: 'milestone',
+    icon: '🎯',
+    rarity: 'common'
+  },
+  {
+    id: 'first-stage',
+    name: 'First Stage',
+    description: 'Completed your first stage',
+    category: 'milestone',
+    icon: '🏆',
+    rarity: 'common'
+  },
+  {
+    id: '10-missions',
+    name: '10 Missions',
+    description: 'Completed 10 missions',
+    category: 'milestone',
+    icon: '🎖️',
+    rarity: 'uncommon'
+  },
+  {
+    id: '50-missions',
+    name: '50 Missions',
+    description: 'Completed 50 missions',
+    category: 'milestone',
+    icon: '🏅',
+    rarity: 'rare'
+  },
+  {
+    id: '100-missions',
+    name: '100 Missions',
+    description: 'Completed 100 missions',
+    category: 'milestone',
+    icon: '👑',
+    rarity: 'epic'
+  }
+];
+
+// ==================== SPECIAL BADGES ====================
+
+export const SPECIAL_BADGES = [
+  {
+    id: 'beta-tester',
+    name: 'Beta Tester',
+    description: 'Participated in GPS Lab beta',
+    category: 'special',
+    icon: '🧪',
+    rarity: 'legendary'
+  },
+  {
+    id: 'community-champion',
+    name: 'Community Champion',
+    description: 'Outstanding community contributions',
+    category: 'special',
+    icon: '🌟',
+    rarity: 'epic'
+  }
+];
+
+// ==================== ALL BADGES ====================
+
+export const ALL_BADGES = [
+  ...CHARACTER_BADGES,
+  ...ACHIEVEMENT_BADGES,
+  ...GPS_101_COURSE_BADGES,
+  ...GPO_CALL_BADGES,
+  ...BEACON_BADGES,
+  ...MILESTONE_BADGES,
+  ...SPECIAL_BADGES
+];
+
+// ==================== BADGE RARITY ====================
+
+export const BADGE_RARITY = {
+  COMMON: 'common',
+  UNCOMMON: 'uncommon',
+  RARE: 'rare',
+  EPIC: 'epic',
+  LEGENDARY: 'legendary'
 };
 
-// =============================================================================
-// BADGE COLLECTIONS
-// =============================================================================
+export const BADGE_RARITY_COLORS = {
+  common: '#9E9E9E',
+  uncommon: '#4CAF50',
+  rare: '#2196F3',
+  epic: '#9C27B0',
+  legendary: '#FF9800'
+};
+
+// ==================== HELPER FUNCTIONS ====================
 
 /**
- * Badge collection definitions (sets of related badges)
+ * Get badge by ID
  */
-export const BADGE_COLLECTIONS = {
-  foundation: {
-    id: 'collection-foundation',
-    name: 'Foundation Collection',
-    description: 'Complete GPS 101',
-    badges: [1, 2, 3, 4, 5, 6],
-    reward: 500
-  },
-  
-  preparation: {
-    id: 'collection-preparation',
-    name: 'Preparation Collection',
-    description: 'Complete GPS Prep',
-    badges: [7, 8, 9, 10, 11],
-    reward: 750
-  },
-  
-  simulation: {
-    id: 'collection-simulation',
-    name: 'Simulation Collection',
-    description: 'Complete GPS Simulation',
-    badges: [12, 13, 14, 15],
-    reward: 1000
-  },
-  
-  capstone: {
-    id: 'collection-capstone',
-    name: 'Capstone Collection',
-    description: 'Complete both Capstones',
-    badges: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-    reward: 2500
-  },
-  
-  venture: {
-    id: 'collection-venture',
-    name: 'Venture Collection',
-    description: 'Complete Venture stages',
-    badges: [26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
-    reward: 5000
-  },
-  
-  complete: {
-    id: 'collection-complete',
-    name: 'Complete GPS Collection',
-    description: 'Earn all 35 character badges',
-    badges: Array.from({ length: 35 }, (_, i) => i + 1),
-    reward: 10000
-  }
+export const getBadgeById = (badgeId) => {
+  return ALL_BADGES.find(badge => badge.id === badgeId);
 };
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
+/**
+ * Get badges by category
+ */
+export const getBadgesByCategory = (category) => {
+  return ALL_BADGES.filter(badge => badge.category === category);
+};
 
+/**
+ * Get GPS 101 badges
+ */
+export const getGPS101Badges = () => {
+  return GPS_101_COURSE_BADGES;
+};
+
+/**
+ * Get beacon badge by Baraka amount
+ */
+export const getBeaconByBaraka = (barakaAmount) => {
+  const sortedBeacons = [...BEACON_BADGES].sort((a, b) => b.threshold - a.threshold);
+  return sortedBeacons.find(beacon => barakaAmount >= beacon.threshold);
+};
+
+/**
+ * Get badge rarity color
+ */
+export const getBadgeRarityColor = (rarity) => {
+  return BADGE_RARITY_COLORS[rarity] || BADGE_RARITY_COLORS.common;
+};
+
+// Export default
 export default {
+  BADGE_CATEGORIES,
   CHARACTER_BADGES,
-  BADGE_RARITY,
+  ACHIEVEMENT_BADGES,
+  GPS_101_COURSE_BADGES,
+  GPO_CALL_BADGES,
+  BEACON_BADGES,
+  MILESTONE_BADGES,
   SPECIAL_BADGES,
-  BADGE_COLLECTIONS
+  ALL_BADGES,
+  BADGE_RARITY,
+  BADGE_RARITY_COLORS,
+  getBadgeById,
+  getBadgesByCategory,
+  getGPS101Badges,
+  getBeaconByBaraka,
+  getBadgeRarityColor
 };

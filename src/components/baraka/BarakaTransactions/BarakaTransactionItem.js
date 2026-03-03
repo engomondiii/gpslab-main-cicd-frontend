@@ -4,6 +4,8 @@
  * Individual transaction record showing type, amount,
  * timestamp, and related context.
  * 
+ * UPDATED: GPS 101 Integration - Added GPS 101 transaction types
+ * 
  * @module components/baraka/BarakaTransactions/BarakaTransactionItem
  */
 
@@ -14,6 +16,7 @@ import './BarakaTransactionItem.css';
  * Transaction type configurations
  */
 const TRANSACTION_TYPES = {
+  // Regular transaction types
   bite_complete: {
     icon: '🍽️',
     label: 'Bite Completed',
@@ -83,6 +86,48 @@ const TRANSACTION_TYPES = {
     icon: '↩️',
     label: 'Refund',
     color: 'primary'
+  },
+  
+  // GPS 101 TRANSACTION TYPES
+  gps101_enrolled: {
+    icon: '🎓',
+    label: 'GPS 101 Enrolled',
+    color: 'purple'
+  },
+  gps101_checkpoint_passed: {
+    icon: '✅',
+    label: 'GPS 101 Checkpoint',
+    color: 'purple'
+  },
+  gps101_stage_complete: {
+    icon: '🎯',
+    label: 'GPS 101 Stage Complete',
+    color: 'purple'
+  },
+  gps101_deliverable_saved: {
+    icon: '📄',
+    label: 'Deliverable Submitted',
+    color: 'purple'
+  },
+  orange_beacon_progress: {
+    icon: '🟠',
+    label: 'Orange Beacon Progress',
+    color: 'warning'
+  },
+  orange_beacon_unlocked: {
+    icon: '🎊',
+    label: 'Orange Beacon Unlocked!',
+    color: 'warning'
+  },
+  gps101_mission_complete: {
+    icon: '🌟',
+    label: 'GPS 101 Mission',
+    color: 'purple'
+  },
+  gps101_bonus: {
+    icon: '💎',
+    label: 'GPS 101 Bonus',
+    color: 'purple'
   }
 };
 

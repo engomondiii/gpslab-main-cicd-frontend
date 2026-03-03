@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - NavigatorNotifications Component
+ * GPS 101 INTEGRATION: GPS 101 milestone notifications, stage completion alerts
  * 
  * Notification panel for Navigator-generated alerts,
  * tips, reminders, and guidance messages.
@@ -21,7 +22,14 @@ const NOTIFICATION_TYPES = {
   alert: { icon: '⚠️', color: 'var(--error)', label: 'Alert' },
   celebration: { icon: '🎉', color: 'var(--beacon-purple)', label: 'Celebration' },
   progress: { icon: '📈', color: 'var(--beacon-green)', label: 'Progress' },
-  social: { icon: '👥', color: 'var(--beacon-blue)', label: 'Social' }
+  social: { icon: '👥', color: 'var(--beacon-blue)', label: 'Social' },
+  // NEW: GPS 101 notification types
+  gps101_stage_complete: { icon: '🎓', color: '#667eea', label: 'GPS 101 Stage Complete' },
+  gps101_checkpoint_complete: { icon: '🏁', color: '#667eea', label: 'GPS 101 Checkpoint' },
+  gps101_deliverable_submitted: { icon: '📝', color: '#667eea', label: 'GPS 101 Deliverable' },
+  gps101_orange_beacon: { icon: '🟠', color: '#f39c12', label: 'Orange Beacon' },
+  gps101_reminder: { icon: '🎓', color: '#667eea', label: 'GPS 101 Reminder' },
+  gps101_tip: { icon: '💡', color: '#667eea', label: 'GPS 101 Tip' }
 };
 
 /**
@@ -53,17 +61,35 @@ const NavigatorNotifications = ({
   onNotificationDismiss,
   onMarkAllRead,
   onClearAll,
+  // NEW: GPS 101 props
+  showGPS101Filter = true,
   maxVisible = 10,
   showHeader = true,
   className = '',
   ...props
 }) => {
-  const [filter, setFilter] = useState('all'); // all, unread
+  const [filter, setFilter] = useState('all'); // all, unread, gps101
   
   const unreadCount = notifications.filter(n => !n.isRead).length;
-  const filteredNotifications = filter === 'unread' 
-    ? notifications.filter(n => !n.isRead)
-    : notifications;
+  
+  // NEW: GPS 101 notifications count
+  const gps101Count = notifications.filter(n => 
+    n.type?.startsWith('gps101_') || n.isGPS101
+  ).length;
+  
+  // Filter notifications
+  const filteredNotifications = React.useMemo(() => {
+    let result = notifications;
+    
+    if (filter === 'unread') {
+      result = result.filter(n => !n.isRead);
+    } else if (filter === 'gps101') {
+      result = result.filter(n => n.type?.startsWith('gps101_') || n.isGPS101);
+    }
+    
+    return result;
+  }, [notifications, filter]);
+  
   const visibleNotifications = filteredNotifications.slice(0, maxVisible);
   
   const handleClick = useCallback((notification) => {
@@ -81,6 +107,7 @@ const NavigatorNotifications = ({
   
   const classNames = [
     'navigator-notifications',
+    showGPS101Filter && 'navigator-notifications--with-gps101-filter',
     className
   ].filter(Boolean).join(' ');
   
@@ -138,6 +165,19 @@ const NavigatorNotifications = ({
         >
           Unread ({unreadCount})
         </button>
+        {/* NEW: GPS 101 Filter */}
+        {showGPS101Filter && gps101Count > 0 && (
+          <button
+            type="button"
+            className={`navigator-notifications__filter navigator-notifications__filter--gps101 ${filter === 'gps101' ? 'navigator-notifications__filter--active' : ''}`}
+            onClick={() => setFilter('gps101')}
+          >
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+            GPS 101 ({gps101Count})
+          </button>
+        )}
       </div>
       
       {/* Notifications List */}
@@ -145,11 +185,12 @@ const NavigatorNotifications = ({
         {visibleNotifications.length > 0 ? (
           visibleNotifications.map((notification, index) => {
             const typeConfig = NOTIFICATION_TYPES[notification.type] || NOTIFICATION_TYPES.tip;
+            const isGPS101 = notification.type?.startsWith('gps101_') || notification.isGPS101;
             
             return (
               <div
                 key={notification.id || index}
-                className={`navigator-notifications__item ${!notification.isRead ? 'navigator-notifications__item--unread' : ''}`}
+                className={`navigator-notifications__item ${!notification.isRead ? 'navigator-notifications__item--unread' : ''} ${isGPS101 ? 'navigator-notifications__item--gps101' : ''}`}
                 onClick={() => handleClick(notification)}
                 style={{ '--type-color': typeConfig.color }}
               >
@@ -166,18 +207,45 @@ const NavigatorNotifications = ({
                 {/* Content */}
                 <div className="navigator-notifications__content">
                   <div className="navigator-notifications__content-header">
-                    <span className="navigator-notifications__type">{typeConfig.label}</span>
+                    <span className="navigator-notifications__type">
+                      {typeConfig.label}
+                      {/* NEW: GPS 101 Stage Badge */}
+                      {isGPS101 && notification.gps101Stage && (
+                        <span className="navigator-notifications__gps101-stage">
+                          Stage {notification.gps101Stage}
+                        </span>
+                      )}
+                    </span>
                     <span className="navigator-notifications__time">
                       {formatRelativeTime(notification.timestamp)}
                     </span>
                   </div>
                   <p className="navigator-notifications__message">{notification.message}</p>
                   
+                  {/* NEW: GPS 101 Specific Info */}
+                  {isGPS101 && notification.gps101Info && (
+                    <div className="navigator-notifications__gps101-info">
+                      {notification.gps101Info.deliverable && (
+                        <span className="navigator-notifications__gps101-deliverable">
+                          <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6z" clipRule="evenodd"/>
+                          </svg>
+                          {notification.gps101Info.deliverable}
+                        </span>
+                      )}
+                      {notification.gps101Info.barakaEarned && (
+                        <span className="navigator-notifications__gps101-baraka">
+                          +{notification.gps101Info.barakaEarned} 🪙
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  
                   {/* Action */}
                   {notification.action && (
                     <button
                       type="button"
-                      className="navigator-notifications__item-action"
+                      className={`navigator-notifications__item-action ${isGPS101 ? 'navigator-notifications__item-action--gps101' : ''}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         if (notification.action.handler) {
@@ -206,14 +274,19 @@ const NavigatorNotifications = ({
           })
         ) : (
           <div className="navigator-notifications__empty">
-            <span className="navigator-notifications__empty-icon">🧭</span>
+            <span className="navigator-notifications__empty-icon">
+              {filter === 'gps101' ? '🎓' : '🧭'}
+            </span>
             <p className="navigator-notifications__empty-text">
               {filter === 'unread' 
                 ? "You're all caught up!"
-                : "No notifications yet"}
+                : filter === 'gps101'
+                  ? "No GPS 101 notifications yet"
+                  : "No notifications yet"}
             </p>
             <span className="navigator-notifications__empty-hint">
               Navigator will notify you of important updates
+              {filter === 'gps101' && ' about your GPS 101 journey'}
             </span>
           </div>
         )}

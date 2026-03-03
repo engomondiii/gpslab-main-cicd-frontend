@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - MilestoneModal Component
+ * GPS 101 INTEGRATION: GPS 101 milestone celebrations
  * 
  * Modal for celebrating milestones such as stage completions,
  * checkpoint achievements, adventure completions, and more.
@@ -8,6 +9,7 @@
  * - Phase 15: Party System (party milestone sharing)
  * - Phase 19: Economy (Baraka/PSB/XP rewards)
  * - Phase 20: Badge System (milestone badges)
+ * - GPS 101: Stage completions, deliverable submissions
  * 
  * @module components/celebration/MilestoneReached/MilestoneModal
  */
@@ -26,6 +28,36 @@ const MILESTONE_TYPES = {
     animationType: 'confetti',
     intensity: 'epic',
     color: '#00d4ff'
+  },
+  // NEW: GPS 101 milestone types
+  gps101StageComplete: {
+    icon: '🎓',
+    title: 'GPS 101 Stage Complete!',
+    animationType: 'stars',
+    intensity: 'epic',
+    color: '#667eea'
+  },
+  gps101CheckpointComplete: {
+    icon: '🏁',
+    title: 'GPS 101 Checkpoint Complete!',
+    animationType: 'sparkle',
+    intensity: 'normal',
+    color: '#667eea'
+  },
+  gps101DeliverableSubmitted: {
+    icon: '📝',
+    title: 'Deliverable Submitted!',
+    animationType: 'sparkle',
+    intensity: 'subtle',
+    color: '#667eea'
+  },
+  gps101AllStagesComplete: {
+    icon: '🟠',
+    title: 'Orange Beacon Unlocked!',
+    subtitle: 'GPS 101 Journey Complete',
+    animationType: 'stars',
+    intensity: 'legendary',
+    color: '#f39c12'
   },
   checkpointReached: {
     icon: '🏁',
@@ -120,6 +152,17 @@ const getStageTitle = (stage) => {
 };
 
 /**
+ * NEW: GPS 101 stage names
+ */
+const GPS101_STAGE_NAMES = {
+  1: 'Identity',
+  2: 'Problem',
+  3: 'Owner',
+  4: 'Purpose',
+  5: 'Project'
+};
+
+/**
  * Adventure names for GPS curriculum
  */
 const ADVENTURE_NAMES = {
@@ -142,6 +185,11 @@ const MilestoneModal = ({
   rewards = {},
   unlockedBadges = [],
   nextMilestone = null,
+  // NEW: GPS 101 props
+  isGPS101 = false,
+  gps101StageNumber,
+  gps101DeliverableName,
+  gps101NextStage,
   onClose,
   onContinue,
   onShare,
@@ -178,6 +226,9 @@ const MilestoneModal = ({
   // Determine title and subtitle
   const milestoneTitle = useMemo(() => {
     if (customTitle) return customTitle;
+    if (isGPS101 && type === 'gps101StageComplete' && gps101StageNumber) {
+      return `GPS 101 Stage ${gps101StageNumber} Complete!`;
+    }
     if (type === 'stageComplete' && stage) return `Stage ${stage} Complete!`;
     if (type === 'checkpointReached' && checkpoint) return `Checkpoint ${checkpoint} Reached!`;
     if (type === 'adventureComplete' && adventure) return `${ADVENTURE_NAMES[adventure] || `Adventure ${adventure}`} Complete!`;
@@ -185,16 +236,19 @@ const MilestoneModal = ({
     if (type === 'levelUp' && level) return `Level ${level} Reached!`;
     if (type === 'projectComplete' && projectName) return 'Project Complete!';
     return config.title;
-  }, [type, stage, checkpoint, adventure, streakDays, level, projectName, customTitle, config]);
+  }, [type, stage, checkpoint, adventure, streakDays, level, projectName, customTitle, config, isGPS101, gps101StageNumber]);
   
   const milestoneSubtitle = useMemo(() => {
     if (customSubtitle) return customSubtitle;
+    if (isGPS101 && gps101StageNumber) {
+      return `${GPS101_STAGE_NAMES[gps101StageNumber] || 'Stage'} - Purpose Discovery Journey`;
+    }
     if (type === 'stageComplete' && stage) return `You are now a ${getStageTitle(stage)}`;
     if (type === 'adventureComplete' && adventure) return config.subtitle || 'You\'ve conquered this adventure';
     if (type === 'projectComplete' && projectName) return projectName;
     if (type === 'gpsComplete') return config.subtitle;
     return '';
-  }, [type, stage, adventure, projectName, customSubtitle, config]);
+  }, [type, stage, adventure, projectName, customSubtitle, config, isGPS101, gps101StageNumber]);
   
   // Handle visibility
   useEffect(() => {
@@ -239,10 +293,12 @@ const MilestoneModal = ({
         type,
         milestone,
         rewards,
-        title: milestoneTitle
+        title: milestoneTitle,
+        isGPS101,
+        gps101StageNumber
       });
     }
-  }, [onShare, type, milestone, rewards, milestoneTitle]);
+  }, [onShare, type, milestone, rewards, milestoneTitle, isGPS101, gps101StageNumber]);
   
   if (!isVisible) return null;
   
@@ -250,6 +306,7 @@ const MilestoneModal = ({
     'milestone-modal',
     isOpen ? 'milestone-modal--open' : 'milestone-modal--closing',
     `milestone-modal--${type}`,
+    isGPS101 && 'milestone-modal--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -282,6 +339,21 @@ const MilestoneModal = ({
           ✕
         </button>
         
+        {/* NEW: GPS 101 Badge */}
+        {isGPS101 && (
+          <div className="milestone-modal__gps101-badge">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+            <div>
+              <span className="milestone-modal__gps101-title">GPS 101 Basic</span>
+              {gps101StageNumber && (
+                <span className="milestone-modal__gps101-stage">Stage {gps101StageNumber}/5</span>
+              )}
+            </div>
+          </div>
+        )}
+        
         {/* Icon */}
         <div className="milestone-modal__icon-wrapper">
           <span className="milestone-modal__icon">{config.icon}</span>
@@ -293,6 +365,16 @@ const MilestoneModal = ({
         <h1 className="milestone-modal__title">{milestoneTitle}</h1>
         {milestoneSubtitle && (
           <p className="milestone-modal__subtitle">{milestoneSubtitle}</p>
+        )}
+        
+        {/* NEW: GPS 101 Deliverable Info */}
+        {isGPS101 && gps101DeliverableName && (
+          <div className="milestone-modal__gps101-deliverable">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6z" clipRule="evenodd"/>
+            </svg>
+            <span>Deliverable: {gps101DeliverableName}</span>
+          </div>
         )}
         
         {/* Rewards */}
@@ -333,7 +415,7 @@ const MilestoneModal = ({
               {unlockedBadges.slice(0, 3).map((badge, i) => (
                 <div 
                   key={badge.id || i}
-                  className={`milestone-modal__badge milestone-modal__badge--${badge.rarity || 'common'}`}
+                  className={`milestone-modal__badge milestone-modal__badge--${badge.rarity || 'common'} ${badge.isGPS101 ? 'milestone-modal__badge--gps101' : ''}`}
                 >
                   <span className="milestone-modal__badge-icon">{badge.icon || '🏅'}</span>
                   <span className="milestone-modal__badge-name">{badge.name}</span>
@@ -353,17 +435,23 @@ const MilestoneModal = ({
         )}
         
         {/* Next Milestone Progress */}
-        {showProgress && nextMilestone && (
+        {showProgress && (nextMilestone || gps101NextStage) && (
           <div className="milestone-modal__next">
             <h3 className="milestone-modal__next-title">Next Up</h3>
             <div className="milestone-modal__next-content">
-              <span className="milestone-modal__next-icon">{nextMilestone.icon || '🎯'}</span>
+              <span className="milestone-modal__next-icon">
+                {isGPS101 ? '🎓' : (nextMilestone?.icon || '🎯')}
+              </span>
               <div className="milestone-modal__next-info">
-                <span className="milestone-modal__next-name">{nextMilestone.name}</span>
+                <span className="milestone-modal__next-name">
+                  {isGPS101 && gps101NextStage
+                    ? `GPS 101 Stage ${gps101NextStage}: ${GPS101_STAGE_NAMES[gps101NextStage]}`
+                    : nextMilestone?.name}
+                </span>
                 <div className="milestone-modal__progress-bar">
                   <div 
                     className="milestone-modal__progress-fill"
-                    style={{ width: `${nextMilestone.progress || 0}%` }}
+                    style={{ width: `${(nextMilestone?.progress || 0)}%` }}
                   />
                 </div>
               </div>
@@ -378,7 +466,7 @@ const MilestoneModal = ({
             className="milestone-modal__continue-btn"
             onClick={handleContinue}
           >
-            {nextMilestone ? 'Continue Journey' : 'Awesome!'}
+            {nextMilestone || gps101NextStage ? 'Continue Journey' : 'Awesome!'}
           </button>
           
           <button
@@ -394,5 +482,5 @@ const MilestoneModal = ({
   );
 };
 
-export { MILESTONE_TYPES, ADVENTURE_NAMES, getStageTitle };
+export { MILESTONE_TYPES, ADVENTURE_NAMES, GPS101_STAGE_NAMES, getStageTitle };
 export default MilestoneModal;

@@ -1,0 +1,300 @@
+{
+  "gps101": {
+    "title": "GPS 101 Msingi",
+    "subtitle": "Safari ya Kugundua Kusudi la Wiki 15",
+    "description": "Gundua kusudi lako la maisha kupitia safari iliyopangwa ya hatua 5 za kujitafakari, kutambua matatizo, na kuunda miradi.",
+    
+    "enrollment": {
+      "title": "Jiandikishe kwa GPS 101",
+      "description": "Anza safari yako ya wiki 15 ya kugundua kusudi",
+      "benefits": {
+        "title": "Utapata Nini",
+        "items": [
+          "Uelewa wazi wa utambulisho wako wa msingi",
+          "Tatizo lenye maana la kutatua",
+          "Uhusiano na wamiliki wa tatizo",
+          "Tamko lako la kusudi la maisha",
+          "Mradi mahususi unaozingatia kusudi"
+        ]
+      },
+      "commitment": {
+        "title": "Muda Unaohitajika",
+        "duration": "Wiki 15",
+        "weekly": "Saa 3-5 kwa wiki",
+        "total": "Misheni 30, Vipimo 150"
+      },
+      "reward": {
+        "title": "Zawadi ya Kukamilisha",
+        "beacon": "Orange Beacon",
+        "baraka": "Baraka 5,000",
+        "description": "Pamoja na beji za kukamilisha GPS 101"
+      },
+      "cta": "Anza Safari ya GPS 101"
+    },
+    
+    "stages": {
+      "1": {
+        "name": "Utambulisho",
+        "title": "Mimi Ni Nani?",
+        "question": "Ni nani mimi kwa asili?",
+        "description": "Kujitafakari kwa kina ili kuelewa maadili, nguvu, na shauku zako",
+        "deliverable": "Tamko la Utambulisho",
+        "duration": "Wiki 1-3",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Hatua hii ni kuhusu kugundua kweli. Chunguza ni nani wewe zaidi ya majukumu na majina.",
+        "reflectionPrompts": [
+          "Watu wanakuja kwako kwa msaada gani?",
+          "Ni shughuli gani zinazofanya usahau muda?",
+          "Ni dhuluma au matatizo gani yanayokufanya uwe na hasira au huzuni?",
+          "Kama ungeweza kubadilisha kitu kimoja ulimwenguni, ni nini?",
+          "Ungefanya nini kama unajua huwezi kushindwa?"
+        ]
+      },
+      "2": {
+        "name": "Tatizo",
+        "title": "Ni Nini Kinachopasua Moyo Wangu?",
+        "question": "Ni tatizo gani linalopasua moyo wangu?",
+        "description": "Tambua tatizo lenye maana linalolingana na utambulisho wako",
+        "deliverable": "Mgombea wa Tatizo la Maisha",
+        "duration": "Wiki 4-6",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Chagua tatizo linalokugusa kweli. Linapaswa kuunganishwa na ni nani wewe.",
+        "reflectionPrompts": [
+          "Ni matatizo gani unayoyaona ambayo wengine wanaonekana kupuuza?",
+          "Ni taabu gani uliyoishuhudia inayoendelea kukumbukwa?",
+          "Ni tatizo gani, likitatuliwa, lingekufanya ujisikie maisha yako yana maana?",
+          "Ni suala gani unajipatia kuzungumza hata wakati hakuna anayeuliza?",
+          "Ni tatizo gani linaunganishwa na uzoefu wako binafsi?"
+        ]
+      },
+      "3": {
+        "name": "Mmiliki",
+        "title": "Ni Nani Anahitaji Hili Kutatuliwa?",
+        "question": "Ni nani mmiliki wa tatizo?",
+        "description": "Elewa na simulia hadithi ya mtu anayepitia tatizo lako",
+        "deliverable": "Hadithi ya Mmiliki wa Tatizo",
+        "duration": "Wiki 7-9",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Hii ni kuhusu huruma. Simulia hadithi halisi, mahususi inayoonyesha athari kwa binadamu.",
+        "reflectionPrompts": [
+          "Ni nani anaathiriwa zaidi na tatizo hili?",
+          "Siku ya kawaida kwao inaonekana vipi?",
+          "Ni vizuizi gani wanakabiliwa? Wamejaribu nini?",
+          "Tatizo hili linawafanya wahisi vipi?",
+          "Ni ndoto gani wanayo ambazo tatizo hili linazuia?"
+        ]
+      },
+      "4": {
+        "name": "Kusudi",
+        "title": "Niko Hapa Kwa Nini?",
+        "question": "Kusudi langu la maisha ni nini?",
+        "description": "Unganisha utambulisho na tatizo katika tamko wazi la kusudi",
+        "deliverable": "Tamko la Kusudi la Maisha",
+        "duration": "Wiki 10-12",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Unganisha utambulisho wako na tatizo lako. Kuwa mahususi kuhusu athari unayotarajia.",
+        "reflectionPrompts": [
+          "Utambulisho wako unakuweka vipi kipekee kwa tatizo hili?",
+          "Ni athari gani unataka kuwa nayo katika miaka 10?",
+          "Ni urithi gani unataka kuacha?",
+          "Mafanikio yangeonekana vipi?",
+          "Utajuaje unaishi kusudi lako?"
+        ]
+      },
+      "5": {
+        "name": "Mradi",
+        "title": "Nitaunda Nini?",
+        "question": "Ni mradi gani wa kusudi nitaanzisha?",
+        "description": "Buni mradi mahususi unaojumuisha kusudi lako",
+        "deliverable": "Mradi wa Kusudi",
+        "duration": "Wiki 13-15",
+        "missions": 6,
+        "checkpoints": 30,
+        "guidance": "Fanya iwe inayoweza kutekelezwa. Eleza kitu unachoweza kujenga na kuzindua.",
+        "reflectionPrompts": [
+          "Ni suluhisho gani mahususi unaweza kuunda katika miezi 6-12?",
+          "Ni nani watakuwa watumiaji/wanufaika wako wa kwanza?",
+          "Ni rasilimali gani unazomiliki tayari?",
+          "Toleo la 1.0 lingekuwaje?",
+          "Utapima vipi athari?"
+        ]
+      }
+    },
+    
+    "deliverables": {
+      "title": "Matokeo ya GPS 101",
+      "subtitle": "Vitu vyako vya Kugundua Kusudi",
+      "identity": {
+        "title": "Tamko la Utambulisho",
+        "description": "Maelezo wazi ya ni nani wewe kwa msingi",
+        "minLength": 100,
+        "maxLength": 500,
+        "placeholder": "Mimi ni mtu ambaye...",
+        "tips": [
+          "Zingatia uhalisi wako, si majukumu",
+          "Jumuisha maadili ya msingi na kinachokuchochea",
+          "Kuwa mahususi na kibinafsi"
+        ]
+      },
+      "problem": {
+        "title": "Mgombea wa Tatizo la Maisha",
+        "description": "Tatizo linalovuma sana na utambulisho wako",
+        "minLength": 150,
+        "maxLength": 1000,
+        "placeholder": "Tatizo linalopasua moyo wangu ni...",
+        "tips": [
+          "Chagua kitu kinachokugusa kweli",
+          "Eleza kwa nini linakuhusu wewe kibinafsi",
+          "Zingatia upeo na athari"
+        ]
+      },
+      "owner": {
+        "title": "Hadithi ya Mmiliki wa Tatizo",
+        "description": "Hadithi kuhusu mtu anayepitia tatizo lako",
+        "minLength": 200,
+        "maxLength": 1500,
+        "placeholder": "Kutana na [jina], anayepambana na...",
+        "tips": [
+          "Simulia hadithi mahususi, halisi",
+          "Onyesha athari kwa binadamu",
+          "Jumuisha maelezo mahususi na hisia"
+        ]
+      },
+      "purpose": {
+        "title": "Tamko la Kusudi la Maisha",
+        "description": "Kusudi lako la kipekee katika kushughulikia tatizo hili",
+        "minLength": 100,
+        "maxLength": 500,
+        "placeholder": "Kusudi langu ni...",
+        "tips": [
+          "Unganisha utambulisho na tatizo",
+          "Kuwa mahususi kuhusu athari",
+          "Fanya iwe halisi na yenye kuchochea"
+        ]
+      },
+      "project": {
+        "title": "Mradi wa Kusudi",
+        "description": "Mradi mahususi unaojumuisha kusudi lako",
+        "minLength": 300,
+        "maxLength": 2000,
+        "placeholder": "Nitaunda/kujenga/kuzindua...",
+        "tips": [
+          "Eleza kitu mahususi na kinachoweza kutekelezwa",
+          "Eleza jinsi inavyoshughulikia tatizo lako",
+          "Jumuisha maono yako ya athari"
+        ]
+      }
+    },
+    
+    "progress": {
+      "currentStage": "Hatua ya Sasa",
+      "stagesComplete": "{{count}} kati ya hatua 5 zimekamilika",
+      "missionsComplete": "{{count}} kati ya misheni 30 zimekamilika",
+      "checkpointsComplete": "{{count}} kati ya vipimo 150 vimekamilika",
+      "weeklyProgress": "Wiki {{week}} kati ya 15",
+      "overallProgress": "{{percent}}% Imekamilika",
+      "nextMilestone": "Ifuatayo: {{milestone}}"
+    },
+    
+    "checkpoint": {
+      "title": "Kipimo cha GPS 101",
+      "subtitle": "Tafakari ya Hatua {{stage}}",
+      "instructions": "Jibu maswali yote ya kutafakari kwa uangalifu. Chukua muda wako - ubora ni muhimu zaidi ya kasi.",
+      "questions": {
+        "understanding": "Ulijifunza nini kuhusu wewe mwenyewe katika hatua hii?",
+        "application": "Utatumia vipi mafunzo haya?",
+        "challenges": "Ni changamoto gani ulikabiliwa nazo?",
+        "insights": "Maarifa yako makuu yalikuwa nini?",
+        "next": "Unafurahi nini kuhusu hatua ijayo?"
+      },
+      "validation": {
+        "minLength": "Tafadhali toa angalau herufi {{min}} kwa kila jibu",
+        "required": "Maswali yote lazima yajibiwe",
+        "thoughtful": "Chukua muda wa kutafakari kwa kina jibu lako"
+      },
+      "submit": "Wasilisha Kipimo",
+      "retry": "Tumia R2R Kujaribu Tena"
+    },
+    
+    "navigator": {
+      "greeting": "Karibu GPS 101, {{name}}!",
+      "stageGuidance": "Uko kwenye Hatua {{stage}}: {{stageName}}",
+      "tips": {
+        "reflection": "Chukua muda wa kutafakari kwa kina",
+        "authenticity": "Kuwa halisi, si kamili",
+        "connection": "Unganisha kila hatua na ifuatayo",
+        "patience": "Hii ni safari, si mbio"
+      },
+      "encouragement": [
+        "Unafanya maendeleo mazuri!",
+        "Tafakari yako inaonyesha kina halisi",
+        "Maarifa haya yana nguvu",
+        "Endelea kusukuma zaidi",
+        "Uko njia sahihi"
+      ]
+    },
+    
+    "celebration": {
+      "stageComplete": {
+        "title": "Hatua {{stage}} Imekamilika!",
+        "subtitle": "{{stageName}} - Imekamilishwa",
+        "message": "Kazi nzuri kukamilisha Hatua {{stage}}. {{deliverable}} yako imehifadhiwa.",
+        "next": "Uko tayari kwa Hatua {{nextStage}}?"
+      },
+      "journeyComplete": {
+        "title": "Safari ya GPS 101 Imekamilika!",
+        "subtitle": "Orange Beacon Imefunguliwa",
+        "message": "Hongera! Umegundua kusudi lako la maisha kupitia GPS 101 Msingi.",
+        "rewards": "Umepata Orange Beacon na Baraka 5,000",
+        "quote": "\"Siku mbili muhimu zaidi katika maisha yako ni siku uliyozaliwa na siku unajua kwa nini.\""
+      }
+    },
+    
+    "actions": {
+      "viewDashboard": "Tazama Dashibodi ya GPS 101",
+      "continueJourney": "Endelea na Safari",
+      "viewDeliverables": "Tazama Matokeo",
+      "editDeliverable": "Hariri Tokeo",
+      "submitCheckpoint": "Wasilisha Kipimo",
+      "viewGuidance": "Tazama Mwongozo wa Hatua",
+      "askNavigator": "Uliza Navigator"
+    },
+    
+    "status": {
+      "notEnrolled": "Haujasajiliwa",
+      "enrolled": "Umesajiliwa",
+      "inProgress": "Inaendelea",
+      "completed": "Imekamilika",
+      "locked": "Imefungwa",
+      "available": "Inapatikana",
+      "current": "Ya Sasa"
+    },
+    
+    "rewards": {
+      "orangeBeacon": {
+        "name": "Orange Beacon",
+        "description": "Inatolewa kwa kukamilisha GPS 101 Msingi",
+        "baraka": 5000
+      },
+      "stageBadges": {
+        "stage1": "Mchunguzi wa Utambulisho",
+        "stage2": "Mgundua Matatizo",
+        "stage3": "Msimulia Hadithi",
+        "stage4": "Mgundua Kusudi",
+        "stage5": "Mzindua Mradi"
+      }
+    },
+    
+    "errors": {
+      "notEnrolled": "Lazima ujisajili kwa GPS 101 ili kufikia maudhui haya",
+      "stageLocked": "Kamilisha Hatua {{stage}} ili kufungua hatua hii",
+      "checkpointIncomplete": "Kamilisha vipimo vyote ili kuendelea",
+      "deliverableRequired": "Wasilisha tokeo lako ili kuendelea",
+      "loadError": "Imeshindwa kupakia data ya GPS 101. Tafadhali jaribu tena."
+    }
+  }
+}

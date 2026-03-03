@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="gps101-stage3-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.2" />
+    </linearGradient>
+    <linearGradient id="book-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#gps101-stage3-bg)"/>
+  
+  <!-- Open book -->
+  <g id="open-book">
+    <!-- Left page -->
+    <path d="M 80 80 L 80 240 L 195 250 L 200 90 Z" 
+          fill="#fff" 
+          stroke="#667eea" 
+          stroke-width="3"/>
+    
+    <!-- Right page -->
+    <path d="M 320 80 L 320 240 L 205 250 L 200 90 Z" 
+          fill="#fff" 
+          stroke="#764ba2" 
+          stroke-width="3"/>
+    
+    <!-- Book spine shadow -->
+    <path d="M 200 90 L 195 250 L 205 250 L 200 90 Z" 
+          fill="#667eea" 
+          opacity="0.3"/>
+    
+    <!-- Text lines on left page -->
+    <line x1="100" y1="110" x2="180" y2="112" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    <line x1="100" y1="130" x2="185" y2="132" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    <line x1="100" y1="150" x2="180" y2="152" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    <line x1="100" y1="170" x2="185" y2="172" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    <line x1="100" y1="190" x2="175" y2="192" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    <line x1="100" y1="210" x2="180" y2="213" stroke="#667eea" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Text lines on right page -->
+    <line x1="220" y1="112" x2="300" y2="110" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+    <line x1="215" y1="132" x2="300" y2="130" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+    <line x1="220" y1="152" x2="300" y2="150" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+    <line x1="215" y1="172" x2="300" y2="170" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+    <line x1="225" y1="192" x2="300" y2="190" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+    <line x1="220" y1="213" x2="300" y2="210" stroke="#764ba2" stroke-width="2" opacity="0.4"/>
+  </g>
+  
+  <!-- Person silhouette emerging from book -->
+  <g id="story-character" opacity="0.8">
+    <!-- Head -->
+    <circle cx="200" cy="140" r="20" fill="url(#book-gradient)"/>
+    <!-- Body -->
+    <ellipse cx="200" cy="180" rx="25" ry="35" fill="url(#book-gradient)" opacity="0.8"/>
+    <!-- Arms -->
+    <path d="M 175 165 Q 160 170 155 180" stroke="url(#book-gradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 225 165 Q 240 170 245 180" stroke="url(#book-gradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Emotion indicators around character -->
+  <g id="emotions" opacity="0.6">
+    <!-- Struggle -->
+    <text x="140" y="120" font-family="Arial, sans-serif" font-size="20" fill="#667eea">😢</text>
+    <!-- Hope -->
+    <text x="250" y="125" font-family="Arial, sans-serif" font-size="18" fill="#764ba2">💭</text>
+    <!-- Resilience -->
+    <text x="170" y="220" font-family="Arial, sans-serif" font-size="18" fill="#667eea">💪</text>
+    <!-- Dreams -->
+    <text x="240" y="215" font-family="Arial, sans-serif" font-size="18" fill="#764ba2">✨</text>
+  </g>
+  
+  <!-- Quotation marks -->
+  <text x="90" y="105" font-family="Georgia, serif" font-size="40" fill="#667eea" opacity="0.4">"</text>
+  <text x="295" y="230" font-family="Georgia, serif" font-size="40" fill="#764ba2" opacity="0.4">"</text>
+  
+  <!-- Stage title -->
+  <text x="200" y="285" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#667eea" text-anchor="middle">
+    The Problem Owner's Story
+  </text>
+</svg>

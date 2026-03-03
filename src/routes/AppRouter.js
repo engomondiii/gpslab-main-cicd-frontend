@@ -1,354 +1,318 @@
 /**
- * GPS Lab Platform - AppRouter Component
- * 
- * Main router combining all route groups.
- * Handles route matching, navigation, and 404 handling.
- * 
- * @module routes/AppRouter
- * @version 1.1.0
- * 
- * UPDATED v1.1.0:
- * - Added GPO Call routes
+ * App Router
+ * * Main routing configuration for the application.
  */
 
-import React, { Suspense, useCallback, useMemo, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-// Route configurations
-import PublicRoutes, { PUBLIC_ROUTES, RouteLoadingFallback } from './PublicRoutes';
-import PrivateRoutes, { PRIVATE_ROUTES } from './PrivateRoutes';
-import AdminRoutes, { ADMIN_ROUTES } from './AdminRoutes';
-import UniversityRoutes, { UNIVERSITY_ROUTES } from './UniversityRoutes';
+// Layouts
+import DashboardLayout from '../components/layout/DashboardLayout/DashboardLayout';
 
-// Pages
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import ErrorPage from '../pages/ErrorPage/ErrorPage';
+// Route Guards
+import ProtectedRoute from '../components/auth/ProtectedRoute/ProtectedRoute';
 
-// Auth components
-import { getRedirectAfterLogin } from '../components/auth/ProtectedRoute/ProtectedRoute';
+// Loading Component
+import LoadingOverlay from '../components/common/Loading/LoadingOverlay';
 
-import './AppRouter.css';
+// Route Configs
+import { PUBLIC_ROUTES, AUTHENTICATED_ROUTES } from '../config/routes.config';
+
+// ==================== LAZY LOADED PAGES ====================
+
+// Public Pages
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('../pages/ResetPasswordPage/ResetPasswordPage'));
+
+// Dashboard
+const DashboardPage = lazy(() => import('../pages/DashboardPage/DashboardPage'));
+
+// Missions
+const MissionsPage = lazy(() => import('../pages/MissionsPage/MissionsPage'));
+const MissionDetailPage = lazy(() => import('../pages/MissionDetailPage/MissionDetailPage'));
+const BiteBoardPage = lazy(() => import('../pages/BiteBoardPage/BiteBoardPage'));
+const CheckpointPage = lazy(() => import('../pages/CheckpointPage/CheckpointPage'));
+
+// Study
+const StudyForgePage = lazy(() => import('../pages/StudyForgePage/StudyForgePage'));
+
+// GPS 101 Pages (NEW)
+const GPS101Page = lazy(() => import('../pages/GPS101/GPS101Page/GPS101Page'));
+const GPS101StagePage = lazy(() => import('../pages/GPS101/GPS101StagePage/GPS101StagePage'));
+const GPS101MissionPage = lazy(() => import('../pages/GPS101/GPS101MissionPage/GPS101MissionPage'));
+const GPS101CheckpointPage = lazy(() => import('../pages/GPS101/GPS101CheckpointPage/GPS101CheckpointPage'));
+
+// GPO Call
+const GPOCallPage = lazy(() => import('../pages/GPOCallPage/GPOCallPage'));
+const GPOCallSuccessPage = lazy(() => import('../pages/GPOCallPage/GPOCallSuccessPage'));
+
+// Projects
+const ProjectsPage = lazy(() => import('../pages/ProjectsPage/ProjectsPage'));
+const ProjectDetailPage = lazy(() => import('../pages/ProjectDetailPage/ProjectDetailPage'));
+
+// Party
+const PartyPage = lazy(() => import('../pages/PartyPage/PartyPage'));
+
+// Portfolio
+const PortfolioPage = lazy(() => import('../pages/PortfolioPage/PortfolioPage'));
+
+// Profile
+const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
+
+// Settings
+const SettingsPage = lazy(() => import('../pages/SettingsPage/SettingsPage'));
+
+// Leaderboard
+const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage/LeaderboardPage'));
+
+// Subscription
+const SubscriptionPage = lazy(() => import('../pages/SubscriptionPage/SubscriptionPage'));
+
+// Mentor
+const MentorPage = lazy(() => import('../pages/MentorPage/MentorPage'));
+
+// Help
+const HelpPage = lazy(() => import('../pages/HelpPage/HelpPage'));
+
+// Admin
+const AdminPage = lazy(() => import('../pages/AdminPage/AdminPage'));
+
+// University
+const UniversityPortalPage = lazy(() => import('../pages/UniversityPortalPage/UniversityPortalPage'));
+
+// Error Pages
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
+const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'));
 
 /**
- * Scroll to top on route change
+ * App Router Component
  */
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  
-  return null;
-};
+const AppRouter = (props) => {
+  // FIXED: Pull auth state from Redux AND sync it with local props to prevent loops
+  const isReduxAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
+  const isAuthenticated = isReduxAuthenticated || props.isAuthenticated;
+  const user = useSelector((state) => state.user?.currentUser) || props.user;
 
-/**
- * Route transition wrapper for animations
- */
-const RouteTransition = ({ children }) => {
-  return (
-    <div className="route-transition">
+  // FIXED: Helper component to inject auth state into ProtectedRoute automatically
+  const Protected = ({ children, ...routeProps }) => (
+    <ProtectedRoute 
+      isAuthenticated={isAuthenticated} 
+      isLoading={props.isLoading} 
+      user={user}
+      {...routeProps}
+    >
       {children}
-    </div>
+    </ProtectedRoute>
   );
-};
 
-/**
- * NavigationHandler – renders inside BrowserRouter
- */
-const NavigationHandler = ({ pendingNavigate, onNavigateComplete }) => {
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    if (pendingNavigate) {
-      navigate(pendingNavigate);
-      if (onNavigateComplete) onNavigateComplete();
-    }
-  }, [pendingNavigate, navigate, onNavigateComplete]);
-  
-  return null;
-};
-
-/**
- * AppRouter Component
- */
-const AppRouter = ({
-  user = null,
-  isAuthenticated = false,
-  isLoading = false,
-  onLogin,
-  onRegister,
-  onOAuthLogin,
-  onLogout,
-  notifications = [],
-  stats = {},
-  wallets = {},
-  currentLanguage = 'en',
-  onLanguageChange,
-  onNotificationClick,
-  pendingNavigate = null,
-  onNavigateComplete
-}) => {
-  
-  const handleLoginSuccess = useCallback(() => {
-    const redirectPath = getRedirectAfterLogin('/dashboard');
-    window.location.href = redirectPath;
-  }, []);
-  
-  const handleLogin = useCallback(async (credentials) => {
-    if (onLogin) {
-      const result = await onLogin(credentials);
-      if (result?.success) {
-        handleLoginSuccess();
-      }
-      return result;
-    }
-  }, [onLogin, handleLoginSuccess]);
-  
-  const handleRegister = useCallback(async (data) => {
-    if (onRegister) {
-      const result = await onRegister(data);
-      if (result?.success) {
-        window.location.href = '/onboarding';
-      }
-      return result;
-    }
-  }, [onRegister]);
-  
-  const routeProps = useMemo(() => ({
-    user,
-    isAuthenticated,
-    isLoading,
-    notifications,
-    stats,
-    wallets,
-    currentLanguage,
-    onLanguageChange,
-    onLogout,
-    onNotificationClick
-  }), [user, isAuthenticated, isLoading, notifications, stats, wallets, currentLanguage, onLanguageChange, onLogout, onNotificationClick]);
-  
-  const publicRouteElements = useMemo(() => {
-    return PUBLIC_ROUTES.map(route => {
-      const LazyComponent = React.lazy(() => {
-        const componentMap = {
-          HomePage: () => import('../pages/HomePage/HomePage'),
-          LoginPage: () => import('../pages/LoginPage/LoginPage'),
-          RegisterPage: () => import('../pages/RegisterPage/RegisterPage'),
-          ForgotPasswordPage: () => import('../pages/ForgotPasswordPage/ForgotPasswordPage'),
-          ResetPasswordPage: () => import('../pages/ResetPasswordPage/ResetPasswordPage'),
-          AboutPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>About GPS Lab</h1><p>Coming soon...</p></div> 
-          })),
-          FeaturesPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Features</h1><p>Coming soon...</p></div> 
-          })),
-          PricingPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Pricing</h1><p>Coming soon...</p></div> 
-          })),
-          ContactPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Contact Us</h1><p>Coming soon...</p></div> 
-          })),
-          TermsPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Terms of Service</h1><p>Coming soon...</p></div> 
-          })),
-          PrivacyPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Privacy Policy</h1><p>Coming soon...</p></div> 
-          })),
-          HelpPage: () => import('../pages/NotFoundPage/NotFoundPage').then(m => ({ 
-            default: () => <div className="placeholder-page"><h1>Help Center</h1><p>Coming soon...</p></div> 
-          }))
-        };
-        
-        return componentMap[route.element] 
-          ? componentMap[route.element]()
-          : Promise.resolve({ default: () => <div className="placeholder-page"><h1>{route.title}</h1><p>Coming soon...</p></div> });
-      });
-      
-      const getPageProps = () => {
-        if (route.element === 'LoginPage') {
-          return { onLogin: handleLogin, onOAuthLogin };
-        }
-        if (route.element === 'RegisterPage') {
-          return { onRegister: handleRegister, onOAuthLogin };
-        }
-        return {};
-      };
-      
-      if (['LoginPage', 'RegisterPage', 'ForgotPasswordPage', 'ResetPasswordPage'].includes(route.element)) {
-        return (
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<LoadingOverlay />}>
+        <Routes>
+          {/* ==================== PUBLIC ROUTES ==================== */}
+          
           <Route
-            key={route.path}
-            path={route.path}
+            path={PUBLIC_ROUTES.HOME}
+            element={
+              isAuthenticated ? <Navigate to={AUTHENTICATED_ROUTES.DASHBOARD} replace /> : <HomePage />
+            }
+          />
+
+          <Route
+            path={PUBLIC_ROUTES.LOGIN}
             element={
               isAuthenticated ? (
-                <Navigate to="/dashboard" replace />
+                <Navigate to={AUTHENTICATED_ROUTES.DASHBOARD} replace />
               ) : (
-                <Suspense fallback={<RouteLoadingFallback />}>
-                  <LazyComponent {...getPageProps()} />
-                </Suspense>
+                <LoginPage onLogin={props.onLogin} onOAuthLogin={props.onOAuthLogin} />
               )
             }
           />
-        );
-      }
-      
-      return (
-        <Route
-          key={route.path}
-          path={route.path}
-          element={
-            <Suspense fallback={<RouteLoadingFallback />}>
-              <LazyComponent {...getPageProps()} />
-            </Suspense>
-          }
-        />
-      );
-    });
-  }, [isAuthenticated, handleLogin, handleRegister, onOAuthLogin]);
-  
-  const privateRouteElements = useMemo(() => {
-    const { routes } = PrivateRoutes(routeProps);
-    return routes.map(route => (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={route.component}
-      />
-    ));
-  }, [routeProps]);
-  
-  const adminRouteElements = useMemo(() => {
-    const { routes } = AdminRoutes(routeProps);
-    return routes.map(route => (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={route.component}
-      />
-    ));
-  }, [routeProps]);
-  
-  const universityRouteElements = useMemo(() => {
-    const { routes } = UniversityRoutes(routeProps);
-    return routes.map(route => (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={route.component}
-      />
-    ));
-  }, [routeProps]);
-  
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <NavigationHandler 
-        pendingNavigate={pendingNavigate} 
-        onNavigateComplete={onNavigateComplete} 
-      />
-      <div className="app-router">
-        <Suspense fallback={<RouteLoadingFallback />}>
-          <Routes>
-            {/* Public Routes */}
-            {publicRouteElements}
-            
-            {/* Private Routes */}
-            {privateRouteElements}
-            
-            {/* Admin Routes */}
-            {adminRouteElements}
-            
-            {/* University Routes */}
-            {universityRouteElements}
-            
-            {/* Onboarding Route */}
-            <Route
-              path="/onboarding"
-              element={
-                isAuthenticated ? (
-                  <Suspense fallback={<RouteLoadingFallback />}>
-                    <div className="placeholder-page onboarding-page">
-                      <h1>Welcome to GPS Lab!</h1>
-                      <p>Let's get you started on your journey.</p>
-                      <a href="/dashboard" className="onboarding-continue-btn">
-                        Continue to Dashboard
-                      </a>
-                    </div>
-                  </Suspense>
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
-            
-            {/* Error Route */}
-            <Route
-              path="/error"
-              element={<ErrorPage />}
-            />
-            
-            {/* 404 Not Found */}
-            <Route
-              path="*"
-              element={<NotFoundPage />}
-            />
-          </Routes>
-        </Suspense>
-      </div>
+
+          <Route
+            path={PUBLIC_ROUTES.REGISTER}
+            element={
+              isAuthenticated ? (
+                <Navigate to={AUTHENTICATED_ROUTES.DASHBOARD} replace />
+              ) : (
+                <RegisterPage onRegister={props.onRegister} onOAuthLogin={props.onOAuthLogin} />
+              )
+            }
+          />
+
+          <Route path={PUBLIC_ROUTES.FORGOT_PASSWORD} element={<ForgotPasswordPage />} />
+          <Route path={PUBLIC_ROUTES.RESET_PASSWORD} element={<ResetPasswordPage />} />
+
+          {/* ==================== AUTHENTICATED ROUTES ==================== */}
+
+          <Route path={AUTHENTICATED_ROUTES.DASHBOARD} element={
+            <Protected>
+              <DashboardLayout {...props}><DashboardPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.COMMAND_CENTER} element={
+            <Protected>
+              <Navigate to={AUTHENTICATED_ROUTES.DASHBOARD} replace />
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.MISSIONS} element={
+            <Protected>
+              <DashboardLayout {...props}><MissionsPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.MISSION_DETAIL} element={
+            <Protected>
+              <DashboardLayout {...props}><MissionDetailPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.BITE_BOARD} element={
+            <Protected>
+              <DashboardLayout {...props}><BiteBoardPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.CHECKPOINT} element={
+            <Protected>
+              <DashboardLayout {...props}><CheckpointPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.STUDY_FORGE} element={
+            <Protected>
+              <DashboardLayout {...props}><StudyForgePage /></DashboardLayout>
+            </Protected>
+          } />
+
+          {/* ==================== GPS 101 ROUTES ==================== */}
+
+          <Route path={AUTHENTICATED_ROUTES.GPS_101} element={
+            <Protected>
+              <DashboardLayout {...props}><GPS101Page /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.GPS_101_STAGE} element={
+            <Protected requiresGPS101Enrollment>
+              <DashboardLayout {...props}><GPS101StagePage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.GPS_101_MISSION} element={
+            <Protected requiresGPS101Enrollment>
+              <DashboardLayout {...props}><GPS101MissionPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.GPS_101_CHECKPOINT} element={
+            <Protected requiresGPS101Enrollment>
+              <DashboardLayout {...props}><GPS101CheckpointPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          {/* ==================== GPO CALL ROUTES ==================== */}
+
+          <Route path={AUTHENTICATED_ROUTES.GPO_CALL} element={
+            <Protected>
+              <DashboardLayout {...props}><GPOCallPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.GPO_CALL_SUCCESS} element={
+            <Protected>
+              <DashboardLayout {...props}><GPOCallSuccessPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          {/* ==================== OTHER ROUTES ==================== */}
+
+          <Route path={AUTHENTICATED_ROUTES.PROJECTS} element={
+            <Protected>
+              <DashboardLayout {...props}><ProjectsPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.PROJECT_DETAIL} element={
+            <Protected>
+              <DashboardLayout {...props}><ProjectDetailPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.PARTIES} element={
+            <Protected>
+              <DashboardLayout {...props}><PartyPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.PORTFOLIO} element={
+            <Protected>
+              <DashboardLayout {...props}><PortfolioPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.PROFILE} element={
+            <Protected>
+              <DashboardLayout {...props}><ProfilePage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.SETTINGS} element={
+            <Protected>
+              <DashboardLayout {...props}><SettingsPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.LEADERBOARD} element={
+            <Protected>
+              <DashboardLayout {...props}><LeaderboardPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.SUBSCRIPTION} element={
+            <Protected>
+              <DashboardLayout {...props}><SubscriptionPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.MENTORS} element={
+            <Protected>
+              <DashboardLayout {...props}><MentorPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path={AUTHENTICATED_ROUTES.HELP} element={
+            <Protected>
+              <DashboardLayout {...props}><HelpPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path="/admin/*" element={
+            <Protected requiresAdmin>
+              <DashboardLayout {...props}><AdminPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          <Route path="/university/*" element={
+            <Protected requiresUniversity>
+              <DashboardLayout {...props}><UniversityPortalPage /></DashboardLayout>
+            </Protected>
+          } />
+
+          {/* ==================== ERROR ROUTES ==================== */}
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/error" element={<ErrorPage />} />
+          
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
 
-export const getAllRoutes = () => ({
-  public: PUBLIC_ROUTES,
-  private: PRIVATE_ROUTES,
-  admin: ADMIN_ROUTES,
-  university: UNIVERSITY_ROUTES
-});
-
-export const findRouteByPath = (path) => {
-  const allRoutes = [
-    ...PUBLIC_ROUTES,
-    ...PRIVATE_ROUTES,
-    ...ADMIN_ROUTES,
-    ...UNIVERSITY_ROUTES
-  ];
-  
-  return allRoutes.find(route => {
-    const routePattern = route.path.replace(/:\w+/g, '[^/]+');
-    const regex = new RegExp(`^${routePattern}$`);
-    return regex.test(path);
-  });
-};
-
-export const getNavigationItems = (userRole = 'user') => {
-  const privateNavItems = PRIVATE_ROUTES
-    .filter(route => route.showInNav)
-    .map(route => ({
-      path: route.path,
-      label: route.title,
-      icon: route.icon
-    }));
-  
-  if (['admin', 'super_admin'].includes(userRole)) {
-    privateNavItems.push({
-      path: '/admin',
-      label: 'Admin',
-      icon: 'admin'
-    });
-  }
-  
-  if (['university_admin', 'professor', 'teaching_assistant'].includes(userRole)) {
-    privateNavItems.push({
-      path: '/university',
-      label: 'University',
-      icon: 'university'
-    });
-  }
-  
-  return privateNavItems;
-};
-
-export { ScrollToTop, RouteTransition };
 export default AppRouter;

@@ -175,3 +175,35 @@
     transition: none;
   }
 }
+/* GPS 101 Specific Styles */
+.dashboard-overview__header--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.dashboard-overview__gps101-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-bold, 700);
+  color: #667eea;
+  background-color: rgba(102, 126, 234, 0.15);
+  border-radius: var(--radius-sm, 4px);
+  margin-right: var(--space-2, 8px);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.dashboard-overview__level-badge--gps101 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.dashboard-overview__level-progress-fill--gps101 {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+/* Dark Theme GPS 101 */
+[data-theme="dark"] .dashboard-overview__header--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  border-color: rgba(102, 126, 234, 0.3);
+}

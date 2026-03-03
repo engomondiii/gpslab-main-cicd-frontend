@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="gps101-stage2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.2" />
+    </linearGradient>
+    <radialGradient id="heart-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.4" />
+    </radialGradient>
+    <linearGradient id="crack-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#gps101-stage2-bg)"/>
+  
+  <!-- Large broken heart in center -->
+  <g id="broken-heart">
+    <!-- Heart shape (left half) -->
+    <path d="M 170 150 
+             C 170 130, 150 115, 130 115
+             C 110 115, 90 130, 90 150
+             C 90 180, 120 210, 170 245
+             L 170 150 Z" 
+          fill="url(#heart-glow)"/>
+    
+    <!-- Heart shape (right half) -->
+    <path d="M 230 150
+             C 230 130, 250 115, 270 115
+             C 290 115, 310 130, 310 150
+             C 310 180, 280 210, 230 245
+             L 230 150 Z"
+          fill="url(#heart-glow)"/>
+    
+    <!-- Crack/break between halves -->
+    <path d="M 200 100 L 195 150 L 205 150 L 200 245" 
+          fill="url(#crack-gradient)" 
+          stroke="#fff" 
+          stroke-width="2"/>
+    
+    <!-- Jagged crack edges -->
+    <path d="M 170 145 L 180 148 L 175 155 L 185 158 L 180 165" 
+          stroke="#c0392b" 
+          stroke-width="3" 
+          fill="none" 
+          stroke-linecap="round"/>
+    <path d="M 230 145 L 220 148 L 225 155 L 215 158 L 220 165" 
+          stroke="#c0392b" 
+          stroke-width="3" 
+          fill="none" 
+          stroke-linecap="round"/>
+  </g>
+  
+  <!-- Problem icons floating around -->
+  <g id="problem-symbols" opacity="0.7">
+    <!-- Poverty symbol -->
+    <g transform="translate(50, 80)">
+      <circle cx="0" cy="0" r="25" fill="#667eea" opacity="0.3"/>
+      <text x="-10" y="8" font-family="Arial, sans-serif" font-size="24" fill="#667eea">💰</text>
+      <line x1="-15" y1="-15" x2="15" y2="15" stroke="#e74c3c" stroke-width="3"/>
+    </g>
+    
+    <!-- Injustice symbol -->
+    <g transform="translate(350, 100)">
+      <circle cx="0" cy="0" r="25" fill="#764ba2" opacity="0.3"/>
+      <text x="-12" y="8" font-family="Arial, sans-serif" font-size="24" fill="#764ba2">⚖️</text>
+    </g>
+    
+    <!-- Environmental symbol -->
+    <g transform="translate(60, 220)">
+      <circle cx="0" cy="0" r="22" fill="#667eea" opacity="0.3"/>
+      <text x="-10" y="8" font-family="Arial, sans-serif" font-size="22" fill="#667eea">🌍</text>
+    </g>
+    
+    <!-- Education symbol -->
+    <g transform="translate(340, 220)">
+      <circle cx="0" cy="0" r="22" fill="#764ba2" opacity="0.3"/>
+      <text x="-10" y="8" font-family="Arial, sans-serif" font-size="22" fill="#764ba2">📚</text>
+    </g>
+  </g>
+  
+  <!-- Glowing pulse effect around heart -->
+  <circle cx="200" cy="180" r="100" fill="none" stroke="#e74c3c" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="100;120;100" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Stage title -->
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#667eea" text-anchor="middle">
+    What Breaks Your Heart?
+  </text>
+</svg>

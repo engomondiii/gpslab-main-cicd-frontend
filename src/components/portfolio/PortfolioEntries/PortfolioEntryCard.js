@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - PortfolioEntryCard Component
+ * GPS 101 INTEGRATION: GPS 101 deliverable cards with special styling
  * 
  * Individual portfolio entry card with thumbnail,
  * title, description, and stats.
@@ -22,7 +23,20 @@ const ENTRY_TYPES = {
   video: { icon: '🎬', label: 'Video' },
   achievement: { icon: '🏆', label: 'Achievement' },
   certificate: { icon: '📜', label: 'Certificate' },
+  // NEW: GPS 101 type
+  gps101_deliverable: { icon: '🎓', label: 'GPS 101 Deliverable' },
   other: { icon: '📌', label: 'Other' }
+};
+
+/**
+ * NEW: GPS 101 deliverable names
+ */
+const GPS101_DELIVERABLE_NAMES = {
+  1: 'Identity Statement',
+  2: 'Life Problem Candidate',
+  3: 'Problem Owner Story',
+  4: 'Life Purpose Statement',
+  5: 'Purpose-Driven Project'
 };
 
 /**
@@ -52,10 +66,14 @@ const PortfolioEntryCard = ({
     isFeatured = false,
     createdAt,
     stageCompleted,
-    externalUrl
+    externalUrl,
+    // NEW: GPS 101 props
+    isGPS101Deliverable = false,
+    gps101StageNumber,
+    gps101StageName
   } = entry;
   
-  const typeConfig = ENTRY_TYPES[type] || ENTRY_TYPES.other;
+  const typeConfig = ENTRY_TYPES[isGPS101Deliverable ? 'gps101_deliverable' : type] || ENTRY_TYPES.other;
   
   const formatDate = (date) => {
     if (!date) return '';
@@ -89,6 +107,7 @@ const PortfolioEntryCard = ({
     'portfolio-entry-card',
     `portfolio-entry-card--${variant}`,
     isFeatured && 'portfolio-entry-card--featured',
+    isGPS101Deliverable && 'portfolio-entry-card--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -96,6 +115,13 @@ const PortfolioEntryCard = ({
   if (variant === 'compact') {
     return (
       <article className={classNames} onClick={handleClick} {...props}>
+        {isGPS101Deliverable && (
+          <div className="portfolio-entry-card__gps101-indicator">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+          </div>
+        )}
         <div className="portfolio-entry-card__type-icon">
           {typeConfig.icon}
         </div>
@@ -127,14 +153,25 @@ const PortfolioEntryCard = ({
         
         {/* Badges */}
         <div className="portfolio-entry-card__badges">
+          {/* NEW: GPS 101 Badge */}
+          {isGPS101Deliverable && (
+            <span className="portfolio-entry-card__badge portfolio-entry-card__badge--gps101">
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+              </svg>
+              GPS 101
+            </span>
+          )}
           {isFeatured && (
             <span className="portfolio-entry-card__badge portfolio-entry-card__badge--featured">
               ⭐ Featured
             </span>
           )}
-          <span className="portfolio-entry-card__badge portfolio-entry-card__badge--type">
-            {typeConfig.icon} {typeConfig.label}
-          </span>
+          {!isGPS101Deliverable && (
+            <span className="portfolio-entry-card__badge portfolio-entry-card__badge--type">
+              {typeConfig.icon} {typeConfig.label}
+            </span>
+          )}
         </div>
         
         {/* External link indicator */}
@@ -147,14 +184,32 @@ const PortfolioEntryCard = ({
       
       {/* Content */}
       <div className="portfolio-entry-card__content">
-        <h3 className="portfolio-entry-card__title">{title}</h3>
+        {/* NEW: GPS 101 Stage Header */}
+        {isGPS101Deliverable && gps101StageNumber && (
+          <div className="portfolio-entry-card__gps101-header">
+            <span className="portfolio-entry-card__gps101-stage">
+              Stage {gps101StageNumber}
+            </span>
+            {gps101StageName && (
+              <span className="portfolio-entry-card__gps101-stage-name">
+                {gps101StageName}
+              </span>
+            )}
+          </div>
+        )}
+        
+        <h3 className="portfolio-entry-card__title">
+          {isGPS101Deliverable && gps101StageNumber 
+            ? GPS101_DELIVERABLE_NAMES[gps101StageNumber] || title
+            : title}
+        </h3>
         
         {description && (
           <p className="portfolio-entry-card__description">{description}</p>
         )}
         
-        {/* Stage Badge */}
-        {stageCompleted && (
+        {/* Stage Badge (for non-GPS101 entries) */}
+        {!isGPS101Deliverable && stageCompleted && (
           <div className="portfolio-entry-card__stage">
             <span className="portfolio-entry-card__stage-badge">
               Stage {stageCompleted}
@@ -228,5 +283,5 @@ const PortfolioEntryCard = ({
   );
 };
 
-export { ENTRY_TYPES };
+export { ENTRY_TYPES, GPS101_DELIVERABLE_NAMES };
 export default PortfolioEntryCard;

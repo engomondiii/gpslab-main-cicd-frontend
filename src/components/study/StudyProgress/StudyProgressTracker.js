@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - StudyProgressTracker Component
+ * GPS 101 INTEGRATION: Display GPS 101 progress separately from regular progress
  * 
  * Tracks and displays overall study progress across missions,
  * modules, and stages with visual progress indicators.
@@ -8,6 +9,7 @@
  */
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './StudyProgressTracker.css';
 
 /**
@@ -40,14 +42,25 @@ const StudyProgressTracker = ({
   weeklyGoal = 5,
   weeklyCompleted = 0,
   recentActivity = [],
+  // NEW: GPS 101 props
+  isGPS101Enrolled = false,
+  gps101Progress = 0,
+  gps101CurrentStage = 1,
+  gps101MissionsCompleted = 0,
+  gps101TotalMissions = 30, // 5 stages × 6 missions
+  gps101StudyStreak = 0,
+  showGPS101Separately = true,
   onStageClick,
   variant = 'default', // default, compact, detailed
   className = '',
   ...props
 }) => {
+  const navigate = useNavigate();
+  
   const classNames = [
     'study-progress-tracker',
     `study-progress-tracker--${variant}`,
+    isGPS101Enrolled && showGPS101Separately && 'study-progress-tracker--with-gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -57,6 +70,86 @@ const StudyProgressTracker = ({
   
   return (
     <div className={classNames} {...props}>
+      {/* NEW: GPS 101 Section (if enrolled and showing separately) */}
+      {isGPS101Enrolled && showGPS101Separately && (
+        <div className="study-progress-tracker__gps101">
+          <div className="study-progress-tracker__gps101-header">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0z"/>
+            </svg>
+            <div>
+              <h3 className="study-progress-tracker__gps101-title">GPS 101 Basic</h3>
+              <p className="study-progress-tracker__gps101-subtitle">Purpose Discovery Journey</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate('/gps-101')}
+              className="study-progress-tracker__gps101-link"
+            >
+              View →
+            </button>
+          </div>
+          
+          <div className="study-progress-tracker__gps101-progress">
+            <div className="study-progress-tracker__gps101-circle">
+              <svg viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="rgba(102, 126, 234, 0.2)"
+                  strokeWidth="12"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="url(#gps101Gradient)"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeDasharray={`${gps101Progress * 3.39} 339`}
+                  transform="rotate(-90 60 60)"
+                />
+                <defs>
+                  <linearGradient id="gps101Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#667eea" />
+                    <stop offset="100%" stopColor="#764ba2" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div className="study-progress-tracker__gps101-value">
+                <span className="study-progress-tracker__gps101-percent">{gps101Progress}</span>
+                <span className="study-progress-tracker__gps101-sign">%</span>
+              </div>
+            </div>
+            
+            <div className="study-progress-tracker__gps101-stats">
+              <div className="study-progress-tracker__gps101-stat">
+                <span className="study-progress-tracker__gps101-stat-value">
+                  Stage {gps101CurrentStage}/5
+                </span>
+                <span className="study-progress-tracker__gps101-stat-label">Current Stage</span>
+              </div>
+              <div className="study-progress-tracker__gps101-stat">
+                <span className="study-progress-tracker__gps101-stat-value">
+                  {gps101MissionsCompleted}/{gps101TotalMissions}
+                </span>
+                <span className="study-progress-tracker__gps101-stat-label">Missions</span>
+              </div>
+              {gps101StudyStreak > 0 && (
+                <div className="study-progress-tracker__gps101-stat">
+                  <span className="study-progress-tracker__gps101-stat-icon">🔥</span>
+                  <span className="study-progress-tracker__gps101-stat-value">{gps101StudyStreak}</span>
+                  <span className="study-progress-tracker__gps101-stat-label">Day Streak</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Overall Progress */}
       <div className="study-progress-tracker__overall">
         <div className="study-progress-tracker__overall-circle">
@@ -95,7 +188,9 @@ const StudyProgressTracker = ({
           </div>
         </div>
         <div className="study-progress-tracker__overall-info">
-          <h3 className="study-progress-tracker__title">Study Progress</h3>
+          <h3 className="study-progress-tracker__title">
+            {isGPS101Enrolled && showGPS101Separately ? 'Regular Study Progress' : 'Study Progress'}
+          </h3>
           <p className="study-progress-tracker__subtitle">
             Keep learning to master each stage
           </p>
@@ -212,9 +307,9 @@ const StudyProgressTracker = ({
           <h4 className="study-progress-tracker__section-title">Recent Activity</h4>
           <ul className="study-progress-tracker__activity-list">
             {recentActivity.slice(0, 5).map((activity, index) => (
-              <li key={index} className="study-progress-tracker__activity-item">
+              <li key={index} className={`study-progress-tracker__activity-item ${activity.isGPS101 ? 'study-progress-tracker__activity-item--gps101' : ''}`}>
                 <span className="study-progress-tracker__activity-icon">
-                  {activity.type === 'completed' ? '✅' : activity.type === 'started' ? '▶️' : '📖'}
+                  {activity.isGPS101 ? '🎓' : activity.type === 'completed' ? '✅' : activity.type === 'started' ? '▶️' : '📖'}
                 </span>
                 <span className="study-progress-tracker__activity-text">
                   {activity.description}

@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - BiteBoard Component
+ * GPS 101 INTEGRATION: Recognizes GPS 101 missions' bites, shows GPS 101 context
  * 
  * Kanban board for managing bite tasks across status columns.
  * 
@@ -32,6 +33,11 @@ const BiteBoard = ({
   subtitle,
   missionId,
   missionTitle,
+  // NEW: GPS 101 props
+  isGPS101 = false,
+  gps101StageNumber,
+  gps101StageQuestion,
+  gps101DeliverableName,
   onBiteClick,
   onBiteStatusChange,
   onAddBite,
@@ -184,7 +190,11 @@ const BiteBoard = ({
     return cols;
   }, [columns, showBlockedColumn, stats.blocked]);
   
-  const classNames = ['bite-board', className].filter(Boolean).join(' ');
+  const classNames = [
+    'bite-board',
+    isGPS101 && 'bite-board--gps101',
+    className
+  ].filter(Boolean).join(' ');
   
   return (
     <div className={classNames} {...props}>
@@ -192,6 +202,21 @@ const BiteBoard = ({
       {showHeader && (
         <div className="bite-board__header">
           <div className="bite-board__header-left">
+            {/* NEW: GPS 101 Badge */}
+            {isGPS101 && (
+              <div className="bite-board__gps101-badge">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                </svg>
+                <div className="bite-board__gps101-info">
+                  <span className="bite-board__gps101-label">GPS 101 • Stage {gps101StageNumber}</span>
+                  {gps101StageQuestion && (
+                    <span className="bite-board__gps101-question">"{gps101StageQuestion}"</span>
+                  )}
+                </div>
+              </div>
+            )}
+            
             <div className="bite-board__title-section">
               <h2 className="bite-board__title">{title}</h2>
               {subtitle && <p className="bite-board__subtitle">{subtitle}</p>}
@@ -201,6 +226,16 @@ const BiteBoard = ({
                     <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd"/>
                   </svg>
                   <span>{missionTitle}</span>
+                </div>
+              )}
+              
+              {/* NEW: GPS 101 Deliverable Info */}
+              {isGPS101 && gps101DeliverableName && (
+                <div className="bite-board__gps101-deliverable">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd"/>
+                  </svg>
+                  <span>Deliverable: {gps101DeliverableName}</span>
                 </div>
               )}
             </div>
@@ -253,7 +288,7 @@ const BiteBoard = ({
                 <svg viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd"/>
                 </svg>
-                New Task
+                {isGPS101 ? 'New GPS 101 Task' : 'New Task'}
               </button>
             )}
           </div>
@@ -270,7 +305,7 @@ const BiteBoard = ({
             </svg>
             <input
               type="text"
-              placeholder="Search tasks..."
+              placeholder={isGPS101 ? 'Search GPS 101 tasks...' : 'Search tasks...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bite-board__search-input"
@@ -302,6 +337,8 @@ const BiteBoard = ({
             <option value="design">Design</option>
             <option value="writing">Writing</option>
             <option value="quiz">Quiz</option>
+            {isGPS101 && <option value="reflection">Reflection</option>}
+            {isGPS101 && <option value="deliverable">Deliverable</option>}
           </select>
           
           {assignees.length > 0 && (
@@ -359,6 +396,7 @@ const BiteBoard = ({
                 isCollapsed={collapsedColumns.has(col.status)}
                 onToggleCollapse={handleToggleCollapse}
                 showAddButton={col.status !== 'completed' && col.status !== 'blocked'}
+                isGPS101={isGPS101}
               />
             ))}
           </div>

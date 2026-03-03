@@ -3,6 +3,8 @@
  * 
  * Quick action buttons for common dashboard tasks.
  * 
+ * UPDATED: GPS 101 Integration - Added GPS 101 quick actions
+ * 
  * @module components/dashboard/QuickActions
  */
 
@@ -10,7 +12,61 @@ import React from 'react';
 import './QuickActions.css';
 
 /**
- * Default quick actions
+ * GPS 101 Actions (shown when enrolled)
+ */
+const GPS_101_ACTIONS = [
+  {
+    id: 'continue-gps101',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/>
+      </svg>
+    ),
+    label: 'Continue GPS 101',
+    description: 'Resume your purpose journey',
+    color: 'gps101',
+    badge: null
+  },
+  {
+    id: 'submit-checkpoint',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+      </svg>
+    ),
+    label: 'Submit Checkpoint',
+    description: 'Complete current checkpoint',
+    color: 'gps101',
+    badge: null
+  },
+  {
+    id: 'save-deliverable',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+      </svg>
+    ),
+    label: 'Save Deliverable',
+    description: 'Submit stage deliverable',
+    color: 'accent',
+    badge: null
+  },
+  {
+    id: 'view-gps101-progress',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+      </svg>
+    ),
+    label: 'GPS 101 Dashboard',
+    description: 'View your progress',
+    color: 'info',
+    badge: null
+  }
+];
+
+/**
+ * Default quick actions (regular missions)
  */
 const DEFAULT_ACTIONS = [
   {
@@ -85,18 +141,6 @@ const DEFAULT_ACTIONS = [
     description: 'Get guidance',
     color: 'info',
     badge: null
-  },
-  {
-    id: 'leaderboard',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z"/>
-      </svg>
-    ),
-    label: 'Leaderboard',
-    description: 'See rankings',
-    color: 'warning',
-    badge: null
   }
 ];
 
@@ -131,17 +175,25 @@ const QuickActionButton = ({ action, onClick }) => {
  * QuickActions Component
  */
 const QuickActions = ({
-  actions = DEFAULT_ACTIONS,
+  actions,
   title = 'Quick Actions',
   onAction,
   columns = 2,
   showTitle = true,
+  // GPS 101 Props
+  gps101Enrolled = false,
+  showGPS101Actions = true,
   className = '',
   ...props
 }) => {
+  
+  // Determine which actions to show
+  const displayActions = actions || (gps101Enrolled && showGPS101Actions ? GPS_101_ACTIONS : DEFAULT_ACTIONS);
+  
   const classNames = [
     'quick-actions',
     `quick-actions--cols-${columns}`,
+    gps101Enrolled && 'quick-actions--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -152,7 +204,7 @@ const QuickActions = ({
       )}
       
       <div className="quick-actions__grid">
-        {actions.map(action => (
+        {displayActions.map(action => (
           <QuickActionButton
             key={action.id}
             action={action}
@@ -164,5 +216,5 @@ const QuickActions = ({
   );
 };
 
-export { DEFAULT_ACTIONS, QuickActionButton };
+export { DEFAULT_ACTIONS, GPS_101_ACTIONS, QuickActionButton };
 export default QuickActions;

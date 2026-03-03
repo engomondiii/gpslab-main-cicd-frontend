@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - NavigatorGuidance Component
+ * GPS 101 INTEGRATION: GPS 101 stage/mission/checkpoint guidance
  * 
  * Comprehensive guidance panel showing suggestions,
  * tips, progress insights, and contextual help.
@@ -41,6 +42,17 @@ const STAGE_NAMES = {
 };
 
 /**
+ * NEW: GPS 101 stage names
+ */
+const GPS101_STAGE_NAMES = {
+  1: 'Identity',
+  2: 'Problem',
+  3: 'Owner',
+  4: 'Purpose',
+  5: 'Project'
+};
+
+/**
  * NavigatorGuidance Component
  */
 const NavigatorGuidance = ({
@@ -48,6 +60,13 @@ const NavigatorGuidance = ({
   suggestions = [],
   dailyTip = null,
   progressInsights = [],
+  // NEW: GPS 101 props
+  isGPS101Enrolled = false,
+  gps101CurrentStage = 1,
+  gps101Progress = 0,
+  gps101Suggestions = [],
+  gps101DailyTip = null,
+  showGPS101Section = true,
   onSuggestionClick,
   onTipDismiss,
   onOpenChat,
@@ -58,6 +77,8 @@ const NavigatorGuidance = ({
 }) => {
   const [activeTab, setActiveTab] = useState('suggestions');
   const [dismissedTip, setDismissedTip] = useState(false);
+  const [dismissedGPS101Tip, setDismissedGPS101Tip] = useState(false);
+  const [showGPS101Only, setShowGPS101Only] = useState(false);
   
   const {
     name: userName = 'GPS Student',
@@ -76,11 +97,24 @@ const NavigatorGuidance = ({
     }
   }, [dailyTip, onTipDismiss]);
   
+  const handleGPS101TipDismiss = useCallback(() => {
+    setDismissedGPS101Tip(true);
+    if (onTipDismiss) {
+      onTipDismiss(gps101DailyTip?.id);
+    }
+  }, [gps101DailyTip, onTipDismiss]);
+  
   const classNames = [
     'navigator-guidance',
     isLoading && 'navigator-guidance--loading',
+    isGPS101Enrolled && showGPS101Section && 'navigator-guidance--with-gps101',
     className
   ].filter(Boolean).join(' ');
+  
+  // Combine suggestions
+  const displaySuggestions = showGPS101Only 
+    ? gps101Suggestions 
+    : [...gps101Suggestions, ...suggestions];
   
   return (
     <div className={classNames} style={{ '--beacon-color': beaconColor }} {...props}>
@@ -144,23 +178,81 @@ const NavigatorGuidance = ({
         )}
       </div>
       
-      {/* Daily Tip */}
-      {dailyTip && !dismissedTip && (
-        <div className="navigator-guidance__daily-tip">
-          <div className="navigator-guidance__tip-header">
-            <span className="navigator-guidance__tip-icon">💡</span>
-            <span className="navigator-guidance__tip-label">Daily Tip</span>
+      {/* NEW: GPS 101 Status Section */}
+      {isGPS101Enrolled && showGPS101Section && (
+        <div className="navigator-guidance__gps101">
+          <div className="navigator-guidance__gps101-header">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+            <div className="navigator-guidance__gps101-info">
+              <span className="navigator-guidance__gps101-label">GPS 101 Progress</span>
+              <span className="navigator-guidance__gps101-stage">
+                Stage {gps101CurrentStage}/5: {GPS101_STAGE_NAMES[gps101CurrentStage]}
+              </span>
+            </div>
             <button
               type="button"
-              className="navigator-guidance__tip-dismiss"
-              onClick={handleTipDismiss}
+              className={`navigator-guidance__gps101-filter ${showGPS101Only ? 'navigator-guidance__gps101-filter--active' : ''}`}
+              onClick={() => setShowGPS101Only(!showGPS101Only)}
+              title="Show GPS 101 guidance only"
             >
-              ✕
+              GPS 101 Only
             </button>
           </div>
-          <p className="navigator-guidance__tip-text">{dailyTip.content}</p>
+          
+          <div className="navigator-guidance__gps101-progress">
+            <div className="navigator-guidance__gps101-progress-bar">
+              <div 
+                className="navigator-guidance__gps101-progress-fill"
+                style={{ width: `${gps101Progress}%` }}
+              />
+            </div>
+            <span className="navigator-guidance__gps101-progress-text">{gps101Progress}%</span>
+          </div>
         </div>
       )}
+      
+      {/* Daily Tips */}
+      <div className="navigator-guidance__tips-container">
+        {/* Regular Daily Tip */}
+        {dailyTip && !dismissedTip && !showGPS101Only && (
+          <div className="navigator-guidance__daily-tip">
+            <div className="navigator-guidance__tip-header">
+              <span className="navigator-guidance__tip-icon">💡</span>
+              <span className="navigator-guidance__tip-label">Daily Tip</span>
+              <button
+                type="button"
+                className="navigator-guidance__tip-dismiss"
+                onClick={handleTipDismiss}
+              >
+                ✕
+              </button>
+            </div>
+            <p className="navigator-guidance__tip-text">{dailyTip.content}</p>
+          </div>
+        )}
+        
+        {/* NEW: GPS 101 Daily Tip */}
+        {gps101DailyTip && !dismissedGPS101Tip && isGPS101Enrolled && (
+          <div className="navigator-guidance__daily-tip navigator-guidance__daily-tip--gps101">
+            <div className="navigator-guidance__tip-header">
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+              </svg>
+              <span className="navigator-guidance__tip-label">GPS 101 Tip</span>
+              <button
+                type="button"
+                className="navigator-guidance__tip-dismiss"
+                onClick={handleGPS101TipDismiss}
+              >
+                ✕
+              </button>
+            </div>
+            <p className="navigator-guidance__tip-text">{gps101DailyTip.content}</p>
+          </div>
+        )}
+      </div>
       
       {/* Tabs */}
       <div className="navigator-guidance__tabs">
@@ -171,8 +263,8 @@ const NavigatorGuidance = ({
         >
           <span className="navigator-guidance__tab-icon">🎯</span>
           Suggestions
-          {suggestions.length > 0 && (
-            <span className="navigator-guidance__tab-badge">{suggestions.length}</span>
+          {displaySuggestions.length > 0 && (
+            <span className="navigator-guidance__tab-badge">{displaySuggestions.length}</span>
           )}
         </button>
         <button
@@ -206,8 +298,10 @@ const NavigatorGuidance = ({
         {/* Suggestions Tab */}
         {activeTab === 'suggestions' && !isLoading && (
           <GuidanceSuggestions
-            suggestions={suggestions}
+            suggestions={displaySuggestions}
             userStage={userStage}
+            isGPS101Context={showGPS101Only}
+            gps101Stage={gps101CurrentStage}
             onSuggestionClick={onSuggestionClick}
             showHeader={false}
           />
@@ -218,9 +312,20 @@ const NavigatorGuidance = ({
           <div className="navigator-guidance__insights">
             {progressInsights.length > 0 ? (
               progressInsights.map((insight, index) => (
-                <div key={index} className="navigator-guidance__insight">
+                <div 
+                  key={index} 
+                  className={`navigator-guidance__insight ${insight.isGPS101 ? 'navigator-guidance__insight--gps101' : ''}`}
+                >
                   <div className="navigator-guidance__insight-icon">{insight.icon}</div>
                   <div className="navigator-guidance__insight-content">
+                    {insight.isGPS101 && (
+                      <span className="navigator-guidance__insight-gps101-badge">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                        </svg>
+                        GPS 101
+                      </span>
+                    )}
                     <h4 className="navigator-guidance__insight-title">{insight.title}</h4>
                     <p className="navigator-guidance__insight-text">{insight.text}</p>
                   </div>
@@ -238,6 +343,35 @@ const NavigatorGuidance = ({
         {/* Help Tab */}
         {activeTab === 'help' && !isLoading && (
           <div className="navigator-guidance__help">
+            {/* NEW: GPS 101 Help Topics (if enrolled) */}
+            {isGPS101Enrolled && (
+              <div className="navigator-guidance__help-section">
+                <h4 className="navigator-guidance__help-title">
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                  </svg>
+                  GPS 101 Help Topics
+                </h4>
+                <div className="navigator-guidance__help-topics">
+                  <button type="button" className="navigator-guidance__help-topic navigator-guidance__help-topic--gps101">
+                    🎓 Understanding GPS 101 stages
+                  </button>
+                  <button type="button" className="navigator-guidance__help-topic navigator-guidance__help-topic--gps101">
+                    📝 Writing powerful deliverables
+                  </button>
+                  <button type="button" className="navigator-guidance__help-topic navigator-guidance__help-topic--gps101">
+                    💭 Reflection best practices
+                  </button>
+                  <button type="button" className="navigator-guidance__help-topic navigator-guidance__help-topic--gps101">
+                    🎯 Purpose discovery tips
+                  </button>
+                  <button type="button" className="navigator-guidance__help-topic navigator-guidance__help-topic--gps101">
+                    🟠 Unlocking the Orange Beacon
+                  </button>
+                </div>
+              </div>
+            )}
+            
             <div className="navigator-guidance__help-section">
               <h4 className="navigator-guidance__help-title">Quick Help Topics</h4>
               <div className="navigator-guidance__help-topics">

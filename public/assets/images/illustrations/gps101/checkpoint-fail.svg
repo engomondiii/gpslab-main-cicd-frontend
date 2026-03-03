@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+  <defs>
+    <linearGradient id="fail-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.2" />
+    </linearGradient>
+    <radialGradient id="x-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.2" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="300" fill="url(#fail-bg)"/>
+  
+  <!-- Circle -->
+  <circle cx="150" cy="150" r="80" fill="url(#x-glow)"/>
+  <circle cx="150" cy="150" r="75" fill="none" stroke="#e74c3c" stroke-width="8"/>
+  
+  <!-- X mark -->
+  <path d="M 115 115 L 185 185" 
+        stroke="#e74c3c" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        fill="none"/>
+  <path d="M 185 115 L 115 185" 
+        stroke="#e74c3c" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        fill="none"/>
+  
+  <!-- White inner glow on X -->
+  <path d="M 115 115 L 185 185" 
+        stroke="#fff" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        fill="none" 
+        opacity="0.4"/>
+  <path d="M 185 115 L 115 185" 
+        stroke="#fff" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        fill="none" 
+        opacity="0.4"/>
+  
+  <!-- Retry indicator - curved arrow -->
+  <g transform="translate(150, 240)">
+    <path d="M -20 0 A 20 20 0 1 1 20 0" 
+          stroke="#667eea" 
+          stroke-width="4" 
+          fill="none" 
+          stroke-linecap="round"/>
+    <path d="M 15 -5 L 20 0 L 15 5" 
+          stroke="#667eea" 
+          stroke-width="4" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="150" y="265" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#e74c3c" text-anchor="middle">
+    Try Again
+  </text>
+  <text x="150" y="285" font-family="Arial, sans-serif" font-size="12" fill="#c0392b" text-anchor="middle" opacity="0.8">
+    Use R2R to retry
+  </text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="gps101-stage4-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.2" />
+    </linearGradient>
+    <radialGradient id="light-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f39c12;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#f39c12;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="compass-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#gps101-stage4-bg)"/>
+  
+  <!-- Light rays emanating from center -->
+  <g id="light-rays" opacity="0.3">
+    <path d="M 200 150 L 200 50" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 200 150 L 280 80" stroke="#f39c12" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 200 150 L 320 150" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 200 150 L 280 220" stroke="#f39c12" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 200 150 L 200 250" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 200 150 L 120 220" stroke="#f39c12" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 200 150 L 80 150" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 200 150 L 120 80" stroke="#f39c12" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Central compass -->
+  <g id="purpose-compass">
+    <!-- Outer circle -->
+    <circle cx="200" cy="150" r="60" fill="none" stroke="url(#compass-gradient)" stroke-width="4"/>
+    <circle cx="200" cy="150" r="55" fill="#fff" opacity="0.9"/>
+    
+    <!-- Inner compass design -->
+    <circle cx="200" cy="150" r="50" fill="none" stroke="#667eea" stroke-width="2" opacity="0.3"/>
+    <circle cx="200" cy="150" r="40" fill="none" stroke="#764ba2" stroke-width="2" opacity="0.3"/>
+    
+    <!-- Cardinal directions -->
+    <text x="200" y="115" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#667eea" text-anchor="middle">I</text>
+    <text x="235" y="155" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#764ba2" text-anchor="middle">P</text>
+    <text x="200" y="190" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#667eea" text-anchor="middle">O</text>
+    <text x="165" y="155" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#764ba2" text-anchor="middle">S</text>
+    
+    <!-- Compass needle pointing to purpose -->
+    <g transform="rotate(-45 200 150)">
+      <path d="M 200 150 L 205 130 L 200 110 L 195 130 Z" fill="#e74c3c"/>
+      <path d="M 200 150 L 205 170 L 200 190 L 195 170 Z" fill="#667eea" opacity="0.5"/>
+    </g>
+    
+    <!-- Center pin -->
+    <circle cx="200" cy="150" r="8" fill="#f39c12"/>
+    <circle cx="200" cy="150" r="4" fill="#fff"/>
+  </g>
+  
+  <!-- Glowing aura -->
+  <circle cx="200" cy="150" r="70" fill="url(#light-glow)" opacity="0.4">
+    <animate attributeName="r" values="70;85;70" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.2;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Connection lines forming a web -->
+  <g id="connection-web" opacity="0.2">
+    <!-- Identity to Problem -->
+    <path d="M 200 110 Q 170 130 200 150" stroke="#667eea" stroke-width="2" fill="none"/>
+    <!-- Problem to Owner -->
+    <path d="M 235 150 Q 220 170 200 150" stroke="#764ba2" stroke-width="2" fill="none"/>
+    <!-- Owner to Story -->
+    <path d="M 200 190 Q 180 170 200 150" stroke="#667eea" stroke-width="2" fill="none"/>
+    <!-- Story to Identity -->
+    <path d="M 165 150 Q 180 130 200 150" stroke="#764ba2" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Labels around compass -->
+  <text x="200" y="85" font-family="Arial, sans-serif" font-size="11" fill="#667eea" text-anchor="middle" opacity="0.7">Identity</text>
+  <text x="260" y="155" font-family="Arial, sans-serif" font-size="11" fill="#764ba2" text-anchor="middle" opacity="0.7">Problem</text>
+  <text x="200" y="225" font-family="Arial, sans-serif" font-size="11" fill="#667eea" text-anchor="middle" opacity="0.7">Owner</text>
+  <text x="140" y="155" font-family="Arial, sans-serif" font-size="11" fill="#764ba2" text-anchor="middle" opacity="0.7">Story</text>
+  
+  <!-- Stage title -->
+  <text x="200" y="285" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#667eea" text-anchor="middle">
+    Discovering Your Purpose
+  </text>
+</svg>

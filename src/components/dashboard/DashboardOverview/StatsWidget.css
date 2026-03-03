@@ -130,6 +130,16 @@
   color: var(--info, #3498db);
 }
 
+.stats-widget--gps101 .stats-widget__icon {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.05));
+  color: #667eea;
+}
+
+.stats-widget--orange-beacon .stats-widget__icon {
+  background: linear-gradient(135deg, rgba(243, 156, 18, 0.15), rgba(243, 156, 18, 0.05));
+  color: #f39c12;
+}
+
 /* Content */
 .stats-widget__content {
   flex: 1;

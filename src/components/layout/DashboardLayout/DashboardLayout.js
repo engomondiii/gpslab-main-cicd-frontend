@@ -4,12 +4,10 @@
  * Dashboard layout with header, sidebar, and main content area.
  * Used for authenticated user pages.
  * 
- * @module components/layout/DashboardLayout/DashboardLayout
- * @version 1.0.0
+ * UPDATED: GPS 101 Integration - Passes GPS 101 props to Sidebar
  * 
- * NOTE: This component has no <a href> tags - no navigation fixes needed.
- * It delegates navigation to child components (Header, Sidebar, Breadcrumbs)
- * which have been individually fixed.
+ * @module components/layout/DashboardLayout/DashboardLayout
+ * @version 2.0.0
  */
 
 import React, { useState, useCallback } from 'react';
@@ -33,6 +31,11 @@ const DashboardLayout = ({
   onNotificationClick,
   pageTitle,
   pageActions,
+  // GPS 101 Props
+  gps101Enrolled = false,
+  gps101CurrentStage = 1,
+  gps101Progress = 0,
+  gps101OrangeBeaconProgress = 0,
   className = '',
   ...props
 }) => {
@@ -55,6 +58,7 @@ const DashboardLayout = ({
   const classNames = [
     'dashboard-layout',
     sidebarCollapsed && 'dashboard-layout--sidebar-collapsed',
+    gps101Enrolled && 'dashboard-layout--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -74,7 +78,7 @@ const DashboardLayout = ({
         onMenuToggle={handleMenuToggle}
       />
       
-      {/* Sidebar */}
+      {/* Sidebar with GPS 101 Props */}
       <Sidebar
         isOpen={sidebarOpen}
         isCollapsed={sidebarCollapsed}
@@ -84,6 +88,11 @@ const DashboardLayout = ({
         stats={stats}
         wallets={wallets}
         currentPath={currentPath}
+        // GPS 101 Props passed to Sidebar
+        gps101Enrolled={gps101Enrolled}
+        gps101CurrentStage={gps101CurrentStage}
+        gps101Progress={gps101Progress}
+        gps101OrangeBeaconProgress={gps101OrangeBeaconProgress}
       />
       
       {/* Main Content */}

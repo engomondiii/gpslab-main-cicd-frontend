@@ -17,9 +17,86 @@ import ProblemStatementForm from '../GPOStages/Stage_Negative3/ProblemStatementF
 import ProblemOwnerStoryForm from '../GPOStages/Stage_Negative2/ProblemOwnerStoryForm';
 import VisionStatementForm from '../GPOStages/Stage_Negative1/VisionStatementForm';
 import CallToActionForm from '../GPOStages/Stage0/CallToActionForm';
-import ShowcasePreview from '../GPOShowcase/ShowcasePreview';
+
+// Showcase Preview (if available - otherwise will show simple preview)
+// import ShowcasePreview from '../GPOShowcase/ShowcasePreview';
+
+// Utilities
+import { buildShowcaseSummary, isGPOCallComplete, calculateGPOProgress } from '../../../utils/helpers/gpo.helper';
+import { validateAllGPOStages } from '../../../utils/validators/gpo.validator';
+import { formatStageCompletionMessage } from '../../../utils/formatters/gpo.formatter';
 
 import './GPOCallFlow.css';
+
+/**
+ * Simple Showcase Preview Component
+ * TODO: Replace with full ShowcasePreview component when available
+ */
+const SimpleShowcasePreview = ({ showcaseData, onEdit, onSubmit }) => {
+  return (
+    <div style={{ padding: '24px' }}>
+      <div style={{ 
+        padding: '24px', 
+        background: 'linear-gradient(135deg, rgba(0,212,255,0.1), rgba(42,157,143,0.1))',
+        borderRadius: '12px',
+        marginBottom: '24px'
+      }}>
+        <h2 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '12px' }}>
+          🎉 Your Problem Showcase is Ready!
+        </h2>
+        <p style={{ color: '#8b949e', lineHeight: '1.8' }}>
+          You've completed all 5 stages. Review your showcase below, then submit to make it live.
+        </p>
+      </div>
+
+      <div style={{ marginBottom: '24px' }}>
+        <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px' }}>Summary</h3>
+        <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <li>✅ Introduction Complete</li>
+          <li>✅ Problem Statement Complete</li>
+          <li>✅ Impact Story Complete</li>
+          <li>✅ Vision Statement Complete</li>
+          <li>✅ Call to Action Complete</li>
+        </ul>
+      </div>
+
+      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+        <button
+          type="button"
+          onClick={() => onEdit(-4)}
+          style={{
+            padding: '12px 24px',
+            fontSize: '16px',
+            fontWeight: '600',
+            color: '#1b263b',
+            backgroundColor: '#ffffff',
+            border: '2px solid #d0d7de',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+        >
+          ← Edit Stages
+        </button>
+        <button
+          type="button"
+          onClick={onSubmit}
+          style={{
+            padding: '12px 24px',
+            fontSize: '16px',
+            fontWeight: '600',
+            color: '#0d1117',
+            background: 'linear-gradient(135deg, #00d4ff, #2a9d8f)',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+        >
+          🚀 Submit Showcase
+        </button>
+      </div>
+    </div>
+  );
+};
 
 /**
  * GPO Stage Configuration
@@ -89,9 +166,14 @@ const GPOCallFlow = ({
   const CurrentStageComponent = currentStageConfig?.component;
 
   /**
-   * Calculate progress
+   * Calculate progress using utility
    */
-  const progress = ((completedStages.length / GPO_STAGES.length) * 100).toFixed(0);
+  const progress = calculateGPOProgress(completedStages);
+
+  /**
+   * Check if all stages are complete
+   */
+  const allStagesComplete = isGPOCallComplete(completedStages);
 
   /**
    * Handle stage completion
@@ -107,6 +189,10 @@ const GPOCallFlow = ({
     if (!completedStages.includes(stageNumber)) {
       setCompletedStages(prev => [...prev, stageNumber]);
     }
+
+    // Show completion message
+    const message = formatStageCompletionMessage(stageNumber);
+    console.log(message);
 
     // Move to next stage
     if (stageNumber < 0) {
@@ -130,16 +216,28 @@ const GPOCallFlow = ({
    */
   const handleSubmit = useCallback(async () => {
     try {
-      // Submit complete showcase
-      console.log('Submitting Problem Showcase:', stageData);
+      // Validate all stages before submission
+      const { valid, stageErrors } = validateAllGPOStages(stageData);
+      
+      if (!valid) {
+        console.error('Validation errors:', stageErrors);
+        alert('Please complete all required fields in all stages before submitting.');
+        return;
+      }
+
+      // Build showcase summary using utility
+      const showcaseSummary = buildShowcaseSummary(stageData);
+      
+      console.log('Submitting Problem Showcase:', showcaseSummary);
       
       // Call completion handler
-      onComplete?.(stageData);
+      onComplete?.(showcaseSummary);
       
       // Navigate to success page
-      navigate('/gpo-call/success');
+      navigate('/gpo-call/success', { state: { showcaseData: showcaseSummary } });
     } catch (error) {
       console.error('Failed to submit showcase:', error);
+      alert('An error occurred while submitting. Please try again.');
     }
   }, [stageData, onComplete, navigate]);
 
@@ -180,7 +278,7 @@ const GPOCallFlow = ({
       {/* Content */}
       <div className="gpo-call-flow__content">
         {showPreview ? (
-          <ShowcasePreview
+          <SimpleShowcasePreview
             showcaseData={stageData}
             onEdit={handleNavigateToStage}
             onSubmit={handleSubmit}

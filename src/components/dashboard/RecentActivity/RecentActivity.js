@@ -3,6 +3,8 @@
  * 
  * Displays recent activity timeline with filtering options.
  * 
+ * UPDATED: GPS 101 Integration - Added GPS 101 activity types
+ * 
  * @module components/dashboard/RecentActivity
  */
 
@@ -14,6 +16,7 @@ import './RecentActivity.css';
  */
 const ACTIVITY_FILTERS = [
   { id: 'all', label: 'All' },
+  { id: 'gps101', label: 'GPS 101' },
   { id: 'missions', label: 'Missions' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'baraka', label: 'Baraka' },
@@ -96,6 +99,71 @@ const ACTIVITY_CONFIG = {
     ),
     color: 'info',
     category: 'social'
+  },
+  // GPS 101 ACTIVITY TYPES
+  gps101_enrolled: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path d="M10 2L2.5 17.29l.71.71L10 15l6.79 3 .71-.71L10 2z"/>
+      </svg>
+    ),
+    color: 'gps101',
+    category: 'gps101'
+  },
+  gps101_stage_complete: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+      </svg>
+    ),
+    color: 'gps101',
+    category: 'gps101'
+  },
+  gps101_checkpoint_passed: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+        <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+      </svg>
+    ),
+    color: 'success',
+    category: 'gps101'
+  },
+  gps101_checkpoint_failed: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
+      </svg>
+    ),
+    color: 'secondary',
+    category: 'gps101'
+  },
+  gps101_deliverable_saved: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z"/>
+      </svg>
+    ),
+    color: 'info',
+    category: 'gps101'
+  },
+  orange_beacon_unlocked: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+      </svg>
+    ),
+    color: 'baraka',
+    category: 'gps101'
+  },
+  gps101_mission_complete: {
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+      </svg>
+    ),
+    color: 'gps101',
+    category: 'gps101'
   }
 };
 
@@ -136,7 +204,12 @@ const ActivityTimelineItem = ({ activity, isLast }) => {
         </div>
         
         <div className="recent-activity__details">
-          <p className="recent-activity__title">{activity.title}</p>
+          <p className="recent-activity__title">
+            {config.category === 'gps101' && (
+              <span className="recent-activity__gps101-badge">GPS 101</span>
+            )}
+            {activity.title}
+          </p>
           {activity.description && (
             <p className="recent-activity__desc">{activity.description}</p>
           )}

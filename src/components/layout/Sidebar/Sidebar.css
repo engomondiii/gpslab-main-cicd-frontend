@@ -290,3 +290,31 @@
     transition: none;
   }
 }
+/* GPS 101 Sidebar Variant */
+.sidebar--gps101 {
+  border-right: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="dark"] .sidebar--gps101 {
+  border-right-color: rgba(102, 126, 234, 0.3);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+  
+  .sidebar__overlay {
+    animation: none;
+  }
+  
+  .sidebar__collapse-btn,
+  .sidebar__close-btn,
+  .sidebar__footer-links a {
+    transition: none;
+  }
+}

@@ -1,18 +1,22 @@
 /**
  * GPS Lab Platform - App Component
- * 
- * Main application entry point.
+ * * Main application entry point.
  * Wraps the app with all necessary providers and includes core components.
- * 
- * @module App
- * @version 1.3.0
- * 
- * UPDATED v1.3.0:
- * - Added GPO Call feature integration
- * - Maintained all existing functionality
+ * * @module App
+ * @version 2.1.1
+ * * UPDATED:
+ * - Synced App.js local mock auth state with Redux so AppRouter redirects properly.
  */
 
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
+import { Provider as ReduxProvider, useDispatch } from 'react-redux';
+
+// Store
+import { store } from './store';
+
+// Redux Actions (Make sure these import paths match your slice filenames!)
+import { loginSuccess, logout as reduxLogout } from './store/slices/auth.slice';
+import { setUser as setReduxUser, clearUser as clearReduxUser } from './store/slices/user.slice';
 
 // Providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -20,6 +24,7 @@ import { I18nProvider } from './context/I18nContext';
 import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { WebSocketProvider } from './context/WebSocketContext';
+import { GPS101Provider } from './context/GPS101Context'; 
 
 // Router
 import AppRouter from './routes/AppRouter';
@@ -34,7 +39,6 @@ import './App.css';
 
 /**
  * Toast Container Component
- * Manages toast notifications display
  */
 const ToastContainer = ({ toasts, onDismiss }) => {
   if (!toasts || toasts.length === 0) return null;
@@ -59,7 +63,6 @@ const ToastContainer = ({ toasts, onDismiss }) => {
 
 /**
  * App Loading Screen
- * Shown during initial app load
  */
 const AppLoadingScreen = () => (
   <div className="app-loading">
@@ -90,7 +93,6 @@ const AppLoadingScreen = () => (
 
 /**
  * App Error Fallback
- * Shown when the app encounters a critical error
  */
 const AppErrorFallback = ({ error, resetErrorBoundary }) => (
   <div className="app-error">
@@ -133,6 +135,8 @@ const AppErrorFallback = ({ error, resetErrorBoundary }) => (
  * Main App Component (inner, with access to router hooks)
  */
 const AppInner = () => {
+  const dispatch = useDispatch(); // NEW: Hook into Redux
+
   // App state
   const [isInitialized, setIsInitialized] = useState(false);
   const [toasts, setToasts] = useState([]);
@@ -145,6 +149,7 @@ const AppInner = () => {
   // User data
   const [notifications, setNotifications] = useState([]);
   
+  // App Settings & Economy
   const [stats, setStats] = useState({
     level: 1,
     xp: 0,
@@ -158,8 +163,14 @@ const AppInner = () => {
     baraka: { balance: 0, pending: 0, tier: 'yellow' },
     psb: { balance: 0, invested: 0, returns: 0 }
   });
+
+  const [gps101State, setGps101State] = useState({
+    enrolled: false,
+    currentStage: 1,
+    progress: 0,
+    orangeBeaconProgress: 0
+  });
   
-  // App settings
   const [currentLanguage, setCurrentLanguage] = useState('en');
   
   /**
@@ -172,8 +183,17 @@ const AppInner = () => {
         const storedToken = localStorage.getItem('gps_token');
         
         if (storedUser && storedToken) {
-          setUser(JSON.parse(storedUser));
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
           setIsAuthenticated(true);
+
+          // NEW: Sync initialization with Redux
+          dispatch(loginSuccess({ user: parsedUser, token: storedToken }));
+          dispatch(setReduxUser(parsedUser));
+
+          if (parsedUser.gps101Enrolled) {
+            setGps101State(prev => ({ ...prev, enrolled: true }));
+          }
         }
         
         const storedLang = localStorage.getItem('gps_language');
@@ -195,11 +215,8 @@ const AppInner = () => {
     };
     
     initializeApp();
-  }, []);
+  }, [dispatch]);
   
-  /**
-   * Add toast notification
-   */
   const addToast = useCallback((toast) => {
     const id = Date.now().toString();
     setToasts(prev => [...prev, { ...toast, id }]);
@@ -211,9 +228,6 @@ const AppInner = () => {
     }
   }, []);
   
-  /**
-   * Dismiss toast notification
-   */
   const dismissToast = useCallback((id) => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
   }, []);
@@ -233,13 +247,18 @@ const AppInner = () => {
         firstName: 'GPS',
         lastName: 'User',
         role: 'user',
-        avatar: null
+        avatar: null,
+        gps101Enrolled: false
       };
       
       setUser(mockUser);
       setIsAuthenticated(true);
       localStorage.setItem('gps_user', JSON.stringify(mockUser));
       localStorage.setItem('gps_token', 'mock_token');
+
+      // NEW: Sync successful login with Redux to trigger AppRouter redirect
+      dispatch(loginSuccess({ user: mockUser, token: 'mock_token' }));
+      dispatch(setReduxUser(mockUser));
       
       addToast({
         type: 'success',
@@ -258,7 +277,7 @@ const AppInner = () => {
     } finally {
       setIsAuthLoading(false);
     }
-  }, [addToast]);
+  }, [addToast, dispatch]);
   
   /**
    * Handle registration
@@ -275,13 +294,18 @@ const AppInner = () => {
         firstName: data.firstName,
         lastName: data.lastName,
         role: 'user',
-        avatar: null
+        avatar: null,
+        gps101Enrolled: false
       };
       
       setUser(mockUser);
       setIsAuthenticated(true);
       localStorage.setItem('gps_user', JSON.stringify(mockUser));
       localStorage.setItem('gps_token', 'mock_token');
+
+      // NEW: Sync successful registration with Redux
+      dispatch(loginSuccess({ user: mockUser, token: 'mock_token' }));
+      dispatch(setReduxUser(mockUser));
       
       addToast({
         type: 'success',
@@ -300,11 +324,8 @@ const AppInner = () => {
     } finally {
       setIsAuthLoading(false);
     }
-  }, [addToast]);
+  }, [addToast, dispatch]);
   
-  /**
-   * Handle OAuth login
-   */
   const handleOAuthLogin = useCallback(async (provider) => {
     try {
       addToast({
@@ -328,8 +349,13 @@ const AppInner = () => {
     try {
       setUser(null);
       setIsAuthenticated(false);
+      setGps101State({ enrolled: false, currentStage: 1, progress: 0, orangeBeaconProgress: 0 });
       localStorage.removeItem('gps_user');
       localStorage.removeItem('gps_token');
+
+      // NEW: Sync logout with Redux
+      dispatch(reduxLogout());
+      dispatch(clearReduxUser());
       
       addToast({
         type: 'info',
@@ -341,11 +367,8 @@ const AppInner = () => {
     } catch (error) {
       console.error('Logout error:', error);
     }
-  }, [addToast]);
+  }, [addToast, dispatch]);
   
-  /**
-   * Handle language change
-   */
   const handleLanguageChange = useCallback((lang) => {
     setCurrentLanguage(lang);
     localStorage.setItem('gps_language', lang);
@@ -357,9 +380,6 @@ const AppInner = () => {
     });
   }, [addToast]);
   
-  /**
-   * Handle notification click
-   */
   const [pendingNavigate, setPendingNavigate] = useState(null);
   
   const handleNotificationClick = useCallback((notification) => {
@@ -374,7 +394,6 @@ const AppInner = () => {
     }
   }, []);
   
-  // Memoized router props
   const routerProps = useMemo(() => ({
     user,
     isAuthenticated,
@@ -390,7 +409,11 @@ const AppInner = () => {
     onLanguageChange: handleLanguageChange,
     onNotificationClick: handleNotificationClick,
     pendingNavigate,
-    onNavigateComplete: () => setPendingNavigate(null)
+    onNavigateComplete: () => setPendingNavigate(null),
+    gps101Enrolled: gps101State.enrolled,
+    gps101CurrentStage: gps101State.currentStage,
+    gps101Progress: gps101State.progress,
+    gps101OrangeBeaconProgress: gps101State.orangeBeaconProgress
   }), [
     user,
     isAuthenticated,
@@ -405,7 +428,8 @@ const AppInner = () => {
     currentLanguage,
     handleLanguageChange,
     handleNotificationClick,
-    pendingNavigate
+    pendingNavigate,
+    gps101State
   ]);
   
   if (!isInitialized) {
@@ -437,24 +461,28 @@ const AppInner = () => {
  */
 const App = () => {
   return (
-    <ErrorBoundary
-      fallback={AppErrorFallback}
-      onError={(error, errorInfo) => {
-        console.error('App Error:', error, errorInfo);
-      }}
-    >
-      <ThemeProvider>
-        <I18nProvider language="en">
-          <AuthProvider>
-            <NotificationProvider>
-              <WebSocketProvider>
-                <AppInner />
-              </WebSocketProvider>
-            </NotificationProvider>
-          </AuthProvider>
-        </I18nProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <ReduxProvider store={store}>
+      <ErrorBoundary
+        fallback={AppErrorFallback}
+        onError={(error, errorInfo) => {
+          console.error('App Error:', error, errorInfo);
+        }}
+      >
+        <ThemeProvider>
+          <I18nProvider language="en">
+            <AuthProvider>
+              <NotificationProvider>
+                <WebSocketProvider>
+                  <GPS101Provider>
+                    <AppInner />
+                  </GPS101Provider>
+                </WebSocketProvider>
+              </NotificationProvider>
+            </AuthProvider>
+          </I18nProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </ReduxProvider>
   );
 };
 

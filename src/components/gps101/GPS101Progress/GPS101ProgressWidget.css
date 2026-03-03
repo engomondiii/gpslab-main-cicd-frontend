@@ -1,0 +1,218 @@
+/**
+ * GPS 101 Progress Widget Styles
+ */
+
+.gps101-progress-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Compact Variant */
+.gps101-progress-widget.compact {
+  padding: 1rem;
+}
+
+.widget-compact-content {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.compact-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.compact-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.compact-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Header */
+.progress-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.widget-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.weeks-remaining {
+  font-size: 0.875rem;
+  color: #666;
+  background: #f0f0f0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+/* Progress Circle */
+.progress-circle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.progress-circle {
+  width: 120px;
+  height: 120px;
+}
+
+.progress-circle-bg {
+  stroke: #e0e0e0;
+}
+
+.progress-circle-fill {
+  stroke: url(#gradient);
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+/* Define gradient for circle */
+.progress-circle-fill {
+  stroke: #667eea;
+}
+
+.progress-percentage-text {
+  font-size: 24px;
+  font-weight: 700;
+  fill: #333;
+}
+
+.progress-label-text {
+  font-size: 12px;
+  fill: #666;
+}
+
+/* Stats Grid */
+.progress-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.125rem;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Beacon Progress Section */
+.beacon-progress-section {
+  background: linear-gradient(to right, #fff5e6, white);
+  border: 1px solid #FFE0B2;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.beacon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.beacon-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.beacon-percentage {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FF8C00;
+}
+
+.beacon-progress-bar {
+  height: 8px;
+  background: #FFE0B2;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.beacon-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFA500, #FF8C00);
+  transition: width 0.5s ease;
+}
+
+.beacon-info {
+  text-align: right;
+}
+
+.beacon-remaining {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Action Button */
+.view-details-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-details-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .progress-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .widget-compact-content {
+    flex-direction: column;
+  }
+}

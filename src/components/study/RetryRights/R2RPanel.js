@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - R2RPanel Component
+ * GPS 101 INTEGRATION: Track R2R usage for GPS 101 checkpoints
  * 
  * Right to Retry (R2R) management panel showing available R2R,
  * how to earn more, and retry history.
@@ -20,6 +21,11 @@ const R2RPanel = ({
   totalUsed = 0,
   history = [],
   earnMethods = [],
+  // NEW: GPS 101 props
+  gps101Available = 0,
+  gps101TotalEarned = 0,
+  isGPS101Checkpoint = false,
+  gps101StageNumber,
   onUseRetry,
   onEarnMore,
   checkpointName,
@@ -29,6 +35,7 @@ const R2RPanel = ({
 }) => {
   const classNames = [
     'r2r-panel',
+    isGPS101Checkpoint && 'r2r-panel--gps101',
     className
   ].filter(Boolean).join(' ');
   
@@ -41,6 +48,10 @@ const R2RPanel = ({
     });
   };
   
+  // Determine which R2R to display
+  const displayAvailable = isGPS101Checkpoint ? gps101Available : available;
+  const displayEarned = isGPS101Checkpoint ? gps101TotalEarned : totalEarned;
+  
   return (
     <div className={classNames} {...props}>
       {/* Header */}
@@ -51,21 +62,40 @@ const R2RPanel = ({
           </svg>
         </div>
         <div className="r2r-panel__title-section">
-          <h3 className="r2r-panel__title">Right to Retry (R2R)</h3>
+          <h3 className="r2r-panel__title">
+            {isGPS101Checkpoint ? 'GPS 101 Right to Retry (R2R)' : 'Right to Retry (R2R)'}
+          </h3>
           <p className="r2r-panel__subtitle">
-            Earned through completing study missions
+            {isGPS101Checkpoint 
+              ? 'Earned through GPS 101 study missions'
+              : 'Earned through completing study missions'}
           </p>
         </div>
       </div>
       
+      {/* NEW: GPS 101 Context Banner */}
+      {isGPS101Checkpoint && (
+        <div className="r2r-panel__gps101-banner">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+          </svg>
+          <div>
+            <strong>GPS 101 Stage {gps101StageNumber} Checkpoint</strong>
+            <p>R2R earned from GPS 101 study missions can only be used for GPS 101 checkpoints</p>
+          </div>
+        </div>
+      )}
+      
       {/* Stats */}
       <div className="r2r-panel__stats">
         <div className="r2r-panel__stat r2r-panel__stat--available">
-          <span className="r2r-panel__stat-value">{available}</span>
-          <span className="r2r-panel__stat-label">Available</span>
+          <span className="r2r-panel__stat-value">{displayAvailable}</span>
+          <span className="r2r-panel__stat-label">
+            {isGPS101Checkpoint ? 'GPS 101 Available' : 'Available'}
+          </span>
         </div>
         <div className="r2r-panel__stat">
-          <span className="r2r-panel__stat-value">{totalEarned}</span>
+          <span className="r2r-panel__stat-value">{displayEarned}</span>
           <span className="r2r-panel__stat-label">Total Earned</span>
         </div>
         <div className="r2r-panel__stat">
@@ -74,26 +104,57 @@ const R2RPanel = ({
         </div>
       </div>
       
+      {/* NEW: Regular R2R Info (if GPS 101 checkpoint but has regular R2R) */}
+      {isGPS101Checkpoint && available > 0 && (
+        <div className="r2r-panel__regular-info">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>
+          </svg>
+          <p>You have {available} regular R2R available, but they can't be used for GPS 101 checkpoints</p>
+        </div>
+      )}
+      
       {/* Use R2R */}
-      {checkpointName && available > 0 && (
+      {checkpointName && displayAvailable > 0 && (
         <div className="r2r-panel__use-section">
           <p className="r2r-panel__use-context">
             Retry <strong>{checkpointName}</strong>
           </p>
           <RetryButton
             type="r2r"
-            available={available}
+            available={displayAvailable}
             onUseRetry={onUseRetry}
             size="large"
+            isGPS101={isGPS101Checkpoint}
           />
         </div>
       )}
       
       {/* How to Earn */}
       <div className="r2r-panel__earn-section">
-        <h4 className="r2r-panel__section-title">How to Earn R2R</h4>
+        <h4 className="r2r-panel__section-title">
+          {isGPS101Checkpoint ? 'How to Earn GPS 101 R2R' : 'How to Earn R2R'}
+        </h4>
         <ul className="r2r-panel__earn-list">
-          {earnMethods.length > 0 ? (
+          {isGPS101Checkpoint ? (
+            <>
+              <li className="r2r-panel__earn-item">
+                <span className="r2r-panel__earn-icon">🎓</span>
+                <span className="r2r-panel__earn-text">Complete GPS 101 study missions</span>
+                <span className="r2r-panel__earn-reward">+1 R2R</span>
+              </li>
+              <li className="r2r-panel__earn-item">
+                <span className="r2r-panel__earn-icon">📝</span>
+                <span className="r2r-panel__earn-text">Deep reflection exercises</span>
+                <span className="r2r-panel__earn-reward">+1 R2R</span>
+              </li>
+              <li className="r2r-panel__earn-item">
+                <span className="r2r-panel__earn-icon">🔥</span>
+                <span className="r2r-panel__earn-text">7-day GPS 101 study streak</span>
+                <span className="r2r-panel__earn-reward">+2 R2R</span>
+              </li>
+            </>
+          ) : earnMethods.length > 0 ? (
             earnMethods.map((method, index) => (
               <li key={index} className="r2r-panel__earn-item">
                 <span className="r2r-panel__earn-icon">{method.icon || '📚'}</span>
@@ -129,7 +190,7 @@ const R2RPanel = ({
             className="r2r-panel__earn-btn"
             onClick={onEarnMore}
           >
-            View Study Missions
+            {isGPS101Checkpoint ? 'View GPS 101 Study Missions' : 'View Study Missions'}
           </button>
         )}
       </div>
@@ -140,10 +201,11 @@ const R2RPanel = ({
           <h4 className="r2r-panel__section-title">Recent Activity</h4>
           <ul className="r2r-panel__history-list">
             {history.slice(0, 5).map((item, index) => (
-              <li key={index} className={`r2r-panel__history-item r2r-panel__history-item--${item.type}`}>
+              <li key={index} className={`r2r-panel__history-item r2r-panel__history-item--${item.type} ${item.isGPS101 ? 'r2r-panel__history-item--gps101' : ''}`}>
                 <span className="r2r-panel__history-action">
                   {item.type === 'earned' ? '+' : '-'}
                   {item.amount}
+                  {item.isGPS101 && <span className="r2r-panel__history-gps101-badge">🎓</span>}
                 </span>
                 <span className="r2r-panel__history-description">{item.description}</span>
                 <span className="r2r-panel__history-date">{formatDate(item.date)}</span>
@@ -154,9 +216,13 @@ const R2RPanel = ({
       )}
       
       {/* Empty State */}
-      {available === 0 && (
+      {displayAvailable === 0 && (
         <div className="r2r-panel__empty">
-          <p>Complete study missions to earn R2R for checkpoint retries</p>
+          <p>
+            {isGPS101Checkpoint 
+              ? 'Complete GPS 101 study missions to earn R2R for GPS 101 checkpoints'
+              : 'Complete study missions to earn R2R for checkpoint retries'}
+          </p>
         </div>
       )}
     </div>

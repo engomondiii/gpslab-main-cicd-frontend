@@ -242,3 +242,66 @@
     transition: none;
   }
 }
+/* =============================================================================
+   GPS 101 FEATURED STYLES
+   ============================================================================= */
+
+.main-nav__section--featured {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-2, 8px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.main-nav__link--featured {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+  border-left: 3px solid #667eea;
+}
+
+.main-nav__link--featured:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+}
+
+.main-nav__link--featured.main-nav__link--active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15));
+  border-left-color: #764ba2;
+}
+
+.main-nav__link--featured .main-nav__icon {
+  color: #667eea;
+}
+
+/* GPS 101 Badge Variant */
+.main-nav__badge--gps101 {
+  background-color: rgba(102, 126, 234, 0.15);
+  color: #667eea;
+}
+
+/* Dark Theme GPS 101 */
+[data-theme="dark"] .main-nav__section--featured {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+[data-theme="dark"] .main-nav__link--featured {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+}
+
+[data-theme="dark"] .main-nav__link--featured:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15));
+}
+
+[data-theme="dark"] .main-nav__link--featured.main-nav__link--active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.2));
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav__link,
+  .main-nav__icon,
+  .main-nav--collapsed .main-nav__link::after {
+    transition: none;
+  }
+}

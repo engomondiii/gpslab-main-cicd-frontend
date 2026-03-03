@@ -1,0 +1,90 @@
+/**
+ * GPS 101 Deliverables Styles
+ */
+
+.gps101-deliverables {
+  padding: 2rem;
+}
+
+.deliverables-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.deliverables-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.deliverables-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Completion Summary */
+.completion-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.summary-stat {
+  margin-bottom: 1rem;
+}
+
+.summary-stat .stat-label {
+  display: block;
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.summary-stat .stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.summary-progress {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.summary-progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.summary-progress-fill {
+  height: 100%;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gps101-deliverables {
+    padding: 1rem;
+  }
+
+  .deliverables-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deliverables-header h2 {
+    font-size: 1.5rem;
+  }
+}

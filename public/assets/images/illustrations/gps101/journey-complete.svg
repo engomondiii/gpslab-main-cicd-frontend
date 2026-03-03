@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="complete-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:0.2" />
+      <stop offset="50%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.2" />
+    </linearGradient>
+    <radialGradient id="beacon-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f39c12;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#f39c12;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="trophy-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#complete-bg)"/>
+  
+  <!-- Massive glow -->
+  <circle cx="200" cy="120" r="100" fill="url(#beacon-glow)" opacity="0.6">
+    <animate attributeName="r" values="100;120;100" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Orange Beacon (large) -->
+  <g id="orange-beacon">
+    <!-- Beacon circle -->
+    <circle cx="200" cy="120" r="50" fill="#f39c12"/>
+    <circle cx="200" cy="120" r="45" fill="#f39c12" opacity="0.8"/>
+    <circle cx="200" cy="120" r="40" fill="#fff" opacity="0.3"/>
+    
+    <!-- Beacon rays -->
+    <g opacity="0.6">
+      <path d="M 200 70 L 200 50" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 235 85 L 250 70" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 250 120 L 270 120" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 235 155 L 250 170" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 200 170 L 200 190" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 165 155 L 150 170" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 150 120 L 130 120" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 165 85 L 150 70" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    
+    <!-- GPS 101 text in beacon -->
+    <text x="200" y="118" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">GPS</text>
+    <text x="200" y="132" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">101</text>
+  </g>
+  
+  <!-- Trophy base -->
+  <g id="trophy" transform="translate(200, 200)">
+    <!-- Cup -->
+    <path d="M -30 0 L -25 -30 L 25 -30 L 30 0 Z" fill="url(#trophy-gradient)"/>
+    <ellipse cx="0" cy="0" rx="32" ry="8" fill="#f39c12"/>
+    
+    <!-- Handles -->
+    <path d="M -25 -25 Q -40 -25 -40 -15 Q -40 -5 -30 -5" 
+          stroke="#e67e22" 
+          stroke-width="3" 
+          fill="none"/>
+    <path d="M 25 -25 Q 40 -25 40 -15 Q 40 -5 30 -5" 
+          stroke="#e67e22" 
+          stroke-width="3" 
+          fill="none"/>
+    
+    <!-- Base -->
+    <rect x="-15" y="0" width="30" height="8" fill="#e67e22"/>
+    <ellipse cx="0" cy="8" rx="20" ry="5" fill="#d35400"/>
+    <ellipse cx="0" cy="13" rx="25" ry="6" fill="#e67e22"/>
+  </g>
+  
+  <!-- Confetti explosion -->
+  <g id="confetti" opacity="0.8">
+    <rect x="50" y="40" width="10" height="15" fill="#667eea" transform="rotate(20 55 47.5)"/>
+    <rect x="320" y="50" width="12" height="10" fill="#764ba2" transform="rotate(-15 326 55)"/>
+    <circle cx="80" cy="80" r="6" fill="#e74c3c"/>
+    <circle cx="330" cy="90" r="7" fill="#2ecc71"/>
+    <rect x="100" y="30" width="8" height="12" fill="#f39c12" transform="rotate(30 104 36)"/>
+    <rect x="290" y="35" width="10" height="9" fill="#3498db" transform="rotate(-25 295 39.5)"/>
+    <circle cx="60" cy="120" r="5" fill="#9b59b6"/>
+    <circle cx="340" cy="130" r="6" fill="#1abc9c"/>
+    <rect x="70" y="160" width="9" height="11" fill="#e67e22" transform="rotate(15 74.5 165.5)"/>
+    <rect x="320" y="170" width="11" height="8" fill="#e74c3c" transform="rotate(-20 325.5 174)"/>
+  </g>
+  
+  <!-- Stars -->
+  <g id="stars" fill="#f39c12">
+    <g transform="translate(100, 100)">
+      <path d="M 0 -10 L 3 -3 L 10 0 L 3 3 L 0 10 L -3 3 L -10 0 L -3 -3 Z" opacity="0.9"/>
+    </g>
+    <g transform="translate(300, 110)">
+      <path d="M 0 -8 L 2.4 -2.4 L 8 0 L 2.4 2.4 L 0 8 L -2.4 2.4 L -8 0 L -2.4 -2.4 Z" opacity="0.8"/>
+    </g>
+    <g transform="translate(120, 180)">
+      <path d="M 0 -7 L 2.1 -2.1 L 7 0 L 2.1 2.1 L 0 7 L -2.1 2.1 L -7 0 L -2.1 -2.1 Z" opacity="0.7"/>
+    </g>
+    <g transform="translate(280, 185)">
+      <path d="M 0 -9 L 2.7 -2.7 L 9 0 L 2.7 2.7 L 0 9 L -2.7 2.7 L -9 0 L -2.7 -2.7 Z" opacity="0.85"/>
+    </g>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#f39c12" text-anchor="middle">
+    Journey Complete!
+  </text>
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="14" fill="#667eea" text-anchor="middle">
+    Orange Beacon Unlocked • 5,000 Baraka Earned
+  </text>
+</svg>

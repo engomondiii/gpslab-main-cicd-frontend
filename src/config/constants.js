@@ -1,197 +1,402 @@
 /**
- * GPS Lab Platform - Application Constants
+ * Application Constants
  * 
- * Central configuration for application-wide constants.
- * 
- * @module config/constants
+ * Global constants used throughout the application.
  */
 
-// =============================================================================
-// GPO STAGES (-4 to 0)
-// =============================================================================
+// ==================== API CONFIGURATION ====================
 
-export const GPO_STAGES = [
-  {
-    number: -4,
-    name: 'Who are you?',
-    title: 'Introduction',
-    description: 'Introduce yourself and your community',
-    objectives: [
-      'Record 1-minute selfie video',
-      'Share your background',
-      'Describe your community'
-    ]
-  },
-  {
-    number: -3,
-    name: 'What is your problem?',
-    title: 'Problem Definition',
-    description: 'Define the problem clearly',
-    objectives: [
-      'Describe current reality',
-      'Define desired state',
-      'Identify the gap',
-      'Upload evidence (photos/videos)'
-    ]
-  },
-  {
-    number: -2,
-    name: 'Whose pain?',
-    title: 'Problem Impact',
-    description: 'Show who is affected by this problem',
-    objectives: [
-      'Share personal testimony',
-      'Document daily burden',
-      'Record impact video'
-    ]
-  },
-  {
-    number: -1,
-    name: 'What future?',
-    title: 'Vision Statement',
-    description: 'Paint a picture of the solution',
-    objectives: [
-      'Write vision statement',
-      'Upload symbolic images',
-      'Create before/after comparison'
-    ]
-  },
-  {
-    number: 0,
-    name: 'How can GPS help?',
-    title: 'Call to Action',
-    description: 'Invite Global Problem Solvers to collaborate',
-    objectives: [
-      'Define collaboration needs',
-      'Record invitation video',
-      'Select needed skills'
-    ]
-  }
-];
-
-// =============================================================================
-// STAGE RANGES
-// =============================================================================
-
-export const STAGE_RANGES = {
-  GPO_CALL: { min: -4, max: 0, name: 'GPO Call' },
-  GPS_101: { min: 1, max: 5, name: 'GPS 101' },
-  GPS_PREP: { min: 6, max: 10, name: 'GPS Prep' },
-  GPS_SIMULATION: { min: 11, max: 15, name: 'GPS Simulation' },
-  GPS_CAPSTONE_1: { min: 16, max: 20, name: 'GPS Capstone 1' },
-  GPS_CAPSTONE_2: { min: 21, max: 25, name: 'GPS Capstone 2' },
-  VENTURE_ACCELERATION: { min: 26, max: 30, name: 'Venture Acceleration' },
-  VENTURE_CAPITALIZATION: { min: 31, max: 35, name: 'Venture Capitalization' }
-};
-
-// =============================================================================
-// USER ROLES
-// =============================================================================
-
-export const USER_ROLES = {
-  GPO: 'gpo',           // Global Problem Owner
-  GPS: 'gps',           // Global Problem Solver
-  MENTOR: 'mentor',     // Mentor
-  ADMIN: 'admin'        // Administrator
-};
-
-// =============================================================================
-// AUTHENTICATION
-// =============================================================================
-
-export const AUTH_TOKEN_KEY = 'gpslab_auth_token';
-export const REFRESH_TOKEN_KEY = 'gpslab_refresh_token';
-export const TOKEN_EXPIRY_KEY = 'gpslab_token_expiry';
-
-// =============================================================================
-// API CONFIGURATION
-// =============================================================================
-
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api';
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
 export const API_TIMEOUT = 30000; // 30 seconds
 
-// =============================================================================
-// PAGINATION
-// =============================================================================
+// ==================== AUTHENTICATION ====================
+
+export const TOKEN_KEY = 'gps_lab_auth_token';
+export const REFRESH_TOKEN_KEY = 'gps_lab_refresh_token';
+export const USER_KEY = 'gps_lab_user';
+
+// ==================== PAGINATION ====================
 
 export const DEFAULT_PAGE_SIZE = 20;
 export const MAX_PAGE_SIZE = 100;
 
-// =============================================================================
-// FILE UPLOAD LIMITS
-// =============================================================================
+// ==================== FILE UPLOAD ====================
 
-export const FILE_UPLOAD = {
-  MAX_SIZE: 50 * 1024 * 1024, // 50MB
-  MAX_VIDEO_SIZE: 100 * 1024 * 1024, // 100MB
-  ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
-  ALLOWED_VIDEO_TYPES: ['video/mp4', 'video/webm', 'video/quicktime'],
-  ALLOWED_DOCUMENT_TYPES: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+export const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/ogg'];
+export const ALLOWED_DOCUMENT_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+];
+
+// ==================== GPS LAB STRUCTURE ====================
+
+export const TOTAL_GPS_STAGES = 35; // Total GPS program stages
+export const MISSIONS_PER_STAGE = 5; // Default missions per stage
+export const BITES_PER_MISSION = 5; // Default bites per mission
+
+// ==================== GPS 101 BASIC ====================
+
+export const GPS_101_STAGES = 5;
+export const GPS_101_MISSIONS_PER_STAGE = 6;
+export const GPS_101_CHECKPOINTS_PER_MISSION = 5;
+export const GPS_101_TOTAL_MISSIONS = 30;
+export const GPS_101_TOTAL_CHECKPOINTS = 150;
+export const GPS_101_DURATION_WEEKS = 15;
+export const GPS_101_TOTAL_BARAKA = 5000;
+export const GPS_101_MODE = 'SOLO';
+
+// ==================== BARAKA ECONOMY ====================
+
+export const BARAKA_COLORS = {
+  tier1: '#FFD700', // Gold
+  tier2: '#FFA500', // Orange
+  tier3: '#FF6347', // Tomato
+  tier4: '#9370DB'  // Purple
 };
 
-// =============================================================================
-// REWARDS
-// =============================================================================
-
-export const REWARDS = {
-  GPO_STAGE_COMPLETE: 50,  // XP per GPO stage
-  GPO_CALL_COMPLETE: 300,  // XP for completing all GPO stages
-  MISSION_COMPLETE: 100,   // Base XP per mission
-  STAGE_COMPLETE: 200,     // XP per GPS stage
-  ACHIEVEMENT: 150         // XP per achievement
+export const BARAKA_BEACONS = {
+  WHITE: { threshold: 0, color: '#FFFFFF', name: 'White Beacon' },
+  ORANGE: { threshold: 5000, color: '#FFA500', name: 'Orange Beacon' },
+  RED: { threshold: 10000, color: '#FF0000', name: 'Red Beacon' },
+  PURPLE: { threshold: 50000, color: '#9370DB', name: 'Purple Beacon' }
 };
 
-// =============================================================================
-// DATES & TIMES
-// =============================================================================
+// ==================== PSB (Purpose-Secured Baraka) ====================
 
-export const DATE_FORMAT = 'YYYY-MM-DD';
-export const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
-export const TIME_FORMAT = 'HH:mm';
+export const PSB_COVENANT_RETURN = 0.5; // 50% return to covenant economy
+export const PSB_WITHDRAWAL_FEE = 0.05; // 5% fee
 
-// =============================================================================
-// VALIDATION
-// =============================================================================
+// ==================== XP SYSTEM ====================
+
+export const XP_PER_CHECKPOINT = 5;
+export const XP_PER_MISSION = 25;
+export const XP_PER_STAGE = 100;
+
+// GPS 101 XP
+export const GPS_101_XP_PER_CHECKPOINT = 5;
+export const GPS_101_XP_PER_MISSION = 30;
+export const GPS_101_XP_PER_STAGE = 180;
+
+// ==================== STUDY SYSTEM (R2R/pR2R) ====================
+
+export const R2R_INITIAL = 3; // Initial Retry Rights
+export const PR2R_THRESHOLD = 2; // Provisional Retry Rights threshold
+export const STUDY_MISSION_DURATION = 30; // minutes
+
+// ==================== SUBSCRIPTION TIERS ====================
+
+export const SUBSCRIPTION_TIERS = {
+  FREE: {
+    id: 'free',
+    name: 'Free Tier',
+    price: 0,
+    features: {
+      basicMissions: true,
+      navigatorAI: false,
+      partySize: 0,
+      adventureMissions: 0
+    }
+  },
+  CONTENDER: {
+    id: 'contender',
+    name: 'Contender',
+    price: 9.99,
+    features: {
+      basicMissions: true,
+      navigatorAI: true,
+      partySize: 5,
+      adventureMissions: 3
+    }
+  },
+  PATHFINDER: {
+    id: 'pathfinder',
+    name: 'Pathfinder',
+    price: 29.99,
+    features: {
+      basicMissions: true,
+      navigatorAI: true,
+      partySize: 10,
+      adventureMissions: 10
+    }
+  },
+  NAVIGATORS_CIRCLE: {
+    id: 'navigators_circle',
+    name: "Navigator's Circle",
+    price: 99.99,
+    features: {
+      basicMissions: true,
+      navigatorAI: true,
+      partySize: 'unlimited',
+      adventureMissions: 'unlimited'
+    }
+  }
+};
+
+// ==================== COURSE CODES ====================
+
+export const COURSE_CODES = {
+  GPO_CALL: 'GPO_CALL',
+  GPS_101_BASIC: 'GPS_101_BASIC',
+  GPS_PREP: 'GPS_PREP',
+  GPS_SIMULATION: 'GPS_SIMULATION',
+  GPS_CAPSTONE_1: 'GPS_CAPSTONE_1',
+  GPS_CAPSTONE_2: 'GPS_CAPSTONE_2',
+  VENTURE_ACCELERATION: 'VENTURE_ACCELERATION',
+  VENTURE_CAPITALIZATION: 'VENTURE_CAPITALIZATION'
+};
+
+// ==================== MISSION STATUS ====================
+
+export const MISSION_STATUS = {
+  LOCKED: 'locked',
+  AVAILABLE: 'available',
+  IN_PROGRESS: 'in_progress',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+  ARCHIVED: 'archived'
+};
+
+// ==================== CHECKPOINT STATUS ====================
+
+export const CHECKPOINT_STATUS = {
+  LOCKED: 'locked',
+  AVAILABLE: 'available',
+  IN_PROGRESS: 'in_progress',
+  SUBMITTED: 'submitted',
+  PASSED: 'passed',
+  FAILED: 'failed',
+  RETRYING: 'retrying'
+};
+
+// ==================== STAGE STATUS ====================
+
+export const STAGE_STATUS = {
+  LOCKED: 'locked',
+  UNLOCKED: 'unlocked',
+  IN_PROGRESS: 'in_progress',
+  COMPLETED: 'completed'
+};
+
+// ==================== PARTY ROLES ====================
+
+export const PARTY_ROLES = {
+  LEADER: 'leader',
+  CO_LEADER: 'co-leader',
+  MEMBER: 'member'
+};
+
+// ==================== PRAISE CATEGORIES ====================
+
+export const PRAISE_CATEGORIES = {
+  ENCOURAGEMENT: 'encouragement',
+  CELEBRATION: 'celebration',
+  SUPPORT: 'support',
+  RECOGNITION: 'recognition'
+};
+
+// ==================== NOTIFICATION TYPES ====================
+
+export const NOTIFICATION_TYPES = {
+  MISSION_UNLOCKED: 'mission_unlocked',
+  CHECKPOINT_PASSED: 'checkpoint_passed',
+  MISSION_COMPLETED: 'mission_completed',
+  STAGE_COMPLETED: 'stage_completed',
+  BADGE_EARNED: 'badge_earned',
+  BARAKA_EARNED: 'baraka_earned',
+  PRAISE_RECEIVED: 'praise_received',
+  PARTY_INVITE: 'party_invite',
+  PARTY_MESSAGE: 'party_message',
+  NAVIGATOR_MESSAGE: 'navigator_message'
+};
+
+// ==================== LANGUAGE CODES ====================
+
+export const SUPPORTED_LANGUAGES = {
+  EN: 'en',
+  KO: 'ko',
+  SW: 'sw'
+};
+
+export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.EN;
+
+// ==================== THEME ====================
+
+export const THEMES = {
+  LIGHT: 'light',
+  DARK: 'dark',
+  HIGH_CONTRAST: 'high-contrast'
+};
+
+export const DEFAULT_THEME = THEMES.LIGHT;
+
+// ==================== CHARACTER BADGES ====================
+
+export const CHARACTER_BADGES = [
+  'courage',
+  'humility',
+  'integrity',
+  'excellence',
+  'compassion',
+  'wisdom',
+  'stewardship',
+  'resilience',
+  'justice',
+  'gratitude',
+  'patience',
+  'generosity',
+  'forgiveness',
+  'faithfulness',
+  'hope',
+  'love',
+  'peace',
+  'joy',
+  'kindness',
+  'goodness',
+  'gentleness',
+  'self-control',
+  'perseverance',
+  'diligence',
+  'humility',
+  'authenticity',
+  'empathy',
+  'accountability',
+  'servant-leadership',
+  'vision',
+  'creativity',
+  'collaboration',
+  'discernment',
+  'boldness',
+  'trust'
+];
+
+// ==================== ACHIEVEMENT BADGES ====================
+
+export const ACHIEVEMENT_BADGES = {
+  PIONEER: 'pioneer',
+  FOUNDING_MEMBER: 'founding-member',
+  GPS_101_GRADUATE: 'gps-101-graduate',
+  FIRST_PROJECT: 'first-project',
+  FIRST_CUSTOMER: 'first-customer',
+  CUSTOMER_1K: '1k-customers',
+  CUSTOMER_10K: '10k-customers',
+  FUNDED_FOUNDER: 'funded-founder',
+  GPS_GRADUATE: 'gps-graduate',
+  PROBLEM_OWNER: 'problem-owner',
+  PURPOSE_PATHFINDER: 'purpose-pathfinder', // GPS 101 completion
+  ORANGE_BEACON: 'orange-beacon' // 5,000 Baraka
+};
+
+// ==================== DATE FORMATS ====================
+
+export const DATE_FORMATS = {
+  SHORT: 'MMM D, YYYY',
+  LONG: 'MMMM D, YYYY',
+  WITH_TIME: 'MMM D, YYYY h:mm A',
+  TIME_ONLY: 'h:mm A',
+  ISO: 'YYYY-MM-DD'
+};
+
+// ==================== VALIDATION ====================
 
 export const VALIDATION = {
   MIN_PASSWORD_LENGTH: 8,
-  MAX_PASSWORD_LENGTH: 128,
   MIN_USERNAME_LENGTH: 3,
   MAX_USERNAME_LENGTH: 30,
-  MIN_TITLE_LENGTH: 10,
-  MAX_TITLE_LENGTH: 200,
-  MIN_DESCRIPTION_LENGTH: 50,
-  MAX_DESCRIPTION_LENGTH: 5000
+  MIN_BIO_LENGTH: 0,
+  MAX_BIO_LENGTH: 500,
+  MIN_MESSAGE_LENGTH: 1,
+  MAX_MESSAGE_LENGTH: 2000
 };
 
-// =============================================================================
-// FEATURE FLAGS
-// =============================================================================
+// ==================== ANIMATION DURATIONS ====================
 
-export const FEATURES = {
-  ENABLE_GPO_CALL: true,
-  ENABLE_STUDY_PARTIES: true,
-  ENABLE_BARAKA_WALLET: true,
-  ENABLE_AI_ASSISTANT: true,
-  ENABLE_MENTOR_MATCHING: true
+export const ANIMATION_DURATION = {
+  FAST: 200,
+  NORMAL: 300,
+  SLOW: 500
 };
 
+// ==================== BREAKPOINTS ====================
+
+export const BREAKPOINTS = {
+  XS: 320,
+  SM: 576,
+  MD: 768,
+  LG: 992,
+  XL: 1200,
+  XXL: 1400
+};
+
+// ==================== Z-INDEX ====================
+
+export const Z_INDEX = {
+  DROPDOWN: 1000,
+  STICKY: 1020,
+  FIXED: 1030,
+  MODAL_BACKDROP: 1040,
+  MODAL: 1050,
+  POPOVER: 1060,
+  TOOLTIP: 1070,
+  NOTIFICATION: 1080
+};
+
+// Export all constants as default
 export default {
-  GPO_STAGES,
-  STAGE_RANGES,
-  USER_ROLES,
-  AUTH_TOKEN_KEY,
-  REFRESH_TOKEN_KEY,
-  TOKEN_EXPIRY_KEY,
   API_BASE_URL,
   API_TIMEOUT,
+  TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+  USER_KEY,
   DEFAULT_PAGE_SIZE,
   MAX_PAGE_SIZE,
-  FILE_UPLOAD,
-  REWARDS,
-  DATE_FORMAT,
-  DATETIME_FORMAT,
-  TIME_FORMAT,
+  MAX_FILE_SIZE,
+  ALLOWED_IMAGE_TYPES,
+  ALLOWED_VIDEO_TYPES,
+  ALLOWED_DOCUMENT_TYPES,
+  TOTAL_GPS_STAGES,
+  MISSIONS_PER_STAGE,
+  BITES_PER_MISSION,
+  GPS_101_STAGES,
+  GPS_101_MISSIONS_PER_STAGE,
+  GPS_101_CHECKPOINTS_PER_MISSION,
+  GPS_101_TOTAL_MISSIONS,
+  GPS_101_TOTAL_CHECKPOINTS,
+  GPS_101_DURATION_WEEKS,
+  GPS_101_TOTAL_BARAKA,
+  GPS_101_MODE,
+  BARAKA_COLORS,
+  BARAKA_BEACONS,
+  PSB_COVENANT_RETURN,
+  PSB_WITHDRAWAL_FEE,
+  XP_PER_CHECKPOINT,
+  XP_PER_MISSION,
+  XP_PER_STAGE,
+  GPS_101_XP_PER_CHECKPOINT,
+  GPS_101_XP_PER_MISSION,
+  GPS_101_XP_PER_STAGE,
+  R2R_INITIAL,
+  PR2R_THRESHOLD,
+  STUDY_MISSION_DURATION,
+  SUBSCRIPTION_TIERS,
+  COURSE_CODES,
+  MISSION_STATUS,
+  CHECKPOINT_STATUS,
+  STAGE_STATUS,
+  PARTY_ROLES,
+  PRAISE_CATEGORIES,
+  NOTIFICATION_TYPES,
+  SUPPORTED_LANGUAGES,
+  DEFAULT_LANGUAGE,
+  THEMES,
+  DEFAULT_THEME,
+  CHARACTER_BADGES,
+  ACHIEVEMENT_BADGES,
+  DATE_FORMATS,
   VALIDATION,
-  FEATURES
+  ANIMATION_DURATION,
+  BREAKPOINTS,
+  Z_INDEX
 };

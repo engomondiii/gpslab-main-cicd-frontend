@@ -413,6 +413,62 @@
   color: var(--neutral-200, #f0f4f8);
 }
 
+/* GPS 101 Specific Styles */
+.command-center__mission-card--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.command-center__mission-icon--gps101 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.command-center__mission-progress-fill--gps101 {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.command-center__mission-btn--gps101 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: var(--neutral-0, #ffffff);
+}
+
+.command-center__mission-btn--gps101:hover {
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+/* GPS 101 Objectives */
+.command-center__objective--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  border-left: 3px solid #667eea;
+}
+
+.command-center__objective-gps101-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: var(--text-2xs, 11px);
+  font-weight: var(--font-bold, 700);
+  color: #667eea;
+  background-color: rgba(102, 126, 234, 0.15);
+  border-radius: var(--radius-sm, 4px);
+  margin-right: var(--space-1, 4px);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide, 0.025em);
+}
+
+.command-center__objective-reward--gps101 {
+  color: #667eea;
+}
+
+/* Dark Theme GPS 101 */
+[data-theme="dark"] .command-center__mission-card--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+[data-theme="dark"] .command-center__objective--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .command-center__mission-progress-fill,

@@ -10,6 +10,8 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GPOCallFlow from '../../components/gpo/GPOCallFlow/GPOCallFlow';
+import { formatForAPISubmission } from '../../utils/formatters/gpo.formatter';
+import { countTotalMediaFiles, estimateReadingTime } from '../../utils/helpers/gpo.helper';
 import './GPOCallPage.css';
 
 /**
@@ -26,15 +28,38 @@ const GPOCallPage = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call
-      console.log('Submitting Problem Showcase:', showcaseData);
+      // Format data for API submission
+      const apiData = formatForAPISubmission(showcaseData);
+      
+      // Get additional metadata
+      const mediaCount = countTotalMediaFiles(showcaseData);
+      const readingTime = estimateReadingTime(showcaseData);
+      
+      console.log('Submitting Problem Showcase:', {
+        ...apiData,
+        metadata: {
+          mediaFiles: mediaCount,
+          estimatedReadingTime: readingTime
+        }
+      });
       
       // TODO: Replace with actual API call
+      // const response = await fetch('/api/gpo/showcase', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(apiData)
+      // });
+      
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Navigate to success page
+      // Navigate to success page with showcase data
       navigate('/gpo-call/success', { 
-        state: { showcaseData } 
+        state: { 
+          showcaseData,
+          mediaCount,
+          readingTime
+        } 
       });
     } catch (error) {
       console.error('Failed to submit showcase:', error);

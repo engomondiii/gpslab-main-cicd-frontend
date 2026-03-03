@@ -230,3 +230,16 @@
     transform: none;
   }
 }
+/* GPS 101 Color Variant */
+.quick-actions__btn--gps101 .quick-actions__btn-icon {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.05));
+  color: #667eea;
+}
+
+.quick-actions__btn--gps101:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.quick-actions--gps101 {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.02), rgba(118, 75, 162, 0.02));
+}
