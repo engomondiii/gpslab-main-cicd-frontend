@@ -2,6 +2,8 @@
  * GPS 101 Stage Card Component
  * 
  * Individual stage card with details and progress.
+ * 
+ * FIXED: Navigation path now uses /gps101 (no dash)
  */
 
 import React from 'react';
@@ -27,7 +29,8 @@ const GPS101StageCard = ({
 
   const handleClick = () => {
     if (isUnlocked) {
-      navigate(`/gps-101/stage/${stageNumber}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/stage/${stageNumber}`);
     }
   };
 

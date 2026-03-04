@@ -2,6 +2,8 @@
  * GPS 101 Dashboard Widget
  * 
  * Dashboard widget showing GPS 101 progress and quick actions.
+ * 
+ * FIXED: All navigation paths now use /gps101 (no dash)
  */
 
 import React from 'react';
@@ -35,7 +37,7 @@ const GPS101Dashboard = () => {
           <p>Discover your life purpose through a transformative 15-week course</p>
           <button 
             className="enroll-button"
-            onClick={() => navigate('/gps-101')}
+            onClick={() => navigate('/gps101')}
           >
             Learn More & Enroll
           </button>
@@ -87,7 +89,7 @@ const GPS101Dashboard = () => {
         <div className="header-right">
           <button 
             className="view-all-button"
-            onClick={() => navigate('/gps-101')}
+            onClick={() => navigate('/gps101')}
           >
             View All
           </button>
@@ -155,7 +157,7 @@ const GPS101Dashboard = () => {
             </div>
             <button 
               className="start-mission-button"
-              onClick={() => navigate(`/gps-101/mission/${nextMission.missionId}`)}
+              onClick={() => navigate(`/gps101/mission/${nextMission.missionId}`)}
             >
               Start →
             </button>
@@ -167,7 +169,7 @@ const GPS101Dashboard = () => {
       <div className="quick-actions">
         <button 
           className="action-button"
-          onClick={() => navigate(`/gps-101/stage/${currentStage}`)}
+          onClick={() => navigate(`/gps101/stage/${currentStage}`)}
         >
           <span className="action-icon">📚</span>
           <span className="action-text">Current Stage</span>

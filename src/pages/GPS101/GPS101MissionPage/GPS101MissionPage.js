@@ -3,7 +3,8 @@
  * 
  * Individual mission view with checkpoints and submission.
  * 
- * FIXED: All navigation paths now use /gps101 (no dash)
+ * FIXED: All navigation paths use /gps101 (no dash)
+ * FIXED: Added fallback logic for starting missions when API is unavailable
  */
 
 import React, { useEffect, useState } from 'react';
@@ -37,6 +38,7 @@ const GPS101MissionPage = () => {
   const [missionData, setMissionData] = useState(null);
   const [isStarting, setIsStarting] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [missionStarted, setMissionStarted] = useState(false); // Track if mission has been started locally
 
   const mission = getMissionById(missionId);
   const isUnlocked = isMissionUnlocked(missionId);
@@ -49,12 +51,26 @@ const GPS101MissionPage = () => {
   useEffect(() => {
     if (mission) {
       setMissionData(mission);
+      
+      // Check if mission is already started from API data
+      if (mission.status === 'in_progress' || mission.status === 'completed') {
+        setMissionStarted(true);
+      } else {
+        // Check localStorage for started missions (fallback)
+        try {
+          const startedMissions = JSON.parse(localStorage.getItem('gps101_started_missions') || '[]');
+          if (startedMissions.includes(missionId)) {
+            setMissionStarted(true);
+          }
+        } catch (error) {
+          console.warn('Could not read from localStorage:', error);
+        }
+      }
     }
-  }, [mission]);
+  }, [mission, missionId]);
 
   useEffect(() => {
     if (!isUnlocked && !loading.missions) {
-      // FIXED: Navigate to /gps101 (no dash)
       navigate('/gps101');
     }
   }, [isUnlocked, loading.missions, navigate]);
@@ -70,23 +86,58 @@ const GPS101MissionPage = () => {
 
   const handleStartMission = async () => {
     setIsStarting(true);
-    const result = await startMission(missionId);
-    if (result.success) {
-      setMissionData({ ...missionData, status: 'in_progress' });
+    
+    try {
+      // Try API call first
+      const result = await startMission(missionId);
+      
+      if (result && result.success) {
+        // API success - update from API response
+        setMissionData({ ...missionData, status: 'in_progress' });
+        setMissionStarted(true);
+        setIsStarting(false);
+        return;
+      }
+    } catch (error) {
+      console.log('API not available, using local state fallback');
     }
+    
+    // FALLBACK: If API fails or returns unsuccessful, use local state
+    console.log('Using fallback: Starting mission locally');
+    
+    // Update local state
+    setMissionData({ ...missionData, status: 'in_progress' });
+    setMissionStarted(true);
+    
+    // Store in localStorage as backup (persists across page refreshes)
+    try {
+      const startedMissions = JSON.parse(localStorage.getItem('gps101_started_missions') || '[]');
+      if (!startedMissions.includes(missionId)) {
+        startedMissions.push(missionId);
+        localStorage.setItem('gps101_started_missions', JSON.stringify(startedMissions));
+        console.log('Mission saved to localStorage:', missionId);
+      }
+    } catch (storageError) {
+      console.warn('Could not save to localStorage:', storageError);
+    }
+    
     setIsStarting(false);
   };
 
   const handleCompleteMission = async () => {
-    const result = await completeMission(missionId);
-    if (result.success) {
-      setShowCompletionModal(true);
+    try {
+      const result = await completeMission(missionId);
+      if (result && result.success) {
+        setShowCompletionModal(true);
+      }
+    } catch (error) {
+      console.log('Complete mission API not available');
+      // Could add fallback here too if needed
     }
   };
 
   const handleCheckpointClick = (checkpointId) => {
     if (isCheckpointUnlocked(checkpointId)) {
-      // FIXED: Navigate to /gps101 (no dash)
       navigate(`/gps101/checkpoint/${checkpointId}`);
     }
   };
@@ -101,6 +152,12 @@ const GPS101MissionPage = () => {
   ).length;
 
   const allCheckpointsPassed = passedCheckpoints === mission.checkpoints.length;
+
+  // Determine if mission content should be shown
+  // Show if: mission started locally OR mission status is in_progress/completed from API
+  const showMissionContent = missionStarted || 
+                             missionData?.status === 'in_progress' || 
+                             missionData?.status === 'completed';
 
   return (
     <div className="gps101-mission-page">
@@ -197,8 +254,8 @@ const GPS101MissionPage = () => {
           </div>
         </div>
 
-        {/* Start Mission CTA */}
-        {missionData?.status !== 'in_progress' && missionData?.status !== 'completed' && (
+        {/* Start Mission CTA - Only show if mission hasn't been started */}
+        {!showMissionContent && (
           <div className="start-mission-section">
             <div className="start-mission-card">
               <div className="card-content">
@@ -219,8 +276,8 @@ const GPS101MissionPage = () => {
           </div>
         )}
 
-        {/* Navigator Guidance */}
-        {(missionData?.status === 'in_progress' || missionData?.status === 'completed') && (
+        {/* Navigator Guidance - Show after mission is started */}
+        {showMissionContent && (
           <div className="navigator-section">
             <GPS101NavigatorGuide 
               stageNumber={mission.stageNumber}
@@ -229,8 +286,8 @@ const GPS101MissionPage = () => {
           </div>
         )}
 
-        {/* Checkpoints Grid */}
-        {(missionData?.status === 'in_progress' || missionData?.status === 'completed') && (
+        {/* Checkpoints Grid - Show after mission is started */}
+        {showMissionContent && (
           <div className="checkpoints-section">
             <div className="section-header">
               <h2>Mission Checkpoints</h2>
@@ -259,7 +316,7 @@ const GPS101MissionPage = () => {
         )}
 
         {/* Complete Mission CTA */}
-        {allCheckpointsPassed && missionData?.status !== 'completed' && (
+        {allCheckpointsPassed && showMissionContent && missionData?.status !== 'completed' && (
           <div className="complete-mission-section">
             <div className="complete-mission-card">
               <div className="celebration-icon">🎉</div>

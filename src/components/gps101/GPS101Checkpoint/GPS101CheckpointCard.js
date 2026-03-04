@@ -2,6 +2,8 @@
  * GPS 101 Checkpoint Card Component
  * 
  * Individual checkpoint card with question and status.
+ * 
+ * FIXED: Navigation path now uses /gps101 (no dash)
  */
 
 import React from 'react';
@@ -23,7 +25,8 @@ const GPS101CheckpointCard = ({
 
   const handleClick = () => {
     if (isUnlocked) {
-      navigate(`/gps-101/checkpoint/${checkpoint.checkpointId}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/checkpoint/${checkpoint.checkpointId}`);
     }
   };
 
