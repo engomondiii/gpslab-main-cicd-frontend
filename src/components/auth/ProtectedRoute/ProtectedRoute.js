@@ -29,7 +29,7 @@ const AuthLoadingScreen = () => (
 /**
  * Access denied screen for unauthorized users
  */
-const AccessDeniedScreen = ({ requiredRole, userRole, onGoBack }) => (
+const AccessDeniedScreen = ({ requiredRole, userRole, onGoBack, message, actionText, actionLink }) => (
   <div className="protected-route__denied">
     <div className="protected-route__denied-content">
       <div className="protected-route__denied-icon">
@@ -39,8 +39,8 @@ const AccessDeniedScreen = ({ requiredRole, userRole, onGoBack }) => (
       </div>
       <h2 className="protected-route__denied-title">Access Denied</h2>
       <p className="protected-route__denied-text">
-        You don't have permission to access this area.
-        {requiredRole && (
+        {message || "You don't have permission to access this area."}
+        {requiredRole && !message && (
           <span className="protected-route__denied-requirement">
             Required role: <strong>{requiredRole}</strong>
           </span>
@@ -54,10 +54,10 @@ const AccessDeniedScreen = ({ requiredRole, userRole, onGoBack }) => (
           Go Back
         </button>
         <a 
-          href="/dashboard" 
+          href={actionLink || "/dashboard"} 
           className="protected-route__denied-btn protected-route__denied-btn--secondary"
         >
-          Go to Dashboard
+          {actionText || "Go to Dashboard"}
         </a>
       </div>
     </div>
@@ -76,6 +76,9 @@ const AccessDeniedScreen = ({ requiredRole, userRole, onGoBack }) => (
  * @param {boolean} props.isLoading - Whether auth check is in progress
  * @param {Object} props.user - Current user object
  * @param {string|string[]} props.requiredRoles - Required role(s) to access route
+ * @param {boolean} props.requiresGPS101Enrollment - Requires GPS 101 enrollment
+ * @param {boolean} props.requiresAdmin - Requires admin role
+ * @param {boolean} props.requiresUniversity - Requires university role
  * @param {string} props.redirectTo - Path to redirect unauthenticated users
  * @param {Function} props.onRedirect - Callback for redirect (e.g., navigate function)
  * @param {React.ReactNode} props.fallback - Custom loading component
@@ -87,6 +90,9 @@ const ProtectedRoute = ({
   isLoading = false,
   user = null,
   requiredRoles = null,
+  requiresGPS101Enrollment = false,
+  requiresAdmin = false,
+  requiresUniversity = false,
   redirectTo = '/login',
   onRedirect,
   fallback,
@@ -120,6 +126,107 @@ const ProtectedRoute = ({
     }
     
     return <AuthLoadingScreen />;
+  }
+  
+  // Check GPS 101 enrollment if required
+  if (requiresGPS101Enrollment) {
+    // Check enrollment from multiple sources
+    const isEnrolled = user?.gps101Enrolled || 
+                       user?.enrollments?.includes('GPS_101_BASIC') ||
+                       false;
+    
+    // Also check localStorage as fallback
+    let localEnrolled = false;
+    try {
+      const storedUser = localStorage.getItem('gps_user');
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        localEnrolled = parsedUser.gps101Enrolled || false;
+      }
+    } catch (e) {
+      console.error('Error reading localStorage:', e);
+    }
+    
+    if (!isEnrolled && !localEnrolled) {
+      if (showAccessDenied) {
+        return (
+          <AccessDeniedScreen 
+            message="You need to enroll in GPS 101 to access this content."
+            onGoBack={() => window.history.back()}
+            actionText="Enroll in GPS 101"
+            actionLink="/gps101"
+          />
+        );
+      }
+      
+      // Redirect to GPS 101 enrollment page
+      if (onRedirect) {
+        onRedirect('/gps101');
+        return null;
+      }
+      
+      if (typeof window !== 'undefined') {
+        window.location.href = '/gps101';
+      }
+      
+      return <AuthLoadingScreen />;
+    }
+  }
+  
+  // Check admin requirement
+  if (requiresAdmin) {
+    const isAdmin = user?.role === 'admin' || user?.roles?.includes('admin');
+    
+    if (!isAdmin) {
+      if (showAccessDenied) {
+        return (
+          <AccessDeniedScreen 
+            requiredRole="admin"
+            userRole={user?.role}
+            onGoBack={() => window.history.back()}
+          />
+        );
+      }
+      
+      if (onRedirect) {
+        onRedirect('/dashboard');
+        return null;
+      }
+      
+      if (typeof window !== 'undefined') {
+        window.location.href = '/dashboard';
+      }
+      
+      return <AuthLoadingScreen />;
+    }
+  }
+  
+  // Check university requirement
+  if (requiresUniversity) {
+    const isUniversity = user?.role === 'university' || user?.roles?.includes('university');
+    
+    if (!isUniversity) {
+      if (showAccessDenied) {
+        return (
+          <AccessDeniedScreen 
+            requiredRole="university"
+            userRole={user?.role}
+            onGoBack={() => window.history.back()}
+          />
+        );
+      }
+      
+      if (onRedirect) {
+        onRedirect('/dashboard');
+        return null;
+      }
+      
+      if (typeof window !== 'undefined') {
+        window.location.href = '/dashboard';
+      }
+      
+      return <AuthLoadingScreen />;
+    }
   }
   
   // Check role-based access if requiredRoles specified
@@ -195,6 +302,30 @@ export const hasAnyRole = (user, roles) => {
   if (!user || !roles) return false;
   const roleArray = Array.isArray(roles) ? roles : [roles];
   return roleArray.some(role => hasRole(user, role));
+};
+
+/**
+ * Helper function to check GPS 101 enrollment
+ */
+export const isEnrolledInGPS101 = (user) => {
+  if (!user) return false;
+  
+  // Check user object
+  if (user.gps101Enrolled) return true;
+  if (user.enrollments?.includes('GPS_101_BASIC')) return true;
+  
+  // Check localStorage
+  try {
+    const storedUser = localStorage.getItem('gps_user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      return parsedUser.gps101Enrolled || false;
+    }
+  } catch (e) {
+    console.error('Error reading localStorage:', e);
+  }
+  
+  return false;
 };
 
 export default ProtectedRoute;

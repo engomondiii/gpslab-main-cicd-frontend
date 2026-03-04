@@ -2,6 +2,8 @@
  * GPS 101 Stage Page
  * 
  * Individual stage overview with missions and deliverables.
+ * 
+ * FIXED: All navigation paths now use /gps101 (no dash)
  */
 
 import React, { useEffect, useState } from 'react';
@@ -46,7 +48,8 @@ const GPS101StagePage = () => {
 
   useEffect(() => {
     if (!isUnlocked) {
-      navigate('/gps-101');
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate('/gps101');
     }
   }, [isUnlocked, navigate]);
 
@@ -61,14 +64,16 @@ const GPS101StagePage = () => {
 
   const handleMissionClick = (mission) => {
     if (isMissionUnlocked(mission.missionId)) {
-      navigate(`/gps-101/mission/${mission.missionId}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/mission/${mission.missionId}`);
     } else {
       setSelectedMission(mission);
     }
   };
 
   const handleStartMission = (missionId) => {
-    navigate(`/gps-101/mission/${missionId}`);
+    // FIXED: Navigate to /gps101 (no dash)
+    navigate(`/gps101/mission/${missionId}`);
   };
 
   const getMissionStatus = (mission) => {
@@ -86,7 +91,7 @@ const GPS101StagePage = () => {
         <div className="breadcrumb">
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate('/gps-101')}
+            onClick={() => navigate('/gps101')}
           >
             GPS 101
           </button>
@@ -326,7 +331,7 @@ const GPS101StagePage = () => {
           {parseInt(stageNumber) > 1 && (
             <button 
               className="nav-button prev"
-              onClick={() => navigate(`/gps-101/stage/${parseInt(stageNumber) - 1}`)}
+              onClick={() => navigate(`/gps101/stage/${parseInt(stageNumber) - 1}`)}
             >
               ← Previous Stage
             </button>
@@ -335,7 +340,7 @@ const GPS101StagePage = () => {
           {parseInt(stageNumber) < 5 && (
             <button 
               className="nav-button next"
-              onClick={() => navigate(`/gps-101/stage/${parseInt(stageNumber) + 1}`)}
+              onClick={() => navigate(`/gps101/stage/${parseInt(stageNumber) + 1}`)}
               disabled={completion < 100}
             >
               Next Stage →

@@ -2,6 +2,8 @@
  * GPS 101 Mission Page
  * 
  * Individual mission view with checkpoints and submission.
+ * 
+ * FIXED: All navigation paths now use /gps101 (no dash)
  */
 
 import React, { useEffect, useState } from 'react';
@@ -52,7 +54,8 @@ const GPS101MissionPage = () => {
 
   useEffect(() => {
     if (!isUnlocked && !loading.missions) {
-      navigate('/gps-101');
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate('/gps101');
     }
   }, [isUnlocked, loading.missions, navigate]);
 
@@ -83,7 +86,8 @@ const GPS101MissionPage = () => {
 
   const handleCheckpointClick = (checkpointId) => {
     if (isCheckpointUnlocked(checkpointId)) {
-      navigate(`/gps-101/checkpoint/${checkpointId}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/checkpoint/${checkpointId}`);
     }
   };
 
@@ -105,14 +109,14 @@ const GPS101MissionPage = () => {
         <div className="breadcrumb">
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate('/gps-101')}
+            onClick={() => navigate('/gps101')}
           >
             GPS 101
           </button>
           <span className="breadcrumb-separator">/</span>
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate(`/gps-101/stage/${mission.stageNumber}`)}
+            onClick={() => navigate(`/gps101/stage/${mission.stageNumber}`)}
           >
             Stage {mission.stageNumber}
           </button>
@@ -277,7 +281,7 @@ const GPS101MissionPage = () => {
         <div className="mission-navigation">
           <button 
             className="nav-button back"
-            onClick={() => navigate(`/gps-101/stage/${mission.stageNumber}`)}
+            onClick={() => navigate(`/gps101/stage/${mission.stageNumber}`)}
           >
             ← Back to Stage
           </button>
@@ -338,7 +342,7 @@ const GPS101MissionPage = () => {
                       className="next-action-button"
                       onClick={() => {
                         setShowCompletionModal(false);
-                        navigate(`/gps-101/stage/${mission.stageNumber}`);
+                        navigate(`/gps101/stage/${mission.stageNumber}`);
                       }}
                     >
                       Continue to Next Mission

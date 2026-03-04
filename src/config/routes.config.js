@@ -3,11 +3,11 @@
  * 
  * Defines all application routes and their metadata.
  * 
- * FINAL CORRECTED VERSION - GPS 101 Integration v2.1
- * Matches System A architecture (data-driven routing)
+ * FINAL CORRECTED VERSION - GPS 101 Integration v2.2
+ * FIXED: Added missing GPS_101_MISSION route
  * 
  * @module config/routes.config
- * @version 2.1.0
+ * @version 2.2.0
  */
 
 // ==================== PUBLIC ROUTES ====================
@@ -34,10 +34,11 @@ export const AUTHENTICATED_ROUTES = {
   DASHBOARD: '/dashboard',
   COMMAND_CENTER: '/command-center',
   
-  // GPS 101 Routes (UPDATED with /gps101 instead of /gps-101)
+  // GPS 101 Routes (FIXED: Added missing mission route)
   GPS_101: '/gps101',
   GPS_101_ENROLL: '/gps101/enroll',
   GPS_101_STAGE: '/gps101/stage/:stageNumber',
+  GPS_101_MISSION: '/gps101/mission/:missionId',  // ← ADDED THIS
   GPS_101_CHECKPOINTS: '/gps101/checkpoints',
   GPS_101_CHECKPOINT: '/gps101/checkpoint/:checkpointId',
   GPS_101_DELIVERABLES: '/gps101/deliverables',
@@ -167,6 +168,14 @@ export const ROUTE_METADATA = {
     course: 'GPS_101_BASIC'
   },
   
+  [AUTHENTICATED_ROUTES.GPS_101_MISSION]: {
+    title: 'GPS 101 - Mission',
+    description: 'GPS 101 Mission',
+    breadcrumbs: ['Dashboard', 'GPS 101', 'Mission'],
+    requiresEnrollment: true,
+    course: 'GPS_101_BASIC'
+  },
+  
   [AUTHENTICATED_ROUTES.GPS_101_CHECKPOINTS]: {
     title: 'GPS 101 - Checkpoints',
     description: 'View checkpoint progress',
@@ -268,6 +277,7 @@ export const ROUTE_PERMISSIONS = {
   // GPS 101 - requires GPS 101 enrollment (except main page and enroll)
   GPS_101_ENROLLMENT_REQUIRED: [
     AUTHENTICATED_ROUTES.GPS_101_STAGE,
+    AUTHENTICATED_ROUTES.GPS_101_MISSION,  // ← ADDED THIS
     AUTHENTICATED_ROUTES.GPS_101_CHECKPOINTS,
     AUTHENTICATED_ROUTES.GPS_101_CHECKPOINT,
     AUTHENTICATED_ROUTES.GPS_101_DELIVERABLES,

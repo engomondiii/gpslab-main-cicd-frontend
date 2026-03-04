@@ -397,7 +397,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* ==================== ENROLLMENT MODAL (FIXED RESPONSIVENESS) ==================== */
+/* ==================== ENROLLMENT MODAL ==================== */
 .enrollment-modal-overlay {
   position: fixed;
   top: 0;
@@ -406,11 +406,11 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: flex-start; /* Changed from center to allow scrolling on small screens */
+  align-items: flex-start;
   justify-content: center;
   z-index: 1000;
   padding: 2rem 1rem;
-  overflow-y: auto; /* Enables scrolling for the overlay */
+  overflow-y: auto;
 }
 
 .enrollment-modal {
@@ -420,8 +420,8 @@
   width: 100%;
   position: relative;
   animation: modalSlideUp 0.3s ease;
-  margin: auto; /* Pushes to center when there's vertical space */
-  max-height: 90vh; /* Prevents modal from becoming infinitely tall */
+  margin: auto;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
 }
@@ -450,18 +450,23 @@
   font-size: 1.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 10; /* Ensures close button stays clickable */
+  z-index: 10;
 }
 
-.modal-close:hover {
+.modal-close:hover:not(:disabled) {
   background: #e0e0e0;
   color: #333;
+}
+
+.modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .modal-content {
   padding: 3rem 2rem;
   text-align: center;
-  overflow-y: auto; /* Enables internal scrolling for the content */
+  overflow-y: auto;
 }
 
 .modal-icon {
@@ -571,6 +576,32 @@
 .confirm-enroll-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Enrollment Success State */
+.enrollment-success {
+  padding: 2rem 0;
+}
+
+.success-message {
+  font-size: 1.125rem;
+  color: #4CAF50;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.success-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 /* ==================== COMPLETED STATE ==================== */
@@ -913,5 +944,14 @@
 
   .continue-button {
     width: 100%;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner,
+  .badge-glow,
+  .spinner-ring {
+    animation: none;
   }
 }

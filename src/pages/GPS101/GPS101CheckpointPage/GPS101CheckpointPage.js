@@ -2,6 +2,8 @@
  * GPS 101 Checkpoint Page
  * 
  * Individual checkpoint view with submission form.
+ * 
+ * FIXED: All navigation paths now use /gps101 (no dash)
  */
 
 import React, { useEffect, useState } from 'react';
@@ -54,7 +56,8 @@ const GPS101CheckpointPage = () => {
 
   useEffect(() => {
     if (!isUnlocked && !loading.checkpoints) {
-      navigate('/gps-101');
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate('/gps101');
     }
   }, [isUnlocked, loading.checkpoints, navigate]);
 
@@ -96,9 +99,11 @@ const GPS101CheckpointPage = () => {
     // Navigate to next checkpoint or back to mission
     const nextCheckpoint = getNextCheckpointInMission();
     if (nextCheckpoint) {
-      navigate(`/gps-101/checkpoint/${nextCheckpoint.checkpointId}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/checkpoint/${nextCheckpoint.checkpointId}`);
     } else {
-      navigate(`/gps-101/mission/${mission.missionId}`);
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate(`/gps101/mission/${mission.missionId}`);
     }
   };
 
@@ -116,21 +121,21 @@ const GPS101CheckpointPage = () => {
         <div className="breadcrumb">
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate('/gps-101')}
+            onClick={() => navigate('/gps101')}
           >
             GPS 101
           </button>
           <span className="breadcrumb-separator">/</span>
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate(`/gps-101/stage/${mission.stageNumber}`)}
+            onClick={() => navigate(`/gps101/stage/${mission.stageNumber}`)}
           >
             Stage {mission.stageNumber}
           </button>
           <span className="breadcrumb-separator">/</span>
           <button 
             className="breadcrumb-link"
-            onClick={() => navigate(`/gps-101/mission/${mission.missionId}`)}
+            onClick={() => navigate(`/gps101/mission/${mission.missionId}`)}
           >
             Mission {mission.missionNumber}
           </button>
@@ -303,7 +308,7 @@ const GPS101CheckpointPage = () => {
                     
                     <button 
                       className="back-button"
-                      onClick={() => navigate(`/gps-101/mission/${mission.missionId}`)}
+                      onClick={() => navigate(`/gps101/mission/${mission.missionId}`)}
                     >
                       Back to Mission
                     </button>

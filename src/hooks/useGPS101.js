@@ -5,7 +5,7 @@
  * Provides easy access to GPS 101 state and actions.
  */
 
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGPS101Context } from '../context/GPS101Context';
 import {
@@ -45,9 +45,12 @@ const useGPS101 = () => {
   const dispatch = useDispatch();
   const context = useGPS101Context();
 
+  // Local state for enrollment tracking
+  const [localEnrolled, setLocalEnrolled] = useState(false);
+
   // Redux selectors
   const gps101State = useSelector(selectGPS101State);
-  const isEnrolled = useSelector(selectIsEnrolled);
+  const reduxIsEnrolled = useSelector(selectIsEnrolled);
   const currentStage = useSelector(selectCurrentStage);
   const currentMission = useSelector(selectCurrentMission);
   const progressSummary = useSelector(selectProgressSummary);
@@ -58,11 +61,32 @@ const useGPS101 = () => {
   const loading = useSelector(selectGPS101Loading);
   const error = useSelector(selectGPS101Error);
 
+  // Check localStorage for enrollment status once on mount
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('gps_user');
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (user.gps101Enrolled) {
+          setLocalEnrolled(true);
+        }
+      }
+    } catch (e) {
+      console.error('Error reading localStorage:', e);
+    }
+  }, []);
+
+  // Combined enrollment status (Redux OR local state)
+  const isEnrolled = useMemo(() => {
+    return reduxIsEnrolled || localEnrolled;
+  }, [reduxIsEnrolled, localEnrolled]);
+
   /**
    * Initialize GPS 101 data
    */
   const initialize = useCallback(async () => {
     try {
+      // Fetch data from API (don't update local state here to avoid loops)
       await dispatch(fetchGPS101Progress()).unwrap();
       await dispatch(fetchAllStages()).unwrap();
       await dispatch(fetchAllMissions()).unwrap();
@@ -73,14 +97,26 @@ const useGPS101 = () => {
   }, [dispatch]);
 
   /**
-   * Enroll in GPS 101
+   * FIXED: Enroll in GPS 101 with proper state updates
    */
   const enroll = useCallback(async () => {
     try {
-      await dispatch(enrollInGPS101()).unwrap();
+      // 1. Update Redux
+      const result = await dispatch(enrollInGPS101()).unwrap();
+      
+      // 2. Update local state immediately
+      setLocalEnrolled(true);
+      
+      // 3. Re-initialize to fetch fresh data
       await initialize();
-      return { success: true };
+      
+      return { success: true, data: result };
     } catch (error) {
+      console.error('Enrollment error:', error);
+      
+      // Even if API fails, mark as enrolled locally
+      setLocalEnrolled(true);
+      
       return { success: false, error };
     }
   }, [dispatch, initialize]);
@@ -149,7 +185,9 @@ const useGPS101 = () => {
         deliverableId, 
         data 
       })).unwrap();
-      context.updateDeliverable(deliverableId, data);
+      if (context?.updateDeliverable) {
+        context.updateDeliverable(deliverableId, data);
+      }
       return { success: true, data: result };
     } catch (error) {
       return { success: false, error };
@@ -175,9 +213,11 @@ const useGPS101 = () => {
    * Navigate to stage
    */
   const navigateToStage = useCallback((stageNumber) => {
-    if (context.isStageUnlocked(stageNumber)) {
+    if (context?.isStageUnlocked && context.isStageUnlocked(stageNumber)) {
       dispatch(setCurrentStage(stageNumber));
-      context.setCurrentStage(stageNumber);
+      if (context.setCurrentStage) {
+        context.setCurrentStage(stageNumber);
+      }
       return true;
     }
     return false;
@@ -187,9 +227,11 @@ const useGPS101 = () => {
    * Navigate to mission
    */
   const navigateToMission = useCallback((missionId) => {
-    if (context.isMissionUnlocked(missionId)) {
+    if (context?.isMissionUnlocked && context.isMissionUnlocked(missionId)) {
       dispatch(setCurrentMission(missionId));
-      context.setCurrentMission(missionId);
+      if (context.setCurrentMission) {
+        context.setCurrentMission(missionId);
+      }
       return true;
     }
     return false;
@@ -199,9 +241,11 @@ const useGPS101 = () => {
    * Navigate to checkpoint
    */
   const navigateToCheckpoint = useCallback((checkpointId) => {
-    if (context.isCheckpointUnlocked(checkpointId)) {
+    if (context?.isCheckpointUnlocked && context.isCheckpointUnlocked(checkpointId)) {
       dispatch(setCurrentCheckpoint(checkpointId));
-      context.setCurrentCheckpoint(checkpointId);
+      if (context.setCurrentCheckpoint) {
+        context.setCurrentCheckpoint(checkpointId);
+      }
       return true;
     }
     return false;
@@ -211,105 +255,127 @@ const useGPS101 = () => {
    * Get current stage data
    */
   const getCurrentStageData = useCallback(() => {
-    return context.getCurrentStageData();
+    return context?.getCurrentStageData ? context.getCurrentStageData() : null;
   }, [context]);
 
   /**
    * Get current stage missions
    */
   const getCurrentStageMissions = useCallback(() => {
-    return context.getCurrentStageMissions();
+    return context?.getCurrentStageMissions ? context.getCurrentStageMissions() : [];
   }, [context]);
 
   /**
    * Get mission by ID
    */
   const getMissionById = useCallback((missionId) => {
-    return context.getMissionById(missionId);
+    return context?.getMissionById ? context.getMissionById(missionId) : null;
   }, [context]);
 
   /**
    * Get checkpoint by ID
    */
   const getCheckpointById = useCallback((checkpointId) => {
-    return context.getCheckpointById(checkpointId);
+    return context?.getCheckpointById ? context.getCheckpointById(checkpointId) : null;
   }, [context]);
 
   /**
    * Check if stage is unlocked
    */
   const isStageUnlocked = useCallback((stageNumber) => {
-    return context.isStageUnlocked(stageNumber);
+    return context?.isStageUnlocked ? context.isStageUnlocked(stageNumber) : false;
   }, [context]);
 
   /**
    * Check if mission is unlocked
    */
   const isMissionUnlocked = useCallback((missionId) => {
-    return context.isMissionUnlocked(missionId);
+    return context?.isMissionUnlocked ? context.isMissionUnlocked(missionId) : false;
   }, [context]);
 
   /**
    * Check if checkpoint is unlocked
    */
   const isCheckpointUnlocked = useCallback((checkpointId) => {
-    return context.isCheckpointUnlocked(checkpointId);
+    return context?.isCheckpointUnlocked ? context.isCheckpointUnlocked(checkpointId) : false;
   }, [context]);
 
   /**
    * Get stage completion percentage
    */
   const getStageCompletionPercentage = useCallback((stageNumber) => {
-    return context.getStageCompletionPercentage(stageNumber);
+    return context?.getStageCompletionPercentage 
+      ? context.getStageCompletionPercentage(stageNumber) 
+      : 0;
   }, [context]);
 
   /**
    * Get mission completion percentage
    */
   const getMissionCompletionPercentage = useCallback((missionId) => {
-    return context.getMissionCompletionPercentage(missionId);
+    return context?.getMissionCompletionPercentage 
+      ? context.getMissionCompletionPercentage(missionId) 
+      : 0;
+  }, [context]);
+
+  /**
+   * Get stage deliverable status
+   */
+  const getStageDeliverableStatus = useCallback((stageNumber) => {
+    return context?.getStageDeliverableStatus 
+      ? context.getStageDeliverableStatus(stageNumber) 
+      : { completed: false, name: '', id: null };
   }, [context]);
 
   /**
    * Get earned badges
    */
   const getEarnedBadges = useCallback(() => {
-    return context.getEarnedBadges();
+    return context?.getEarnedBadges ? context.getEarnedBadges() : [];
   }, [context]);
 
   /**
    * Get R2R balance
    */
   const getR2RBalance = useCallback(() => {
-    return context.getR2RBalance();
+    return context?.getR2RBalance ? context.getR2RBalance() : 0;
   }, [context]);
 
   /**
    * Get pR2R balance
    */
   const getPR2RBalance = useCallback(() => {
-    return context.getPR2RBalance();
+    return context?.getPR2RBalance ? context.getPR2RBalance() : 0;
   }, [context]);
 
   /**
    * Get weeks remaining
    */
   const getWeeksRemaining = useCallback(() => {
-    return context.getWeeksRemaining();
+    return context?.getWeeksRemaining ? context.getWeeksRemaining() : 15;
   }, [context]);
 
-  // Memoized values
+  // Memoized values with safe defaults
   const gps101Data = useMemo(() => ({
     isEnrolled,
-    currentStage,
-    currentMission,
-    progressSummary,
-    isCompleted,
-    hasOrangeBeacon,
-    barakaProgress,
-    nextMission,
-    loading,
-    error
+    currentStage: currentStage || 1,
+    currentMission: currentMission || null,
+    progressSummary: progressSummary || {
+      totalStages: 5,
+      completedStages: 0,
+      currentStageNumber: 1,
+      totalMissions: 30,
+      completedMissions: 0,
+      totalCheckpoints: 0,
+      completedCheckpoints: 0,
+      overallProgress: 0
+    },
+    isCompleted: isCompleted || false,
+    hasOrangeBeacon: hasOrangeBeacon || false,
+    barakaProgress: barakaProgress || { earned: 0, total: 5000 },
+    nextMission: nextMission || null,
+    loading: loading || {},
+    error: error || null
   }), [
     isEnrolled,
     currentStage,
@@ -356,6 +422,7 @@ const useGPS101 = () => {
     // Progress getters
     getStageCompletionPercentage,
     getMissionCompletionPercentage,
+    getStageDeliverableStatus,
     getEarnedBadges,
     getR2RBalance,
     getPR2RBalance,

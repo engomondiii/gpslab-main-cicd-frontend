@@ -1,6 +1,8 @@
 /**
  * GPS 101 Main Page
- * * Landing page for GPS 101 Basic course with enrollment and overview.
+ * Landing page for GPS 101 Basic course with enrollment and overview.
+ * 
+ * FIXED: All navigation paths now use /gps101 (no dash)
  */
 
 import React, { useEffect, useState } from 'react';
@@ -30,43 +32,82 @@ const GPS101Page = () => {
 
   const [isEnrolling, setIsEnrolling] = useState(false);
   const [showEnrollmentModal, setShowEnrollmentModal] = useState(false);
+  const [enrollmentSuccess, setEnrollmentSuccess] = useState(false);
 
+  // Initialize once on mount
   useEffect(() => {
     initialize();
-  }, [initialize]);
+  }, []);
 
-  // FIXED: Mock enrollment function to handle frontend-only environments
+  /**
+   * Handle enrollment without page reload
+   * Updates Redux, localStorage, and navigates to Stage 1
+   */
   const handleEnroll = async () => {
     setIsEnrolling(true);
     
     try {
-      // Attempt Redux API call (will fail gracefully if no backend)
-      if (enroll) await enroll();
+      // 1. Attempt Redux enrollment
+      const result = await enroll();
+      
+      if (result.success) {
+        // 2. Update localStorage
+        const storedUserString = localStorage.getItem('gps_user');
+        if (storedUserString) {
+          const storedUser = JSON.parse(storedUserString);
+          storedUser.gps101Enrolled = true;
+          localStorage.setItem('gps_user', JSON.stringify(storedUser));
+        }
+        
+        // 3. Mark enrollment as successful
+        setEnrollmentSuccess(true);
+        
+        // 4. Wait for data to load, then navigate
+        setTimeout(() => {
+          setShowEnrollmentModal(false);
+          setIsEnrolling(false);
+          
+          // FIXED: Navigate to /gps101 (no dash)
+          navigate('/gps101/stage/1');
+        }, 800);
+        
+        return;
+      }
     } catch (error) {
-      console.warn('API Enrollment failed, falling back to local mock enrollment.');
+      console.warn('API Enrollment failed, using fallback:', error);
     }
 
-    // Mock the enrollment locally
+    // Fallback: Mock enrollment locally if API fails
+    // Update localStorage
+    const storedUserString = localStorage.getItem('gps_user');
+    if (storedUserString) {
+      const storedUser = JSON.parse(storedUserString);
+      storedUser.gps101Enrolled = true;
+      localStorage.setItem('gps_user', JSON.stringify(storedUser));
+    }
+    
+    // Mark success
+    setEnrollmentSuccess(true);
+    
+    // Re-initialize to pick up enrollment status and wait for completion
+    try {
+      await initialize();
+    } catch (error) {
+      console.warn('Initialize failed:', error);
+    }
+    
+    // Close modal and navigate after data loads
     setTimeout(() => {
-      // 1. Get current user from storage
-      const storedUserString = localStorage.getItem('gps_user');
-      if (storedUserString) {
-        const storedUser = JSON.parse(storedUserString);
-        // 2. Update enrollment status locally
-        storedUser.gps101Enrolled = true;
-        // 3. Save back to storage
-        localStorage.setItem('gps_user', JSON.stringify(storedUser));
-      }
-      
       setShowEnrollmentModal(false);
       setIsEnrolling(false);
-
-      // 4. Force a reload so App.js picks up the new status and unlocks everything!
-      window.location.reload();
-    }, 800); // 800ms delay to simulate loading
+      
+      // FIXED: Navigate to /gps101 (no dash)
+      navigate('/gps101/stage/1');
+    }, 1000);
   };
 
-  if (loading.enrollment) {
+  // Initial loading state
+  if (loading?.enrollment || (!isEnrolled && loading?.progress)) {
     return (
       <div className="gps101-page loading">
         <div className="loading-spinner" />
@@ -294,63 +335,86 @@ const GPS101Page = () => {
               <button 
                 className="modal-close"
                 onClick={() => setShowEnrollmentModal(false)}
+                disabled={isEnrolling}
               >
                 ✕
               </button>
 
               <div className="modal-content">
-                <div className="modal-icon">🎯</div>
-                <h2>Enroll in GPS 101 Basic</h2>
+                <div className="modal-icon">
+                  {enrollmentSuccess ? '🎉' : '🎯'}
+                </div>
+                <h2>
+                  {enrollmentSuccess ? 'Welcome to GPS 101!' : 'Enroll in GPS 101 Basic'}
+                </h2>
                 <p className="modal-subtitle">
-                  Begin your 15-week journey to discovering your life purpose
+                  {enrollmentSuccess 
+                    ? 'Your purpose discovery journey begins now'
+                    : 'Begin your 15-week journey to discovering your life purpose'
+                  }
                 </p>
 
-                <div className="commitment-checklist">
-                  <div className="commitment-item">
-                    <span className="check-icon">✓</span>
-                    <span>I commit to completing all 5 stages</span>
-                  </div>
-                  <div className="commitment-item">
-                    <span className="check-icon">✓</span>
-                    <span>I will engage authentically with each checkpoint</span>
-                  </div>
-                  <div className="commitment-item">
-                    <span className="check-icon">✓</span>
-                    <span>I'm ready to discover my life purpose</span>
-                  </div>
-                </div>
+                {!enrollmentSuccess && (
+                  <>
+                    <div className="commitment-checklist">
+                      <div className="commitment-item">
+                        <span className="check-icon">✓</span>
+                        <span>I commit to completing all 5 stages</span>
+                      </div>
+                      <div className="commitment-item">
+                        <span className="check-icon">✓</span>
+                        <span>I will engage authentically with each checkpoint</span>
+                      </div>
+                      <div className="commitment-item">
+                        <span className="check-icon">✓</span>
+                        <span>I'm ready to discover my life purpose</span>
+                      </div>
+                    </div>
 
-                <div className="enrollment-info">
-                  <div className="info-row">
-                    <span className="info-label">Duration:</span>
-                    <span className="info-value">15 weeks</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Mode:</span>
-                    <span className="info-value">Solo Journey</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Reward:</span>
-                    <span className="info-value">5,000 Baraka + Orange Beacon</span>
-                  </div>
-                </div>
+                    <div className="enrollment-info">
+                      <div className="info-row">
+                        <span className="info-label">Duration:</span>
+                        <span className="info-value">15 weeks</span>
+                      </div>
+                      <div className="info-row">
+                        <span className="info-label">Mode:</span>
+                        <span className="info-value">Solo Journey</span>
+                      </div>
+                      <div className="info-row">
+                        <span className="info-label">Reward:</span>
+                        <span className="info-value">5,000 Baraka + Orange Beacon</span>
+                      </div>
+                    </div>
 
-                <div className="modal-actions">
-                  <button 
-                    className="cancel-button"
-                    onClick={() => setShowEnrollmentModal(false)}
-                    disabled={isEnrolling}
-                  >
-                    Not Yet
-                  </button>
-                  <button 
-                    className="confirm-enroll-button"
-                    onClick={handleEnroll}
-                    disabled={isEnrolling}
-                  >
-                    {isEnrolling ? 'Enrolling...' : 'Start My Journey'}
-                  </button>
-                </div>
+                    <div className="modal-actions">
+                      <button 
+                        className="cancel-button"
+                        onClick={() => setShowEnrollmentModal(false)}
+                        disabled={isEnrolling}
+                      >
+                        Not Yet
+                      </button>
+                      <button 
+                        className="confirm-enroll-button"
+                        onClick={handleEnroll}
+                        disabled={isEnrolling}
+                      >
+                        {isEnrolling ? 'Enrolling...' : 'Start My Journey'}
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {enrollmentSuccess && (
+                  <div className="enrollment-success">
+                    <p className="success-message">
+                      Redirecting to Stage 1...
+                    </p>
+                    <div className="success-spinner">
+                      <div className="spinner-ring" />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -421,6 +485,16 @@ const GPS101Page = () => {
   }
 
   // Enrolled & In Progress State
+  // Show loading while data is being fetched
+  if (loading?.progress || loading?.stages || loading?.missions) {
+    return (
+      <div className="gps101-page loading">
+        <div className="loading-spinner" />
+        <p>Loading your GPS 101 progress...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="gps101-page enrolled">
       <div className="page-container">
@@ -443,27 +517,33 @@ const GPS101Page = () => {
         </div>
 
         {/* Progress Overview */}
-        <div className="progress-overview-section">
-          <GPS101ProgressWidget />
-        </div>
+        {progressSummary && (
+          <div className="progress-overview-section">
+            <GPS101ProgressWidget />
+          </div>
+        )}
 
         {/* Weekly Timeline */}
         <div className="weekly-timeline-section">
           <WeeklyProgressBar
             weeksCompleted={15 - getWeeksRemaining()}
-            enrollmentDate={new Date()} // Get from user data
+            enrollmentDate={new Date()}
           />
         </div>
 
         {/* Navigator Guidance */}
-        <div className="navigator-section">
-          <GPS101NavigatorGuide stageNumber={currentStage} />
-        </div>
+        {currentStage && (
+          <div className="navigator-section">
+            <GPS101NavigatorGuide stageNumber={currentStage} />
+          </div>
+        )}
 
-        {/* Stage Map */}
-        <div className="stage-map-section">
-          <GPS101StageMap />
-        </div>
+        {/* Stage Map - Only render when progressSummary is available */}
+        {progressSummary && (
+          <div className="stage-map-section">
+            <GPS101StageMap />
+          </div>
+        )}
 
         {/* Next Mission CTA */}
         {nextMission && (
@@ -477,7 +557,7 @@ const GPS101Page = () => {
             </div>
             <button 
               className="continue-button"
-              onClick={() => navigate(`/gps-101/mission/${nextMission.missionId}`)}
+              onClick={() => navigate(`/gps101/mission/${nextMission.missionId}`)}
             >
               Continue Mission →
             </button>
@@ -490,7 +570,7 @@ const GPS101Page = () => {
           <div className="quick-links-grid">
             <button 
               className="quick-link-card"
-              onClick={() => navigate(`/gps-101/stage/${currentStage}`)}
+              onClick={() => navigate(`/gps101/stage/${currentStage}`)}
             >
               <span className="link-icon">📚</span>
               <span className="link-text">Current Stage</span>
