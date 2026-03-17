@@ -338,8 +338,16 @@ const CheckpointQuestions = ({ checkpoint, answers, onAnswerChange, errors = {} 
     return null;
   }
 
-  // If checkpoint has a single main question (like original structure)
+  // If checkpoint has a single main question (GPS 101 structure)
+  // FIX: Previously only rendered the question title with no <textarea>, so
+  // the student could read the question but had nowhere to type their answer.
+  // Now renders a full textarea keyed by checkpoint.checkpointId so the answer
+  // flows into formData.answers and reaches GPS101CheckpointForm validation.
   if (checkpoint.question && !checkpoint.questions) {
+    const mainKey = checkpoint.checkpointId || 'main';
+    const currentValue = answers[mainKey] || '';
+    const wordCount = currentValue.split(/\s+/).filter(w => w.length > 0).length;
+
     return (
       <div className="checkpoint-questions">
         <div className="main-question">
@@ -347,6 +355,32 @@ const CheckpointQuestions = ({ checkpoint, answers, onAnswerChange, errors = {} 
           {checkpoint.questionKo && (
             <p className="checkpoint-question-ko">{checkpoint.questionKo}</p>
           )}
+        </div>
+
+        <div className="question-container">
+          <textarea
+            className={`long-answer-textarea ${errors[mainKey] ? 'error' : ''}`}
+            value={currentValue}
+            onChange={(e) => onAnswerChange(mainKey, e.target.value)}
+            placeholder="Write your answer here..."
+            rows={12}
+          />
+
+          {errors[mainKey] && (
+            <div className="field-error">{errors[mainKey]}</div>
+          )}
+
+          <div className="answer-stats">
+            <span className="stat-item">{currentValue.length} characters</span>
+            <span className="stat-separator">•</span>
+            <span className="stat-item">{wordCount} words</span>
+            {checkpoint.minLength && (
+              <>
+                <span className="stat-separator">•</span>
+                <span className="stat-item">Min: {checkpoint.minLength} characters</span>
+              </>
+            )}
+          </div>
         </div>
       </div>
     );

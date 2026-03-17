@@ -1,8 +1,15 @@
 /**
  * useGPS101 Hook
  * 
- * Custom hook for GPS 101 functionality.
+ * CORRECTED STRUCTURE:
+ * - 5 Missions (1 per stage)
+ * - 30 Sub-missions (6 per mission)
+ * - 150 Checkpoints (5 per sub-mission)
+ * 
+ * Custom hook for GPS 101 functionality with complete action and getter methods.
  * Provides easy access to GPS 101 state and actions.
+ * 
+ * UPDATED: Added all missing getter methods to fix GPS101StagePage errors
  */
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -14,6 +21,8 @@ import {
   fetchAllStages,
   fetchAllMissions,
   startGPS101Mission,
+  startGPS101SubMission,
+  completeGPS101SubMission,
   submitGPS101Checkpoint,
   completeGPS101Mission,
   completeGPS101Stage,
@@ -22,6 +31,7 @@ import {
   retryGPS101Checkpoint,
   setCurrentStage,
   setCurrentMission,
+  setCurrentSubMission,
   setCurrentCheckpoint
 } from '../store/slices/gps101Slice';
 import {
@@ -29,6 +39,7 @@ import {
   selectIsEnrolled,
   selectCurrentStage,
   selectCurrentMission,
+  selectCurrentSubMission,
   selectProgressSummary,
   selectIsGPS101Completed,
   selectHasOrangeBeacon,
@@ -53,6 +64,7 @@ const useGPS101 = () => {
   const reduxIsEnrolled = useSelector(selectIsEnrolled);
   const currentStage = useSelector(selectCurrentStage);
   const currentMission = useSelector(selectCurrentMission);
+  const currentSubMission = useSelector(selectCurrentSubMission);
   const progressSummary = useSelector(selectProgressSummary);
   const isCompleted = useSelector(selectIsGPS101Completed);
   const hasOrangeBeacon = useSelector(selectHasOrangeBeacon);
@@ -86,7 +98,6 @@ const useGPS101 = () => {
    */
   const initialize = useCallback(async () => {
     try {
-      // Fetch data from API (don't update local state here to avoid loops)
       await dispatch(fetchGPS101Progress()).unwrap();
       await dispatch(fetchAllStages()).unwrap();
       await dispatch(fetchAllMissions()).unwrap();
@@ -97,7 +108,7 @@ const useGPS101 = () => {
   }, [dispatch]);
 
   /**
-   * FIXED: Enroll in GPS 101 with proper state updates
+   * Enroll in GPS 101 with proper state updates
    */
   const enroll = useCallback(async () => {
     try {
@@ -135,6 +146,43 @@ const useGPS101 = () => {
   }, [dispatch]);
 
   /**
+   * Complete a mission
+   */
+  const completeMission = useCallback(async (missionId) => {
+    try {
+      const result = await dispatch(completeGPS101Mission(missionId)).unwrap();
+      return { success: true, data: result };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }, [dispatch]);
+
+  /**
+   * Start a sub-mission
+   */
+  const startSubMission = useCallback(async (subMissionId) => {
+    try {
+      const result = await dispatch(startGPS101SubMission(subMissionId)).unwrap();
+      dispatch(setCurrentSubMission(subMissionId));
+      return { success: true, data: result };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }, [dispatch]);
+
+  /**
+   * Complete a sub-mission
+   */
+  const completeSubMission = useCallback(async (subMissionId) => {
+    try {
+      const result = await dispatch(completeGPS101SubMission(subMissionId)).unwrap();
+      return { success: true, data: result };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }, [dispatch]);
+
+  /**
    * Submit a checkpoint
    */
   const submitCheckpoint = useCallback(async (checkpointId, submissionData) => {
@@ -143,18 +191,6 @@ const useGPS101 = () => {
         checkpointId, 
         submissionData 
       })).unwrap();
-      return { success: true, data: result };
-    } catch (error) {
-      return { success: false, error };
-    }
-  }, [dispatch]);
-
-  /**
-   * Complete a mission
-   */
-  const completeMission = useCallback(async (missionId) => {
-    try {
-      const result = await dispatch(completeGPS101Mission(missionId)).unwrap();
       return { success: true, data: result };
     } catch (error) {
       return { success: false, error };
@@ -238,6 +274,20 @@ const useGPS101 = () => {
   }, [dispatch, context]);
 
   /**
+   * Navigate to sub-mission
+   */
+  const navigateToSubMission = useCallback((subMissionId) => {
+    if (context?.isSubMissionUnlocked && context.isSubMissionUnlocked(subMissionId)) {
+      dispatch(setCurrentSubMission(subMissionId));
+      if (context.setCurrentSubMission) {
+        context.setCurrentSubMission(subMissionId);
+      }
+      return true;
+    }
+    return false;
+  }, [dispatch, context]);
+
+  /**
    * Navigate to checkpoint
    */
   const navigateToCheckpoint = useCallback((checkpointId) => {
@@ -259,10 +309,17 @@ const useGPS101 = () => {
   }, [context]);
 
   /**
-   * Get current stage missions
+   * Get current stage mission (CORRECTED: 1 mission per stage)
    */
-  const getCurrentStageMissions = useCallback(() => {
-    return context?.getCurrentStageMissions ? context.getCurrentStageMissions() : [];
+  const getCurrentStageMission = useCallback(() => {
+    return context?.getCurrentStageMission ? context.getCurrentStageMission() : null;
+  }, [context]);
+
+  /**
+   * Get sub-missions for current mission
+   */
+  const getCurrentMissionSubMissions = useCallback(() => {
+    return context?.getCurrentMissionSubMissions ? context.getCurrentMissionSubMissions() : [];
   }, [context]);
 
   /**
@@ -273,10 +330,45 @@ const useGPS101 = () => {
   }, [context]);
 
   /**
+   * Get sub-mission by ID
+   */
+  const getSubMissionById = useCallback((subMissionId) => {
+    return context?.getSubMissionById ? context.getSubMissionById(subMissionId) : null;
+  }, [context]);
+
+  /**
    * Get checkpoint by ID
    */
   const getCheckpointById = useCallback((checkpointId) => {
     return context?.getCheckpointById ? context.getCheckpointById(checkpointId) : null;
+  }, [context]);
+
+  /**
+   * NEW: Get stage by number (ADDED TO FIX GPS101StagePage ERROR)
+   */
+  const getStageByNumber = useCallback((stageNumber) => {
+    return context?.getStageByNumber ? context.getStageByNumber(stageNumber) : null;
+  }, [context]);
+
+  /**
+   * NEW: Get mission by stage number (ADDED TO FIX GPS101StagePage ERROR)
+   */
+  const getMissionByStageNumber = useCallback((stageNumber) => {
+    return context?.getMissionByStageNumber ? context.getMissionByStageNumber(stageNumber) : null;
+  }, [context]);
+
+  /**
+   * NEW: Get sub-missions by mission ID (ADDED TO FIX GPS101StagePage ERROR)
+   */
+  const getSubMissionsByMissionId = useCallback((missionId) => {
+    return context?.getSubMissionsByMissionId ? context.getSubMissionsByMissionId(missionId) : [];
+  }, [context]);
+
+  /**
+   * NEW: Get stage deliverable status (ADDED TO FIX GPS101StagePage ERROR)
+   */
+  const getStageDeliverableStatus = useCallback((stageNumber) => {
+    return context?.getStageDeliverableStatus ? context.getStageDeliverableStatus(stageNumber) : null;
   }, [context]);
 
   /**
@@ -291,6 +383,13 @@ const useGPS101 = () => {
    */
   const isMissionUnlocked = useCallback((missionId) => {
     return context?.isMissionUnlocked ? context.isMissionUnlocked(missionId) : false;
+  }, [context]);
+
+  /**
+   * Check if sub-mission is unlocked
+   */
+  const isSubMissionUnlocked = useCallback((subMissionId) => {
+    return context?.isSubMissionUnlocked ? context.isSubMissionUnlocked(subMissionId) : false;
   }, [context]);
 
   /**
@@ -319,12 +418,21 @@ const useGPS101 = () => {
   }, [context]);
 
   /**
-   * Get stage deliverable status
+   * Get sub-mission completion percentage
    */
-  const getStageDeliverableStatus = useCallback((stageNumber) => {
-    return context?.getStageDeliverableStatus 
-      ? context.getStageDeliverableStatus(stageNumber) 
-      : { completed: false, name: '', id: null };
+  const getSubMissionCompletionPercentage = useCallback((subMissionId) => {
+    return context?.getSubMissionCompletionPercentage 
+      ? context.getSubMissionCompletionPercentage(subMissionId) 
+      : 0;
+  }, [context]);
+
+  /**
+   * Get stage deliverable
+   */
+  const getStageDeliverable = useCallback((stageNumber) => {
+    return context?.getStageDeliverable 
+      ? context.getStageDeliverable(stageNumber) 
+      : null;
   }, [context]);
 
   /**
@@ -338,7 +446,7 @@ const useGPS101 = () => {
    * Get R2R balance
    */
   const getR2RBalance = useCallback(() => {
-    return context?.getR2RBalance ? context.getR2RBalance() : 0;
+    return context?.getR2RBalance ? context.getR2RBalance() : 3;
   }, [context]);
 
   /**
@@ -355,38 +463,64 @@ const useGPS101 = () => {
     return context?.getWeeksRemaining ? context.getWeeksRemaining() : 15;
   }, [context]);
 
-  // Memoized values with safe defaults
+  /**
+   * Get next checkpoint in current sub-mission
+   */
+  const getNextCheckpoint = useCallback((subMissionId) => {
+    return context?.getNextCheckpoint ? context.getNextCheckpoint(subMissionId) : null;
+  }, [context]);
+
+  /**
+   * Get all stages data
+   */
+  const stages = useMemo(() => {
+    return context?.stages || gps101State?.stages || [];
+  }, [context, gps101State]);
+
+  /**
+   * Get total Baraka earned
+   */
+  const totalBaraka = useMemo(() => {
+    return gps101State?.totalBarakaEarned || 0;
+  }, [gps101State]);
+
+  // Memoized values with safe defaults (CORRECTED)
   const gps101Data = useMemo(() => ({
     isEnrolled,
     currentStage: currentStage || 1,
     currentMission: currentMission || null,
+    currentSubMission: currentSubMission || null,
     progressSummary: progressSummary || {
-      totalStages: 5,
-      completedStages: 0,
-      currentStageNumber: 1,
-      totalMissions: 30,
-      completedMissions: 0,
-      totalCheckpoints: 0,
-      completedCheckpoints: 0,
+      stages: { completed: 0, total: 5, percentage: 0 },
+      missions: { completed: 0, total: 5, percentage: 0 },
+      subMissions: { completed: 0, total: 30, percentage: 0 },
+      checkpoints: { completed: 0, total: 150, percentage: 0 },
+      deliverables: { completed: 0, total: 5, percentage: 0 },
+      rewards: { baraka: 0, xp: 0 },
       overallProgress: 0
     },
     isCompleted: isCompleted || false,
     hasOrangeBeacon: hasOrangeBeacon || false,
-    barakaProgress: barakaProgress || { earned: 0, total: 5000 },
+    barakaProgress: barakaProgress || { current: 0, target: 5000, percentage: 0 },
     nextMission: nextMission || null,
     loading: loading || {},
-    error: error || null
+    error: error || null,
+    stages,
+    totalBaraka
   }), [
     isEnrolled,
     currentStage,
     currentMission,
+    currentSubMission,
     progressSummary,
     isCompleted,
     hasOrangeBeacon,
     barakaProgress,
     nextMission,
     loading,
-    error
+    error,
+    stages,
+    totalBaraka
   ]);
 
   return {
@@ -397,8 +531,10 @@ const useGPS101 = () => {
     initialize,
     enroll,
     startMission,
-    submitCheckpoint,
     completeMission,
+    startSubMission,
+    completeSubMission,
+    submitCheckpoint,
     completeStage,
     saveDeliverable,
     retryCheckpoint,
@@ -406,23 +542,35 @@ const useGPS101 = () => {
     // Navigation
     navigateToStage,
     navigateToMission,
+    navigateToSubMission,
     navigateToCheckpoint,
 
     // Data getters
     getCurrentStageData,
-    getCurrentStageMissions,
+    getCurrentStageMission,
+    getCurrentMissionSubMissions,
     getMissionById,
+    getSubMissionById,
     getCheckpointById,
+    getNextCheckpoint,
+    
+    // NEW: Added getters to fix GPS101StagePage errors
+    getStageByNumber,
+    getMissionByStageNumber,
+    getSubMissionsByMissionId,
+    getStageDeliverableStatus,
 
     // Status checkers
     isStageUnlocked,
     isMissionUnlocked,
+    isSubMissionUnlocked,
     isCheckpointUnlocked,
 
     // Progress getters
     getStageCompletionPercentage,
     getMissionCompletionPercentage,
-    getStageDeliverableStatus,
+    getSubMissionCompletionPercentage,
+    getStageDeliverable,
     getEarnedBadges,
     getR2RBalance,
     getPR2RBalance,

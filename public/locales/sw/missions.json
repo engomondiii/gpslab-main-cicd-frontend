@@ -1,0 +1,236 @@
+{
+  "missions": {
+    "gps101": {
+      "stage1": {
+        "mission": {
+          "title": "Misheni ya Kugundua Utambulisho",
+          "brief": "Anza safari ya kujigundua. Kupitia misheni-ndogo 6 na vipimo 30, utachunguza ni nani wewe kwa asili - maadili, nguvu, shauku, na kinachokufanya kuwa wa kipekee.",
+          "objectives": [
+            "Tambua maadili na kanuni za msingi",
+            "Gundua nguvu na talanta zako za asili",
+            "Elewa kinachokuchochea na kukuhamasisha",
+            "Tambua mifumo katika chaguzi zako za maisha",
+            "Eleza uhalisi wako"
+          ],
+          "deliverable": "Kwa kukamilisha misheni hii, utaunda Tamko la Utambulisho kamili linaloshika ni nani wewe zaidi ya majukumu na majina."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Uchunguzi wa Maadili ya Msingi",
+            "description": "Gundua kanuni zinazongoza maamuzi yako na kufafanua kinachokuwa muhimu zaidi kwako.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Tathmini ya Nguvu na Talanta",
+            "description": "Tambua uwezo wako wa asili na unachofanya vizuri zaidi kuliko watu wengi.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Ramani ya Shauku na Nishati",
+            "description": "Pata shughuli zinazokupa nishati na kukufanya usahau muda.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Utambuzi wa Mifumo ya Maisha",
+            "description": "Ona mada na chaguzi zinazojir udia ambazo zinaonyesha asili yako ya kweli.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Maonyesho ya Uhalisi wa Kibinafsi",
+            "description": "Jifunze kueleza ni nani wewe kwa maneno yako mwenyewe.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Uundaji wa Tamko la Utambulisho",
+            "description": "Unganisha ugunduzi wako katika tamko nguvu la utambulisho.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage2": {
+        "mission": {
+          "title": "Misheni ya Kugundua Tatizo",
+          "brief": "Chunguza matatizo yenye maana yanayolingana na utambulisho wako. Kupitia misheni-ndogo 6 na vipimo 30, utabainisha matatizo yanayokuita kutenda na kuunganisha na ni nani wewe.",
+          "objectives": [
+            "Tambua matatizo unayojali sana",
+            "Elewa kwa nini matatizo fulani yanakugusa",
+            "Tathmini umuhimu na upeo wa tatizo",
+            "Unganisha matatizo na utambulisho wako",
+            "Chagua mgombea wako wa tatizo la maisha"
+          ],
+          "deliverable": "Kwa kukamilisha misheni hii, utaunda Orodha ya Wagombea wa Tatizo yenye matatizo 5-20 yanayovuma sana na ni nani wewe."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Ujenzi wa Ufahamu wa Tatizo",
+            "description": "Fungua macho yako kwa matatizo yanayokuzunguka ambayo wengine wanaweza kupuuza.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Uchunguzi wa Uhusiano wa Kibinafsi",
+            "description": "Elewa kwa nini matatizo fulani yanakuathiri zaidi kuliko mengine.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Uchambuzi wa Umuhimu wa Tatizo",
+            "description": "Tathmini ukubwa, upeo, na athari ya matatizo tofauti.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Upatanisho wa Utambulisho-Tatizo",
+            "description": "Unganisha utambulisho wako na matatizo uliyowekwa kipekee kushughulikia.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Uendelezaji wa Mkusanyiko wa Matatizo",
+            "description": "Jenga orodha kamili ya wagombea wa matatizo yenye maana.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Uteuzi wa Tatizo Kuu",
+            "description": "Chagua tatizo linalovuma zaidi na wewe.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage3": {
+        "mission": {
+          "title": "Misheni ya Kugundua Mmiliki wa Tatizo",
+          "brief": "Jenga huruma ya kina kwa kuelewa watu wanaopitia tatizo lako. Kupitia misheni-ndogo 6 na vipimo 30, utajifunza hadithi zao, mapambano, na ndoto.",
+          "objectives": [
+            "Tambua ni nani anaathiriwa zaidi na tatizo lako",
+            "Elewa ukweli wao wa kila siku na changamoto",
+            "Jifunze walichojaribu na kwa nini halikufanya kazi",
+            "Hisi hisia na kuchokoza kwao",
+            "Simulia hadithi yao kwa huruma na maelezo"
+          ],
+          "deliverable": "Kwa kukamilisha misheni hii, utaunda Hadithi ya Mmiliki wa Tatizo inayovutia inayoonyesha athari ya kibinadamu ya tatizo lako lililochukuliwa."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Utambuzi wa Mmiliki wa Tatizo",
+            "description": "Pata na ufafanue ni nani anapitia tatizo lako kwa ukali zaidi.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Uandishi wa Maisha ya Kila Siku",
+            "description": "Tengeneza ramani ya jinsi siku ya kawaida inavyoonekana kwa wamiliki wa tatizo.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Uchambuzi wa Vizuizi na Changamoto",
+            "description": "Elewa vikwazo wanakabiliana navyo na suluhisho walizojaribu.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Uchunguzi wa Athari za Kihisia",
+            "description": "Hisi uzito wa kihemko wa jinsi tatizo linavyowaathiri.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Ramani ya Ndoto na Nia",
+            "description": "Jifunze wanapotarajia ambayo tatizo linazuia.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Ufumaji wa Hadithi na Masimulizi",
+            "description": "Unda masimulizi yanayovutia yanayoletea uzoefu wao hai.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage4": {
+        "mission": {
+          "title": "Misheni ya Ufafanuzi wa Kusudi",
+          "brief": "Unganisha utambulisho na tatizo lako katika tamko wazi la kusudi. Kupitia misheni-ndogo 6 na vipimo 30, utafafanua mchango wako wa kipekee katika kutatua tatizo lako lililochukuliwa.",
+          "objectives": [
+            "Unganisha utambulisho wako na tatizo lako",
+            "Fafanua mkabala au mtazamo wako wa kipekee",
+            "Fafanua athari unayotaka kuwa nayo",
+            "Eleza maono yako ya muda mrefu",
+            "Unda tamko lako la kusudi la maisha"
+          ],
+          "deliverable": "Kwa kukamilisha misheni hii, utaunda Tamko la Kusudi la Maisha linalofafanua sababu yako ya kuwepo na urithi unataka kuacha."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Mchanganyiko wa Utambulisho-Tatizo",
+            "description": "Unganisha ni nani wewe na tatizo ulilojitwa kutatua.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Ugunduzi wa Msimamo wa Kipekee",
+            "description": "Elewa ni nini kinachofanya mkabala wako kuwa wa kipekee kwako.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Uundaji wa Maono ya Athari",
+            "description": "Fafanua mabadiliko mahususi unayotaka kuunda ulimwenguni.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Upangaji wa Urithi wa Muda Mrefu",
+            "description": "Fikiri unataka kukumbukwa kwa nini.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Mazoezi ya Maonyesho ya Kusudi",
+            "description": "Jifunze kueleza kusudi lako wazi na kwa njia inayovutia.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Ukamilishaji wa Tamko la Kusudi",
+            "description": "Unda tamko lako la mwisho la kusudi la maisha.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage5": {
+        "mission": {
+          "title": "Misheni ya Uundaji wa Mradi",
+          "brief": "Buni mradi mahususi unaojumuisha kusudi lako. Kupitia misheni-ndogo 6 na vipimo 30, utaunda mpango wa kitendo ili kufanya kusudi lako kuwa halisi.",
+          "objectives": [
+            "Fikiri mawazo ya miradi inayowezekana",
+            "Tathmini uwezekano na athari",
+            "Fafanua watumiaji/wanufaika wako wa lengo",
+            "Unda mpango wa kitendo wa dhahiri",
+            "Buni toleo la kwanza la mradi wako"
+          ],
+          "deliverable": "Kwa kukamilisha misheni hii, utaunda Mpango wa Mradi wa Kusudi ambao unaweza kujenga na kuzindua ndani ya miezi 6-12."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Fikira za Suluhisho na Kutafakari",
+            "description": "Zalisha mawazo mengi ya miradi ambayo inashughulikia tatizo lako.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Tathmini ya Uwezekano na Athari",
+            "description": "Tathmini ni mawazo gani ya mradi ni ya uwezekano zaidi na yenye athari.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Ufafanuzi wa Hadhira ya Lengo",
+            "description": "Tambua ni nani atanufaika na kutumia mradi wako.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Ramani ya Rasilimali na Uwezo",
+            "description": "Tathmini rasilimali unazomiliki na unahitaji kupata.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Uundaji wa Ramani ya Mradi",
+            "description": "Jenga ratiba na mpango wa kitendo kwa mradi wako.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Muundo wa Toleo la 1.0",
+            "description": "Fafanua mradi wako wa chini wa kutekelezeka unaoonekana vipi.",
+            "checkpoints": 5
+          }
+        }
+      }
+    }
+  }
+}

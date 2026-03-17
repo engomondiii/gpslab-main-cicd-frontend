@@ -1,23 +1,19 @@
 /**
  * GPS 101 Mission Page
- * 
- * Individual mission view with checkpoints and submission.
- * 
- * FIXED: All navigation paths use /gps101 (no dash)
- * FIXED: Added fallback logic for starting missions when API is unavailable
+ * CORRECT STRUCTURE: Each mission has 6 sub-missions, each sub-mission has 5 checkpoints
+ * Shows mission briefing, sub-missions grid, and comprehensive progress tracking
+ * Routes: All use /gps101 (no dash)
  */
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useGPS101 from '../../../hooks/useGPS101';
-import GPS101CheckpointCard from '../../../components/gps101/GPS101Checkpoint/GPS101CheckpointCard';
 import GPS101NavigatorGuide from '../../../components/gps101/GPS101Navigator/GPS101NavigatorGuide';
 import CheckpointProgressRing from '../../../components/gps101/GPS101Progress/CheckpointProgressRing';
-import { 
-  formatMissionTitle,
-  formatBaraka,
-  formatXP 
-} from '../../../utils/formatters/gps101.formatter';
+import GPS101MissionBriefing from '../../../components/mission/MissionBriefing/GPS101MissionBriefing';
+import GPS101BriefingVideo from '../../../components/mission/MissionBriefing/GPS101BriefingVideo';
+import GPS101MissionAcceptButton from '../../../components/mission/MissionAccept/GPS101MissionAcceptButton';
+import GPS101MissionAcceptModal from '../../../components/mission/MissionAccept/GPS101MissionAcceptModal';
 import './GPS101MissionPage.css';
 
 const GPS101MissionPage = () => {
@@ -25,9 +21,9 @@ const GPS101MissionPage = () => {
   const navigate = useNavigate();
   const {
     getMissionById,
-    getCheckpointById,
+    getSubMissionsByMissionId,
     isMissionUnlocked,
-    isCheckpointUnlocked,
+    isSubMissionUnlocked,
     getMissionCompletionPercentage,
     startMission,
     completeMission,
@@ -35,12 +31,19 @@ const GPS101MissionPage = () => {
     loading
   } = useGPS101();
 
-  const [missionData, setMissionData] = useState(null);
-  const [isStarting, setIsStarting] = useState(false);
+  // FIX: loading is a Redux object {}, not a boolean. Any non-null object is always
+  // truthy, so `if (loading)` and `!loading` never work as intended.
+  // Extract specific boolean flags from the loading object instead.
+  const isPageLoading = loading?.missions || loading?.progress || loading?.stages || false;
+
+  const [showBriefing, setShowBriefing] = useState(true);
+  const [showAcceptModal, setShowAcceptModal] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
-  const [missionStarted, setMissionStarted] = useState(false); // Track if mission has been started locally
+  const [isStarting, setIsStarting] = useState(false);
+  const [missionStarted, setMissionStarted] = useState(false);
 
   const mission = getMissionById(missionId);
+  const subMissions = getSubMissionsByMissionId(missionId); // Returns 6 sub-missions
   const isUnlocked = isMissionUnlocked(missionId);
   const completion = getMissionCompletionPercentage(missionId);
 
@@ -50,17 +53,17 @@ const GPS101MissionPage = () => {
 
   useEffect(() => {
     if (mission) {
-      setMissionData(mission);
-      
-      // Check if mission is already started from API data
+      // Check if mission already started from API
       if (mission.status === 'in_progress' || mission.status === 'completed') {
         setMissionStarted(true);
+        setShowBriefing(false);
       } else {
-        // Check localStorage for started missions (fallback)
+        // Check localStorage fallback
         try {
           const startedMissions = JSON.parse(localStorage.getItem('gps101_started_missions') || '[]');
           if (startedMissions.includes(missionId)) {
             setMissionStarted(true);
+            setShowBriefing(false);
           }
         } catch (error) {
           console.warn('Could not read from localStorage:', error);
@@ -69,13 +72,17 @@ const GPS101MissionPage = () => {
     }
   }, [mission, missionId]);
 
+  // FIX: was `!loading` which is always false because loading={} is always truthy.
+  // Now uses the specific boolean isPageLoading.
   useEffect(() => {
-    if (!isUnlocked && !loading.missions) {
+    if (!isUnlocked && !isPageLoading) {
       navigate('/gps101');
     }
-  }, [isUnlocked, loading.missions, navigate]);
+  }, [isUnlocked, isPageLoading, navigate]);
 
-  if (!mission || loading.missions) {
+  // FIX: was `loading` which is always truthy → stuck forever on "Loading mission..."
+  // Now uses the specific boolean isPageLoading.
+  if (!mission || isPageLoading) {
     return (
       <div className="gps101-mission-page loading">
         <div className="loading-spinner" />
@@ -84,80 +91,83 @@ const GPS101MissionPage = () => {
     );
   }
 
-  const handleStartMission = async () => {
+  /**
+   * Handle Accept Mission - with API + localStorage fallback
+   */
+  const handleAcceptMission = async () => {
     setIsStarting(true);
     
     try {
-      // Try API call first
       const result = await startMission(missionId);
       
-      if (result && result.success) {
-        // API success - update from API response
-        setMissionData({ ...missionData, status: 'in_progress' });
+      if (result?.success) {
         setMissionStarted(true);
+        setShowBriefing(false);
+        setShowAcceptModal(false);
         setIsStarting(false);
         return;
       }
     } catch (error) {
-      console.log('API not available, using local state fallback');
+      console.warn('API start failed, using fallback:', error);
     }
-    
-    // FALLBACK: If API fails or returns unsuccessful, use local state
-    console.log('Using fallback: Starting mission locally');
-    
-    // Update local state
-    setMissionData({ ...missionData, status: 'in_progress' });
-    setMissionStarted(true);
-    
-    // Store in localStorage as backup (persists across page refreshes)
+
+    // Fallback: Mark as started in localStorage
     try {
       const startedMissions = JSON.parse(localStorage.getItem('gps101_started_missions') || '[]');
       if (!startedMissions.includes(missionId)) {
         startedMissions.push(missionId);
         localStorage.setItem('gps101_started_missions', JSON.stringify(startedMissions));
-        console.log('Mission saved to localStorage:', missionId);
       }
-    } catch (storageError) {
-      console.warn('Could not save to localStorage:', storageError);
+    } catch (error) {
+      console.warn('Could not write to localStorage:', error);
     }
-    
+
+    setMissionStarted(true);
+    setShowBriefing(false);
+    setShowAcceptModal(false);
     setIsStarting(false);
   };
 
+  /**
+   * Handle Complete Mission
+   */
   const handleCompleteMission = async () => {
     try {
       const result = await completeMission(missionId);
-      if (result && result.success) {
+      if (result?.success) {
         setShowCompletionModal(true);
       }
     } catch (error) {
-      console.log('Complete mission API not available');
-      // Could add fallback here too if needed
+      console.warn('Complete mission API not available:', error);
+      // Fallback: Show modal anyway
+      setShowCompletionModal(true);
     }
   };
 
-  const handleCheckpointClick = (checkpointId) => {
-    if (isCheckpointUnlocked(checkpointId)) {
-      navigate(`/gps101/checkpoint/${checkpointId}`);
+  /**
+   * Handle Sub-mission Click
+   */
+  const handleSubMissionClick = (subMission, isSubMissionUnlocked) => {
+    if (isSubMissionUnlocked && subMission.checkpoints && subMission.checkpoints.length > 0) {
+      // Navigate to first checkpoint of this sub-mission
+      const firstCheckpoint = subMission.checkpoints[0];
+      navigate(`/gps101/checkpoint/${firstCheckpoint.checkpointId}`);
     }
   };
 
-  const getCheckpointStatus = (checkpoint) => {
-    // This would come from actual checkpoint state
-    return 'available'; // placeholder
-  };
+  // Calculate stats - CORRECT NUMBERS
+  const totalSubMissions = 6; // Each mission has 6 sub-missions
+  const totalCheckpoints = 30; // 5 checkpoints × 6 sub-missions
+  
+  const completedSubMissions = subMissions?.filter(sm => sm.status === 'completed').length || 0;
+  const completedCheckpoints = subMissions?.reduce((total, sm) => {
+    return total + (sm.checkpoints?.filter(c => c.status === 'passed').length || 0);
+  }, 0) || 0;
 
-  const passedCheckpoints = mission.checkpoints.filter(
-    cp => getCheckpointStatus(cp) === 'passed'
-  ).length;
+  const totalBaraka = mission.barakaReward || 1000; // Default mission baraka
+  const earnedBaraka = Math.floor((completion / 100) * totalBaraka);
 
-  const allCheckpointsPassed = passedCheckpoints === mission.checkpoints.length;
-
-  // Determine if mission content should be shown
-  // Show if: mission started locally OR mission status is in_progress/completed from API
-  const showMissionContent = missionStarted || 
-                             missionData?.status === 'in_progress' || 
-                             missionData?.status === 'completed';
+  const allSubMissionsCompleted = completedSubMissions === totalSubMissions;
 
   return (
     <div className="gps101-mission-page">
@@ -178,171 +188,272 @@ const GPS101MissionPage = () => {
             Stage {mission.stageNumber}
           </button>
           <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Mission {mission.missionNumber}</span>
+          <span className="breadcrumb-current">Mission</span>
         </div>
 
-        {/* Mission Header */}
-        <div className="mission-header">
-          <div className="mission-header-content">
-            <div className="mission-badge-row">
-              <div className="mission-number-badge">
-                Mission {mission.missionNumber}
-              </div>
-              {mission.isStageCompleter && (
-                <div className="stage-completer-badge">
-                  <span className="badge-icon">🏆</span>
-                  <span className="badge-text">Stage Completer</span>
-                </div>
-              )}
-            </div>
-
-            <h1 className="mission-title">
-              {formatMissionTitle(mission)}
-            </h1>
-            {mission.titleKo && (
-              <p className="mission-title-ko">{mission.titleKo}</p>
-            )}
-
-            {/* Mission Description */}
-            {mission.description && (
-              <p className="mission-description">{mission.description}</p>
-            )}
-
-            {/* Mission Objectives */}
-            {mission.objectives && mission.objectives.length > 0 && (
-              <div className="mission-objectives">
-                <h3>Learning Objectives</h3>
-                <ul className="objectives-list">
-                  {mission.objectives.map((objective, index) => (
-                    <li key={index}>{objective}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Mission Stats */}
-            <div className="mission-stats">
-              <div className="stat-item">
-                <span className="stat-icon">✓</span>
-                <span className="stat-text">
-                  {passedCheckpoints}/{mission.checkpoints.length} Checkpoints
-                </span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-icon">💎</span>
-                <span className="stat-text">
-                  {formatBaraka(150)} Baraka
-                </span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-icon">⭐</span>
-                <span className="stat-text">
-                  {formatXP(30)} XP
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Mission Progress */}
-          <div className="mission-progress-section">
-            <CheckpointProgressRing
-              completed={passedCheckpoints}
-              total={mission.checkpoints.length}
-              size="large"
-              showLabel={true}
+        {/* SHOW BRIEFING IF NOT STARTED */}
+        {showBriefing && !missionStarted ? (
+          <div className="mission-briefing-container">
+            {/* FIX: Pass onStart so the "Begin Mission" button inside GPS101MissionBriefing
+                actually calls handleAcceptMission. Without this prop, onStart?.() is a
+                no-op and clicking "Begin Mission" does nothing.
+                onSkip lets the user bypass the briefing and go straight to the mission. */}
+            <GPS101MissionBriefing
+              mission={mission}
+              onStart={handleAcceptMission}
+              onSkip={() => {
+                setShowBriefing(false);
+                setMissionStarted(true);
+              }}
             />
-          </div>
-        </div>
+            
+            {mission.videoUrl && (
+              <GPS101BriefingVideo 
+                videoUrl={mission.videoUrl}
+                title={mission.title}
+              />
+            )}
 
-        {/* Start Mission CTA - Only show if mission hasn't been started */}
-        {!showMissionContent && (
-          <div className="start-mission-section">
-            <div className="start-mission-card">
-              <div className="card-content">
-                <h2>Ready to Begin?</h2>
-                <p>
-                  This mission contains {mission.checkpoints.length} checkpoints. 
-                  Complete all checkpoints to finish the mission.
+            <GPS101MissionAcceptButton 
+              onClick={() => setShowAcceptModal(true)}
+            />
+
+            {showAcceptModal && (
+              <GPS101MissionAcceptModal
+                mission={mission}
+                onAccept={handleAcceptMission}
+                onCancel={() => setShowAcceptModal(false)}
+                isAccepting={isStarting}
+              />
+            )}
+          </div>
+        ) : (
+          <>
+            {/* MISSION STARTED - SHOW CONTENT */}
+            
+            {/* Mission Header */}
+            <div className="mission-header">
+              <div className="mission-header-content">
+                <div className="mission-badge-row">
+                  <div className="mission-badge">
+                    <span className="badge-icon">🎯</span>
+                    <span className="badge-text">Mission</span>
+                  </div>
+                  {mission.isStageCompleter && (
+                    <div className="stage-completer-badge">
+                      <span className="badge-icon">🏆</span>
+                      <span className="badge-text">Stage Completer</span>
+                    </div>
+                  )}
+                </div>
+
+                <h1 className="mission-title">{mission.title}</h1>
+                {mission.titleKo && (
+                  <p className="mission-title-ko">{mission.titleKo}</p>
+                )}
+                {mission.description && (
+                  <p className="mission-description">{mission.description}</p>
+                )}
+
+                {/* Mission Objectives */}
+                {mission.objectives && mission.objectives.length > 0 && (
+                  <div className="mission-objectives">
+                    <h3>Learning Objectives</h3>
+                    <ul className="objectives-list">
+                      {mission.objectives.map((objective, index) => (
+                        <li key={index}>{objective}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Mission Meta Info */}
+                <div className="mission-meta">
+                  <div className="meta-item">
+                    <span className="meta-icon">🎯</span>
+                    <span className="meta-text">Stage {mission.stageNumber}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-icon">📝</span>
+                    <span className="meta-text">{totalSubMissions} Sub-missions</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-icon">✓</span>
+                    <span className="meta-text">{totalCheckpoints} Checkpoints</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-icon">💎</span>
+                    <span className="meta-text">{totalBaraka} ƀ</span>
+                  </div>
+                </div>
+
+                {/* Progress Stats */}
+                <div className="progress-stats">
+                  <div className="stat-item">
+                    <span className="stat-label">Sub-missions</span>
+                    <span className="stat-value">{completedSubMissions}/{totalSubMissions}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Checkpoints</span>
+                    <span className="stat-value">{completedCheckpoints}/{totalCheckpoints}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Baraka Earned</span>
+                    <span className="stat-value">{earnedBaraka}/{totalBaraka} ƀ</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress Circle */}
+              <div className="mission-progress-circle">
+                <CheckpointProgressRing
+                  completed={completedCheckpoints}
+                  total={totalCheckpoints}
+                  size="large"
+                  showLabel={true}
+                />
+              </div>
+            </div>
+
+            {/* Navigator Guidance */}
+            <div className="navigator-section">
+              <GPS101NavigatorGuide 
+                stageNumber={mission.stageNumber}
+                missionId={missionId}
+                context="mission"
+              />
+            </div>
+
+            {/* Sub-missions Section */}
+            <div className="submissions-section">
+              <div className="section-header">
+                <h2>Sub-missions ({completedSubMissions}/{totalSubMissions})</h2>
+                <p className="section-subtitle">
+                  Complete all {totalSubMissions} sub-missions to finish this mission and earn {totalBaraka} Baraka
                 </p>
               </div>
+
+              <div className="submissions-grid">
+                {subMissions && subMissions.length > 0 ? (
+                  subMissions.map((subMission, index) => {
+                    // Calculate sub-mission completion (out of 5 checkpoints)
+                    const subMissionCheckpointsTotal = 5;
+                    const subMissionCheckpointsCompleted = subMission.checkpoints 
+                      ? subMission.checkpoints.filter(c => c.status === 'passed').length
+                      : 0;
+                    const subMissionCompletion = (subMissionCheckpointsCompleted / subMissionCheckpointsTotal) * 100;
+                    
+                    // Check if this sub-mission is unlocked (previous one completed)
+                    const isSubMissionUnlocked = index === 0 || 
+                      (subMissions[index - 1] && subMissions[index - 1].status === 'completed');
+
+                    return (
+                      <div 
+                        key={subMission.subMissionId}
+                        className={`submission-card ${subMission.status || 'available'} ${!isSubMissionUnlocked ? 'locked' : ''}`}
+                        onClick={() => handleSubMissionClick(subMission, isSubMissionUnlocked)}
+                        role="button"
+                        tabIndex={isSubMissionUnlocked ? 0 : -1}
+                      >
+                        {/* Sub-mission Number Badge */}
+                        <div className="submission-number">
+                          SM{index + 1}
+                        </div>
+
+                        {/* Status Badge */}
+                        <div className={`submission-status ${subMission.status || 'available'}`}>
+                          <span className="status-icon">
+                            {subMission.status === 'completed' ? '✓' : 
+                             subMission.status === 'in_progress' ? '⏳' : 
+                             isSubMissionUnlocked ? '→' : '🔒'}
+                          </span>
+                          <span className="status-text">
+                            {subMission.status === 'completed' ? 'Complete' : 
+                             subMission.status === 'in_progress' ? 'In Progress' : 
+                             isSubMissionUnlocked ? 'Start' : 'Locked'}
+                          </span>
+                        </div>
+
+                        {/* Sub-mission Content */}
+                        <h3 className="submission-title">{subMission.title}</h3>
+                        {subMission.titleKo && (
+                          <p className="submission-title-ko">{subMission.titleKo}</p>
+                        )}
+                        {subMission.description && (
+                          <p className="submission-description">{subMission.description}</p>
+                        )}
+
+                        {/* Checkpoint Progress Bar */}
+                        {isSubMissionUnlocked && (
+                          <div className="checkpoint-progress">
+                            <div className="progress-bar">
+                              <div 
+                                className="progress-fill"
+                                style={{ width: `${subMissionCompletion}%` }}
+                              />
+                            </div>
+                            <span className="checkpoint-text">
+                              {subMissionCheckpointsCompleted}/{subMissionCheckpointsTotal} Checkpoints
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Action Button */}
+                        {isSubMissionUnlocked && (
+                          <button 
+                            className="submission-action"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSubMissionClick(subMission, isSubMissionUnlocked);
+                            }}
+                          >
+                            {subMission.status === 'completed' ? 'Review' : 
+                             subMission.status === 'in_progress' ? 'Continue' : 
+                             'Start'}
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="no-submissions">
+                    <p>No sub-missions available for this mission yet.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Complete Mission CTA - Show when all sub-missions done */}
+            {allSubMissionsCompleted && mission.status !== 'completed' && (
+              <div className="complete-mission-section">
+                <div className="complete-mission-card">
+                  <div className="celebration-icon">🎉</div>
+                  <h2>Mission Complete!</h2>
+                  <p>
+                    You've completed all {totalSubMissions} sub-missions and {totalCheckpoints} checkpoints. 
+                    Complete this mission to earn your rewards.
+                  </p>
+                  <button 
+                    className="complete-mission-button"
+                    onClick={handleCompleteMission}
+                  >
+                    Complete Mission
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Mission Navigation */}
+            <div className="mission-navigation">
               <button 
-                className="start-mission-button"
-                onClick={handleStartMission}
-                disabled={isStarting}
+                className="nav-button back"
+                onClick={() => navigate(`/gps101/stage/${mission.stageNumber}`)}
               >
-                {isStarting ? 'Starting...' : 'Start Mission'}
+                ← Back to Stage {mission.stageNumber}
               </button>
             </div>
-          </div>
+          </>
         )}
-
-        {/* Navigator Guidance - Show after mission is started */}
-        {showMissionContent && (
-          <div className="navigator-section">
-            <GPS101NavigatorGuide 
-              stageNumber={mission.stageNumber}
-              missionId={missionId}
-            />
-          </div>
-        )}
-
-        {/* Checkpoints Grid - Show after mission is started */}
-        {showMissionContent && (
-          <div className="checkpoints-section">
-            <div className="section-header">
-              <h2>Mission Checkpoints</h2>
-              <p className="section-subtitle">
-                Complete each checkpoint to progress through the mission
-              </p>
-            </div>
-
-            <div className="checkpoints-grid">
-              {mission.checkpoints.map((checkpoint, index) => {
-                const status = getCheckpointStatus(checkpoint);
-                const isUnlocked = isCheckpointUnlocked(checkpoint.checkpointId);
-
-                return (
-                  <GPS101CheckpointCard
-                    key={checkpoint.checkpointId}
-                    checkpoint={checkpoint}
-                    status={status}
-                    isUnlocked={isUnlocked}
-                    order={checkpoint.order}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Complete Mission CTA */}
-        {allCheckpointsPassed && showMissionContent && missionData?.status !== 'completed' && (
-          <div className="complete-mission-section">
-            <div className="complete-mission-card">
-              <div className="celebration-icon">🎉</div>
-              <h2>Mission Complete!</h2>
-              <p>
-                You've passed all checkpoints. Complete this mission to earn your rewards.
-              </p>
-              <button 
-                className="complete-mission-button"
-                onClick={handleCompleteMission}
-              >
-                Complete Mission
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Mission Navigation */}
-        <div className="mission-navigation">
-          <button 
-            className="nav-button back"
-            onClick={() => navigate(`/gps101/stage/${mission.stageNumber}`)}
-          >
-            ← Back to Stage
-          </button>
-        </div>
       </div>
 
       {/* Completion Modal */}
@@ -356,21 +467,23 @@ const GPS101MissionPage = () => {
 
               <h2>Mission Completed!</h2>
               <p className="completion-message">
-                Excellent work! You've completed all checkpoints.
+                Excellent work! You've completed all {totalSubMissions} sub-missions and {totalCheckpoints} checkpoints.
               </p>
 
               {/* Rewards */}
               <div className="rewards-earned">
                 <div className="reward-item">
                   <span className="reward-icon">💎</span>
-                  <span className="reward-amount">{formatBaraka(150)}</span>
+                  <span className="reward-amount">{totalBaraka}</span>
                   <span className="reward-label">Baraka</span>
                 </div>
-                <div className="reward-item">
-                  <span className="reward-icon">⭐</span>
-                  <span className="reward-amount">{formatXP(30)}</span>
-                  <span className="reward-label">XP</span>
-                </div>
+                {mission.xpReward && (
+                  <div className="reward-item">
+                    <span className="reward-icon">⭐</span>
+                    <span className="reward-amount">{mission.xpReward}</span>
+                    <span className="reward-label">XP</span>
+                  </div>
+                )}
               </div>
 
               {/* Next Steps */}

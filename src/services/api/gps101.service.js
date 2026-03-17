@@ -2,6 +2,11 @@
  * GPS 101 API Service
  * 
  * Handles all API calls related to GPS 101 Basic course.
+ * 
+ * CORRECTED STRUCTURE:
+ * - 5 Missions (1 per stage)
+ * - 30 Sub-missions (6 per mission)
+ * - 150 Checkpoints (5 per sub-mission)
  */
 
 import apiClient from './client';
@@ -41,7 +46,7 @@ const gps101Service = {
   // ==================== STAGES ====================
 
   /**
-   * Get all GPS 101 stages
+   * Get all GPS 101 stages (5 stages)
    */
   getAllStages: async () => {
     try {
@@ -93,7 +98,7 @@ const gps101Service = {
   // ==================== MISSIONS ====================
 
   /**
-   * Get all GPS 101 missions
+   * Get all GPS 101 missions (CORRECTED: 5 missions total)
    */
   getAllMissions: async () => {
     try {
@@ -105,11 +110,11 @@ const gps101Service = {
   },
 
   /**
-   * Get missions for specific stage
+   * Get mission for specific stage (CORRECTED: 1 mission per stage)
    */
-  getStageMissions: async (stageNumber) => {
+  getStageMission: async (stageNumber) => {
     try {
-      const response = await apiClient.get(`${GPS101_API_BASE}/stages/${stageNumber}/missions`);
+      const response = await apiClient.get(`${GPS101_API_BASE}/stages/${stageNumber}/mission`);
       return response.data;
     } catch (error) {
       throw error;
@@ -164,6 +169,68 @@ const gps101Service = {
     }
   },
 
+  // ==================== SUB-MISSIONS ====================
+
+  /**
+   * Get all sub-missions for a mission
+   */
+  getMissionSubMissions: async (missionId) => {
+    try {
+      const response = await apiClient.get(`${GPS101_API_BASE}/missions/${missionId}/sub-missions`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Get sub-mission by ID
+   */
+  getSubMission: async (subMissionId) => {
+    try {
+      const response = await apiClient.get(`${GPS101_API_BASE}/sub-missions/${subMissionId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Start sub-mission
+   */
+  startSubMission: async (subMissionId) => {
+    try {
+      const response = await apiClient.post(`${GPS101_API_BASE}/sub-missions/${subMissionId}/start`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Complete sub-mission
+   */
+  completeSubMission: async (subMissionId) => {
+    try {
+      const response = await apiClient.post(`${GPS101_API_BASE}/sub-missions/${subMissionId}/complete`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Get sub-mission progress
+   */
+  getSubMissionProgress: async (subMissionId) => {
+    try {
+      const response = await apiClient.get(`${GPS101_API_BASE}/sub-missions/${subMissionId}/progress`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   // ==================== CHECKPOINTS ====================
 
   /**
@@ -172,6 +239,18 @@ const gps101Service = {
   getCheckpoint: async (checkpointId) => {
     try {
       const response = await apiClient.get(`${GPS101_API_BASE}/checkpoints/${checkpointId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Get all checkpoints for a sub-mission
+   */
+  getSubMissionCheckpoints: async (subMissionId) => {
+    try {
+      const response = await apiClient.get(`${GPS101_API_BASE}/sub-missions/${subMissionId}/checkpoints`);
       return response.data;
     } catch (error) {
       throw error;
@@ -429,6 +508,18 @@ const gps101Service = {
   getMissionGuidance: async (missionId) => {
     try {
       const response = await apiClient.get(`${GPS101_API_BASE}/navigator/mission/${missionId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  /**
+   * Get Navigator guidance for sub-mission
+   */
+  getSubMissionGuidance: async (subMissionId) => {
+    try {
+      const response = await apiClient.get(`${GPS101_API_BASE}/navigator/sub-mission/${subMissionId}`);
       return response.data;
     } catch (error) {
       throw error;

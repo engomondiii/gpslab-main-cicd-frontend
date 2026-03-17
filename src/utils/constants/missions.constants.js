@@ -2,6 +2,7 @@
  * Missions Constants
  * 
  * Mission definitions for all GPS courses.
+ * GPS 101 CORRECTED: 5 missions total (1 per stage), not 30
  */
 
 import { GPS_101_ALL_MISSIONS } from './gps101.constants';
@@ -62,17 +63,21 @@ export const GPO_STAGE_N4_MISSIONS = [
   }
 ];
 
-// Additional GPO missions for stages -3, -2, -1, 0 would follow similar pattern
-// Omitted for brevity, but structure is identical
-
 // ==================== GPS 101 MISSIONS ====================
 
-// Already imported from gps101.constants.js
+/**
+ * GPS 101 Basic - 5 Missions (CORRECTED)
+ * 
+ * CORRECT STRUCTURE:
+ * - 5 Missions total (1 per stage, NOT 30)
+ * - Each mission has 6 sub-missions
+ * - Each sub-mission has 5 checkpoints
+ * - Total: 5 missions, 30 sub-missions, 150 checkpoints
+ */
 export const GPS_101_MISSIONS = GPS_101_ALL_MISSIONS;
 
 // ==================== GPS PREP MISSIONS ====================
 
-// Stage 6 Missions (example structure)
 export const GPS_PREP_STAGE_6_MISSIONS = [
   {
     missionId: 'GPS_PREP_S6_M1',
@@ -83,8 +88,7 @@ export const GPS_PREP_STAGE_6_MISSIONS = [
     description: 'Define your problem with precision',
     objectives: ['Refine problem statement', 'Identify stakeholders'],
     courseCode: 'GPS_PREP'
-  },
-  // Additional missions...
+  }
 ];
 
 // ==================== MISSION CATEGORIES ====================
@@ -145,8 +149,7 @@ export const MISSION_ICONS = {
 
 export const ALL_MISSIONS = [
   ...GPO_STAGE_N4_MISSIONS,
-  ...GPS_101_MISSIONS,
-  // Additional mission arrays would be spread here
+  ...GPS_101_MISSIONS, // Only 5 missions, not 30!
 ];
 
 // ==================== HELPER FUNCTIONS ====================
@@ -173,7 +176,7 @@ export const getMissionsByCourse = (courseCode) => {
 };
 
 /**
- * Get GPS 101 missions
+ * Get GPS 101 missions (CORRECTED: Returns 5 missions, not 30)
  */
 export const getGPS101Missions = () => {
   return GPS_101_MISSIONS;
@@ -190,7 +193,7 @@ export const getMissionCountByCourse = (courseCode) => {
  * Check if mission is GPS 101
  */
 export const isGPS101Mission = (missionId) => {
-  return missionId.startsWith('GPS101_');
+  return missionId.startsWith('GPS101_M');
 };
 
 /**
@@ -207,7 +210,27 @@ export const getMissionIcon = (missionType) => {
   return MISSION_ICONS[missionType] || '📝';
 };
 
-// Export default
+/**
+ * Get sub-missions for a mission (GPS 101 specific)
+ */
+export const getSubMissionsByMission = (missionId) => {
+  const mission = getMissionById(missionId);
+  return mission?.subMissions || [];
+};
+
+/**
+ * Get checkpoints for a sub-mission (GPS 101 specific)
+ */
+export const getCheckpointsBySubMission = (subMissionId) => {
+  for (const mission of GPS_101_MISSIONS) {
+    const subMission = mission.subMissions?.find(sm => sm.subMissionId === subMissionId);
+    if (subMission) {
+      return subMission.checkpoints || [];
+    }
+  }
+  return [];
+};
+
 export default {
   GPO_STAGE_N4_MISSIONS,
   GPS_101_MISSIONS,
@@ -225,5 +248,7 @@ export default {
   getMissionCountByCourse,
   isGPS101Mission,
   isGPOCallMission,
-  getMissionIcon
+  getMissionIcon,
+  getSubMissionsByMission,
+  getCheckpointsBySubMission
 };

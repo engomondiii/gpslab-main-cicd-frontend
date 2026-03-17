@@ -1,19 +1,17 @@
 /**
  * GPS 101 Stage Card Component
  * 
- * Individual stage card with details and progress.
+ * CORRECTED STRUCTURE:
+ * - Each stage has 1 mission (not 6)
+ * - Each mission has 6 sub-missions
+ * - Each sub-mission has 5 checkpoints
  * 
- * FIXED: Navigation path now uses /gps101 (no dash)
+ * Individual stage card with details and progress display.
  */
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  formatStageTitle, 
-  formatStageQuestion, 
-  formatStageOutcome,
-  formatStageDuration 
-} from '../../../utils/formatters/gps101.formatter';
+import { GPS_101_CONFIG } from '../../../config/gps101.config';
 import './GPS101StageCard.css';
 
 const GPS101StageCard = ({ 
@@ -21,15 +19,14 @@ const GPS101StageCard = ({
   completion, 
   isUnlocked, 
   isCompleted,
-  missionsCompleted,
-  totalMissions = 6,
   deliverableStatus 
 }) => {
   const navigate = useNavigate();
 
+  const stage = GPS_101_CONFIG?.STAGES?.find(s => s.stageNumber === stageNumber);
+
   const handleClick = () => {
     if (isUnlocked) {
-      // FIXED: Navigate to /gps101 (no dash)
       navigate(`/gps101/stage/${stageNumber}`);
     }
   };
@@ -47,12 +44,26 @@ const GPS101StageCard = ({
     return '→';
   };
 
+  const getStageIcon = (num) => {
+    const icons = {
+      1: '🪪', // Identity
+      2: '🧩', // Problem
+      3: '💝', // Story
+      4: '✨', // Purpose
+      5: '🚀'  // Project
+    };
+    return icons[num] || '📍';
+  };
+
+  if (!stage) return null;
+
   return (
     <div 
       className={`gps101-stage-card ${getStatusClass()}`}
       onClick={handleClick}
       role="button"
       tabIndex={isUnlocked ? 0 : -1}
+      aria-label={`Stage ${stageNumber}: ${stage.question}`}
     >
       {/* Stage Header */}
       <div className="stage-card-header">
@@ -60,28 +71,24 @@ const GPS101StageCard = ({
           <span className="stage-number">{stageNumber}</span>
           <span className="status-icon">{getStatusIcon()}</span>
         </div>
-        <div className="stage-duration">
-          {formatStageDuration(stageNumber)}
-        </div>
+        <div className="stage-duration">{stage.duration}</div>
       </div>
 
       {/* Stage Content */}
       <div className="stage-card-content">
-        <h3 className="stage-question">
-          {formatStageQuestion(stageNumber)}
-        </h3>
+        <h3 className="stage-question">{stage.question}</h3>
         
         <div className="stage-outcome">
-          <span className="outcome-label">Expected Outcome:</span>
-          <p className="outcome-text">{formatStageOutcome(stageNumber)}</p>
+          <span className="outcome-label">Expected Outcome</span>
+          <p className="outcome-text">{stage.expectedOutcome}</p>
         </div>
 
         {/* Progress Section */}
         {isUnlocked && (
           <div className="stage-progress-section">
             <div className="progress-info">
-              <span className="progress-label">Missions</span>
-              <span className="progress-value">{missionsCompleted}/{totalMissions}</span>
+              <span className="progress-label">Mission Progress</span>
+              <span className="progress-value">{completion}%</span>
             </div>
             
             <div className="progress-bar-wrapper">
@@ -91,7 +98,22 @@ const GPS101StageCard = ({
                   style={{ width: `${completion}%` }}
                 />
               </div>
-              <span className="progress-percentage">{completion}%</span>
+            </div>
+
+            {/* Stage Stats */}
+            <div className="stage-stats">
+              <div className="stat-item">
+                <span className="stat-icon">🎯</span>
+                <span className="stat-text">1 Mission</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-icon">📝</span>
+                <span className="stat-text">6 Sub-missions</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-icon">✓</span>
+                <span className="stat-text">30 Checkpoints</span>
+              </div>
             </div>
           </div>
         )}
@@ -100,11 +122,12 @@ const GPS101StageCard = ({
         {isUnlocked && (
           <div className="deliverable-status">
             <div className="deliverable-icon">
-              {deliverableStatus === 'completed' ? '📄' : '📝'}
+              {getStageIcon(stageNumber)}
             </div>
             <div className="deliverable-info">
               <span className="deliverable-label">Deliverable</span>
-              <span className={`deliverable-state ${deliverableStatus}`}>
+              <span className="deliverable-name">{stage.deliverable}</span>
+              <span className={`deliverable-state ${deliverableStatus || 'not-started'}`}>
                 {deliverableStatus === 'completed' ? 'Submitted' : 
                  deliverableStatus === 'draft' ? 'Draft Saved' : 
                  'Not Started'}

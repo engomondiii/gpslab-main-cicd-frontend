@@ -1,33 +1,26 @@
 /**
  * Journey Timeline Component
  * 
+ * CORRECTED STRUCTURE:
+ * - 5 Stages (1 mission per stage)
+ * - 30 Sub-missions (6 per mission)
+ * - 150 Checkpoints (5 per sub-mission)
+ * 
  * Visual timeline of GPS 101 journey with milestones.
  */
 
 import React from 'react';
-import { GPS_101_ALL_MISSIONS } from '../../../utils/constants/gps101.constants';
+import { GPS_101_CONFIG } from '../../../config/gps101.config';
 import './JourneyTimeline.css';
 
 const JourneyTimeline = ({ 
   completedStages = [],
   completedMissions = [],
+  completedSubMissions = [], // NEW
   currentStage = 1,
   enrollmentDate 
 }) => {
-  const stages = [1, 2, 3, 4, 5];
-
-  const getStageMilestones = (stageNumber) => {
-    const stageMissions = GPS_101_ALL_MISSIONS.filter(
-      m => m.stageNumber === stageNumber
-    );
-
-    return stageMissions.map(mission => ({
-      id: mission.missionId,
-      title: mission.title,
-      completed: completedMissions.includes(mission.missionId),
-      isStageCompleter: mission.isStageCompleter
-    }));
-  };
+  const stages = GPS_101_CONFIG?.STAGES || [];
 
   const getStageStatus = (stageNumber) => {
     if (completedStages.includes(stageNumber)) return 'completed';
@@ -56,8 +49,20 @@ const JourneyTimeline = ({
     return projected;
   };
 
+  const getStageIcon = (stageNumber) => {
+    const icons = {
+      1: '🪪', // Identity
+      2: '🧩', // Problem
+      3: '💝', // Story
+      4: '✨', // Purpose
+      5: '🚀'  // Project
+    };
+    return icons[stageNumber] || '📍';
+  };
+
   return (
     <div className="journey-timeline">
+      {/* Header */}
       <div className="timeline-header">
         <h2>Your GPS 101 Journey</h2>
         <p className="timeline-subtitle">
@@ -65,29 +70,31 @@ const JourneyTimeline = ({
         </p>
       </div>
 
+      {/* Timeline Container */}
       <div className="timeline-container">
-        {stages.map((stageNumber, index) => {
+        {stages.map((stage, index) => {
+          const stageNumber = stage.stageNumber;
           const status = getStageStatus(stageNumber);
-          const milestones = getStageMilestones(stageNumber);
           const projectedDate = getProjectedDate(stageNumber);
+          
+          // CORRECTED: 1 mission per stage
+          const isStageCompleted = completedMissions.includes(`GPS101_M${stageNumber}`);
 
           return (
-            <div key={stageNumber} className={`timeline-stage ${status}`}>
+            <div key={stage.stageId} className={`timeline-stage ${status}`}>
               {/* Timeline Line */}
               {index > 0 && (
-                <div className={`timeline-connector ${status}`} />
+                <div className={`timeline-connector ${status === 'completed' ? 'completed' : status === 'current' ? 'current' : ''}`} />
               )}
 
-              {/* Stage Node */}
+              {/* Stage Node Wrapper */}
               <div className="stage-node-wrapper">
                 <div className={`stage-node ${status}`}>
                   <div className="stage-node-inner">
                     {status === 'completed' ? (
                       <span className="node-icon">✓</span>
-                    ) : status === 'current' ? (
-                      <span className="node-number">{stageNumber}</span>
                     ) : (
-                      <span className="node-number">{stageNumber}</span>
+                      <span className="node-icon">{getStageIcon(stageNumber)}</span>
                     )}
                   </div>
                 </div>
@@ -105,7 +112,7 @@ const JourneyTimeline = ({
               <div className="stage-timeline-content">
                 <div className="stage-timeline-header">
                   <h3 className="stage-timeline-title">
-                    Stage {stageNumber}
+                    Stage {stageNumber} • {stage.title}
                   </h3>
                   {projectedDate && status !== 'completed' && (
                     <span className="projected-date">
@@ -114,44 +121,37 @@ const JourneyTimeline = ({
                   )}
                 </div>
 
-                <p className="stage-question">
-                  {stageNumber === 1 && "Who are you?"}
-                  {stageNumber === 2 && "What is the meaning of your life?"}
-                  {stageNumber === 3 && "Tell a story of problem owners"}
-                  {stageNumber === 4 && "What is your life purpose?"}
-                  {stageNumber === 5 && "What is your Purpose-driven Major?"}
-                </p>
+                <p className="stage-question">"{stage.question}"</p>
 
-                {/* Milestones */}
-                <div className="stage-milestones">
-                  {milestones.map((milestone, idx) => (
-                    <div 
-                      key={milestone.id}
-                      className={`milestone ${milestone.completed ? 'completed' : ''}`}
-                    >
-                      <span className="milestone-icon">
-                        {milestone.completed ? '✓' : '○'}
-                      </span>
-                      <span className="milestone-title">
-                        {milestone.title}
-                      </span>
-                      {milestone.isStageCompleter && (
-                        <span className="milestone-badge">Stage Completer</span>
-                      )}
-                    </div>
-                  ))}
+                {/* Stage Stats */}
+                <div className="stage-stats">
+                  <div className="stage-stat">
+                    <span className="stat-icon">🎯</span>
+                    <span className="stat-text">1 Mission</span>
+                  </div>
+                  <div className="stage-stat">
+                    <span className="stat-icon">📝</span>
+                    <span className="stat-text">6 Sub-missions</span>
+                  </div>
+                  <div className="stage-stat">
+                    <span className="stat-icon">✓</span>
+                    <span className="stat-text">30 Checkpoints</span>
+                  </div>
+                </div>
+
+                {/* Expected Outcome */}
+                <div className="stage-outcome">
+                  <span className="outcome-label">Expected Outcome</span>
+                  <p className="outcome-text">{stage.expectedOutcome}</p>
                 </div>
 
                 {/* Deliverable */}
                 <div className="stage-deliverable-info">
-                  <span className="deliverable-icon">📄</span>
-                  <span className="deliverable-text">
-                    {stageNumber === 1 && "Identity Statement"}
-                    {stageNumber === 2 && "Problem Candidate List"}
-                    {stageNumber === 3 && "Problem Owner Story"}
-                    {stageNumber === 4 && "Life Purpose Statement"}
-                    {stageNumber === 5 && "Purpose-Driven Project"}
-                  </span>
+                  <span className="deliverable-icon">{getStageIcon(stageNumber)}</span>
+                  <div className="deliverable-content">
+                    <span className="deliverable-label">Deliverable</span>
+                    <span className="deliverable-text">{stage.deliverable}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,12 +167,12 @@ const JourneyTimeline = ({
         </div>
         <div className="stat">
           <span className="stat-label">Missions Completed</span>
-          <span className="stat-value">{completedMissions.length}/30</span>
+          <span className="stat-value">{completedMissions.length}/5</span>
         </div>
         <div className="stat">
-          <span className="stat-label">Completion</span>
+          <span className="stat-label">Overall Progress</span>
           <span className="stat-value">
-            {Math.round((completedMissions.length / 30) * 100)}%
+            {Math.round((completedMissions.length / 5) * 100)}%
           </span>
         </div>
       </div>

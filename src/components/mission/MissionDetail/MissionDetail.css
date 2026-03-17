@@ -1,18 +1,19 @@
 /**
  * GPS Lab Platform - MissionDetail Component Styles
+ * Theme: GPS Lab Light Mode - Beautiful & Balanced
  */
 
 .mission-detail {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6, 24px);
+  gap: var(--space-6);
 }
 
 /* Content Grid */
 .mission-detail__content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6, 24px);
+  gap: var(--space-6);
 }
 
 @media (min-width: 1024px) {
@@ -25,32 +26,33 @@
 .mission-detail__main {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6, 24px);
+  gap: var(--space-6);
 }
 
 /* Sidebar */
 .mission-detail__sidebar {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4, 16px);
+  gap: var(--space-4);
 }
 
 /* Prerequisites */
 .mission-detail__prerequisites {
-  padding: var(--space-5, 20px);
-  background-color: var(--warning-pale, rgba(241, 196, 15, 0.1));
-  border: 1px solid rgba(241, 196, 15, 0.3);
-  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5);
+  background: linear-gradient(135deg, var(--warning-pale), var(--neutral-0));
+  border: var(--border-default) solid var(--warning);
+  border-radius: var(--radius-xl);
 }
 
 .mission-detail__prerequisites-title {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--warning-dark, #d4a90a);
-  margin: 0 0 var(--space-3, 12px);
+  gap: var(--space-2);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--warning-dark);
+  margin: 0 0 var(--space-3);
 }
 
 .mission-detail__prerequisites-title svg {
@@ -61,7 +63,7 @@
 .mission-detail__prerequisites-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -70,9 +72,11 @@
 .mission-detail__prereq {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-700, #1b263b);
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  font-weight: var(--font-medium);
 }
 
 .mission-detail__prereq svg {
@@ -82,29 +86,30 @@
 }
 
 .mission-detail__prereq--completed svg {
-  color: var(--success, #2a9d8f);
+  color: var(--success);
 }
 
 .mission-detail__prereq:not(.mission-detail__prereq--completed) svg {
-  color: var(--warning, #f1c40f);
+  color: var(--warning);
 }
 
 /* Tips */
 .mission-detail__tips {
-  padding: var(--space-5, 20px);
-  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-5);
+  background: linear-gradient(135deg, var(--gps-primary-pale), var(--neutral-0));
+  border: var(--border-default) solid var(--gps-primary);
+  border-radius: var(--radius-xl);
 }
 
 .mission-detail__tips-title {
   display: flex;
   align-items: center;
-  gap: var(--space-2, 8px);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--gps-primary, #00d4ff);
-  margin: 0 0 var(--space-3, 12px);
+  gap: var(--space-2);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--gps-primary);
+  margin: 0 0 var(--space-3);
 }
 
 .mission-detail__tips-title svg {
@@ -115,7 +120,7 @@
 .mission-detail__tips-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 12px);
+  gap: var(--space-3);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -124,40 +129,43 @@
 .mission-detail__tip {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-2, 8px);
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-700, #1b263b);
-  line-height: var(--leading-relaxed, 1.8);
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-700);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--font-regular);
 }
 
 .mission-detail__tip svg {
   width: 18px;
   height: 18px;
-  color: var(--gps-primary, #00d4ff);
+  color: var(--gps-primary);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 /* Actions */
 .mission-detail__actions {
-  padding: var(--space-4, 16px);
-  background-color: var(--neutral-0, #ffffff);
-  border: 1px solid var(--neutral-200, #f0f4f8);
-  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-4);
+  background-color: var(--neutral-50);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-xl);
 }
 
 .mission-detail__action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 8px);
+  gap: var(--space-2);
   width: 100%;
-  padding: var(--space-4, 16px);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  border-radius: var(--radius-lg, 8px);
+  padding: var(--space-4);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all var(--duration-fast, 150ms) var(--ease-out);
+  transition: var(--transition-all);
 }
 
 .mission-detail__action-btn svg {
@@ -166,25 +174,29 @@
 }
 
 .mission-detail__action-btn--accept {
-  color: var(--neutral-900, #0d1117);
-  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  color: var(--neutral-900);
+  background: linear-gradient(135deg, var(--gps-primary), var(--gps-accent));
   border: none;
+  box-shadow: var(--shadow-md);
 }
 
 .mission-detail__action-btn--accept:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+  box-shadow: var(--shadow-primary);
+  filter: brightness(1.1);
 }
 
 .mission-detail__action-btn--continue {
-  color: var(--neutral-0, #ffffff);
-  background: linear-gradient(135deg, var(--warning, #f1c40f), var(--warning-dark, #d4a90a));
+  color: var(--neutral-0);
+  background: linear-gradient(135deg, var(--warning), var(--warning-dark));
   border: none;
+  box-shadow: var(--shadow-md);
 }
 
 .mission-detail__action-btn--continue:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(241, 196, 15, 0.3);
+  filter: brightness(1.1);
 }
 
 /* Completed Badge */
@@ -192,13 +204,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-4, 16px);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--success, #2a9d8f);
-  background-color: var(--success-pale, rgba(42, 157, 143, 0.1));
-  border-radius: var(--radius-lg, 8px);
+  gap: var(--space-2);
+  padding: var(--space-4);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--success);
+  background: linear-gradient(135deg, var(--success-pale), var(--neutral-0));
+  border: var(--border-default) solid var(--success);
+  border-radius: var(--radius-lg);
 }
 
 .mission-detail__completed-badge svg {
@@ -211,13 +225,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 8px);
-  padding: var(--space-4, 16px);
-  font-size: var(--text-base, 16px);
-  font-weight: var(--font-semibold, 600);
-  color: var(--neutral-500, #8b949e);
-  background-color: var(--neutral-100, #f7faff);
-  border-radius: var(--radius-lg, 8px);
+  gap: var(--space-2);
+  padding: var(--space-4);
+  font-family: var(--font-subheading);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-500);
+  background-color: var(--neutral-100);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-lg);
 }
 
 .mission-detail__locked-badge svg {
@@ -231,27 +247,28 @@
 }
 
 .mission-detail__skeleton-header {
-  padding: var(--space-8, 32px);
-  background-color: var(--neutral-800, #0d1b2a);
-  border-radius: var(--radius-xl, 12px);
-  margin-bottom: var(--space-6, 24px);
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--gps-primary-pale), var(--gps-accent-pale));
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-6);
+  border: var(--border-default) solid var(--neutral-300);
 }
 
 .mission-detail__skeleton-badge {
   width: 100px;
   height: 32px;
-  background-color: var(--neutral-700, #1b263b);
-  border-radius: var(--radius-lg, 8px);
-  margin-bottom: var(--space-4, 16px);
+  background-color: var(--neutral-200);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
   animation: missionDetailSkeleton 1.5s ease-in-out infinite;
 }
 
 .mission-detail__skeleton-title {
   width: 60%;
   height: 36px;
-  background-color: var(--neutral-700, #1b263b);
-  border-radius: var(--radius-lg, 8px);
-  margin-bottom: var(--space-3, 12px);
+  background-color: var(--neutral-200);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3);
   animation: missionDetailSkeleton 1.5s ease-in-out infinite;
   animation-delay: 0.1s;
 }
@@ -259,8 +276,8 @@
 .mission-detail__skeleton-desc {
   width: 80%;
   height: 20px;
-  background-color: var(--neutral-700, #1b263b);
-  border-radius: var(--radius-sm, 4px);
+  background-color: var(--neutral-200);
+  border-radius: var(--radius-sm);
   animation: missionDetailSkeleton 1.5s ease-in-out infinite;
   animation-delay: 0.2s;
 }
@@ -268,13 +285,13 @@
 .mission-detail__skeleton-content {
   display: grid;
   grid-template-columns: 1fr 350px;
-  gap: var(--space-6, 24px);
+  gap: var(--space-6);
 }
 
 .mission-detail__skeleton-section {
   height: 200px;
-  background-color: var(--neutral-100, #f7faff);
-  border-radius: var(--radius-xl, 12px);
+  background-color: var(--neutral-100);
+  border-radius: var(--radius-xl);
   animation: missionDetailSkeleton 1.5s ease-in-out infinite;
   animation-delay: 0.3s;
 }
@@ -282,24 +299,6 @@
 @keyframes missionDetailSkeleton {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
-}
-
-/* Dark Theme */
-[data-theme="dark"] .mission-detail__prereq {
-  color: var(--neutral-200, #f0f4f8);
-}
-
-[data-theme="dark"] .mission-detail__tip {
-  color: var(--neutral-200, #f0f4f8);
-}
-
-[data-theme="dark"] .mission-detail__actions {
-  background-color: var(--neutral-800, #0d1b2a);
-  border-color: var(--neutral-700, #1b263b);
-}
-
-[data-theme="dark"] .mission-detail__locked-badge {
-  background-color: var(--neutral-700, #1b263b);
 }
 
 /* Reduced Motion */

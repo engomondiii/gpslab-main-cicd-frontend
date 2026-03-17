@@ -1,189 +1,318 @@
 /**
- * Baraka Calculator
- * 
- * Calculate Baraka rewards and distributions.
+ * GPS 101 Baraka Calculator
+ * Calculate Baraka earnings and Orange Beacon progress
+ * CORRECT STRUCTURE: 150 Checkpoints → 5,000 Baraka (Orange Beacon)
  */
 
-import { GPS_101_REWARDS } from '../constants/gps101.constants';
-import { BARAKA_CONFIG } from '../../config/game.config';
+import { GPS_101_STRUCTURE } from './gps101.helper';
 
 /**
- * Calculate checkpoint Baraka
+ * Baraka Distribution Constants
+ * Total: 5,000 Baraka for Orange Beacon
+ * 150 checkpoints × 33.33 ƀ = ~5,000 ƀ
  */
-export const calculateCheckpointBaraka = (checkpointScore, isFirstTry = false, isPerfect = false) => {
-  let baraka = BARAKA_CONFIG.CHECKPOINT_PASS;
-
-  // Bonus for perfect score
-  if (isPerfect) {
-    baraka += BARAKA_CONFIG.PERFECT_CHECKPOINT;
+export const BARAKA_CONSTANTS = {
+  TOTAL_TARGET: GPS_101_STRUCTURE.TOTAL_BARAKA, // 5,000
+  TOTAL_CHECKPOINTS: GPS_101_STRUCTURE.TOTAL_CHECKPOINTS, // 150
+  
+  // Per checkpoint: 5000 / 150 = 33.33 (rounded to 33)
+  BARAKA_PER_CHECKPOINT: 33,
+  
+  // Bonus Baraka
+  BONUS_STAGE_COMPLETE: 100, // Bonus for completing a stage
+  BONUS_MISSION_COMPLETE: 50, // Bonus for completing a mission
+  BONUS_PERFECT_SUBMISSION: 10, // Bonus for perfect checkpoint submission
+  BONUS_EARLY_COMPLETION: 25, // Bonus for completing ahead of schedule
+  
+  // Milestones
+  MILESTONES: {
+    25: { baraka: 1250, name: '25% Progress', bonus: 50 },
+    50: { baraka: 2500, name: '50% Progress', bonus: 100 },
+    75: { baraka: 3750, name: '75% Progress', bonus: 150 },
+    100: { baraka: 5000, name: 'Orange Beacon', bonus: 500 }
   }
+};
 
-  // Bonus for first try
-  if (isFirstTry) {
-    baraka += BARAKA_CONFIG.FIRST_TRY;
+/**
+ * Calculate Baraka for completing a checkpoint
+ * @param {Object} checkpoint - Checkpoint data
+ * @param {Object} options - Additional options
+ * @returns {number} Baraka amount
+ */
+export const calculateCheckpointBaraka = (checkpoint = {}, options = {}) => {
+  let baraka = BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT;
+  
+  // Perfect submission bonus
+  if (options.isPerfect || checkpoint.score === 100) {
+    baraka += BARAKA_CONSTANTS.BONUS_PERFECT_SUBMISSION;
   }
-
+  
+  // Early completion bonus
+  if (options.isEarly) {
+    baraka += BARAKA_CONSTANTS.BONUS_EARLY_COMPLETION;
+  }
+  
   return baraka;
 };
 
 /**
- * Calculate mission Baraka
+ * Calculate Baraka for completing a sub-mission
+ * @param {Object} subMission - Sub-mission data
+ * @param {Array} checkpoints - Completed checkpoints in sub-mission
+ * @returns {number} Total Baraka
  */
-export const calculateMissionBaraka = (missionType = 'standard', isGPS101 = false) => {
-  if (isGPS101) {
-    return GPS_101_REWARDS.MISSION_COMPLETE;
-  }
-
-  return BARAKA_CONFIG.MISSION_COMPLETE;
+export const calculateSubMissionBaraka = (subMission = {}, checkpoints = []) => {
+  // Base Baraka from checkpoints (5 × 33 = 165)
+  const checkpointBaraka = checkpoints.reduce((total, cp) => {
+    return total + calculateCheckpointBaraka(cp);
+  }, 0);
+  
+  return checkpointBaraka;
 };
 
 /**
- * Calculate stage Baraka
+ * Calculate Baraka for completing a mission
+ * @param {Object} mission - Mission data
+ * @param {Array} subMissions - Completed sub-missions
+ * @returns {Object} Baraka breakdown
  */
-export const calculateStageBaraka = (stageNumber, isGPS101 = false) => {
-  if (isGPS101) {
-    return GPS_101_REWARDS.STAGE_COMPLETE;
-  }
-
-  return BARAKA_CONFIG.STAGE_COMPLETE;
-};
-
-/**
- * Calculate GPS 101 total Baraka
- */
-export const calculateGPS101TotalBaraka = (completedCheckpoints, completedMissions, completedStages) => {
-  const checkpointBaraka = completedCheckpoints * GPS_101_REWARDS.CHECKPOINT_PASS;
-  const missionBaraka = completedMissions * GPS_101_REWARDS.MISSION_COMPLETE;
-  const stageBaraka = completedStages * GPS_101_REWARDS.STAGE_COMPLETE;
-
-  return checkpointBaraka + missionBaraka + stageBaraka;
-};
-
-/**
- * Calculate Baraka to next beacon
- */
-export const calculateBarakaToNextBeacon = (currentBaraka) => {
-  const beacons = Object.values(BARAKA_CONFIG.BEACONS).sort(
-    (a, b) => a.threshold - b.threshold
-  );
-
-  const nextBeacon = beacons.find(beacon => beacon.threshold > currentBaraka);
-
-  if (!nextBeacon) {
-    return {
-      nextBeacon: null,
-      remaining: 0,
-      progress: 100
-    };
-  }
-
-  const previousBeacon = beacons
-    .reverse()
-    .find(beacon => beacon.threshold <= currentBaraka);
-  const previousThreshold = previousBeacon ? previousBeacon.threshold : 0;
-
-  const totalNeeded = nextBeacon.threshold - previousThreshold;
-  const earned = currentBaraka - previousThreshold;
-
+export const calculateMissionBaraka = (mission = {}, subMissions = []) => {
+  // Base Baraka from all checkpoints in mission (30 × 33 = 990)
+  const baseBaraka = GPS_101_STRUCTURE.CHECKPOINTS_PER_MISSION * 
+    BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT;
+  
+  // Mission completion bonus
+  const completionBonus = BARAKA_CONSTANTS.BONUS_MISSION_COMPLETE;
+  
+  const total = baseBaraka + completionBonus;
+  
   return {
-    nextBeacon: nextBeacon.name,
-    remaining: nextBeacon.threshold - currentBaraka,
-    progress: Math.round((earned / totalNeeded) * 100),
-    threshold: nextBeacon.threshold
+    base: baseBaraka,
+    bonus: completionBonus,
+    total
   };
 };
 
 /**
- * Get current beacon
+ * Calculate Baraka for completing a stage
+ * @param {number} stageNumber - Stage number
+ * @param {Object} stageData - Stage completion data
+ * @returns {Object} Baraka breakdown
  */
-export const getCurrentBeacon = (totalBaraka) => {
-  const beacons = Object.values(BARAKA_CONFIG.BEACONS).sort(
-    (a, b) => b.threshold - a.threshold
-  );
-
-  return beacons.find(beacon => totalBaraka >= beacon.threshold);
-};
-
-/**
- * Calculate daily login streak bonus
- */
-export const calculateStreakBonus = (streakDays) => {
-  let bonus = 0;
-
-  // Daily login
-  bonus += BARAKA_CONFIG.DAILY_LOGIN;
-
-  // Weekly streak
-  if (streakDays >= 7) {
-    bonus += BARAKA_CONFIG.WEEKLY_STREAK;
-  }
-
-  // Monthly streak
-  if (streakDays >= 30) {
-    bonus += BARAKA_CONFIG.MONTHLY_STREAK;
-  }
-
-  return bonus;
-};
-
-/**
- * Calculate praise Baraka
- */
-export const calculatePraiseBaraka = (isGiving = true) => {
-  return isGiving ? BARAKA_CONFIG.GIVE_PRAISE : BARAKA_CONFIG.GIVE_PRAISE * 0.4;
-};
-
-/**
- * Calculate party collaboration bonus
- */
-export const calculatePartyBonus = (baseBaraka) => {
-  return Math.round(baseBaraka * 0.2); // 20% bonus for party missions
+export const calculateStageBaraka = (stageNumber, stageData = {}) => {
+  // Base Baraka from mission (30 checkpoints × 33 = 990)
+  const missionBaraka = GPS_101_STRUCTURE.CHECKPOINTS_PER_MISSION * 
+    BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT;
+  
+  // Mission completion bonus
+  const missionBonus = BARAKA_CONSTANTS.BONUS_MISSION_COMPLETE;
+  
+  // Stage completion bonus
+  const stageBonus = BARAKA_CONSTANTS.BONUS_STAGE_COMPLETE;
+  
+  const total = missionBaraka + missionBonus + stageBonus;
+  
+  return {
+    mission: missionBaraka,
+    missionBonus,
+    stageBonus,
+    total
+  };
 };
 
 /**
  * Calculate total Baraka earned
+ * @param {Object} progressData - User progress data
+ * @returns {Object} Total Baraka breakdown
  */
-export const calculateTotalBarakaEarned = (userData) => {
+export const calculateTotalBaraka = (progressData = {}) => {
   const {
-    checkpointsBaraka = 0,
-    missionsBaraka = 0,
-    stagesBaraka = 0,
-    bonusBaraka = 0,
-    praiseBaraka = 0,
-    streakBaraka = 0
-  } = userData;
-
-  return checkpointsBaraka + missionsBaraka + stagesBaraka + bonusBaraka + praiseBaraka + streakBaraka;
-};
-
-/**
- * Estimate Baraka earnings
- */
-export const estimateBarakaEarnings = (missionsToComplete, avgCheckpointsPerMission = 5) => {
-  const checkpoints = missionsToComplete * avgCheckpointsPerMission;
-  const checkpointBaraka = checkpoints * BARAKA_CONFIG.CHECKPOINT_PASS;
-  const missionBaraka = missionsToComplete * BARAKA_CONFIG.MISSION_COMPLETE;
-
+    completedCheckpoints = [],
+    completedSubMissions = [],
+    completedStages = [],
+    bonusBaraka = 0
+  } = progressData;
+  
+  // Base Baraka from checkpoints
+  const checkpointBaraka = completedCheckpoints.length * 
+    BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT;
+  
+  // Mission completion bonuses (1 per stage)
+  const missionBonuses = completedStages.length * 
+    BARAKA_CONSTANTS.BONUS_MISSION_COMPLETE;
+  
+  // Stage completion bonuses
+  const stageBonuses = completedStages.length * 
+    BARAKA_CONSTANTS.BONUS_STAGE_COMPLETE;
+  
+  // Total
+  const total = checkpointBaraka + missionBonuses + stageBonuses + bonusBaraka;
+  
   return {
-    fromCheckpoints: checkpointBaraka,
-    fromMissions: missionBaraka,
-    total: checkpointBaraka + missionBaraka,
-    estimated: true
+    checkpoints: checkpointBaraka,
+    missionBonuses,
+    stageBonuses,
+    bonus: bonusBaraka,
+    total
   };
 };
 
 /**
- * Calculate Baraka breakdown
+ * Calculate Orange Beacon progress
+ * @param {number} currentBaraka - Current Baraka amount
+ * @returns {Object} Orange Beacon progress
  */
-export const calculateBarakaBreakdown = (userData) => {
+export const calculateOrangeBeaconProgress = (currentBaraka = 0) => {
+  const target = BARAKA_CONSTANTS.TOTAL_TARGET;
+  const current = Math.min(currentBaraka, target);
+  const percentage = Math.round((current / target) * 100);
+  const remaining = Math.max(0, target - current);
+  const earned = current >= target;
+  
   return {
-    checkpoints: userData.checkpointsBaraka || 0,
-    missions: userData.missionsBaraka || 0,
-    stages: userData.stagesBaraka || 0,
-    bonuses: userData.bonusBaraka || 0,
-    praise: userData.praiseBaraka || 0,
-    streaks: userData.streakBaraka || 0,
-    total: calculateTotalBarakaEarned(userData)
+    current,
+    target,
+    remaining,
+    percentage,
+    earned
+  };
+};
+
+/**
+ * Check if milestone reached
+ * @param {number} previousBaraka - Previous Baraka amount
+ * @param {number} currentBaraka - Current Baraka amount
+ * @returns {Object|null} Milestone info if reached
+ */
+export const checkMilestoneReached = (previousBaraka, currentBaraka) => {
+  const previousPercentage = Math.floor((previousBaraka / BARAKA_CONSTANTS.TOTAL_TARGET) * 100);
+  const currentPercentage = Math.floor((currentBaraka / BARAKA_CONSTANTS.TOTAL_TARGET) * 100);
+  
+  for (const [threshold, milestone] of Object.entries(BARAKA_CONSTANTS.MILESTONES)) {
+    const thresholdNum = parseInt(threshold);
+    if (previousPercentage < thresholdNum && currentPercentage >= thresholdNum) {
+      return {
+        threshold: thresholdNum,
+        ...milestone,
+        reached: true
+      };
+    }
+  }
+  
+  return null;
+};
+
+/**
+ * Get next milestone
+ * @param {number} currentBaraka - Current Baraka amount
+ * @returns {Object} Next milestone info
+ */
+export const getNextMilestone = (currentBaraka = 0) => {
+  const currentPercentage = Math.floor((currentBaraka / BARAKA_CONSTANTS.TOTAL_TARGET) * 100);
+  
+  for (const [threshold, milestone] of Object.entries(BARAKA_CONSTANTS.MILESTONES)) {
+    const thresholdNum = parseInt(threshold);
+    if (currentPercentage < thresholdNum) {
+      const barakaNeeded = milestone.baraka - currentBaraka;
+      const checkpointsNeeded = Math.ceil(barakaNeeded / BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT);
+      
+      return {
+        threshold: thresholdNum,
+        ...milestone,
+        barakaNeeded: Math.max(0, barakaNeeded),
+        checkpointsNeeded: Math.max(0, checkpointsNeeded)
+      };
+    }
+  }
+  
+  return {
+    threshold: 100,
+    name: 'All Milestones Complete',
+    baraka: BARAKA_CONSTANTS.TOTAL_TARGET,
+    complete: true
+  };
+};
+
+/**
+ * Estimate Baraka from remaining work
+ * @param {Object} progressData - Current progress data
+ * @returns {Object} Estimated Baraka
+ */
+export const estimateRemainingBaraka = (progressData = {}) => {
+  const {
+    completedCheckpoints = [],
+    completedStages = []
+  } = progressData;
+  
+  // Remaining checkpoints
+  const remainingCheckpoints = BARAKA_CONSTANTS.TOTAL_CHECKPOINTS - 
+    completedCheckpoints.length;
+  const checkpointBaraka = remainingCheckpoints * 
+    BARAKA_CONSTANTS.BARAKA_PER_CHECKPOINT;
+  
+  // Remaining stages
+  const remainingStages = GPS_101_STRUCTURE.TOTAL_STAGES - completedStages.length;
+  
+  // Remaining mission bonuses (1 per stage)
+  const missionBonuses = remainingStages * BARAKA_CONSTANTS.BONUS_MISSION_COMPLETE;
+  
+  // Remaining stage bonuses
+  const stageBonuses = remainingStages * BARAKA_CONSTANTS.BONUS_STAGE_COMPLETE;
+  
+  const total = checkpointBaraka + missionBonuses + stageBonuses;
+  
+  return {
+    checkpoints: checkpointBaraka,
+    missionBonuses,
+    stageBonuses,
+    total,
+    remainingCheckpoints,
+    remainingStages
+  };
+};
+
+/**
+ * Calculate Baraka earning rate
+ * @param {Object} progressData - Progress data with timestamps
+ * @returns {Object} Earning rate metrics
+ */
+export const calculateBarakaRate = (progressData = {}) => {
+  const {
+    totalBaraka = 0,
+    enrollmentDate,
+    checkpointsPerWeek = 0
+  } = progressData;
+  
+  if (!enrollmentDate) {
+    return {
+      barakaPerWeek: 0,
+      barakaPerDay: 0,
+      projectedCompletion: null
+    };
+  }
+  
+  const now = new Date();
+  const enrolled = new Date(enrollmentDate);
+  const weeksElapsed = Math.max(
+    Math.floor((now - enrolled) / (1000 * 60 * 60 * 24 * 7)),
+    1
+  );
+  
+  // Baraka per week
+  const barakaPerWeek = totalBaraka / weeksElapsed;
+  const barakaPerDay = barakaPerWeek / 7;
+  
+  // Projected weeks to Orange Beacon
+  const remaining = BARAKA_CONSTANTS.TOTAL_TARGET - totalBaraka;
+  const projectedWeeks = barakaPerWeek > 0 ? Math.ceil(remaining / barakaPerWeek) : null;
+  const projectedCompletion = projectedWeeks ? 
+    new Date(now.getTime() + (projectedWeeks * 7 * 24 * 60 * 60 * 1000)) : null;
+  
+  return {
+    barakaPerWeek: Math.round(barakaPerWeek),
+    barakaPerDay: Math.round(barakaPerDay),
+    projectedWeeks,
+    projectedCompletion
   };
 };
 
@@ -191,16 +320,15 @@ export const calculateBarakaBreakdown = (userData) => {
  * Export all calculator functions
  */
 export default {
+  BARAKA_CONSTANTS,
   calculateCheckpointBaraka,
+  calculateSubMissionBaraka,
   calculateMissionBaraka,
   calculateStageBaraka,
-  calculateGPS101TotalBaraka,
-  calculateBarakaToNextBeacon,
-  getCurrentBeacon,
-  calculateStreakBonus,
-  calculatePraiseBaraka,
-  calculatePartyBonus,
-  calculateTotalBarakaEarned,
-  estimateBarakaEarnings,
-  calculateBarakaBreakdown
+  calculateTotalBaraka,
+  calculateOrangeBeaconProgress,
+  checkMilestoneReached,
+  getNextMilestone,
+  estimateRemainingBaraka,
+  calculateBarakaRate
 };

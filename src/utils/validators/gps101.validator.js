@@ -1,11 +1,64 @@
 /**
  * GPS 101 Validators
- * 
- * Validation functions for GPS 101 submissions and data.
+ * Validation functions for GPS 101 submissions and deliverables
+ * CORRECT STRUCTURE: 5 Stages with specific deliverables
  */
 
-import { GPS_101_CONFIG } from '../../config/gps101.config';
-import { GPS_101_VALIDATION } from '../constants/gps101.constants';
+import { GPS_101_STRUCTURE } from '../helpers/gps101.helper';
+
+/**
+ * Validation constants
+ */
+export const VALIDATION_RULES = {
+  CHECKPOINT: {
+    MIN_LENGTH: 100,
+    MAX_LENGTH: 5000,
+    MIN_WORDS: 20
+  },
+  DELIVERABLES: {
+    'Identity Statement': {
+      type: 'text',
+      minLength: 200,
+      maxLength: 2000,
+      minWords: 40
+    },
+    'Problem Candidate List': {
+      type: 'list',
+      minItems: 5,
+      maxItems: 20,
+      itemMinLength: 50
+    },
+    'Problem Owner Story': {
+      type: 'narrative',
+      minLength: 500,
+      maxLength: 3000,
+      minParagraphs: 3
+    },
+    'Life Purpose Statement': {
+      type: 'statement',
+      minLength: 50,
+      maxLength: 500,
+      maxSentences: 3
+    },
+    'Purpose-driven Project Plan': {
+      type: 'project',
+      requiredFields: ['title', 'description', 'goals', 'timeline', 'impact'],
+      minLength: 100
+    }
+  },
+  FILE: {
+    MAX_IMAGE_SIZE: 10 * 1024 * 1024, // 10MB
+    MAX_VIDEO_SIZE: 100 * 1024 * 1024, // 100MB
+    MAX_DOCUMENT_SIZE: 25 * 1024 * 1024, // 25MB
+    ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
+    ALLOWED_VIDEO_TYPES: ['video/mp4', 'video/webm', 'video/ogg'],
+    ALLOWED_DOCUMENT_TYPES: [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ]
+  }
+};
 
 /**
  * Validate checkpoint submission
@@ -19,13 +72,21 @@ export const validateCheckpointSubmission = (checkpoint, data) => {
   }
   
   // Check minimum length
-  if (checkpoint.minLength && data.answer.length < checkpoint.minLength) {
-    errors.push(`Answer must be at least ${checkpoint.minLength} characters`);
+  const minLength = checkpoint.minLength || VALIDATION_RULES.CHECKPOINT.MIN_LENGTH;
+  if (data.answer.length < minLength) {
+    errors.push(`Answer must be at least ${minLength} characters`);
   }
   
   // Check maximum length
-  if (checkpoint.maxLength && data.answer.length > checkpoint.maxLength) {
-    errors.push(`Answer must not exceed ${checkpoint.maxLength} characters`);
+  const maxLength = checkpoint.maxLength || VALIDATION_RULES.CHECKPOINT.MAX_LENGTH;
+  if (data.answer.length > maxLength) {
+    errors.push(`Answer must not exceed ${maxLength} characters`);
+  }
+  
+  // Check word count
+  const words = data.answer.trim().split(/\s+/).filter(w => w.length > 0);
+  if (words.length < VALIDATION_RULES.CHECKPOINT.MIN_WORDS) {
+    errors.push(`Answer must have at least ${VALIDATION_RULES.CHECKPOINT.MIN_WORDS} words`);
   }
   
   // Check upload requirement
@@ -38,13 +99,6 @@ export const validateCheckpointSubmission = (checkpoint, data) => {
     errors.push('Video submission is required');
   }
   
-  // Check reflection if required
-  if (checkpoint.type === 'reflection' && data.reflection) {
-    if (data.reflection.length < 50) {
-      errors.push('Reflection must be at least 50 characters');
-    }
-  }
-  
   return {
     valid: errors.length === 0,
     errors
@@ -52,57 +106,64 @@ export const validateCheckpointSubmission = (checkpoint, data) => {
 };
 
 /**
- * Validate identity statement (Stage 1 deliverable)
+ * Validate Stage 1 deliverable: Identity Statement
  */
 export const validateIdentityStatement = (data) => {
   const errors = [];
+  const rules = VALIDATION_RULES.DELIVERABLES['Identity Statement'];
   
   if (!data || typeof data !== 'string') {
     errors.push('Identity statement must be text');
     return { valid: false, errors };
   }
   
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === 'identity-statement');
-  
-  if (data.length < deliverable.minLength) {
-    errors.push(`Identity statement must be at least ${deliverable.minLength} characters`);
+  // Length validation
+  if (data.length < rules.minLength) {
+    errors.push(`Identity statement must be at least ${rules.minLength} characters (currently ${data.length})`);
   }
   
-  if (data.length > deliverable.maxLength) {
-    errors.push(`Identity statement must not exceed ${deliverable.maxLength} characters`);
+  if (data.length > rules.maxLength) {
+    errors.push(`Identity statement must not exceed ${rules.maxLength} characters (currently ${data.length})`);
   }
   
-  // Check for meaningful content
-  const words = data.trim().split(/\s+/);
-  if (words.length < 20) {
-    errors.push('Identity statement should be more detailed (at least 20 words)');
+  // Word count validation
+  const words = data.trim().split(/\s+/).filter(w => w.length > 0);
+  if (words.length < rules.minWords) {
+    errors.push(`Identity statement should have at least ${rules.minWords} words (currently ${words.length})`);
+  }
+  
+  // Content validation
+  if (data.trim().length < 50) {
+    errors.push('Identity statement appears to be too brief');
   }
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    wordCount: words.length,
+    charCount: data.length
   };
 };
 
 /**
- * Validate problem candidate list (Stage 2 deliverable)
+ * Validate Stage 2 deliverable: Problem Candidate List
  */
-export const validateProblemCandidate = (data) => {
+export const validateProblemCandidateList = (data) => {
   const errors = [];
+  const rules = VALIDATION_RULES.DELIVERABLES['Problem Candidate List'];
   
   if (!Array.isArray(data)) {
-    errors.push('Problem candidate must be a list');
+    errors.push('Problem candidate list must be an array');
     return { valid: false, errors };
   }
   
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === 'problem-candidate');
-  
-  if (data.length < deliverable.minItems) {
-    errors.push(`At least ${deliverable.minItems} problem candidates required`);
+  // Count validation
+  if (data.length < rules.minItems) {
+    errors.push(`At least ${rules.minItems} problem candidates required (currently ${data.length})`);
   }
   
-  if (data.length > deliverable.maxItems) {
-    errors.push(`Maximum ${deliverable.maxItems} problem candidates allowed`);
+  if (data.length > rules.maxItems) {
+    errors.push(`Maximum ${rules.maxItems} problem candidates allowed (currently ${data.length})`);
   }
   
   // Validate each problem candidate
@@ -112,110 +173,128 @@ export const validateProblemCandidate = (data) => {
       return;
     }
     
-    if (!problem.title || problem.title.length < 5) {
+    if (!problem.title || typeof problem.title !== 'string' || problem.title.length < 5) {
       errors.push(`Problem candidate ${index + 1} needs a title (at least 5 characters)`);
     }
     
-    if (!problem.description || problem.description.length < 50) {
-      errors.push(`Problem candidate ${index + 1} needs a description (at least 50 characters)`);
+    if (!problem.description || typeof problem.description !== 'string' || problem.description.length < rules.itemMinLength) {
+      errors.push(`Problem candidate ${index + 1} needs a description (at least ${rules.itemMinLength} characters)`);
     }
   });
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    itemCount: data.length
   };
 };
 
 /**
- * Validate problem owner story (Stage 3 deliverable)
+ * Validate Stage 3 deliverable: Problem Owner Story
  */
 export const validateProblemOwnerStory = (data) => {
   const errors = [];
+  const rules = VALIDATION_RULES.DELIVERABLES['Problem Owner Story'];
   
   if (!data || typeof data !== 'string') {
     errors.push('Problem owner story must be text');
     return { valid: false, errors };
   }
   
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === 'problem-owner-story');
-  
-  if (data.length < deliverable.minLength) {
-    errors.push(`Story must be at least ${deliverable.minLength} characters`);
+  // Length validation
+  if (data.length < rules.minLength) {
+    errors.push(`Story must be at least ${rules.minLength} characters (currently ${data.length})`);
   }
   
-  if (data.length > deliverable.maxLength) {
-    errors.push(`Story must not exceed ${deliverable.maxLength} characters`);
+  if (data.length > rules.maxLength) {
+    errors.push(`Story must not exceed ${rules.maxLength} characters (currently ${data.length})`);
   }
   
-  // Check for narrative structure
+  // Paragraph structure validation
   const paragraphs = data.split('\n\n').filter(p => p.trim().length > 0);
-  if (paragraphs.length < 3) {
-    errors.push('Story should have at least 3 paragraphs for proper narrative structure');
+  if (paragraphs.length < rules.minParagraphs) {
+    errors.push(`Story should have at least ${rules.minParagraphs} paragraphs for proper narrative structure (currently ${paragraphs.length})`);
+  }
+  
+  // Content validation
+  const words = data.trim().split(/\s+/).filter(w => w.length > 0);
+  if (words.length < 100) {
+    errors.push('Story should be more detailed (at least 100 words)');
   }
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    charCount: data.length,
+    paragraphCount: paragraphs.length,
+    wordCount: words.length
   };
 };
 
 /**
- * Validate life purpose statement (Stage 4 deliverable)
+ * Validate Stage 4 deliverable: Life Purpose Statement
  */
 export const validateLifePurposeStatement = (data) => {
   const errors = [];
+  const rules = VALIDATION_RULES.DELIVERABLES['Life Purpose Statement'];
   
   if (!data || typeof data !== 'string') {
     errors.push('Life purpose statement must be text');
     return { valid: false, errors };
   }
   
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === 'life-purpose-statement');
-  
-  if (data.length < deliverable.minLength) {
-    errors.push(`Purpose statement must be at least ${deliverable.minLength} characters`);
+  // Length validation
+  if (data.length < rules.minLength) {
+    errors.push(`Purpose statement must be at least ${rules.minLength} characters (currently ${data.length})`);
   }
   
-  if (data.length > deliverable.maxLength) {
-    errors.push(`Purpose statement must not exceed ${deliverable.maxLength} characters`);
+  if (data.length > rules.maxLength) {
+    errors.push(`Purpose statement must not exceed ${rules.maxLength} characters (currently ${data.length})`);
   }
   
-  // Check for clarity - should be 1-2 sentences
+  // Sentence count validation (should be concise)
   const sentences = data.split(/[.!?]+/).filter(s => s.trim().length > 0);
-  if (sentences.length > 3) {
-    errors.push('Purpose statement should be concise (1-3 sentences)');
+  if (sentences.length > rules.maxSentences) {
+    errors.push(`Purpose statement should be concise (maximum ${rules.maxSentences} sentences, currently ${sentences.length})`);
+  }
+  
+  // Content validation
+  if (data.trim().length < 30) {
+    errors.push('Purpose statement appears to be too brief');
   }
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    charCount: data.length,
+    sentenceCount: sentences.length
   };
 };
 
 /**
- * Validate purpose-driven project (Stage 5 deliverable)
+ * Validate Stage 5 deliverable: Purpose-driven Project Plan
  */
 export const validatePurposeDrivenProject = (data) => {
   const errors = [];
+  const rules = VALIDATION_RULES.DELIVERABLES['Purpose-driven Project Plan'];
   
-  if (!data || typeof data !== 'object') {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
     errors.push('Purpose-driven project must be an object');
     return { valid: false, errors };
   }
   
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === 'purpose-driven-project');
-  
   // Check required fields
-  deliverable.requiredFields.forEach(field => {
+  const missingFields = [];
+  rules.requiredFields.forEach(field => {
     if (!data[field]) {
+      missingFields.push(field);
       errors.push(`Required field missing: ${field}`);
-    } else if (typeof data[field] === 'string' && data[field].length < 50) {
-      errors.push(`Field '${field}' needs more detail (at least 50 characters)`);
+    } else if (typeof data[field] === 'string' && data[field].length < rules.minLength) {
+      errors.push(`Field '${field}' needs more detail (at least ${rules.minLength} characters)`);
     }
   });
   
-  // Validate specific fields
+  // Validate specific fields if present
   if (data.title && data.title.length < 5) {
     errors.push('Project title must be at least 5 characters');
   }
@@ -226,28 +305,39 @@ export const validatePurposeDrivenProject = (data) => {
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    missingFields
   };
 };
 
 /**
- * Validate deliverable by type
+ * Validate deliverable by stage number
  */
-export const validateDeliverable = (deliverableId, data) => {
-  switch (deliverableId) {
-    case 'identity-statement':
+export const validateDeliverableByStage = (stageNumber, data) => {
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  if (!stage) {
+    return {
+      valid: false,
+      errors: ['Invalid stage number']
+    };
+  }
+  
+  const deliverableName = stage.deliverable;
+  
+  switch (deliverableName) {
+    case 'Identity Statement':
       return validateIdentityStatement(data);
     
-    case 'problem-candidate':
-      return validateProblemCandidate(data);
+    case 'Problem Candidate List':
+      return validateProblemCandidateList(data);
     
-    case 'problem-owner-story':
+    case 'Problem Owner Story':
       return validateProblemOwnerStory(data);
     
-    case 'life-purpose-statement':
+    case 'Life Purpose Statement':
       return validateLifePurposeStatement(data);
     
-    case 'purpose-driven-project':
+    case 'Purpose-driven Project Plan':
       return validatePurposeDrivenProject(data);
     
     default:
@@ -269,18 +359,20 @@ export const validateTextLength = (text, minLength, maxLength) => {
     return { valid: false, errors };
   }
   
-  if (text.length < minLength) {
-    errors.push(`Text must be at least ${minLength} characters (currently ${text.length})`);
+  const currentLength = text.length;
+  
+  if (currentLength < minLength) {
+    errors.push(`Text must be at least ${minLength} characters (currently ${currentLength})`);
   }
   
-  if (text.length > maxLength) {
-    errors.push(`Text must not exceed ${maxLength} characters (currently ${text.length})`);
+  if (currentLength > maxLength) {
+    errors.push(`Text must not exceed ${maxLength} characters (currently ${currentLength})`);
   }
   
   return {
     valid: errors.length === 0,
     errors,
-    currentLength: text.length,
+    currentLength,
     minLength,
     maxLength
   };
@@ -289,7 +381,7 @@ export const validateTextLength = (text, minLength, maxLength) => {
 /**
  * Validate word count
  */
-export const validateWordCount = (text, minWords, maxWords) => {
+export const validateWordCount = (text, minWords, maxWords = null) => {
   const errors = [];
   
   if (!text) {
@@ -342,105 +434,61 @@ export const validateFileUpload = (file, allowedTypes, maxSize) => {
   
   return {
     valid: errors.length === 0,
-    errors
+    errors,
+    fileSize: file.size,
+    fileType: file.type
   };
-};
-
-/**
- * Validate video upload
- */
-export const validateVideoUpload = (file) => {
-  const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg'];
-  const maxSize = 100 * 1024 * 1024; // 100MB
-  
-  return validateFileUpload(file, allowedTypes, maxSize);
 };
 
 /**
  * Validate image upload
  */
 export const validateImageUpload = (file) => {
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  const maxSize = 10 * 1024 * 1024; // 10MB
-  
-  return validateFileUpload(file, allowedTypes, maxSize);
+  return validateFileUpload(
+    file,
+    VALIDATION_RULES.FILE.ALLOWED_IMAGE_TYPES,
+    VALIDATION_RULES.FILE.MAX_IMAGE_SIZE
+  );
+};
+
+/**
+ * Validate video upload
+ */
+export const validateVideoUpload = (file) => {
+  return validateFileUpload(
+    file,
+    VALIDATION_RULES.FILE.ALLOWED_VIDEO_TYPES,
+    VALIDATION_RULES.FILE.MAX_VIDEO_SIZE
+  );
 };
 
 /**
  * Validate document upload
  */
 export const validateDocumentUpload = (file) => {
-  const allowedTypes = [
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-  ];
-  const maxSize = 25 * 1024 * 1024; // 25MB
-  
-  return validateFileUpload(file, allowedTypes, maxSize);
-};
-
-/**
- * Validate R2R usage
- */
-export const validateR2RUsage = (r2rBalance, checkpointStatus) => {
-  const errors = [];
-  
-  if (r2rBalance <= 0) {
-    errors.push('No retry rights available');
-  }
-  
-  if (checkpointStatus !== 'failed') {
-    errors.push('Can only retry failed checkpoints');
-  }
-  
-  return {
-    valid: errors.length === 0,
-    errors
-  };
-};
-
-/**
- * Validate pR2R usage
- */
-export const validatePR2RUsage = (pr2rBalance, checkpointStatus, failedCount) => {
-  const errors = [];
-  
-  if (pr2rBalance <= 0) {
-    errors.push('No provisional retry rights available');
-  }
-  
-  if (checkpointStatus !== 'failed') {
-    errors.push('Can only retry failed checkpoints');
-  }
-  
-  if (failedCount < GPS_101_VALIDATION.CHECKPOINT.PR2R_THRESHOLD) {
-    errors.push(`Need at least ${GPS_101_VALIDATION.CHECKPOINT.PR2R_THRESHOLD} failed attempts to use pR2R`);
-  }
-  
-  return {
-    valid: errors.length === 0,
-    errors
-  };
+  return validateFileUpload(
+    file,
+    VALIDATION_RULES.FILE.ALLOWED_DOCUMENT_TYPES,
+    VALIDATION_RULES.FILE.MAX_DOCUMENT_SIZE
+  );
 };
 
 /**
  * Export all validator functions
  */
 export default {
+  VALIDATION_RULES,
   validateCheckpointSubmission,
   validateIdentityStatement,
-  validateProblemCandidate,
+  validateProblemCandidateList,
   validateProblemOwnerStory,
   validateLifePurposeStatement,
   validatePurposeDrivenProject,
-  validateDeliverable,
+  validateDeliverableByStage,
   validateTextLength,
   validateWordCount,
   validateFileUpload,
-  validateVideoUpload,
   validateImageUpload,
-  validateDocumentUpload,
-  validateR2RUsage,
-  validatePR2RUsage
+  validateVideoUpload,
+  validateDocumentUpload
 };

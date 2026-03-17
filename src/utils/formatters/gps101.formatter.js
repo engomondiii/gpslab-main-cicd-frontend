@@ -1,23 +1,24 @@
 /**
  * GPS 101 Formatters
- * * Functions to format GPS 101 data for display.
+ * Functions to format GPS 101 data for display
+ * CORRECT STRUCTURE: 5 Stages, 5 Missions, 30 Sub-missions, 150 Checkpoints
  */
 
-import { GPS_101_CONFIG } from '../../config/gps101.config';
+import { GPS_101_STRUCTURE } from './gps101.helper';
 
 /**
  * Format stage title
  */
 export const formatStageTitle = (stageNumber) => {
-  const stage = GPS_101_CONFIG.STAGES.find(s => s.stageNumber === stageNumber);
-  return stage ? stage.stageName : `Stage ${stageNumber}`;
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  return stage ? `Stage ${stageNumber}` : `Stage ${stageNumber}`;
 };
 
 /**
  * Format stage question
  */
 export const formatStageQuestion = (stageNumber) => {
-  const stage = GPS_101_CONFIG.STAGES.find(s => s.stageNumber === stageNumber);
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
   return stage ? stage.question : '';
 };
 
@@ -25,18 +26,58 @@ export const formatStageQuestion = (stageNumber) => {
  * Format stage expected outcome
  */
 export const formatStageOutcome = (stageNumber) => {
-  const stage = GPS_101_CONFIG.STAGES.find(s => s.stageNumber === stageNumber);
-  return stage ? stage.expectedOutcome : '';
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  return stage ? stage.outcome : '';
+};
+
+/**
+ * Format stage deliverable
+ */
+export const formatStageDeliverable = (stageNumber) => {
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  return stage ? stage.deliverable : '';
+};
+
+/**
+ * Format stage duration
+ */
+export const formatStageDuration = (stageNumber) => {
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  return stage ? stage.duration : '3 weeks';
+};
+
+/**
+ * Format stage icon
+ */
+export const formatStageIcon = (stageNumber) => {
+  const stage = GPS_101_STRUCTURE.STAGES[stageNumber];
+  return stage ? stage.icon : '📍';
 };
 
 /**
  * Format mission title
  */
 export const formatMissionTitle = (mission, language = 'en') => {
+  if (!mission) return '';
+  
   if (language === 'ko' && mission.titleKo) {
     return mission.titleKo;
   }
-  return mission.title;
+  
+  return mission.title || `Stage ${mission.stageNumber} Mission`;
+};
+
+/**
+ * Format sub-mission title
+ */
+export const formatSubMissionTitle = (subMission, language = 'en') => {
+  if (!subMission) return '';
+  
+  if (language === 'ko' && subMission.titleKo) {
+    return subMission.titleKo;
+  }
+  
+  return subMission.title || `Sub-mission ${subMission.subMissionNumber}`;
 };
 
 /**
@@ -49,24 +90,33 @@ export const formatProgressPercentage = (current, total) => {
 };
 
 /**
- * Format Baraka amount (FIXED: Added safety fallback for undefined)
+ * Format Baraka amount with safety fallback
  */
 export const formatBaraka = (amount) => {
   const safeAmount = Number(amount) || 0;
+  
   if (safeAmount >= 1000000) {
-    return `${(safeAmount / 1000000).toFixed(1)}M`;
+    return `${(safeAmount / 1000000).toFixed(1)}M ƀ`;
   } else if (safeAmount >= 1000) {
-    return `${(safeAmount / 1000).toFixed(1)}K`;
+    return `${(safeAmount / 1000).toFixed(1)}K ƀ`;
   }
-  return safeAmount.toLocaleString();
+  
+  return `${safeAmount.toLocaleString()} ƀ`;
 };
 
 /**
- * Format XP amount (FIXED: Added safety fallback for undefined)
+ * Format XP amount with safety fallback
  */
 export const formatXP = (amount) => {
   const safeAmount = Number(amount) || 0;
-  return safeAmount.toLocaleString();
+  
+  if (safeAmount >= 1000000) {
+    return `${(safeAmount / 1000000).toFixed(1)}M XP`;
+  } else if (safeAmount >= 1000) {
+    return `${(safeAmount / 1000).toFixed(1)}K XP`;
+  }
+  
+  return `${safeAmount.toLocaleString()} XP`;
 };
 
 /**
@@ -88,32 +138,38 @@ export const formatDays = (days) => {
 };
 
 /**
- * Format checkpoint count
+ * Format checkpoint count (X/5 per sub-mission)
  */
-export const formatCheckpointCount = (passed, total) => {
-  return `${passed || 0}/${total || 0}`;
+export const formatCheckpointCount = (passed, total = 5) => {
+  return `${passed || 0}/${total}`;
 };
 
 /**
- * Format mission count
+ * Format sub-mission count (X/6 per mission)
  */
-export const formatMissionCount = (completed, total) => {
-  return `${completed || 0}/${total || 0}`;
+export const formatSubMissionCount = (completed, total = 6) => {
+  return `${completed || 0}/${total}`;
 };
 
 /**
- * Format stage count
+ * Format mission count (X/5 total, 1 per stage)
  */
-export const formatStageCount = (completed, total) => {
-  return `${completed || 0}/${total || 0}`;
+export const formatMissionCount = (completed, total = 5) => {
+  return `${completed || 0}/${total}`;
+};
+
+/**
+ * Format stage count (X/5)
+ */
+export const formatStageCount = (completed, total = 5) => {
+  return `${completed || 0}/${total}`;
 };
 
 /**
  * Format deliverable name
  */
-export const formatDeliverableName = (deliverableId) => {
-  const deliverable = GPS_101_CONFIG.DELIVERABLES.find(d => d.id === deliverableId);
-  return deliverable ? deliverable.name : deliverableId;
+export const formatDeliverableName = (stageNumber) => {
+  return formatStageDeliverable(stageNumber);
 };
 
 /**
@@ -284,25 +340,21 @@ export const formatCheckpointRequirements = (checkpoint) => {
 };
 
 /**
- * Format stage duration
- */
-export const formatStageDuration = (stageNumber) => {
-  const stage = GPS_101_CONFIG.STAGES.find(s => s.stageNumber === stageNumber);
-  return stage ? stage.duration : '3 weeks';
-};
-
-/**
  * Format overall progress
+ * CORRECT: 5 stages, 5 missions, 30 sub-missions, 150 checkpoints
  */
-export const formatOverallProgress = (progress) => {
-  if (!progress) return { stages: '0/5', missions: '0/30', checkpoints: '0/150', percentage: '0%', baraka: '0', xp: '0' };
+export const formatOverallProgress = (progress = {}) => {
   return {
-    stages: formatStageCount(progress.completedStages, GPS_101_CONFIG.TOTAL_STAGES),
-    missions: formatMissionCount(progress.completedMissions, GPS_101_CONFIG.TOTAL_MISSIONS),
-    checkpoints: formatCheckpointCount(progress.completedCheckpoints, GPS_101_CONFIG.TOTAL_CHECKPOINTS),
-    percentage: formatProgressPercentage(progress.completedMissions, GPS_101_CONFIG.TOTAL_MISSIONS),
-    baraka: formatBaraka(progress.totalBarakaEarned),
-    xp: formatXP(progress.totalXPEarned)
+    stages: formatStageCount(progress.completedStages || 0, 5),
+    missions: formatMissionCount(progress.completedMissions || 0, 5),
+    subMissions: formatSubMissionCount(progress.completedSubMissions || 0, 30),
+    checkpoints: formatCheckpointCount(progress.completedCheckpoints || 0, 150),
+    percentage: formatProgressPercentage(
+      progress.completedCheckpoints || 0, 
+      150
+    ),
+    baraka: formatBaraka(progress.totalBaraka || 0),
+    xp: formatXP(progress.totalXP || 0)
   };
 };
 
@@ -322,9 +374,10 @@ export const formatList = (items, conjunction = 'and') => {
 
 /**
  * Format mission sequence
+ * CORRECT: Each stage has 1 mission
  */
-export const formatMissionSequence = (stageNumber, missionNumber) => {
-  return `Stage ${stageNumber || 1}, Mission ${missionNumber || 1}`;
+export const formatMissionSequence = (stageNumber) => {
+  return `Stage ${stageNumber || 1}, Mission 1`;
 };
 
 /**
@@ -340,15 +393,31 @@ export const truncateText = (text, maxLength = 100, ellipsis = '...') => {
 /**
  * Format Orange Beacon progress
  */
-export const formatOrangeBeaconProgress = (current, target) => {
+export const formatOrangeBeaconProgress = (current, target = 5000) => {
   const safeCurrent = Number(current) || 0;
   const safeTarget = Number(target) || 5000;
   const percentage = Math.round((safeCurrent / safeTarget) * 100);
+  
   return {
     current: formatBaraka(safeCurrent),
     target: formatBaraka(safeTarget),
     remaining: formatBaraka(Math.max(0, safeTarget - safeCurrent)),
-    percentage: `${percentage}%`
+    percentage: `${percentage}%`,
+    percentageNumber: percentage
+  };
+};
+
+/**
+ * Format GPS 101 structure summary
+ */
+export const formatGPS101Structure = () => {
+  return {
+    stages: `${GPS_101_STRUCTURE.TOTAL_STAGES} stages`,
+    missions: `${GPS_101_STRUCTURE.TOTAL_MISSIONS} missions (1 per stage)`,
+    subMissions: `${GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS} sub-missions (6 per mission)`,
+    checkpoints: `${GPS_101_STRUCTURE.TOTAL_CHECKPOINTS} checkpoints (5 per sub-mission)`,
+    duration: `${GPS_101_STRUCTURE.DURATION_WEEKS} weeks`,
+    baraka: formatBaraka(GPS_101_STRUCTURE.TOTAL_BARAKA)
   };
 };
 
@@ -359,13 +428,18 @@ export default {
   formatStageTitle,
   formatStageQuestion,
   formatStageOutcome,
+  formatStageDeliverable,
+  formatStageDuration,
+  formatStageIcon,
   formatMissionTitle,
+  formatSubMissionTitle,
   formatProgressPercentage,
   formatBaraka,
   formatXP,
   formatWeeks,
   formatDays,
   formatCheckpointCount,
+  formatSubMissionCount,
   formatMissionCount,
   formatStageCount,
   formatDeliverableName,
@@ -378,10 +452,10 @@ export default {
   formatWordCount,
   formatCharacterCount,
   formatCheckpointRequirements,
-  formatStageDuration,
   formatOverallProgress,
   formatList,
   formatMissionSequence,
   truncateText,
-  formatOrangeBeaconProgress
+  formatOrangeBeaconProgress,
+  formatGPS101Structure
 };

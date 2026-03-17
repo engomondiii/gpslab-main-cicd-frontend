@@ -1,0 +1,385 @@
+/**
+ * GPS 101 Mission Accept Button Component Styles
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
+ */
+
+.gps101-accept-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  position: relative;
+  border: none;
+}
+
+.gps101-accept-btn svg {
+  flex-shrink: 0;
+}
+
+/* ==================== SIZE VARIANTS ==================== */
+
+.gps101-accept-btn--small {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--text-xs, 12px);
+}
+
+.gps101-accept-btn--small svg {
+  width: 14px;
+  height: 14px;
+}
+
+.gps101-accept-btn--medium {
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+}
+
+.gps101-accept-btn--medium svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gps101-accept-btn--large {
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-base, 16px);
+}
+
+.gps101-accept-btn--large svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== STATUS VARIANTS ==================== */
+
+/* Available - GPS Lab Cyan */
+.gps101-accept-btn--available {
+  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary, #00d4ff);
+  box-shadow: var(--shadow-sm);
+}
+
+.gps101-accept-btn--available:hover:not(:disabled) {
+  background: var(--gps-primary-light, #4ce3ff);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+}
+
+.gps101-accept-btn--available:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* In Progress - Orange */
+.gps101-accept-btn--in_progress {
+  color: white;
+  background: #ff8c42;
+  box-shadow: var(--shadow-sm);
+}
+
+.gps101-accept-btn--in_progress:hover:not(:disabled) {
+  background: #ffb374;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.25);
+}
+
+.gps101-accept-btn--in_progress:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Completed - Success Green */
+.gps101-accept-btn--completed {
+  color: var(--success, #2a9d8f);
+  background: var(--success-pale, rgba(42, 157, 143, 0.1));
+  border: 1px solid var(--success, #2a9d8f);
+}
+
+.gps101-accept-btn--completed:hover {
+  background: rgba(42, 157, 143, 0.15);
+  border-color: var(--success-light, #3cbfae);
+}
+
+/* Locked - Gray */
+.gps101-accept-btn--locked {
+  color: var(--neutral-500, #8b949e);
+  background: var(--neutral-100, #f7faff);
+  border: 1px solid var(--neutral-300, #e1e4e8);
+  cursor: not-allowed;
+}
+
+/* ==================== STYLE VARIANTS ==================== */
+
+/* Outline Variant */
+.gps101-accept-btn--outline.gps101-accept-btn--available {
+  color: var(--gps-primary, #00d4ff);
+  background: var(--neutral-0, #ffffff);
+  border: 1px solid var(--gps-primary, #00d4ff);
+  box-shadow: none;
+}
+
+.gps101-accept-btn--outline.gps101-accept-btn--available:hover:not(:disabled) {
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.gps101-accept-btn--outline.gps101-accept-btn--in_progress {
+  color: #ff8c42;
+  background: var(--neutral-0, #ffffff);
+  border: 1px solid #ff8c42;
+  box-shadow: none;
+}
+
+.gps101-accept-btn--outline.gps101-accept-btn--in_progress:hover:not(:disabled) {
+  background: rgba(255, 140, 66, 0.08);
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ghost Variant */
+.gps101-accept-btn--ghost.gps101-accept-btn--available {
+  color: var(--gps-primary, #00d4ff);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.gps101-accept-btn--ghost.gps101-accept-btn--available:hover:not(:disabled) {
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  transform: none;
+}
+
+.gps101-accept-btn--ghost.gps101-accept-btn--in_progress {
+  color: #ff8c42;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.gps101-accept-btn--ghost.gps101-accept-btn--in_progress:hover:not(:disabled) {
+  background: rgba(255, 140, 66, 0.08);
+  transform: none;
+}
+
+/* ==================== STAGE COMPLETER BADGE ==================== */
+
+.gps101-accept-btn__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  margin-left: var(--space-1, 4px);
+}
+
+.gps101-accept-btn__badge svg {
+  width: 10px;
+  height: 10px;
+  color: #ff8c42;
+}
+
+.gps101-accept-btn--stage-completer.gps101-accept-btn--available {
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f), #ff8c42);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25), 0 0 20px rgba(255, 140, 66, 0.15);
+}
+
+.gps101-accept-btn--stage-completer.gps101-accept-btn--available:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3), 0 0 30px rgba(255, 140, 66, 0.2);
+}
+
+.gps101-accept-btn--stage-completer.gps101-accept-btn--available::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.15), transparent);
+  pointer-events: none;
+}
+
+/* ==================== LOADING STATE ==================== */
+
+.gps101-accept-btn--loading {
+  cursor: wait;
+}
+
+.gps101-accept-btn__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: acceptBtnSpin 0.6s linear infinite;
+}
+
+@keyframes acceptBtnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==================== DISABLED STATE ==================== */
+
+.gps101-accept-btn--disabled,
+.gps101-accept-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gps101-accept-btn--disabled:hover,
+.gps101-accept-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.gps101-accept-btn--locked:hover {
+  background: var(--neutral-100, #f7faff);
+  border-color: var(--neutral-300, #e1e4e8);
+}
+
+/* ==================== FOCUS STATES ==================== */
+
+.gps101-accept-btn:focus {
+  outline: none;
+}
+
+.gps101-accept-btn:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 2px;
+}
+
+.gps101-accept-btn--available:focus-visible {
+  outline-color: var(--gps-primary, #00d4ff);
+}
+
+.gps101-accept-btn--in_progress:focus-visible {
+  outline-color: #ff8c42;
+}
+
+.gps101-accept-btn--completed:focus-visible {
+  outline-color: var(--success, #2a9d8f);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .gps101-accept-btn--small {
+    padding: var(--space-1, 4px) var(--space-2, 8px);
+    font-size: var(--text-xs, 12px);
+  }
+
+  .gps101-accept-btn--medium {
+    padding: var(--space-2, 8px) var(--space-3, 12px);
+    font-size: var(--text-sm, 14px);
+  }
+
+  .gps101-accept-btn--large {
+    padding: var(--space-2, 8px) var(--space-5, 20px);
+    font-size: var(--text-sm, 14px);
+  }
+}
+
+/* ==================== TOOLTIP HINT ==================== */
+
+.gps101-accept-btn--stage-completer[title]:hover::before {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--neutral-900, #0d1117);
+  color: white;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-medium, 500);
+  white-space: nowrap;
+  border-radius: var(--radius-md, 6px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gps101-accept-btn--stage-completer[title]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--neutral-900, #0d1117);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gps101-accept-btn {
+    transition: none;
+  }
+  
+  .gps101-accept-btn:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .gps101-accept-btn__spinner {
+    animation: none;
+  }
+}
+
+/* ==================== HIGH CONTRAST MODE ==================== */
+
+@media (prefers-contrast: high) {
+  .gps101-accept-btn--available {
+    border: 2px solid var(--gps-primary, #00d4ff);
+  }
+  
+  .gps101-accept-btn--in_progress {
+    border: 2px solid #ff8c42;
+  }
+  
+  .gps101-accept-btn--completed {
+    border: 2px solid var(--success, #2a9d8f);
+  }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+[data-theme="dark"] .gps101-accept-btn--available {
+  background: var(--gps-primary, #00d4ff);
+  color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .gps101-accept-btn--locked {
+  background: var(--neutral-800, #0d1b2a);
+  color: var(--neutral-400, #a8dadc);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .gps101-accept-btn--outline.gps101-accept-btn--available {
+  background: transparent;
+  color: var(--gps-primary, #00d4ff);
+  border-color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .gps101-accept-btn--outline.gps101-accept-btn--available:hover:not(:disabled) {
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+  .gps101-accept-btn {
+    box-shadow: none;
+  }
+  
+  .gps101-accept-btn--available,
+  .gps101-accept-btn--in_progress {
+    background: transparent;
+    color: var(--neutral-900, #0d1117);
+    border: 1px solid var(--neutral-900, #0d1117);
+  }
+}

@@ -1,0 +1,613 @@
+/**
+ * GPS 101 Mission Briefing Component Styles
+ * GPS Lab Light Theme - Purple gradient (#667eea → #764ba2)
+ */
+
+.gps101-mission-briefing {
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+/* ==================== BACKGROUND ==================== */
+
+.gps101-mission-briefing__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.gps101-mission-briefing__bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.gps101-mission-briefing__bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ==================== CLOSE BUTTON ==================== */
+
+.gps101-mission-briefing__close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 50%;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gps101-mission-briefing__close:hover {
+  background: #f8f9fa;
+  color: #495057;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gps101-mission-briefing__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==================== CONTENT CONTAINER ==================== */
+
+.gps101-mission-briefing__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ==================== GPS 101 CONTEXT HEADER ==================== */
+
+.gps101-mission-briefing__gps101-header {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gps101-mission-briefing__gps101-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.gps101-mission-briefing__gps101-badge svg {
+  width: 32px;
+  height: 32px;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.gps101-mission-briefing__gps101-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gps101-mission-briefing__gps101-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gps101-mission-briefing__gps101-stage {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.gps101-mission-briefing__stage-question {
+  padding: 1rem 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.gps101-mission-briefing__stage-question-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.gps101-mission-briefing__stage-question-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.gps101-mission-briefing__deliverable-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #495057;
+}
+
+.gps101-mission-briefing__deliverable-badge svg {
+  width: 20px;
+  height: 20px;
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.gps101-mission-briefing__deliverable-badge strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* ==================== MISSION HEADER ==================== */
+
+.gps101-mission-briefing__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gps101-mission-briefing__label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.gps101-mission-briefing__title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #212529;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.gps101-mission-briefing__desc {
+  font-size: 1.125rem;
+  color: #6c757d;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==================== VIDEO SECTION ==================== */
+
+.gps101-mission-briefing__video-section {
+  margin-bottom: 2rem;
+}
+
+.gps101-mission-briefing__video-hint {
+  font-size: 0.875rem;
+  color: #6c757d;
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+/* ==================== BRIEFING TEXT ==================== */
+
+.gps101-mission-briefing__text {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.gps101-mission-briefing__text-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0 0 12px;
+}
+
+.gps101-mission-briefing__text-title svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gps101-mission-briefing__text-content {
+  font-size: 1rem;
+  color: #495057;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ==================== INFO GRID ==================== */
+
+.gps101-mission-briefing__info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .gps101-mission-briefing__info {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gps101-mission-briefing__info-card {
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gps101-mission-briefing__info-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #495057;
+  margin: 0 0 1rem;
+}
+
+.gps101-mission-briefing__info-title svg {
+  width: 18px;
+  height: 18px;
+  color: #667eea;
+}
+
+/* Objectives List */
+.gps101-mission-briefing__objectives {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gps101-mission-briefing__objectives li {
+  font-size: 0.875rem;
+  color: #6c757d;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.gps101-mission-briefing__objectives li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.gps101-mission-briefing__more {
+  color: #adb5bd !important;
+  font-style: italic;
+}
+
+/* Rewards */
+.gps101-mission-briefing__rewards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gps101-mission-briefing__reward {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gps101-mission-briefing__reward-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.gps101-mission-briefing__reward-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gps101-mission-briefing__reward--baraka .gps101-mission-briefing__reward-value {
+  color: #f59e0b;
+}
+
+.gps101-mission-briefing__reward--xp .gps101-mission-briefing__reward-value {
+  color: #10b981;
+}
+
+/* Stats */
+.gps101-mission-briefing__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gps101-mission-briefing__stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gps101-mission-briefing__stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.gps101-mission-briefing__stat-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #212529;
+  text-transform: capitalize;
+}
+
+/* ==================== TIPS ==================== */
+
+.gps101-mission-briefing__tips {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.gps101-mission-briefing__tips-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #d97706;
+  margin: 0 0 12px;
+}
+
+.gps101-mission-briefing__tips-title svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gps101-mission-briefing__tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gps101-mission-briefing__tips-list li {
+  font-size: 0.875rem;
+  color: #495057;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.gps101-mission-briefing__tips-list li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  font-size: 1rem;
+}
+
+/* ==================== NAVIGATOR BANNER ==================== */
+
+.gps101-mission-briefing__navigator-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.gps101-mission-briefing__navigator-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gps101-mission-briefing__navigator-icon svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.gps101-mission-briefing__navigator-content {
+  flex: 1;
+}
+
+.gps101-mission-briefing__navigator-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 4px;
+}
+
+.gps101-mission-briefing__navigator-content p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.gps101-mission-briefing__navigator-btn {
+  padding: 10px 20px;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.gps101-mission-briefing__navigator-btn:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== ACTION BUTTONS ==================== */
+
+.gps101-mission-briefing__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.gps101-mission-briefing__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gps101-mission-briefing__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gps101-mission-briefing__btn--skip {
+  color: #6c757d;
+  background: white;
+  border: 1px solid #e9ecef;
+}
+
+.gps101-mission-briefing__btn--skip:hover {
+  color: #495057;
+  background: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.gps101-mission-briefing__btn--start {
+  color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.gps101-mission-briefing__btn--start:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.gps101-mission-briefing__btn--start:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.gps101-mission-briefing__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: briefingSpin 0.6s linear infinite;
+}
+
+@keyframes briefingSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .gps101-mission-briefing {
+    padding: 1.5rem 1rem;
+  }
+
+  .gps101-mission-briefing__title {
+    font-size: 2rem;
+  }
+
+  .gps101-mission-briefing__desc {
+    font-size: 1rem;
+  }
+
+  .gps101-mission-briefing__stage-question-text {
+    font-size: 1.25rem;
+  }
+
+  .gps101-mission-briefing__navigator-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .gps101-mission-briefing__actions {
+    flex-direction: column;
+  }
+
+  .gps101-mission-briefing__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gps101-mission-briefing__close,
+  .gps101-mission-briefing__navigator-btn,
+  .gps101-mission-briefing__btn {
+    transition: none;
+  }
+  
+  .gps101-mission-briefing__btn--start:hover:not(:disabled),
+  .gps101-mission-briefing__navigator-btn:hover {
+    transform: none;
+  }
+  
+  .gps101-mission-briefing__spinner {
+    animation: none;
+  }
+}

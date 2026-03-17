@@ -1,169 +1,221 @@
 /**
  * GPS 101 Stage Map Styles
+ * Theme: GPS Lab Platform (Light Mode)
  */
 
 .gps101-stage-map {
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
-  color: white;
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--gps-primary-pale) 0%, var(--gps-accent-pale) 100%);
+  border-radius: var(--radius-2xl);
+  border: var(--border-default) solid var(--neutral-300);
 }
 
+/* Header */
 .stage-map-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-12);
 }
 
 .stage-map-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin-bottom: var(--space-2);
+  letter-spacing: var(--tracking-tight);
 }
 
 .journey-subtitle {
-  font-size: 1rem;
-  opacity: 0.9;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-600);
+  font-weight: var(--font-regular);
 }
 
+/* Stage Map Container */
 .stage-map-container {
-  max-width: 1200px;
+  max-width: var(--container-xl);
   margin: 0 auto;
   overflow-x: auto;
-  padding: 2rem 0;
+  padding: var(--space-8) 0;
 }
 
 .journey-path {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 800px;
+  min-width: 900px;
   position: relative;
+  gap: var(--space-4);
 }
 
 /* Stage Node */
 .stage-node {
   flex: 1;
   max-width: 200px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 1.5rem;
+  background: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-all);
   position: relative;
+  box-shadow: var(--shadow-md);
 }
 
 .stage-node:hover:not(.locked) {
   transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-color: var(--gps-primary);
+  box-shadow: var(--shadow-primary);
 }
 
 .stage-node.locked {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
+  background: var(--neutral-100);
 }
 
 .stage-node.completed {
-  background: rgba(76, 175, 80, 0.2);
-  border-color: rgba(76, 175, 80, 0.5);
+  background: linear-gradient(to bottom, var(--neutral-0), var(--success-pale));
+  border-color: var(--success);
 }
 
-.stage-node.in-progress {
-  background: rgba(255, 193, 7, 0.2);
-  border-color: rgba(255, 193, 7, 0.5);
+.stage-node.current {
+  background: linear-gradient(to bottom, var(--neutral-0), var(--gps-primary-pale));
+  border-color: var(--gps-primary);
+  box-shadow: var(--shadow-primary);
 }
 
+.stage-node.active {
+  animation: pulse-stage 2s ease-in-out infinite;
+}
+
+@keyframes pulse-stage {
+  0%, 100% {
+    box-shadow: var(--shadow-primary);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+  }
+}
+
+/* Stage Icon Wrapper */
 .stage-icon-wrapper {
   position: relative;
   width: 60px;
   height: 60px;
-  margin: 0 auto 1rem;
+  margin: 0 auto var(--space-4);
 }
 
 .stage-number {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  background: var(--neutral-200);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  border: 3px solid rgba(255, 255, 255, 0.4);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  border: var(--border-thick) solid var(--neutral-400);
+  color: var(--neutral-600);
+  transition: var(--transition-all);
 }
 
 .stage-node.completed .stage-number {
-  background: rgba(76, 175, 80, 0.3);
-  border-color: #4CAF50;
+  background: var(--success);
+  border-color: var(--success-dark);
+  color: var(--neutral-0);
 }
 
-.stage-node.in-progress .stage-number {
-  background: rgba(255, 193, 7, 0.3);
-  border-color: #FFC107;
+.stage-node.current .stage-number {
+  background: var(--gps-primary);
+  border-color: var(--gps-primary-dark);
+  color: var(--neutral-900);
 }
 
 .completion-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 24px;
-  height: 24px;
-  background: #4CAF50;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  border: 2px solid white;
+  font-size: var(--text-lg);
+  animation: bounce var(--duration-slow) ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .lock-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
+  font-size: var(--text-lg);
 }
 
+/* Stage Info */
 .stage-info {
   text-align: center;
 }
 
 .stage-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-subheading);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-2);
 }
 
 .stage-question {
-  font-size: 0.875rem;
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--neutral-900);
+  margin-bottom: var(--space-4);
   min-height: 40px;
+  line-height: var(--leading-snug);
 }
 
+/* Progress Bar */
 .stage-progress-bar {
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4CAF50, #8BC34A);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, var(--success), var(--success-light));
+  transition: width var(--duration-slow) var(--ease-out);
 }
 
 .stage-completion {
-  font-size: 0.75rem;
-  opacity: 0.8;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--neutral-600);
+  font-weight: var(--font-semibold);
+}
+
+.locked-message {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--neutral-500);
+  font-style: italic;
+}
+
+/* Deliverable Icon */
+.stage-deliverable-icon {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  font-size: var(--text-2xl);
+  opacity: 0.5;
+  transition: var(--transition-opacity);
+}
+
+.stage-node:hover .stage-deliverable-icon {
+  opacity: 1;
 }
 
 /* Stage Connector */
@@ -176,12 +228,12 @@
 .connector-line {
   width: 100%;
   height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--neutral-300);
   position: relative;
 }
 
 .stage-connector.completed .connector-line {
-  background: #4CAF50;
+  background: var(--success);
 }
 
 .stage-connector.completed .connector-line::after {
@@ -192,7 +244,7 @@
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 8px solid #4CAF50;
+  border-left: 8px solid var(--success);
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
 }
@@ -201,10 +253,10 @@
 .journey-summary {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  gap: var(--space-16);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: var(--border-default) solid var(--neutral-300);
 }
 
 .summary-stat {
@@ -213,15 +265,42 @@
 
 .stat-label {
   display: block;
-  font-size: 0.875rem;
-  opacity: 0.8;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-medium);
 }
 
 .stat-value {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
+}
+
+/* Loading State */
+.gps101-stage-map.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: var(--space-4);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--neutral-200);
+  border-top-color: var(--gps-primary);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Responsive */
@@ -231,33 +310,37 @@
   }
   
   .journey-path {
-    min-width: 600px;
+    min-width: 700px;
   }
   
   .stage-node {
     max-width: 150px;
-    padding: 1rem;
+    padding: var(--space-4);
   }
   
   .stage-number {
     width: 50px;
     height: 50px;
-    font-size: 1.25rem;
+    font-size: var(--text-lg);
   }
 }
 
 @media (max-width: 768px) {
   .gps101-stage-map {
-    padding: 1rem;
+    padding: var(--space-4);
+  }
+  
+  .stage-map-header h2 {
+    font-size: var(--text-2xl);
   }
   
   .journey-summary {
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-4);
   }
   
   .stage-question {
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     min-height: 35px;
   }
 }

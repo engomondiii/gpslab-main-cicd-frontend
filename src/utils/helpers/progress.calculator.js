@@ -1,155 +1,340 @@
 /**
- * Progress Calculator
- * 
- * Calculate progress across various GPS courses and stages.
+ * GPS 101 Progress Calculator
+ * Calculate progress metrics for GPS 101 journey
+ * CORRECT STRUCTURE: 5 Stages, 5 Missions, 30 Sub-missions, 150 Checkpoints
  */
 
-import { GPS_101_CONFIG } from '../../config/gps101.config';
-import { 
-  calculateCompletionPercentage,
-  calculateStageCompletion,
-  calculateMissionCompletion
-} from './gps101.helper';
+import { GPS_101_STRUCTURE } from './gps101.helper';
 
 /**
- * Calculate overall GPS Lab progress
+ * Calculate stage progress
+ * @param {number} stageNumber - Stage number (1-5)
+ * @param {Array} completedSubMissions - Array of completed sub-mission IDs
+ * @returns {Object} Stage progress metrics
  */
-export const calculateOverallProgress = (userData) => {
+export const calculateStageProgress = (stageNumber, completedSubMissions = []) => {
+  const totalSubMissions = GPS_101_STRUCTURE.SUB_MISSIONS_PER_MISSION;
+  
+  // Count completed sub-missions for this stage
+  const stagePrefix = `gps101-stage-${stageNumber}`;
+  const completed = completedSubMissions.filter(id => 
+    id.startsWith(stagePrefix)
+  ).length;
+  
+  const percentage = Math.round((completed / totalSubMissions) * 100);
+  
+  return {
+    stageNumber,
+    completed,
+    total: totalSubMissions,
+    remaining: totalSubMissions - completed,
+    percentage,
+    isComplete: percentage === 100
+  };
+};
+
+/**
+ * Calculate mission progress
+ * @param {string} missionId - Mission ID
+ * @param {Array} completedCheckpoints - Array of completed checkpoint IDs
+ * @returns {Object} Mission progress metrics
+ */
+export const calculateMissionProgress = (missionId, completedCheckpoints = []) => {
+  const totalCheckpoints = GPS_101_STRUCTURE.CHECKPOINTS_PER_MISSION;
+  
+  // Count completed checkpoints for this mission
+  const completed = completedCheckpoints.filter(id => 
+    id.startsWith(missionId)
+  ).length;
+  
+  const percentage = Math.round((completed / totalCheckpoints) * 100);
+  
+  return {
+    missionId,
+    completed,
+    total: totalCheckpoints,
+    remaining: totalCheckpoints - completed,
+    percentage,
+    isComplete: percentage === 100
+  };
+};
+
+/**
+ * Calculate sub-mission progress
+ * @param {string} subMissionId - Sub-mission ID
+ * @param {Array} completedCheckpoints - Array of completed checkpoint IDs
+ * @returns {Object} Sub-mission progress metrics
+ */
+export const calculateSubMissionProgress = (subMissionId, completedCheckpoints = []) => {
+  const totalCheckpoints = GPS_101_STRUCTURE.CHECKPOINTS_PER_SUB_MISSION;
+  
+  // Count completed checkpoints for this sub-mission
+  const completed = completedCheckpoints.filter(id => 
+    id.startsWith(subMissionId)
+  ).length;
+  
+  const percentage = Math.round((completed / totalCheckpoints) * 100);
+  
+  return {
+    subMissionId,
+    completed,
+    total: totalCheckpoints,
+    remaining: totalCheckpoints - completed,
+    percentage,
+    isComplete: percentage === 100
+  };
+};
+
+/**
+ * Calculate overall GPS 101 progress
+ * @param {Object} userData - User progress data
+ * @returns {Object} Overall progress metrics
+ */
+export const calculateOverallProgress = (userData = {}) => {
   const {
     completedStages = [],
-    completedMissions = [],
-    completedCheckpoints = []
+    completedSubMissions = [],
+    completedCheckpoints = [],
+    totalBaraka = 0
   } = userData;
-
-  const totalStages = 35; // Total GPS program stages
-  const totalMissions = totalStages * 5; // Approximate
-  const totalCheckpoints = totalMissions * 5; // Approximate
-
+  
+  // Stage progress
+  const stagesCompleted = completedStages.length;
+  const stagesTotal = GPS_101_STRUCTURE.TOTAL_STAGES;
+  const stagesPercentage = Math.round((stagesCompleted / stagesTotal) * 100);
+  
+  // Mission progress (1 per stage)
+  const missionsCompleted = completedStages.length;
+  const missionsTotal = GPS_101_STRUCTURE.TOTAL_MISSIONS;
+  const missionsPercentage = Math.round((missionsCompleted / missionsTotal) * 100);
+  
+  // Sub-mission progress
+  const subMissionsCompleted = completedSubMissions.length;
+  const subMissionsTotal = GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS;
+  const subMissionsPercentage = Math.round((subMissionsCompleted / subMissionsTotal) * 100);
+  
+  // Checkpoint progress
+  const checkpointsCompleted = completedCheckpoints.length;
+  const checkpointsTotal = GPS_101_STRUCTURE.TOTAL_CHECKPOINTS;
+  const checkpointsPercentage = Math.round((checkpointsCompleted / checkpointsTotal) * 100);
+  
+  // Orange Beacon progress
+  const orangeBeaconPercentage = Math.round((totalBaraka / GPS_101_STRUCTURE.TOTAL_BARAKA) * 100);
+  
+  // Overall progress (based on checkpoints as the finest granularity)
+  const overallPercentage = checkpointsPercentage;
+  
   return {
-    stages: calculateCompletionPercentage(completedStages.length, totalStages),
-    missions: calculateCompletionPercentage(completedMissions.length, totalMissions),
-    checkpoints: calculateCompletionPercentage(completedCheckpoints.length, totalCheckpoints),
-    overall: calculateCompletionPercentage(completedStages.length, totalStages)
+    stages: {
+      completed: stagesCompleted,
+      total: stagesTotal,
+      remaining: stagesTotal - stagesCompleted,
+      percentage: stagesPercentage
+    },
+    missions: {
+      completed: missionsCompleted,
+      total: missionsTotal,
+      remaining: missionsTotal - missionsCompleted,
+      percentage: missionsPercentage
+    },
+    subMissions: {
+      completed: subMissionsCompleted,
+      total: subMissionsTotal,
+      remaining: subMissionsTotal - subMissionsCompleted,
+      percentage: subMissionsPercentage
+    },
+    checkpoints: {
+      completed: checkpointsCompleted,
+      total: checkpointsTotal,
+      remaining: checkpointsTotal - checkpointsCompleted,
+      percentage: checkpointsPercentage
+    },
+    orangeBeacon: {
+      baraka: totalBaraka,
+      target: GPS_101_STRUCTURE.TOTAL_BARAKA,
+      remaining: Math.max(0, GPS_101_STRUCTURE.TOTAL_BARAKA - totalBaraka),
+      percentage: orangeBeaconPercentage,
+      earned: totalBaraka >= GPS_101_STRUCTURE.TOTAL_BARAKA
+    },
+    overall: {
+      percentage: overallPercentage,
+      isComplete: overallPercentage === 100
+    }
   };
 };
 
 /**
- * Calculate GPS 101 progress
+ * Calculate time-based progress
+ * @param {Date|string} enrollmentDate - Date of enrollment
+ * @param {Object} progressData - Current progress data
+ * @returns {Object} Time-based progress metrics
  */
-export const calculateGPS101Progress = (userData) => {
-  const {
-    gps101CompletedMissions = [],
-    gps101PassedCheckpoints = [],
-    gps101CompletedStages = []
-  } = userData;
-
-  return {
-    stages: calculateCompletionPercentage(
-      gps101CompletedStages.length,
-      GPS_101_CONFIG.TOTAL_STAGES
-    ),
-    missions: calculateCompletionPercentage(
-      gps101CompletedMissions.length,
-      GPS_101_CONFIG.TOTAL_MISSIONS
-    ),
-    checkpoints: calculateCompletionPercentage(
-      gps101PassedCheckpoints.length,
-      GPS_101_CONFIG.TOTAL_CHECKPOINTS
-    ),
-    overall: calculateCompletionPercentage(
-      gps101CompletedMissions.length,
-      GPS_101_CONFIG.TOTAL_MISSIONS
-    )
-  };
-};
-
-/**
- * Calculate stage progress for any stage
- */
-export const calculateStageProgress = (stageNumber, completedMissions, missionsPerStage = 5) => {
-  return calculateStageCompletion(stageNumber, completedMissions);
-};
-
-/**
- * Calculate mission progress for any mission
- */
-export const calculateMissionProgress = (missionId, passedCheckpoints) => {
-  return calculateMissionCompletion(missionId, passedCheckpoints);
-};
-
-/**
- * Calculate course completion percentage
- */
-export const calculateCourseCompletion = (courseCode, userData) => {
-  switch (courseCode) {
-    case 'GPS_101_BASIC':
-      return calculateGPS101Progress(userData).overall;
-    
-    case 'GPS_PREP':
-    case 'GPS_SIMULATION':
-    case 'GPS_CAPSTONE_1':
-    case 'GPS_CAPSTONE_2':
-      // Similar calculation for other courses
-      return 0;
-    
-    default:
-      return 0;
+export const calculateTimeProgress = (enrollmentDate, progressData = {}) => {
+  if (!enrollmentDate) {
+    return {
+      weeksElapsed: 0,
+      weeksRemaining: GPS_101_STRUCTURE.DURATION_WEEKS,
+      expectedProgress: 0,
+      actualProgress: 0,
+      isOnTrack: false,
+      timePercentage: 0
+    };
   }
-};
-
-/**
- * Calculate weekly progress
- */
-export const calculateWeeklyProgress = (userData, startDate) => {
-  if (!startDate) return { completed: 0, expected: 0, onTrack: true };
-
-  const now = new Date();
-  const start = new Date(startDate);
-  const weeksPassed = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000));
-
-  const expectedMissions = weeksPassed * 2; // ~2 missions per week
-  const completedMissions = userData.completedMissions?.length || 0;
-
-  return {
-    completed: completedMissions,
-    expected: expectedMissions,
-    onTrack: completedMissions >= expectedMissions,
-    weeksElapsed: weeksPassed
-  };
-};
-
-/**
- * Calculate progress velocity
- */
-export const calculateProgressVelocity = (userData, timeframe = 'week') => {
-  const recentActivity = userData.recentActivity || [];
   
   const now = new Date();
-  let cutoffDate;
-
-  switch (timeframe) {
-    case 'day':
-      cutoffDate = new Date(now - 24 * 60 * 60 * 1000);
-      break;
-    case 'week':
-      cutoffDate = new Date(now - 7 * 24 * 60 * 60 * 1000);
-      break;
-    case 'month':
-      cutoffDate = new Date(now - 30 * 24 * 60 * 60 * 1000);
-      break;
-    default:
-      cutoffDate = new Date(now - 7 * 24 * 60 * 60 * 1000);
-  }
-
-  const recentCompletions = recentActivity.filter(
-    activity => new Date(activity.completedAt) >= cutoffDate
+  const enrolled = new Date(enrollmentDate);
+  const diffTime = Math.abs(now - enrolled);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const weeksElapsed = Math.floor(diffDays / 7);
+  const weeksRemaining = Math.max(0, GPS_101_STRUCTURE.DURATION_WEEKS - weeksElapsed);
+  
+  // Expected progress: ~2 sub-missions per week
+  const expectedSubMissions = Math.min(
+    Math.floor(weeksElapsed * 2),
+    GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS
   );
-
+  
+  const actualSubMissions = progressData.completedSubMissions?.length || 0;
+  
+  // Time percentage
+  const timePercentage = Math.min(
+    Math.round((weeksElapsed / GPS_101_STRUCTURE.DURATION_WEEKS) * 100),
+    100
+  );
+  
+  // Expected overall percentage
+  const expectedPercentage = Math.min(
+    Math.round((expectedSubMissions / GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS) * 100),
+    100
+  );
+  
+  // Actual overall percentage
+  const actualPercentage = Math.round(
+    (actualSubMissions / GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS) * 100
+  );
+  
+  // On track if actual >= expected
+  const isOnTrack = actualSubMissions >= expectedSubMissions;
+  
   return {
-    missionsCompleted: recentCompletions.filter(a => a.type === 'mission').length,
-    checkpointsCompleted: recentCompletions.filter(a => a.type === 'checkpoint').length,
-    barakaEarned: recentCompletions.reduce((sum, a) => sum + (a.barakaEarned || 0), 0),
-    xpEarned: recentCompletions.reduce((sum, a) => sum + (a.xpEarned || 0), 0)
+    weeksElapsed,
+    weeksRemaining,
+    expectedSubMissions,
+    actualSubMissions,
+    expectedPercentage,
+    actualPercentage,
+    isOnTrack,
+    timePercentage,
+    daysElapsed: diffDays,
+    daysRemaining: Math.max(0, (GPS_101_STRUCTURE.DURATION_WEEKS * 7) - diffDays)
+  };
+};
+
+/**
+ * Calculate estimated completion date
+ * @param {Date|string} enrollmentDate - Date of enrollment
+ * @param {Object} progressData - Current progress data
+ * @returns {Object} Estimated completion metrics
+ */
+export const calculateEstimatedCompletion = (enrollmentDate, progressData = {}) => {
+  if (!enrollmentDate) {
+    return {
+      estimatedDate: null,
+      estimatedWeeks: GPS_101_STRUCTURE.DURATION_WEEKS,
+      estimatedDays: GPS_101_STRUCTURE.DURATION_WEEKS * 7
+    };
+  }
+  
+  const timeProgress = calculateTimeProgress(enrollmentDate, progressData);
+  const remainingSubMissions = GPS_101_STRUCTURE.TOTAL_SUB_MISSIONS - 
+    (progressData.completedSubMissions?.length || 0);
+  
+  // Calculate current pace (sub-missions per week)
+  const currentPace = timeProgress.weeksElapsed > 0 
+    ? timeProgress.actualSubMissions / timeProgress.weeksElapsed 
+    : 2; // Default to expected pace
+  
+  // Estimate weeks to complete remaining sub-missions
+  const estimatedWeeks = currentPace > 0 
+    ? Math.ceil(remainingSubMissions / currentPace) 
+    : timeProgress.weeksRemaining;
+  
+  // Calculate estimated completion date
+  const enrolled = new Date(enrollmentDate);
+  const estimatedDate = new Date(enrolled);
+  estimatedDate.setDate(estimatedDate.getDate() + ((timeProgress.weeksElapsed + estimatedWeeks) * 7));
+  
+  return {
+    estimatedDate,
+    estimatedWeeks,
+    estimatedDays: estimatedWeeks * 7,
+    currentPace: currentPace.toFixed(2),
+    remainingSubMissions
+  };
+};
+
+/**
+ * Calculate stage-by-stage progress breakdown
+ * @param {Object} userData - User progress data
+ * @returns {Array} Array of stage progress objects
+ */
+export const calculateStageBreakdown = (userData = {}) => {
+  const { completedSubMissions = [] } = userData;
+  const breakdown = [];
+  
+  for (let stageNum = 1; stageNum <= GPS_101_STRUCTURE.TOTAL_STAGES; stageNum++) {
+    const stageProgress = calculateStageProgress(stageNum, completedSubMissions);
+    const stageInfo = GPS_101_STRUCTURE.STAGES[stageNum];
+    
+    breakdown.push({
+      ...stageProgress,
+      ...stageInfo,
+      status: stageProgress.isComplete ? 'completed' : 
+              stageProgress.completed > 0 ? 'in_progress' : 'locked'
+    });
+  }
+  
+  return breakdown;
+};
+
+/**
+ * Get next milestone
+ * @param {Object} progressData - Current progress data
+ * @returns {Object} Next milestone information
+ */
+export const getNextMilestone = (progressData = {}) => {
+  const overall = calculateOverallProgress(progressData);
+  
+  // Check Orange Beacon
+  if (!overall.orangeBeacon.earned) {
+    return {
+      type: 'orange_beacon',
+      name: 'Orange Beacon',
+      description: 'Complete all 150 checkpoints to earn the Orange Beacon',
+      progress: overall.checkpoints.percentage,
+      remaining: overall.checkpoints.remaining,
+      target: overall.checkpoints.total
+    };
+  }
+  
+  // Check next stage
+  const nextStage = GPS_101_STRUCTURE.TOTAL_STAGES - overall.stages.completed + 1;
+  if (nextStage <= GPS_101_STRUCTURE.TOTAL_STAGES) {
+    const stageInfo = GPS_101_STRUCTURE.STAGES[nextStage];
+    return {
+      type: 'stage',
+      name: `Stage ${nextStage}`,
+      description: stageInfo.question,
+      deliverable: stageInfo.deliverable,
+      icon: stageInfo.icon
+    };
+  }
+  
+  // All complete
+  return {
+    type: 'complete',
+    name: 'GPS 101 Complete',
+    description: 'Congratulations! You have completed GPS 101 Basic'
   };
 };
 
@@ -157,11 +342,12 @@ export const calculateProgressVelocity = (userData, timeframe = 'week') => {
  * Export all calculator functions
  */
 export default {
-  calculateOverallProgress,
-  calculateGPS101Progress,
   calculateStageProgress,
   calculateMissionProgress,
-  calculateCourseCompletion,
-  calculateWeeklyProgress,
-  calculateProgressVelocity
+  calculateSubMissionProgress,
+  calculateOverallProgress,
+  calculateTimeProgress,
+  calculateEstimatedCompletion,
+  calculateStageBreakdown,
+  getNextMilestone
 };

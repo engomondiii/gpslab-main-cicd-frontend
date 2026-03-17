@@ -92,8 +92,25 @@ const GPS101CheckpointForm = ({
 
   const validateForm = () => {
     const newErrors = {};
-    
-    // Validate required questions
+
+    // FIX: GPS 101 checkpoints use a single-question format: checkpoint.question
+    // (string) with no checkpoint.questions array. The old code only looped over
+    // checkpoint.questions, so single-question answers were never validated and
+    // an empty textarea could be submitted without any error shown.
+    if (checkpoint.question && !checkpoint.questions) {
+      const mainKey = checkpoint.checkpointId || 'main';
+      const mainAnswer = formData.answers[mainKey] || '';
+
+      if (!mainAnswer.trim()) {
+        newErrors[mainKey] = 'Please write your answer before submitting.';
+      } else if (checkpoint.minLength && mainAnswer.length < checkpoint.minLength) {
+        newErrors[mainKey] = `Minimum ${checkpoint.minLength} characters required (currently ${mainAnswer.length})`;
+      } else if (checkpoint.maxLength && mainAnswer.length > checkpoint.maxLength) {
+        newErrors[mainKey] = `Maximum ${checkpoint.maxLength} characters exceeded`;
+      }
+    }
+
+    // Validate multi-question checkpoints
     if (checkpoint.questions) {
       checkpoint.questions.forEach(q => {
         if (q.required && !formData.answers[q.id]) {
@@ -172,6 +189,13 @@ const GPS101CheckpointForm = ({
   };
 
   const getAnsweredCount = () => {
+    // FIX: Single-question checkpoints have no checkpoint.questions array.
+    // Return 1 if the main textarea has content, otherwise 0.
+    if (checkpoint.question && !checkpoint.questions) {
+      const mainKey = checkpoint.checkpointId || 'main';
+      const val = formData.answers[mainKey];
+      return val && val.toString().trim() !== '' ? 1 : 0;
+    }
     if (!checkpoint.questions) return 0;
     return Object.keys(formData.answers).filter(
       key => formData.answers[key] && formData.answers[key].toString().trim() !== ''
@@ -179,13 +203,18 @@ const GPS101CheckpointForm = ({
   };
 
   const getTotalQuestions = () => {
+    // FIX: Single-question checkpoints count as 1 total question.
+    if (checkpoint.question && !checkpoint.questions) return 1;
     return checkpoint.questions ? checkpoint.questions.length : 0;
   };
 
   return (
     <div className="gps101-checkpoint-form">
       {/* Progress Indicator */}
-      {checkpoint.questions && checkpoint.questions.length > 0 && (
+      {/* FIX: Show progress bar for both single-question and multi-question
+          checkpoints. Previously only rendered when checkpoint.questions existed,
+          so it was always hidden for GPS 101 checkpoints. */}
+      {getTotalQuestions() > 0 && (
         <div className="form-progress">
           <div className="progress-text">
             Question Progress: {getAnsweredCount()} / {getTotalQuestions()}

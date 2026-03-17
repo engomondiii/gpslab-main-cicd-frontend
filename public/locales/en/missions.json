@@ -1,0 +1,236 @@
+{
+  "missions": {
+    "gps101": {
+      "stage1": {
+        "mission": {
+          "title": "Identity Discovery Mission",
+          "brief": "Embark on a journey of self-discovery. Through 6 sub-missions and 30 checkpoints, you'll explore who you are at your core - your values, strengths, passions, and what makes you uniquely you.",
+          "objectives": [
+            "Identify your core values and principles",
+            "Discover your natural strengths and talents",
+            "Understand what drives and motivates you",
+            "Recognize patterns in your life choices",
+            "Articulate your authentic self"
+          ],
+          "deliverable": "By completing this mission, you'll create a comprehensive Identity Statement that captures who you are beyond roles and titles."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Core Values Exploration",
+            "description": "Discover the principles that guide your decisions and define what matters most to you.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Strengths & Talents Assessment",
+            "description": "Identify your natural abilities and what you do better than most people.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Passion & Energy Mapping",
+            "description": "Find what activities energize you and make you lose track of time.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Life Patterns Recognition",
+            "description": "See the recurring themes and choices that reveal your true nature.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Authentic Self Expression",
+            "description": "Learn to articulate who you are in your own words.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Identity Statement Creation",
+            "description": "Synthesize your discoveries into a powerful identity statement.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage2": {
+        "mission": {
+          "title": "Problem Discovery Mission",
+          "brief": "Explore meaningful problems that resonate with your identity. Through 6 sub-missions and 30 checkpoints, you'll identify problems that call you to action and connect to who you are.",
+          "objectives": [
+            "Identify problems you care deeply about",
+            "Understand why certain problems move you",
+            "Evaluate problem significance and scope",
+            "Connect problems to your identity",
+            "Select your life problem candidate"
+          ],
+          "deliverable": "By completing this mission, you'll create a Problem Candidate List with 5-20 problems that deeply resonate with who you are."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Problem Awareness Building",
+            "description": "Open your eyes to problems around you that others might ignore.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Personal Connection Exploration",
+            "description": "Understand why certain problems affect you more than others.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Problem Significance Analysis",
+            "description": "Evaluate the scale, scope, and impact of different problems.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Identity-Problem Alignment",
+            "description": "Connect your identity to problems you're uniquely positioned to address.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Problem Portfolio Development",
+            "description": "Build a comprehensive list of meaningful problem candidates.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Primary Problem Selection",
+            "description": "Choose the problem that resonates most deeply with you.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage3": {
+        "mission": {
+          "title": "Problem Owner Discovery Mission",
+          "brief": "Build deep empathy by understanding the people experiencing your problem. Through 6 sub-missions and 30 checkpoints, you'll learn their stories, struggles, and dreams.",
+          "objectives": [
+            "Identify who is most affected by your problem",
+            "Understand their daily reality and challenges",
+            "Learn what they've tried and why it didn't work",
+            "Feel their emotions and frustrations",
+            "Tell their story with empathy and detail"
+          ],
+          "deliverable": "By completing this mission, you'll create a compelling Problem Owner Story that shows the human impact of your chosen problem."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Problem Owner Identification",
+            "description": "Find and define who experiences your problem most acutely.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Daily Life Documentation",
+            "description": "Map out what a typical day looks like for problem owners.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Barrier & Challenge Analysis",
+            "description": "Understand the obstacles they face and attempted solutions.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Emotional Impact Exploration",
+            "description": "Feel the emotional weight of how the problem affects them.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Dreams & Aspirations Mapping",
+            "description": "Learn what they hope for that the problem prevents.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Story Weaving & Narrative",
+            "description": "Craft a compelling narrative that brings their experience to life.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage4": {
+        "mission": {
+          "title": "Purpose Definition Mission",
+          "brief": "Synthesize your identity and problem into a clear purpose statement. Through 6 sub-missions and 30 checkpoints, you'll define your unique contribution to solving your chosen problem.",
+          "objectives": [
+            "Connect your identity to your problem",
+            "Define your unique approach or perspective",
+            "Clarify the impact you want to have",
+            "Articulate your long-term vision",
+            "Create your life purpose statement"
+          ],
+          "deliverable": "By completing this mission, you'll create a Life Purpose Statement that defines your reason for being and the legacy you want to leave."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Identity-Problem Synthesis",
+            "description": "Connect who you are to the problem you're called to solve.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Unique Positioning Discovery",
+            "description": "Understand what makes your approach uniquely yours.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Impact Vision Crafting",
+            "description": "Define the specific change you want to create in the world.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Long-term Legacy Planning",
+            "description": "Envision what you want to be remembered for.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Purpose Articulation Practice",
+            "description": "Learn to express your purpose clearly and compellingly.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Purpose Statement Finalization",
+            "description": "Create your definitive life purpose statement.",
+            "checkpoints": 5
+          }
+        }
+      },
+      "stage5": {
+        "mission": {
+          "title": "Project Creation Mission",
+          "brief": "Design a concrete project that embodies your purpose. Through 6 sub-missions and 30 checkpoints, you'll create an actionable plan to make your purpose real.",
+          "objectives": [
+            "Brainstorm potential project ideas",
+            "Evaluate feasibility and impact",
+            "Define your target users/beneficiaries",
+            "Create a concrete action plan",
+            "Design your project's first version"
+          ],
+          "deliverable": "By completing this mission, you'll create a Purpose-driven Project Plan that you can actually build and launch within 6-12 months."
+        },
+        "subMissions": {
+          "1": {
+            "title": "Solution Ideation & Brainstorming",
+            "description": "Generate multiple project ideas that address your problem.",
+            "checkpoints": 5
+          },
+          "2": {
+            "title": "Feasibility & Impact Assessment",
+            "description": "Evaluate which project ideas are most viable and impactful.",
+            "checkpoints": 5
+          },
+          "3": {
+            "title": "Target Audience Definition",
+            "description": "Identify who will benefit from and use your project.",
+            "checkpoints": 5
+          },
+          "4": {
+            "title": "Resource & Capability Mapping",
+            "description": "Assess what resources you have and what you need to acquire.",
+            "checkpoints": 5
+          },
+          "5": {
+            "title": "Project Roadmap Creation",
+            "description": "Build a timeline and action plan for your project.",
+            "checkpoints": 5
+          },
+          "6": {
+            "title": "Version 1.0 Design",
+            "description": "Define what your minimum viable project looks like.",
+            "checkpoints": 5
+          }
+        }
+      }
+    }
+  }
+}

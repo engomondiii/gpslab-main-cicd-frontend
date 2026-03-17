@@ -2,6 +2,7 @@
  * Stages Constants
  * 
  * Stage definitions for all GPS courses.
+ * GPS 101 CORRECTED: 5 stages, 1 mission per stage
  */
 
 import { GPS_101_CONFIG } from '../../config/gps101.config';
@@ -53,17 +54,36 @@ export const GPO_CALL_STAGES = [
 
 // ==================== GPS 101 BASIC STAGES (Stages 1-5) ====================
 
+/**
+ * GPS 101 Basic - 5 Stages (CORRECTED)
+ * 
+ * CORRECT STRUCTURE:
+ * - 5 Stages
+ * - 1 Mission per Stage (NOT 6 missions)
+ * - Each mission has 6 sub-missions
+ * - Each sub-mission has 5 checkpoints
+ */
 export const GPS_101_BASIC_STAGES = GPS_101_CONFIG.STAGES.map((stage, index) => ({
-  stageId: `gps_101_stage_${stage.stageNumber}`,
+  stageId: stage.stageId,
   stageNumber: stage.stageNumber,
   stageName: stage.stageName,
+  stageNameKo: stage.stageNameKo,
+  stageNameSw: stage.stageNameSw,
   question: stage.question,
+  questionKo: stage.questionKo,
+  questionSw: stage.questionSw,
   expectedOutcome: stage.expectedOutcome,
+  expectedOutcomeKo: stage.expectedOutcomeKo,
+  expectedOutcomeSw: stage.expectedOutcomeSw,
   description: stage.description,
-  missions: stage.missions,
+  descriptionKo: stage.descriptionKo,
+  descriptionSw: stage.descriptionSw,
+  missions: stage.missions, // 1 mission per stage
   duration: stage.duration,
   deliverable: stage.deliverable,
-  order: index + 1,
+  deliverableKo: stage.deliverableKo,
+  deliverableSw: stage.deliverableSw,
+  order: stage.order,
   courseCode: 'GPS_101_BASIC'
 }));
 
@@ -446,7 +466,6 @@ export const getCourseByStage = (stageNumber) => {
   return null;
 };
 
-// Export default
 export default {
   GPO_CALL_STAGES,
   GPS_101_BASIC_STAGES,

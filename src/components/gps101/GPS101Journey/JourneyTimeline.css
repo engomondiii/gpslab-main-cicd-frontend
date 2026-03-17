@@ -1,30 +1,36 @@
 /**
  * Journey Timeline Styles
+ * Theme: GPS Lab Platform (Light Mode)
  */
 
 .journey-timeline {
-  padding: 2rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: var(--space-8);
+  background: var(--neutral-0);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: var(--border-default) solid var(--neutral-300);
 }
 
 /* Header */
 .timeline-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-12);
 }
 
 .timeline-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin-bottom: var(--space-2);
+  letter-spacing: var(--tracking-tight);
 }
 
 .timeline-subtitle {
-  font-size: 1rem;
-  color: #666;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--neutral-600);
+  font-weight: var(--font-regular);
 }
 
 /* Timeline Container */
@@ -38,8 +44,8 @@
 .timeline-stage {
   position: relative;
   display: flex;
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
 }
 
 .timeline-stage:last-child {
@@ -50,18 +56,18 @@
 .timeline-connector {
   position: absolute;
   left: 28px;
-  top: -3rem;
+  top: calc(-1 * var(--space-12));
   width: 4px;
-  height: 3rem;
-  background: #e0e0e0;
+  height: var(--space-12);
+  background: var(--neutral-300);
 }
 
 .timeline-connector.completed {
-  background: linear-gradient(to bottom, #4CAF50, #45a049);
+  background: linear-gradient(to bottom, var(--success), var(--success-light));
 }
 
 .timeline-connector.current {
-  background: linear-gradient(to bottom, #4CAF50, #667eea);
+  background: linear-gradient(to bottom, var(--success), var(--gps-primary));
 }
 
 /* Stage Node Wrapper */
@@ -74,36 +80,37 @@
 .stage-node {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
+  transition: var(--transition-transform);
 }
 
 .timeline-stage.completed .stage-node {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+  box-shadow: 0 4px 12px rgba(42, 157, 143, 0.4);
 }
 
 .timeline-stage.current .stage-node {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, var(--gps-primary) 0%, var(--gps-primary-dark) 100%);
+  box-shadow: var(--shadow-primary);
   animation: pulse-node 2s ease-in-out infinite;
 }
 
 .timeline-stage.upcoming .stage-node {
-  background: white;
-  border: 4px solid #e0e0e0;
+  background: var(--neutral-0);
+  border: 4px solid var(--neutral-300);
 }
 
 @keyframes pulse-node {
   0%, 100% {
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-primary);
   }
   50% {
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.6);
   }
 }
 
@@ -116,22 +123,23 @@
 }
 
 .node-icon {
-  font-size: 1.5rem;
-  color: white;
+  font-size: var(--text-2xl);
+  color: var(--neutral-0);
 }
 
 .node-number {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
 }
 
 .timeline-stage.completed .node-number,
 .timeline-stage.current .node-number {
-  color: white;
+  color: var(--neutral-900);
 }
 
 .timeline-stage.upcoming .node-number {
-  color: #999;
+  color: var(--neutral-500);
 }
 
 /* Current Indicator */
@@ -140,18 +148,18 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .indicator-pulse {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background: #667eea;
+  border-radius: var(--radius-full);
+  background: var(--gps-primary);
   animation: pulse-dot 1.5s ease-in-out infinite;
 }
 
@@ -167,133 +175,167 @@
 }
 
 .indicator-text {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #667eea;
+  font-family: var(--font-accent);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-semibold);
+  color: var(--gps-primary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--tracking-wider);
 }
 
 /* Stage Content */
 .stage-timeline-content {
   flex: 1;
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 2px solid #e0e0e0;
-  transition: all 0.3s ease;
+  background: var(--neutral-50);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  border: var(--border-default) solid var(--neutral-200);
+  transition: var(--transition-all);
 }
 
 .timeline-stage.completed .stage-timeline-content {
-  background: linear-gradient(to bottom, #f1f8f4, white);
-  border-color: #4CAF50;
+  background: linear-gradient(to bottom, var(--success-pale), var(--neutral-0));
+  border-color: var(--success);
 }
 
 .timeline-stage.current .stage-timeline-content {
-  background: linear-gradient(to bottom, #f0f3ff, white);
-  border-color: #667eea;
+  background: linear-gradient(to bottom, var(--gps-primary-pale), var(--neutral-0));
+  border-color: var(--gps-primary);
+  box-shadow: var(--shadow-md);
 }
 
 .stage-timeline-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .stage-timeline-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #333;
+  font-family: var(--font-subheading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  margin: 0;
 }
 
 .projected-date {
-  font-size: 0.875rem;
-  color: #666;
-  background: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  background: var(--neutral-0);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-medium);
 }
 
 .stage-question {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #667eea;
-  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--gps-primary);
+  margin-bottom: var(--space-4);
   font-style: italic;
 }
 
-/* Milestones */
-.stage-milestones {
+/* Stage Stats */
+.stage-stats {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
 }
 
-.milestone {
+.stage-stat {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #666;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 6px;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
 }
 
-.milestone.completed {
-  color: #4CAF50;
-  font-weight: 500;
+.stat-icon {
+  font-size: var(--text-base);
 }
 
-.milestone-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
+.stat-text {
+  font-weight: var(--font-medium);
 }
 
-.milestone-title {
-  flex: 1;
+/* Stage Outcome */
+.stage-outcome {
+  background: var(--neutral-100);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  border: var(--border-thin) solid var(--neutral-200);
 }
 
-.milestone-badge {
-  font-size: 0.75rem;
-  background: #667eea;
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 10px;
-  font-weight: 600;
+.outcome-label {
+  font-family: var(--font-accent);
+  font-size: var(--text-2xs);
+  color: var(--neutral-600);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wider);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.outcome-text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-900);
+  font-weight: var(--font-medium);
+  margin: 0;
 }
 
 /* Deliverable Info */
 .stage-deliverable-info {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--neutral-0);
+  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-lg);
 }
 
 .deliverable-icon {
-  font-size: 1.25rem;
+  font-size: var(--text-2xl);
+}
+
+.deliverable-content {
+  flex: 1;
+}
+
+.deliverable-label {
+  font-family: var(--font-accent);
+  font-size: var(--text-2xs);
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wider);
+  display: block;
+  margin-bottom: var(--space-1);
 }
 
 .deliverable-text {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #333;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--neutral-900);
+  margin: 0;
 }
 
 /* Journey Stats */
 .journey-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 2px solid #e0e0e0;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: var(--border-default) solid var(--neutral-300);
 }
 
 .stat {
@@ -302,30 +344,33 @@
 
 .stat-label {
   display: block;
-  font-size: 0.875rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--neutral-600);
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-medium);
 }
 
 .stat-value {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #333;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--gps-primary);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .journey-timeline {
-    padding: 1rem;
+    padding: var(--space-4);
   }
 
   .timeline-header h2 {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
   }
 
   .timeline-stage {
-    gap: 1rem;
+    gap: var(--space-4);
   }
 
   .stage-node {
@@ -335,16 +380,16 @@
 
   .node-icon,
   .node-number {
-    font-size: 1.25rem;
+    font-size: var(--text-lg);
   }
 
   .stage-timeline-content {
-    padding: 1rem;
+    padding: var(--space-4);
   }
 
   .journey-stats {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--space-4);
   }
 
   .timeline-connector {

@@ -1,46 +1,62 @@
 /**
  * GPS 101 Progress Widget Component
- * * Compact progress overview for quick reference.
+ * 
+ * CORRECTED STRUCTURE:
+ * - 5 Missions (1 per stage)
+ * - 30 Sub-missions (6 per mission)
+ * - 150 Checkpoints (5 per sub-mission)
+ * - Orange Beacon: 5,000 Baraka
+ * 
+ * Compact progress overview for quick reference.
  */
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGPS101 from '../../../hooks/useGPS101';
-import { 
-  formatBaraka, 
-  formatWeeks 
-} from '../../../utils/formatters/gps101.formatter';
 import './GPS101ProgressWidget.css';
 
 const GPS101ProgressWidget = ({ variant = 'default' }) => {
   const navigate = useNavigate();
   
-  // FIXED: Provide an empty fallback object {} so destructing doesn't fail
+  const gps101Data = useGPS101();
+  
+  // Safe destructuring with fallbacks
   const {
     progressSummary,
     currentStage = 1,
     barakaProgress,
     getWeeksRemaining,
     isCompleted = false
-  } = useGPS101() || {};
+  } = gps101Data || {};
 
-  // FIXED: Provide strict fallback data structures for nested objects
+  // CORRECTED: Provide strict fallback data structures
   const safeProgress = progressSummary || {
     overallProgress: 0,
     stages: { completed: 0, total: 5 },
-    missions: { completed: 0, total: 30 },
+    missions: { completed: 0, total: 5 }, // CORRECTED: 5 missions, not 30
+    subMissions: { completed: 0, total: 30 }, // NEW: 30 sub-missions
     checkpoints: { completed: 0, total: 150 }
   };
 
   const safeBaraka = barakaProgress || {
     current: 0,
+    target: 5000,
     percentage: 0,
     remaining: 5000
   };
 
-  // Safe caller for functions that might be undefined while hooks initialize
+  // Safe caller for functions
   const weeksRemaining = typeof getWeeksRemaining === 'function' ? getWeeksRemaining() : 15;
 
+  const formatBaraka = (value) => {
+    return value?.toLocaleString() || '0';
+  };
+
+  const formatWeeks = (weeks) => {
+    return weeks === 1 ? '1 week' : `${weeks} weeks`;
+  };
+
+  // Compact variant
   if (variant === 'compact') {
     return (
       <div className="gps101-progress-widget compact">
@@ -83,6 +99,7 @@ const GPS101ProgressWidget = ({ variant = 'default' }) => {
             cy="60"
             r="54"
             fill="none"
+            stroke="var(--neutral-200)"
             strokeWidth="8"
           />
           <circle
@@ -91,6 +108,7 @@ const GPS101ProgressWidget = ({ variant = 'default' }) => {
             cy="60"
             r="54"
             fill="none"
+            stroke="var(--gps-primary)"
             strokeWidth="8"
             strokeDasharray={`${(safeProgress.overallProgress / 100) * 339.292} 339.292`}
             transform="rotate(-90 60 60)"
@@ -100,6 +118,10 @@ const GPS101ProgressWidget = ({ variant = 'default' }) => {
             y="55"
             textAnchor="middle"
             className="progress-percentage-text"
+            fill="var(--neutral-900)"
+            fontSize="24"
+            fontWeight="700"
+            fontFamily="var(--font-heading)"
           >
             {safeProgress.overallProgress}%
           </text>
@@ -108,6 +130,9 @@ const GPS101ProgressWidget = ({ variant = 'default' }) => {
             y="70"
             textAnchor="middle"
             className="progress-label-text"
+            fill="var(--neutral-600)"
+            fontSize="12"
+            fontFamily="var(--font-body)"
           >
             Complete
           </text>
@@ -137,21 +162,21 @@ const GPS101ProgressWidget = ({ variant = 'default' }) => {
         </div>
 
         <div className="stat-item">
-          <div className="stat-icon">✓</div>
+          <div className="stat-icon">📝</div>
           <div className="stat-info">
-            <span className="stat-label">Checkpoints</span>
+            <span className="stat-label">Sub-missions</span>
             <span className="stat-value">
-              {safeProgress.checkpoints.completed}/{safeProgress.checkpoints.total}
+              {safeProgress.subMissions?.completed || 0}/{safeProgress.subMissions?.total || 30}
             </span>
           </div>
         </div>
 
         <div className="stat-item">
-          <div className="stat-icon">🟠</div>
+          <div className="stat-icon">✓</div>
           <div className="stat-info">
-            <span className="stat-label">Baraka</span>
+            <span className="stat-label">Checkpoints</span>
             <span className="stat-value">
-              {formatBaraka(safeBaraka.current)}
+              {safeProgress.checkpoints.completed}/{safeProgress.checkpoints.total}
             </span>
           </div>
         </div>

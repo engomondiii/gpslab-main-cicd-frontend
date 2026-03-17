@@ -1,19 +1,18 @@
 /**
  * GPS 101 Dashboard Widget
  * 
- * Dashboard widget showing GPS 101 progress and quick actions.
+ * CORRECTED STRUCTURE:
+ * - 5 Missions (1 per stage)
+ * - 30 Sub-missions (6 per mission)
+ * - 150 Checkpoints (5 per sub-mission)
+ * - Orange Beacon: 5,000 Baraka
  * 
- * FIXED: All navigation paths now use /gps101 (no dash)
+ * Dashboard widget showing GPS 101 progress and quick actions.
  */
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGPS101 from '../../../hooks/useGPS101';
-import { 
-  formatBaraka, 
-  formatWeeks,
-  formatMissionCount 
-} from '../../../utils/formatters/gps101.formatter';
 import './GPS101Dashboard.css';
 
 const GPS101Dashboard = () => {
@@ -22,12 +21,21 @@ const GPS101Dashboard = () => {
     isEnrolled,
     progressSummary,
     currentStage,
-    nextMission,
     barakaProgress,
     getWeeksRemaining,
-    isCompleted
+    isCompleted,
+    getCurrentMissionSubMissions
   } = useGPS101();
 
+  const formatBaraka = (value) => {
+    return value?.toLocaleString() || '0';
+  };
+
+  const formatWeeks = (weeks) => {
+    return weeks === 1 ? '1 week' : `${weeks} weeks`;
+  };
+
+  // Enrollment Prompt
   if (!isEnrolled) {
     return (
       <div className="gps101-dashboard-widget">
@@ -46,6 +54,7 @@ const GPS101Dashboard = () => {
     );
   }
 
+  // Completion Celebration
   if (isCompleted) {
     return (
       <div className="gps101-dashboard-widget completed">
@@ -58,11 +67,15 @@ const GPS101Dashboard = () => {
           <div className="completion-stats">
             <div className="stat">
               <span className="stat-icon">🏆</span>
-              <span className="stat-value">30 Missions</span>
+              <span className="stat-value">5 Missions</span>
+            </div>
+            <div className="stat">
+              <span className="stat-icon">✓</span>
+              <span className="stat-value">30 Sub-missions</span>
             </div>
             <div className="stat">
               <span className="stat-icon">💎</span>
-              <span className="stat-value">{formatBaraka(barakaProgress.current)}</span>
+              <span className="stat-value">{formatBaraka(barakaProgress?.current)}</span>
             </div>
           </div>
           <button 
@@ -76,6 +89,9 @@ const GPS101Dashboard = () => {
     );
   }
 
+  const subMissions = getCurrentMissionSubMissions() || [];
+  const nextSubMission = subMissions.find(sm => sm.status !== 'completed');
+
   return (
     <div className="gps101-dashboard-widget">
       {/* Header */}
@@ -83,7 +99,7 @@ const GPS101Dashboard = () => {
         <div className="header-left">
           <h3 className="widget-title">GPS 101 Journey</h3>
           <p className="widget-subtitle">
-            {formatWeeks(getWeeksRemaining())} remaining
+            {formatWeeks(getWeeksRemaining?.() || 15)} remaining
           </p>
         </div>
         <div className="header-right">
@@ -105,15 +121,12 @@ const GPS101Dashboard = () => {
         <div className="progress-stat">
           <span className="stat-label">Missions</span>
           <span className="stat-value">
-            {formatMissionCount(
-              progressSummary.missions.completed, 
-              progressSummary.missions.total
-            )}
+            {progressSummary?.missions?.completed || 0}/{progressSummary?.missions?.total || 5}
           </span>
         </div>
         <div className="progress-stat">
           <span className="stat-label">Overall</span>
-          <span className="stat-value">{progressSummary.overallProgress}%</span>
+          <span className="stat-value">{progressSummary?.overallProgress || 0}%</span>
         </div>
       </div>
 
@@ -121,7 +134,7 @@ const GPS101Dashboard = () => {
       <div className="overall-progress-bar">
         <div 
           className="progress-fill"
-          style={{ width: `${progressSummary.overallProgress}%` }}
+          style={{ width: `${progressSummary?.overallProgress || 0}%` }}
         />
       </div>
 
@@ -134,30 +147,30 @@ const GPS101Dashboard = () => {
         <div className="beacon-bar">
           <div 
             className="beacon-fill"
-            style={{ width: `${barakaProgress.percentage}%` }}
+            style={{ width: `${barakaProgress?.percentage || 0}%` }}
           />
         </div>
         <div className="beacon-info">
-          <span className="beacon-current">{formatBaraka(barakaProgress.current)}</span>
+          <span className="beacon-current">{formatBaraka(barakaProgress?.current)}</span>
           <span className="beacon-separator">/</span>
-          <span className="beacon-target">{formatBaraka(barakaProgress.target)}</span>
+          <span className="beacon-target">{formatBaraka(barakaProgress?.target || 5000)}</span>
         </div>
       </div>
 
-      {/* Next Mission */}
-      {nextMission && (
+      {/* Next Sub-Mission */}
+      {nextSubMission && (
         <div className="next-mission-section">
           <div className="section-label">Up Next</div>
           <div className="next-mission-card">
             <div className="mission-info">
-              <h4 className="mission-title">{nextMission.title}</h4>
+              <h4 className="mission-title">{nextSubMission.title}</h4>
               <p className="mission-stage">
-                Stage {nextMission.stageNumber} • Mission {nextMission.missionNumber}
+                Stage {currentStage} • Sub-mission {nextSubMission.subMissionNumber}
               </p>
             </div>
             <button 
               className="start-mission-button"
-              onClick={() => navigate(`/gps101/mission/${nextMission.missionId}`)}
+              onClick={() => navigate(`/gps101/stage/${currentStage}`)}
             >
               Start →
             </button>

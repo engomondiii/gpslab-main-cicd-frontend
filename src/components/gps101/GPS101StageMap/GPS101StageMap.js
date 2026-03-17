@@ -1,20 +1,22 @@
 /**
  * GPS 101 Stage Map Component
  * 
- * Visual map showing all 5 stages with progress and navigation
- * 
- * FIXED: All navigation paths now use /gps101 (no dash)
+ * CORRECTED STRUCTURE:
+ * - 5 Stages (1 mission per stage)
+ * - Each stage displays its single mission with 6 sub-missions
+ * - Visual map showing all stages with progress and navigation
  */
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGPS101 from '../../../hooks/useGPS101';
+import { GPS_101_CONFIG } from '../../../config/gps101.config';
 import './GPS101StageMap.css';
 
 const GPS101StageMap = () => {
   const navigate = useNavigate();
   const {
-    stages,
+    progressSummary,
     currentStage,
     isStageUnlocked,
     getStageCompletionPercentage,
@@ -23,19 +25,20 @@ const GPS101StageMap = () => {
 
   const handleStageClick = (stageNumber) => {
     if (isStageUnlocked(stageNumber)) {
-      // FIXED: Navigate to /gps101 (no dash)
       navigate(`/gps101/stage/${stageNumber}`);
     }
   };
 
-  if (loading?.stages || !stages || stages.length === 0) {
+  if (loading?.stages) {
     return (
       <div className="gps101-stage-map loading">
         <div className="loading-spinner" />
-        <p>Loading stages...</p>
+        <p>Loading your journey...</p>
       </div>
     );
   }
+
+  const stages = GPS_101_CONFIG?.STAGES || [];
 
   const getStageStatus = (stageNumber) => {
     const completion = getStageCompletionPercentage(stageNumber);
@@ -47,128 +50,121 @@ const GPS101StageMap = () => {
     return 'locked';
   };
 
+  const getStageIcon = (stageNumber) => {
+    const icons = {
+      1: '🪪', // Identity
+      2: '🧩', // Problem
+      3: '💝', // Story
+      4: '✨', // Purpose
+      5: '🚀'  // Project
+    };
+    return icons[stageNumber] || '📍';
+  };
+
   return (
     <div className="gps101-stage-map">
+      {/* Header */}
       <div className="stage-map-header">
         <h2>Your GPS 101 Journey</h2>
-        <p className="stage-map-subtitle">
+        <p className="journey-subtitle">
           Progress through 5 stages to discover your life purpose
         </p>
       </div>
 
-      <div className="stages-container">
-        {stages.map((stage, index) => {
-          const stageNumber = index + 1;
-          const status = getStageStatus(stageNumber);
-          const completion = getStageCompletionPercentage(stageNumber);
-          const isUnlocked = isStageUnlocked(stageNumber);
-          const isCurrent = stageNumber === currentStage;
+      {/* Stage Map Container */}
+      <div className="stage-map-container">
+        <div className="journey-path">
+          {stages.map((stage, index) => {
+            const stageNumber = stage.stageNumber;
+            const status = getStageStatus(stageNumber);
+            const completion = getStageCompletionPercentage(stageNumber);
+            const isUnlocked = isStageUnlocked(stageNumber);
+            const isCurrent = stageNumber === currentStage;
 
-          return (
-            <React.Fragment key={stage.stageId}>
-              {/* Stage Card */}
-              <div
-                className={`stage-card ${status} ${isCurrent ? 'current' : ''} ${!isUnlocked ? 'locked' : ''}`}
-                onClick={() => handleStageClick(stageNumber)}
-                role="button"
-                tabIndex={isUnlocked ? 0 : -1}
-                aria-label={`Stage ${stageNumber}: ${stage.title}`}
-              >
-                {/* Stage Number Badge */}
-                <div className="stage-number-badge">
-                  <span className="stage-number">{stageNumber}</span>
-                </div>
-
-                {/* Stage Status Icon */}
-                <div className={`stage-status-icon ${status}`}>
-                  {status === 'completed' && <span className="status-icon">✓</span>}
-                  {status === 'current' && <span className="status-icon">→</span>}
-                  {status === 'available' && <span className="status-icon">○</span>}
-                  {status === 'locked' && <span className="status-icon">🔒</span>}
-                </div>
-
-                {/* Stage Content */}
-                <div className="stage-content">
-                  <h3 className="stage-title">{stage.title}</h3>
-                  <p className="stage-question">{stage.question}</p>
-                  
-                  {/* Progress Bar */}
-                  {isUnlocked && (
-                    <div className="stage-progress-bar">
-                      <div 
-                        className="progress-fill"
-                        style={{ width: `${completion}%` }}
-                      />
-                      <span className="progress-text">{completion}%</span>
+            return (
+              <React.Fragment key={stage.stageId}>
+                {/* Stage Node */}
+                <div
+                  className={`stage-node ${status} ${isCurrent ? 'active' : ''}`}
+                  onClick={() => handleStageClick(stageNumber)}
+                  role="button"
+                  tabIndex={isUnlocked ? 0 : -1}
+                  aria-label={`Stage ${stageNumber}: ${stage.question}`}
+                >
+                  {/* Stage Icon/Number Wrapper */}
+                  <div className="stage-icon-wrapper">
+                    <div className="stage-number">
+                      {status === 'completed' ? (
+                        <span className="completion-badge">✓</span>
+                      ) : status === 'locked' ? (
+                        <span className="lock-icon">🔒</span>
+                      ) : (
+                        <span>{stageNumber}</span>
+                      )}
                     </div>
-                  )}
+                  </div>
 
                   {/* Stage Info */}
                   <div className="stage-info">
-                    <span className="info-item">
-                      <span className="info-icon">🎯</span>
-                      <span className="info-text">{stage.missions?.length || 6} missions</span>
-                    </span>
-                    <span className="info-item">
-                      <span className="info-icon">⏱️</span>
-                      <span className="info-text">3 weeks</span>
-                    </span>
+                    <div className="stage-title">Stage {stageNumber}</div>
+                    <div className="stage-question">{stage.question}</div>
+                    
+                    {/* Progress Bar */}
+                    {isUnlocked && (
+                      <>
+                        <div className="stage-progress-bar">
+                          <div 
+                            className="progress-fill"
+                            style={{ width: `${completion}%` }}
+                          />
+                        </div>
+                        <div className="stage-completion">{completion}% Complete</div>
+                      </>
+                    )}
+
+                    {/* Locked Message */}
+                    {!isUnlocked && stageNumber > 1 && (
+                      <div className="locked-message">
+                        Complete Stage {stageNumber - 1}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Current Stage Badge */}
-                  {isCurrent && (
-                    <div className="current-stage-badge">
-                      Current Stage
-                    </div>
-                  )}
-
-                  {/* Locked Message */}
-                  {!isUnlocked && (
-                    <div className="locked-message">
-                      Complete Stage {stageNumber - 1}
-                    </div>
-                  )}
+                  {/* Deliverable Icon */}
+                  <div className="stage-deliverable-icon">
+                    {getStageIcon(stageNumber)}
+                  </div>
                 </div>
 
-                {/* Deliverable Icon */}
-                <div className="stage-deliverable-icon">
-                  {stageNumber === 1 && '🪪'}
-                  {stageNumber === 2 && '🧩'}
-                  {stageNumber === 3 && '💝'}
-                  {stageNumber === 4 && '✨'}
-                  {stageNumber === 5 && '🚀'}
-                </div>
-              </div>
-
-              {/* Connector Line */}
-              {index < stages.length - 1 && (
-                <div className={`stage-connector ${status === 'completed' ? 'completed' : ''}`}>
-                  <div className="connector-line" />
-                  <div className="connector-arrow">→</div>
-                </div>
-              )}
-            </React.Fragment>
-          );
-        })}
+                {/* Stage Connector */}
+                {index < stages.length - 1 && (
+                  <div className={`stage-connector ${status === 'completed' ? 'completed' : ''}`}>
+                    <div className="connector-line" />
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Legend */}
-      <div className="stage-map-legend">
-        <div className="legend-item">
-          <span className="legend-icon completed">✓</span>
-          <span className="legend-text">Completed</span>
+      {/* Journey Summary */}
+      <div className="journey-summary">
+        <div className="summary-stat">
+          <span className="stat-label">Stages Completed</span>
+          <span className="stat-value">
+            {progressSummary?.stages?.completed || 0}/{progressSummary?.stages?.total || 5}
+          </span>
         </div>
-        <div className="legend-item">
-          <span className="legend-icon current">→</span>
-          <span className="legend-text">Current</span>
+        <div className="summary-stat">
+          <span className="stat-label">Missions Completed</span>
+          <span className="stat-value">
+            {progressSummary?.missions?.completed || 0}/{progressSummary?.missions?.total || 5}
+          </span>
         </div>
-        <div className="legend-item">
-          <span className="legend-icon available">○</span>
-          <span className="legend-text">Available</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-icon locked">🔒</span>
-          <span className="legend-text">Locked</span>
+        <div className="summary-stat">
+          <span className="stat-label">Overall Progress</span>
+          <span className="stat-value">{progressSummary?.overallProgress || 0}%</span>
         </div>
       </div>
     </div>

@@ -1,0 +1,693 @@
+/**
+ * GPS 101 Mission Accept Modal Component Styles
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
+ */
+
+.gps101-accept-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6, 24px);
+}
+
+/* ==================== BACKDROP ==================== */
+
+.gps101-accept-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(4px);
+  animation: backdropFadeIn 0.3s ease-out;
+}
+
+@keyframes backdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==================== DIALOG ==================== */
+
+.gps101-accept-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  box-shadow: var(--shadow-2xl);
+  animation: modalSlideUp 0.3s var(--ease-out);
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==================== CLOSE BUTTON ==================== */
+
+.gps101-accept-modal__close {
+  position: absolute;
+  top: var(--space-4, 16px);
+  right: var(--space-4, 16px);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-100, #f7faff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: 50%;
+  color: var(--neutral-600, #2d4263);
+  cursor: pointer;
+  transition: var(--transition-all);
+  z-index: 1;
+}
+
+.gps101-accept-modal__close:hover:not(:disabled) {
+  background: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-900, #0d1117);
+}
+
+.gps101-accept-modal__close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gps101-accept-modal__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== GPS 101 HEADER ==================== */
+
+.gps101-accept-modal__gps101-header {
+  padding: var(--space-5, 20px) var(--space-5, 20px) var(--space-4, 16px);
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.05));
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.gps101-accept-modal__gps101-badge-large {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.gps101-accept-modal__gps101-badge-large svg {
+  width: 28px;
+  height: 28px;
+  color: var(--gps-primary, #00d4ff);
+  flex-shrink: 0;
+}
+
+.gps101-accept-modal__gps101-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.gps101-accept-modal__gps101-label {
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary, #00d4ff);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+}
+
+.gps101-accept-modal__gps101-stage-label {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+}
+
+.gps101-accept-modal__gps101-question-small {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  margin: 0;
+  font-style: italic;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ==================== MODAL HEADER ==================== */
+
+.gps101-accept-modal__header {
+  padding: var(--space-6, 24px) var(--space-5, 20px) var(--space-4, 16px);
+  text-align: center;
+}
+
+.gps101-accept-modal__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-lg, 8px);
+  color: white;
+}
+
+.gps101-accept-modal__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.gps101-accept-modal__title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.gps101-accept-modal__subtitle {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary, #00d4ff);
+  margin: 0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ==================== MODAL CONTENT ==================== */
+
+.gps101-accept-modal__content {
+  padding: 0 var(--space-5, 20px) var(--space-4, 16px);
+}
+
+.gps101-accept-modal__desc {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  line-height: 1.6;
+  margin: 0 0 var(--space-5, 20px);
+  text-align: center;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* Info Grid */
+.gps101-accept-modal__info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-4, 16px);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.gps101-accept-modal__info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.gps101-accept-modal__info-label {
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-600, #2d4263);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.gps101-accept-modal__info-value {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  text-transform: capitalize;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+
+/* Stage Completer Banner */
+.gps101-accept-modal__stage-completer-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 140, 66, 0.08);
+  border: 1px solid rgba(255, 140, 66, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.gps101-accept-modal__stage-completer-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 140, 66, 0.15);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gps101-accept-modal__stage-completer-icon svg {
+  width: 18px;
+  height: 18px;
+  color: #ff8c42;
+}
+
+.gps101-accept-modal__stage-completer-text h4 {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: #ff8c42;
+  margin: 0 0 var(--space-1, 4px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+}
+
+.gps101-accept-modal__stage-completer-text p {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.gps101-accept-modal__stage-completer-text strong {
+  color: var(--gps-primary, #00d4ff);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* Rewards */
+.gps101-accept-modal__rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.gps101-accept-modal__rewards-label {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.gps101-accept-modal__reward {
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-bold, 700);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+
+.gps101-accept-modal__reward--baraka {
+  color: #ff8c42;
+}
+
+.gps101-accept-modal__reward--xp {
+  color: var(--success, #2a9d8f);
+}
+
+/* ==================== ACTION BUTTONS ==================== */
+
+.gps101-accept-modal__actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px) var(--space-5, 20px) var(--space-5, 20px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
+}
+
+.gps101-accept-modal__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.gps101-accept-modal__btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gps101-accept-modal__btn--cancel {
+  color: var(--neutral-600, #2d4263);
+  background: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-300, #e1e4e8);
+}
+
+.gps101-accept-modal__btn--cancel:hover:not(:disabled) {
+  color: var(--neutral-900, #0d1117);
+  background: var(--neutral-50, #fafbfc);
+  border-color: var(--neutral-400, #a8dadc);
+}
+
+.gps101-accept-modal__btn--accept {
+  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.gps101-accept-modal__btn--accept:hover:not(:disabled) {
+  background: var(--gps-primary-light, #4ce3ff);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+}
+
+.gps101-accept-modal__btn--accept:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gps101-accept-modal__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: modalSpin 0.6s linear infinite;
+}
+
+@keyframes modalSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==================== SUCCESS STATE ==================== */
+
+.gps101-accept-modal__success {
+  padding: var(--space-8, 32px) var(--space-5, 20px);
+  text-align: center;
+}
+
+.gps101-accept-modal__success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-5, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--success-dark, #1e7a6f));
+  border-radius: 50%;
+  color: white;
+  animation: successPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 6px 20px rgba(42, 157, 143, 0.3);
+}
+
+@keyframes successPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.gps101-accept-modal__success-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.gps101-accept-modal__success-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  color: var(--success, #2a9d8f);
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.gps101-accept-modal__success-text {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #2d4263);
+  margin: 0 0 var(--space-5, 20px);
+  line-height: 1.6;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.gps101-accept-modal__success-text strong {
+  color: var(--neutral-900, #0d1117);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* GPS 101 Context in Success */
+.gps101-accept-modal__gps101-context {
+  padding: var(--space-4, 16px);
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.05));
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-5, 20px);
+}
+
+.gps101-accept-modal__gps101-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.gps101-accept-modal__gps101-badge svg {
+  width: 24px;
+  height: 24px;
+  color: var(--gps-primary, #00d4ff);
+  flex-shrink: 0;
+}
+
+.gps101-accept-modal__gps101-stage {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+}
+
+.gps101-accept-modal__gps101-question {
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-600, #2d4263);
+  font-style: italic;
+  margin: 0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* Deliverable Unlock in Success */
+.gps101-accept-modal__deliverable-unlock {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: rgba(255, 140, 66, 0.08);
+  border: 1px solid rgba(255, 140, 66, 0.2);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-5, 20px);
+}
+
+.gps101-accept-modal__deliverable-unlock svg {
+  width: 20px;
+  height: 20px;
+  color: #ff8c42;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.gps101-accept-modal__deliverable-text {
+  flex: 1;
+  text-align: left;
+}
+
+.gps101-accept-modal__deliverable-text strong {
+  display: block;
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-bold, 700);
+  color: #ff8c42;
+  margin-bottom: var(--space-1, 4px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+}
+
+.gps101-accept-modal__deliverable-text p {
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.gps101-accept-modal__deliverable-text span {
+  color: var(--gps-primary, #00d4ff);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* Start Button */
+.gps101-accept-modal__start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-6, 24px);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--neutral-900, #0d1117);
+  background: var(--gps-primary, #00d4ff);
+  border: none;
+  border-radius: var(--radius-md, 6px);
+  cursor: pointer;
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+}
+
+.gps101-accept-modal__start-btn:hover {
+  background: var(--gps-primary-light, #4ce3ff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.25);
+}
+
+.gps101-accept-modal__start-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 640px) {
+  .gps101-accept-modal {
+    padding: var(--space-4, 16px);
+  }
+
+  .gps101-accept-modal__dialog {
+    max-width: 100%;
+  }
+
+  .gps101-accept-modal__title {
+    font-size: var(--text-lg, 20px);
+  }
+
+  .gps101-accept-modal__info {
+    grid-template-columns: 1fr;
+    gap: var(--space-2, 8px);
+  }
+
+  .gps101-accept-modal__actions {
+    flex-direction: column;
+  }
+
+  .gps101-accept-modal__btn {
+    width: 100%;
+  }
+
+  .gps101-accept-modal__success-title {
+    font-size: var(--text-xl, 24px);
+  }
+}
+
+/* ==================== SCROLLBAR STYLING ==================== */
+
+.gps101-accept-modal__dialog::-webkit-scrollbar {
+  width: 8px;
+}
+
+.gps101-accept-modal__dialog::-webkit-scrollbar-track {
+  background: var(--neutral-100, #f7faff);
+  border-radius: 0 var(--radius-xl, 12px) var(--radius-xl, 12px) 0;
+}
+
+.gps101-accept-modal__dialog::-webkit-scrollbar-thumb {
+  background: var(--neutral-300, #e1e4e8);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.gps101-accept-modal__dialog::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400, #a8dadc);
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gps101-accept-modal__backdrop,
+  .gps101-accept-modal__dialog,
+  .gps101-accept-modal__close,
+  .gps101-accept-modal__btn,
+  .gps101-accept-modal__start-btn {
+    animation: none;
+    transition: none;
+  }
+  
+  .gps101-accept-modal__success-icon {
+    animation: none;
+  }
+  
+  .gps101-accept-modal__btn--accept:hover:not(:disabled),
+  .gps101-accept-modal__start-btn:hover {
+    transform: none;
+  }
+  
+  .gps101-accept-modal__spinner {
+    animation: none;
+  }
+}
+
+/* ==================== FOCUS VISIBLE ==================== */
+
+.gps101-accept-modal__close:focus-visible,
+.gps101-accept-modal__btn:focus-visible,
+.gps101-accept-modal__start-btn:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 2px;
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+[data-theme="dark"] .gps101-accept-modal__dialog {
+  background: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .gps101-accept-modal__gps101-header {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="dark"] .gps101-accept-modal__title,
+[data-theme="dark"] .gps101-accept-modal__gps101-stage-label,
+[data-theme="dark"] .gps101-accept-modal__success-title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .gps101-accept-modal__info,
+[data-theme="dark"] .gps101-accept-modal__rewards,
+[data-theme="dark"] .gps101-accept-modal__gps101-context {
+  background: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .gps101-accept-modal__close {
+  background: var(--neutral-700, #1b263b);
+  color: var(--neutral-300, #e1e4e8);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .gps101-accept-modal__btn--cancel {
+  background: var(--neutral-700, #1b263b);
+  color: var(--neutral-300, #e1e4e8);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .gps101-accept-modal__btn--cancel:hover:not(:disabled) {
+  background: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .gps101-accept-modal__stage-completer-banner,
+[data-theme="dark"] .gps101-accept-modal__deliverable-unlock {
+  background: rgba(255, 140, 66, 0.1);
+  border-color: rgba(255, 140, 66, 0.25);
+}

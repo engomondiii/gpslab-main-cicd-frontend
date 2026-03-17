@@ -2,299 +2,89 @@
   "gps101": {
     "title": "GPS 101 기초",
     "subtitle": "15주 목적 발견 여정",
-    "description": "자기 성찰, 문제 식별 및 프로젝트 창출의 체계적인 5단계 여정을 통해 인생의 목적을 발견하세요.",
+    "description": "체계적인 5단계 여정을 통해 인생의 목적을 발견하세요. 5단계, 5개 미션, 30개 서브미션, 150개 체크포인트를 완료하여 오렌지 비콘을 획득하세요.",
     
-    "enrollment": {
-      "title": "GPS 101 등록",
-      "description": "15주 목적 발견 여정을 시작하세요",
-      "benefits": {
-        "title": "얻을 수 있는 것",
-        "items": [
-          "핵심 정체성에 대한 명확한 이해",
-          "해결할 의미 있는 문제",
-          "문제 소유자와의 연결",
-          "당신의 인생 목적 선언문",
-          "구체적인 목적 중심 프로젝트"
-        ]
-      },
-      "commitment": {
-        "title": "시간 투자",
-        "duration": "15주",
-        "weekly": "주당 3-5시간",
-        "total": "30개 미션, 150개 체크포인트"
-      },
-      "reward": {
-        "title": "완료 보상",
-        "beacon": "오렌지 비콘",
-        "baraka": "5,000 바라카",
-        "description": "GPS 101 완료 배지 포함"
-      },
-      "cta": "GPS 101 여정 시작"
+    "structure": {
+      "stages": "5단계",
+      "missions": "5개 미션 (단계당 1개)",
+      "subMissions": "30개 서브미션 (미션당 6개)",
+      "checkpoints": "150개 체크포인트 (서브미션당 5개)",
+      "duration": "15주",
+      "reward": "5,000 바라카 (오렌지 비콘)"
     },
     
     "stages": {
       "1": {
         "name": "정체성",
-        "title": "나는 누구인가?",
-        "question": "나의 핵심은 무엇인가?",
-        "description": "가치관, 강점, 열정을 이해하기 위한 깊은 자기 성찰",
+        "title": "1단계: 정체성",
+        "question": "나는 누구인가?",
+        "outcome": "정체성 선언문",
         "deliverable": "정체성 선언문",
-        "duration": "1-3주차",
-        "missions": 6,
-        "checkpoints": 30,
-        "guidance": "이 단계는 진정한 자기 발견에 관한 것입니다. 역할과 직함을 넘어 당신이 누구인지 탐구하세요.",
-        "reflectionPrompts": [
-          "사람들이 어떤 도움을 받기 위해 당신을 찾나요?",
-          "어떤 활동을 할 때 시간 가는 줄 모르나요?",
-          "어떤 불의나 문제가 당신을 화나게 하거나 슬프게 하나요?",
-          "세상에서 한 가지를 바꿀 수 있다면 무엇을 바꾸시겠습니까?",
-          "실패할 수 없다는 것을 안다면 무엇을 하시겠습니까?"
-        ]
+        "icon": "🪪",
+        "duration": "3주",
+        "structure": "1개 미션 • 6개 서브미션 • 30개 체크포인트"
       },
       "2": {
         "name": "문제",
-        "title": "무엇이 내 마음을 아프게 하는가?",
-        "question": "어떤 문제가 내 마음을 아프게 하는가?",
-        "description": "정체성과 공명하는 의미 있는 문제 식별",
-        "deliverable": "인생 문제 후보",
-        "duration": "4-6주차",
-        "missions": 6,
-        "checkpoints": 30,
-        "guidance": "진정으로 감동을 주는 문제를 선택하세요. 그것은 당신이 누구인지와 연결되어야 합니다.",
-        "reflectionPrompts": [
-          "다른 사람들이 무시하는 것처럼 보이는 문제는 무엇인가요?",
-          "당신이 목격한 고통 중 계속 기억에 남는 것은 무엇인가요?",
-          "어떤 문제가 해결되면 인생에 의미가 있다고 느끼시겠습니까?",
-          "아무도 묻지 않아도 계속 이야기하게 되는 문제는 무엇인가요?",
-          "당신의 개인적인 경험과 연결되는 문제는 무엇인가요?"
-        ]
+        "title": "2단계: 문제",
+        "question": "당신의 삶의 의미는 무엇인가?",
+        "outcome": "문제 후보",
+        "deliverable": "문제 후보 목록",
+        "icon": "🧩",
+        "duration": "3주",
+        "structure": "1개 미션 • 6개 서브미션 • 30개 체크포인트"
       },
       "3": {
         "name": "소유자",
-        "title": "누가 이것을 해결해야 하는가?",
-        "question": "문제 소유자는 누구인가?",
-        "description": "문제를 경험하는 사람의 이야기 이해하고 전달",
+        "title": "3단계: 문제 소유자",
+        "question": "당신이 해결해야 할 고통을 겪는 사람은 누구인가?",
+        "outcome": "문제 소유자 이야기",
         "deliverable": "문제 소유자 이야기",
-        "duration": "7-9주차",
-        "missions": 6,
-        "checkpoints": 30,
-        "guidance": "이것은 공감에 관한 것입니다. 인간적 영향을 보여주는 실제, 구체적인 이야기를 전하세요.",
-        "reflectionPrompts": [
-          "이 문제에 가장 많은 영향을 받는 사람은 누구인가요?",
-          "그들의 일반적인 하루는 어떤 모습인가요?",
-          "그들이 직면한 장벽은 무엇인가요? 무엇을 시도했나요?",
-          "이 문제가 그들을 어떻게 느끼게 하나요?",
-          "이 문제가 방해하는 그들의 꿈은 무엇인가요?"
-        ]
+        "icon": "💝",
+        "duration": "3주",
+        "structure": "1개 미션 • 6개 서브미션 • 30개 체크포인트"
       },
       "4": {
         "name": "목적",
-        "title": "나는 왜 여기에 있는가?",
-        "question": "나의 인생 목적은 무엇인가?",
-        "description": "정체성과 문제를 명확한 목적 선언문으로 종합",
+        "title": "4단계: 인생 목적",
+        "question": "당신의 인생 목적은 무엇인가?",
+        "outcome": "인생 목적 선언문",
         "deliverable": "인생 목적 선언문",
-        "duration": "10-12주차",
-        "missions": 6,
-        "checkpoints": 30,
-        "guidance": "정체성을 문제와 연결하세요. 의도한 영향에 대해 구체적으로 설명하세요.",
-        "reflectionPrompts": [
-          "당신의 정체성이 이 문제에 대해 어떻게 독특하게 위치시키나요?",
-          "10년 후 어떤 영향을 미치고 싶으신가요?",
-          "어떤 유산을 남기고 싶으신가요?",
-          "성공은 어떤 모습일까요?",
-          "목적을 살고 있다는 것을 어떻게 알 수 있을까요?"
-        ]
+        "icon": "✨",
+        "duration": "3주",
+        "structure": "1개 미션 • 6개 서브미션 • 30개 체크포인트"
       },
       "5": {
         "name": "프로젝트",
-        "title": "무엇을 만들 것인가?",
-        "question": "어떤 목적 중심 프로젝트를 시작할 것인가?",
-        "description": "목적을 구현하는 구체적인 프로젝트 설계",
-        "deliverable": "목적 중심 프로젝트",
-        "duration": "13-15주차",
-        "missions": 6,
-        "checkpoints": 30,
-        "guidance": "실행 가능하게 만드세요. 실제로 구축하고 출시할 수 있는 것을 설명하세요.",
-        "reflectionPrompts": [
-          "6-12개월 안에 만들 수 있는 구체적인 솔루션은 무엇인가요?",
-          "첫 번째 사용자/수혜자는 누구일까요?",
-          "이미 가지고 있는 자원은 무엇인가요?",
-          "버전 1.0은 어떤 모습일까요?",
-          "영향을 어떻게 측정할 것인가요?"
-        ]
-      }
-    },
-    
-    "deliverables": {
-      "title": "GPS 101 결과물",
-      "subtitle": "목적 발견 산출물",
-      "identity": {
-        "title": "정체성 선언문",
-        "description": "핵심 자아에 대한 명확한 표현",
-        "minLength": 100,
-        "maxLength": 500,
-        "placeholder": "나는 ~인 사람입니다...",
-        "tips": [
-          "역할이 아닌 진정한 자신에 초점을 맞추세요",
-          "핵심 가치와 동기를 포함하세요",
-          "구체적이고 개인적으로 작성하세요"
-        ]
-      },
-      "problem": {
-        "title": "인생 문제 후보",
-        "description": "정체성과 깊이 공명하는 문제",
-        "minLength": 150,
-        "maxLength": 1000,
-        "placeholder": "내 마음을 아프게 하는 문제는...",
-        "tips": [
-          "진정으로 감동을 주는 것을 선택하세요",
-          "개인적으로 왜 중요한지 설명하세요",
-          "범위와 영향을 고려하세요"
-        ]
-      },
-      "owner": {
-        "title": "문제 소유자 이야기",
-        "description": "문제를 경험하는 사람에 대한 이야기",
-        "minLength": 200,
-        "maxLength": 1500,
-        "placeholder": "[이름]을 만나보세요, 그는/그녀는 ~로 어려움을 겪고 있습니다...",
-        "tips": [
-          "구체적이고 실제 이야기를 전하세요",
-          "인간적 영향을 보여주세요",
-          "구체적인 세부 사항과 감정을 포함하세요"
-        ]
-      },
-      "purpose": {
-        "title": "인생 목적 선언문",
-        "description": "이 문제를 해결하는 데 있어 당신의 고유한 목적",
-        "minLength": 100,
-        "maxLength": 500,
-        "placeholder": "나의 목적은...",
-        "tips": [
-          "정체성을 문제와 연결하세요",
-          "영향에 대해 구체적으로 설명하세요",
-          "진실되고 영감을 주도록 만드세요"
-        ]
-      },
-      "project": {
-        "title": "목적 중심 프로젝트",
-        "description": "목적을 구현하는 구체적인 프로젝트",
-        "minLength": 300,
-        "maxLength": 2000,
-        "placeholder": "나는 ~을 만들/구축/출시할 것입니다...",
-        "tips": [
-          "구체적이고 실행 가능한 것을 설명하세요",
-          "문제를 어떻게 해결하는지 설명하세요",
-          "영향에 대한 비전을 포함하세요"
-        ]
+        "title": "5단계: 목적 중심 프로젝트",
+        "question": "당신의 목적 중심 프로젝트는 무엇인가?",
+        "outcome": "목적 중심 프로젝트",
+        "deliverable": "목적 중심 프로젝트 계획",
+        "icon": "🚀",
+        "duration": "3주",
+        "structure": "1개 미션 • 6개 서브미션 • 30개 체크포인트"
       }
     },
     
     "progress": {
-      "currentStage": "현재 단계",
       "stagesComplete": "5단계 중 {{count}}단계 완료",
-      "missionsComplete": "30개 미션 중 {{count}}개 완료",
-      "checkpointsComplete": "150개 체크포인트 중 {{count}}개 완료",
-      "weeklyProgress": "15주 중 {{week}}주차",
-      "overallProgress": "{{percent}}% 완료",
-      "nextMilestone": "다음: {{milestone}}"
-    },
-    
-    "checkpoint": {
-      "title": "GPS 101 체크포인트",
-      "subtitle": "단계 {{stage}} 성찰",
-      "instructions": "모든 성찰 질문에 신중하게 답하세요. 시간을 가지세요 - 속도보다 질이 중요합니다.",
-      "questions": {
-        "understanding": "이 단계에서 자신에 대해 무엇을 배웠나요?",
-        "application": "이 학습을 어떻게 적용할 것인가요?",
-        "challenges": "어떤 도전에 직면했나요?",
-        "insights": "가장 큰 통찰은 무엇이었나요?",
-        "next": "다음 단계에서 무엇이 기대되나요?"
-      },
-      "validation": {
-        "minLength": "각 답변에 최소 {{min}}자 이상 제공하세요",
-        "required": "모든 질문에 답해야 합니다",
-        "thoughtful": "답변에 대해 깊이 성찰할 시간을 가지세요"
-      },
-      "submit": "체크포인트 제출",
-      "retry": "R2R을 사용하여 재시도"
-    },
-    
-    "navigator": {
-      "greeting": "GPS 101에 오신 것을 환영합니다, {{name}}님!",
-      "stageGuidance": "현재 단계 {{stage}}: {{stageName}}",
-      "tips": {
-        "reflection": "깊은 성찰을 위한 시간을 가지세요",
-        "authenticity": "완벽하지 않아도 진실되게",
-        "connection": "각 단계를 다음 단계와 연결하세요",
-        "patience": "이것은 경주가 아닌 여정입니다"
-      },
-      "encouragement": [
-        "훌륭한 진전을 보이고 있습니다!",
-        "당신의 성찰은 진정한 깊이를 보여줍니다",
-        "이 통찰은 강력합니다",
-        "계속 더 깊이 파고드세요",
-        "올바른 길을 가고 있습니다"
-      ]
-    },
-    
-    "celebration": {
-      "stageComplete": {
-        "title": "단계 {{stage}} 완료!",
-        "subtitle": "{{stageName}} - 완료됨",
-        "message": "단계 {{stage}} 완료를 축하합니다. {{deliverable}}이(가) 저장되었습니다.",
-        "next": "단계 {{nextStage}} 준비되셨나요?"
-      },
-      "journeyComplete": {
-        "title": "GPS 101 여정 완료!",
-        "subtitle": "오렌지 비콘 잠금 해제",
-        "message": "축하합니다! GPS 101 기초를 통해 인생의 목적을 발견했습니다.",
-        "rewards": "오렌지 비콘과 5,000 바라카를 획득했습니다",
-        "quote": "\"인생에서 가장 중요한 두 날은 당신이 태어난 날과 그 이유를 알게 되는 날입니다.\""
-      }
-    },
-    
-    "actions": {
-      "viewDashboard": "GPS 101 대시보드 보기",
-      "continueJourney": "여정 계속하기",
-      "viewDeliverables": "결과물 보기",
-      "editDeliverable": "결과물 수정",
-      "submitCheckpoint": "체크포인트 제출",
-      "viewGuidance": "단계 안내 보기",
-      "askNavigator": "내비게이터에게 문의"
-    },
-    
-    "status": {
-      "notEnrolled": "미등록",
-      "enrolled": "등록됨",
-      "inProgress": "진행 중",
-      "completed": "완료",
-      "locked": "잠김",
-      "available": "사용 가능",
-      "current": "현재"
+      "missionsComplete": "5개 미션 중 {{count}}개 완료",
+      "subMissionsComplete": "30개 서브미션 중 {{count}}개 완료",
+      "checkpointsComplete": "150개 체크포인트 중 {{count}}개 완료"
     },
     
     "rewards": {
       "orangeBeacon": {
         "name": "오렌지 비콘",
-        "description": "GPS 101 기초 완료 시 수여",
         "baraka": 5000
       },
       "stageBadges": {
         "stage1": "정체성 탐험가",
-        "stage2": "문제 발견자",
+        "stage2": "문제 탐험가",
         "stage3": "이야기 직조자",
-        "stage4": "목적 발견자",
-        "stage5": "프로젝트 런처"
+        "stage4": "목적 정의자",
+        "stage5": "프로젝트 빌더"
       }
-    },
-    
-    "errors": {
-      "notEnrolled": "이 콘텐츠에 액세스하려면 GPS 101에 등록해야 합니다",
-      "stageLocked": "이 단계를 잠금 해제하려면 단계 {{stage}}를 완료하세요",
-      "checkpointIncomplete": "진행하려면 모든 체크포인트를 완료하세요",
-      "deliverableRequired": "계속하려면 결과물을 제출하세요",
-      "loadError": "GPS 101 데이터를 로드하지 못했습니다. 다시 시도해주세요."
     }
   }
 }

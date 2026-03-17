@@ -1,5 +1,6 @@
 /**
  * GPS Lab Platform - MissionCelebration Component Styles
+ * Theme: GPS Lab Light Mode - Beautiful Celebration Animations
  */
 
 .mission-celebration {
@@ -36,6 +37,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   animation: burstIn 0.5s ease-out forwards;
+  filter: drop-shadow(0 8px 30px rgba(241, 196, 15, 0.5));
 }
 
 @keyframes burstIn {
@@ -56,8 +58,8 @@
 .mission-celebration__star {
   width: 120px;
   height: 120px;
-  color: var(--baraka-yellow, #f1c40f);
-  filter: drop-shadow(0 0 20px rgba(241, 196, 15, 0.5));
+  color: var(--baraka-base);
+  filter: drop-shadow(0 0 20px rgba(241, 196, 15, 0.6));
 }
 
 /* Rings */
@@ -73,8 +75,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 3px solid var(--gps-primary, #00d4ff);
-  border-radius: 50%;
+  border: 3px solid var(--gps-primary);
+  border-radius: var(--radius-full);
   opacity: 0;
 }
 
@@ -88,12 +90,14 @@
   width: 150px;
   height: 150px;
   animation: ringExpand 1s ease-out 0.2s forwards;
+  border-color: var(--gps-accent);
 }
 
 .mission-celebration__ring--3 {
   width: 200px;
   height: 200px;
   animation: ringExpand 1s ease-out 0.4s forwards;
+  border-color: var(--warning);
 }
 
 @keyframes ringExpand {
@@ -107,11 +111,123 @@
   }
 }
 
+/* Light Burst Effect */
+.mission-celebration__light-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.4) 0%,
+    rgba(0, 212, 255, 0.2) 30%,
+    transparent 70%
+  );
+  border-radius: var(--radius-full);
+  animation: lightPulse 1s ease-out forwards;
+}
+
+@keyframes lightPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Sparkles */
+.mission-celebration__sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, var(--warning) 0%, transparent 70%);
+  border-radius: var(--radius-full);
+  animation: sparkleFloat 2s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* GPS 101 Celebration Variant */
+.mission-celebration--gps101 .mission-celebration__particle {
+  /* GPS 101 themed colors */
+  background: linear-gradient(135deg, var(--gps-primary), var(--gps-accent));
+}
+
+.mission-celebration--gps101 .mission-celebration__star {
+  color: var(--gps-primary);
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
+}
+
+.mission-celebration--gps101 .mission-celebration__light-burst {
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.5) 0%,
+    rgba(42, 157, 143, 0.3) 30%,
+    transparent 70%
+  );
+}
+
+/* Stage Completion Variant */
+.mission-celebration--stage-complete .mission-celebration__burst {
+  animation: burstIn 0.8s ease-out forwards;
+}
+
+.mission-celebration--stage-complete .mission-celebration__star {
+  width: 150px;
+  height: 150px;
+  color: var(--success);
+  filter: drop-shadow(0 0 30px rgba(42, 157, 143, 0.8));
+}
+
+/* Orange Beacon Unlock Variant */
+.mission-celebration--orange-beacon .mission-celebration__particle {
+  background: linear-gradient(135deg, var(--warning), var(--warning-dark));
+}
+
+.mission-celebration--orange-beacon .mission-celebration__burst {
+  animation: beaconBurst 1s ease-out forwards;
+  filter: drop-shadow(0 12px 40px rgba(241, 196, 15, 0.8));
+}
+
+@keyframes beaconBurst {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .mission-celebration__particle,
   .mission-celebration__burst,
-  .mission-celebration__ring {
+  .mission-celebration__ring,
+  .mission-celebration__light-burst,
+  .mission-celebration__sparkle {
     animation: none;
     opacity: 0;
   }
