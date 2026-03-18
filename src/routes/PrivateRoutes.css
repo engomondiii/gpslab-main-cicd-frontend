@@ -97,3 +97,57 @@
     transform: none;
   }
 }
+/* =============================================================================
+   GPS 101 NAV ICON & ROUTE CLASSES
+   ============================================================================= */
+
+/* GPS 101 nav icon color token */
+.nav-icon--gps101 {
+  --icon-color: var(--gps-primary, #00d4ff);
+}
+
+/* GPS 101 specific route transition — slightly slower for richer pages */
+.private-route--gps101-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.private-route--gps101-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 280ms var(--ease-out, cubic-bezier(0, 0, 0.2, 1)),
+              transform 280ms var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+.private-route--gps101-exit {
+  opacity: 1;
+}
+
+.private-route--gps101-exit-active {
+  opacity: 0;
+  transition: opacity 180ms var(--ease-in, cubic-bezier(0.4, 0, 1, 1));
+}
+
+/* GPS 101 checkpoint nav icon */
+.nav-icon--gps101-checkpoint {
+  --icon-color: var(--gps-accent, #2a9d8f);
+}
+
+/* GPS 101 stage nav icons */
+.nav-icon--gps101-stage {
+  --icon-color: var(--gps101-orange, #ff8c42);
+}
+
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ADDITIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .private-route--gps101-enter,
+  .private-route--gps101-enter-active,
+  .private-route--gps101-exit,
+  .private-route--gps101-exit-active {
+    transition: none;
+    transform: none;
+  }
+}

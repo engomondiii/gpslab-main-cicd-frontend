@@ -286,3 +286,70 @@
 /* ==========================================
    END OF VARIABLES
    ========================================== */
+/* ==========================================
+   GPS 101 SPECIFIC VARIABLES
+   ========================================== */
+
+:root {
+  /* GPS 101 Program Identity */
+  --gps101-primary: var(--gps-primary, #00D4FF);
+  --gps101-accent: var(--gps-accent, #2A9D8F);
+  --gps101-orange: #FF8C42;
+  --gps101-orange-pale: rgba(255, 140, 66, 0.12);
+  --gps101-orange-border: rgba(255, 140, 66, 0.3);
+
+  /* GPS 101 Stage Colors (5 stages) */
+  --gps101-stage-1: #00D4FF;   /* Identity */
+  --gps101-stage-2: #2A9D8F;   /* Problem */
+  --gps101-stage-3: #FF8C42;   /* Purpose */
+  --gps101-stage-4: #9B59B6;   /* Solution */
+  --gps101-stage-5: #F1C40F;   /* Launch */
+
+  /* Orange Beacon (completion award) */
+  --orange-beacon: #FF8C00;
+  --orange-beacon-pale: rgba(255, 140, 0, 0.1);
+  --orange-beacon-glow: 0 0 20px rgba(255, 140, 0, 0.3);
+
+  /* GPS 101 Baraka (checkpoint reward: 33 ƀ each) */
+  --gps101-baraka-checkpoint: 33;     /* per checkpoint */
+  --gps101-baraka-submission: 200;    /* per sub-mission */
+  --gps101-baraka-mission: 1000;      /* per mission */
+  --gps101-baraka-total: 5000;        /* Orange Beacon target */
+
+  /* GPS 101 Structure */
+  --gps101-stages: 5;
+  --gps101-missions: 5;
+  --gps101-submissions: 30;
+  --gps101-checkpoints: 150;
+
+  /* GPS 101 UI Tokens */
+  --gps101-hero-bg-from: #0d1b2a;
+  --gps101-hero-bg-to: #1b263b;
+  --gps101-card-hover-border: rgba(0, 212, 255, 0.3);
+  --gps101-cta-bg: rgba(0, 212, 255, 0.08);
+  --gps101-cta-border: rgba(0, 212, 255, 0.2);
+
+  /* GPS 101 Checkpoint type colors */
+  --gps101-type-reflection: var(--gps-primary, #00D4FF);
+  --gps101-type-essay: var(--gps-accent, #2A9D8F);
+  --gps101-type-attendance: var(--warning, #F1C40F);
+  --gps101-type-quiz: var(--gps-secondary, #FF6B6B);
+  --gps101-type-short-answer: #9B59B6;
+
+  /* GPS 101 Status colors */
+  --gps101-status-available: var(--gps-primary, #00D4FF);
+  --gps101-status-in-progress: var(--warning, #F1C40F);
+  --gps101-status-completed: var(--success, #2A9D8F);
+  --gps101-status-locked: var(--neutral-400, #CBD5E0);
+  --gps101-status-passed: var(--success, #2A9D8F);
+  --gps101-status-failed: var(--error, #E74C3C);
+
+  /* GPS 101 Shadows */
+  --shadow-gps101: 0 4px 12px rgba(0, 212, 255, 0.15);
+  --shadow-beacon: 0 0 24px rgba(255, 140, 0, 0.25);
+  --shadow-stage: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   END OF GPS 101 VARIABLES
+   ========================================== */

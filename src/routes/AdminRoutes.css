@@ -1,222 +1,321 @@
 /**
- * GPS Lab Platform - AdminRoutes Component Styles
+ * GPS Lab Platform - AppRouter Styles
+ * 
+ * Styles for router transitions, loading states, and placeholder pages.
  */
 
-/* Admin Route Container */
-.admin-route {
-  min-height: calc(100vh - 200px);
+/* =====================================================
+   APP ROUTER BASE
+   ===================================================== */
+
+.app-router {
+  min-height: 100vh;
 }
 
-/* Admin Badge */
-.admin-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1, 4px);
-  padding: var(--space-1, 4px) var(--space-2, 8px);
-  font-size: var(--text-2xs, 11px);
-  font-weight: var(--font-semibold, 600);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wider, 0.05em);
-  border-radius: var(--radius-sm, 4px);
+/* =====================================================
+   ROUTE TRANSITIONS
+   ===================================================== */
+
+.route-transition {
+  animation: routeFadeIn 0.3s ease;
 }
 
-.admin-badge--admin {
-  color: var(--error, #e74c3c);
-  background-color: var(--error-pale, rgba(231, 76, 60, 0.1));
-}
-
-.admin-badge--super-admin {
-  color: var(--beacon-purple, #8e44ad);
-  background-color: rgba(142, 68, 173, 0.1);
-}
-
-.admin-badge--content-admin {
-  color: var(--gps-accent, #2a9d8f);
-  background-color: rgba(42, 157, 143, 0.1);
-}
-
-/* Admin Header Styling */
-.admin-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4, 16px) var(--space-6, 24px);
-  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-700, #1b263b) 100%);
-  border-bottom: 1px solid var(--neutral-600, #2d4263);
-  margin-bottom: var(--space-6, 24px);
-  border-radius: var(--radius-lg, 8px);
-}
-
-.admin-header__title {
-  font-family: var(--font-heading, 'Orbitron', sans-serif);
-  font-size: var(--text-xl, 24px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-0, #ffffff);
-  margin: 0;
-}
-
-.admin-header__actions {
-  display: flex;
-  gap: var(--space-3, 12px);
-}
-
-/* Admin Stats Grid */
-.admin-stats {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: var(--space-4, 16px);
-  margin-bottom: var(--space-6, 24px);
-}
-
-@media (min-width: 640px) {
-  .admin-stats {
-    grid-template-columns: repeat(2, 1fr);
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 1024px) {
-  .admin-stats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+/* =====================================================
+   PLACEHOLDER PAGES
+   ===================================================== */
 
-.admin-stat-card {
-  padding: var(--space-4, 16px);
-  background-color: var(--neutral-0, #ffffff);
-  border: 1px solid var(--neutral-200, #f0f4f8);
-  border-radius: var(--radius-lg, 8px);
-  transition: box-shadow var(--duration-fast, 150ms) var(--ease-out);
-}
-
-.admin-stat-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.admin-stat-card__label {
-  font-size: var(--text-sm, 14px);
-  color: var(--neutral-500, #8b949e);
-  margin-bottom: var(--space-1, 4px);
-}
-
-.admin-stat-card__value {
-  font-family: var(--font-mono, monospace);
-  font-size: var(--text-2xl, 32px);
-  font-weight: var(--font-bold, 700);
-  color: var(--neutral-900, #0d1117);
-}
-
-.admin-stat-card__change {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1, 4px);
-  font-size: var(--text-xs, 12px);
-  margin-top: var(--space-2, 8px);
-}
-
-.admin-stat-card__change--positive {
-  color: var(--success, #2a9d8f);
-}
-
-.admin-stat-card__change--negative {
-  color: var(--error, #e74c3c);
-}
-
-/* Admin Table */
-.admin-table-container {
-  background-color: var(--neutral-0, #ffffff);
-  border: 1px solid var(--neutral-200, #f0f4f8);
-  border-radius: var(--radius-lg, 8px);
-  overflow: hidden;
-}
-
-.admin-table-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-4, 16px);
-  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
-}
-
-.admin-table-search {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3, 12px);
-}
-
-/* Admin Navigation */
-.admin-nav {
+.placeholder-page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: var(--space-1, 4px);
-  padding: var(--space-2, 8px);
-  background-color: var(--neutral-100, #f7faff);
-  border-radius: var(--radius-lg, 8px);
-}
-
-.admin-nav__item {
-  display: flex;
   align-items: center;
-  gap: var(--space-3, 12px);
-  padding: var(--space-3, 12px) var(--space-4, 16px);
-  font-size: var(--text-sm, 14px);
-  font-weight: var(--font-medium, 500);
-  color: var(--neutral-600, #2d4263);
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, 
+    var(--color-primary-50, #eff6ff) 0%, 
+    var(--color-neutral-50, #f9fafb) 100%
+  );
+}
+
+[data-theme="dark"] .placeholder-page {
+  background: linear-gradient(135deg, 
+    var(--color-neutral-900, #111827) 0%, 
+    var(--color-neutral-800, #1f2937) 100%
+  );
+}
+
+.placeholder-page h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, 
+    var(--color-primary-600, #2563eb) 0%, 
+    var(--color-secondary-600, #7c3aed) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.placeholder-page p {
+  font-size: 1.25rem;
+  color: var(--color-neutral-600, #4b5563);
+  margin-bottom: 2rem;
+}
+
+[data-theme="dark"] .placeholder-page p {
+  color: var(--color-neutral-400, #9ca3af);
+}
+
+/* =====================================================
+   ONBOARDING PAGE
+   ===================================================== */
+
+.onboarding-page {
+  background: linear-gradient(135deg, 
+    var(--color-primary-600, #2563eb) 0%, 
+    var(--color-secondary-600, #7c3aed) 100%
+  );
+  color: white;
+}
+
+.onboarding-page h1 {
+  background: none;
+  -webkit-text-fill-color: white;
+  color: white;
+}
+
+.onboarding-page p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.onboarding-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--color-primary-700, #1d4ed8);
   text-decoration: none;
-  border-radius: var(--radius-md, 6px);
-  transition: all var(--duration-fast, 150ms) var(--ease-out);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 
-.admin-nav__item:hover {
-  background-color: var(--neutral-200, #f0f4f8);
+.onboarding-continue-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   ROUTE LOADING FALLBACK
+   ===================================================== */
+
+.route-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-neutral-50, #f9fafb);
+}
+
+[data-theme="dark"] .route-loading {
+  background: var(--color-neutral-900, #111827);
+}
+
+.route-loading__spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1.5rem;
+}
+
+.route-loading__spinner-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-top-color: var(--color-primary-500, #3b82f6);
+  border-radius: 50%;
+  animation: spinRing 1.2s ease-in-out infinite;
+}
+
+.route-loading__spinner-ring:nth-child(2) {
+  inset: 6px;
+  border-top-color: var(--color-secondary-500, #8b5cf6);
+  animation-delay: 0.15s;
+}
+
+.route-loading__spinner-ring:nth-child(3) {
+  inset: 12px;
+  border-top-color: var(--color-primary-400, #60a5fa);
+  animation-delay: 0.3s;
+}
+
+@keyframes spinRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.route-loading__text {
+  font-size: 1rem;
+  color: var(--color-neutral-600, #4b5563);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .route-loading__text {
+  color: var(--color-neutral-400, #9ca3af);
+}
+/* =============================================================================
+   GPS 101 ROUTE STYLES
+   ============================================================================= */
+
+/* GPS 101 route transition — page-level fade-slide */
+.route-transition--gps101 {
+  animation: gps101RouteIn 0.28s var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+@keyframes gps101RouteIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GPS 101 placeholder page — light branded appearance */
+.placeholder-page--gps101 {
+  background: linear-gradient(135deg,
+    var(--neutral-50, #fafbfc) 0%,
+    rgba(0, 212, 255, 0.04) 100%
+  );
+}
+
+.placeholder-page--gps101 h1 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
   color: var(--neutral-900, #0d1117);
+  background: none;
+  -webkit-text-fill-color: unset;
 }
 
-.admin-nav__item--active {
-  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+.placeholder-page--gps101 p {
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #718096);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* GPS 101 route loading fallback */
+.route-loading--gps101 {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(1) {
+  border-top-color: var(--gps-primary, #00d4ff);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(2) {
+  border-top-color: #ff8c42;
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(3) {
+  border-top-color: var(--gps-accent, #2a9d8f);
+}
+
+.route-loading--gps101 .route-loading__text {
   color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  letter-spacing: var(--tracking-wider, 0.05em);
+  text-transform: uppercase;
 }
 
-.admin-nav__item-icon {
-  width: 20px;
-  height: 20px;
-}
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ADDITIONS
+   ============================================================================= */
 
-/* Dark Theme */
-[data-theme="dark"] .admin-stat-card {
-  background-color: var(--neutral-800, #0d1b2a);
-  border-color: var(--neutral-700, #1b263b);
-}
-
-[data-theme="dark"] .admin-stat-card__value {
-  color: var(--neutral-100, #f7faff);
-}
-
-[data-theme="dark"] .admin-table-container {
-  background-color: var(--neutral-800, #0d1b2a);
-  border-color: var(--neutral-700, #1b263b);
-}
-
-[data-theme="dark"] .admin-table-header {
-  border-color: var(--neutral-700, #1b263b);
-}
-
-[data-theme="dark"] .admin-nav {
-  background-color: var(--neutral-800, #0d1b2a);
-}
-
-[data-theme="dark"] .admin-nav__item {
-  color: var(--neutral-300, #e1e4e8);
-}
-
-[data-theme="dark"] .admin-nav__item:hover {
-  background-color: var(--neutral-700, #1b263b);
-  color: var(--neutral-100, #f7faff);
-}
-
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .admin-stat-card,
-  .admin-nav__item {
-    transition: none;
+  .route-transition--gps101 {
+    animation: none;
+  }
+
+  .route-loading--gps101 .route-loading__spinner-ring {
+    animation: none;
+  }
+}
+
+/* =====================================================
+   GPS 101 ROUTE STYLES
+   ===================================================== */
+
+/* GPS 101 route transition — slightly longer for page richness */
+.route-transition--gps101 {
+  animation: gps101RouteEnter 0.35s ease both;
+}
+
+@keyframes gps101RouteEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GPS 101 route loading fallback */
+.route-loading--gps101 {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(1) {
+  border-top-color: var(--gps-primary, #00d4ff);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(2) {
+  border-top-color: #ff8c42;
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(3) {
+  border-top-color: var(--gps-accent, #2a9d8f);
+}
+
+/* GPS 101 placeholder page */
+.placeholder-page--gps101 h1 {
+  background: linear-gradient(135deg,
+    var(--gps-primary, #00d4ff),
+    var(--gps-accent, #2a9d8f)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =====================================================
+   REDUCED MOTION — GPS 101
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .route-transition--gps101 {
+    animation: none;
   }
 }

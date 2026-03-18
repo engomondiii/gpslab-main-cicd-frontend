@@ -634,3 +634,346 @@
 /* ==========================================
    END OF ANIMATIONS
    ========================================== */
+/* =============================================================================
+   GPS 101 ANIMATIONS
+   ============================================================================= */
+
+/* ---- GPS 101 page entry ---- */
+@keyframes gps101PageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Stage card reveal ---- */
+@keyframes gps101StageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- Checkpoint pass celebration ---- */
+@keyframes gps101CheckpointPass {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---- Baraka earn pop ---- */
+@keyframes gps101BarakaPop {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.9);
+  }
+}
+
+/* ---- Orange Beacon glow pulse ---- */
+@keyframes gps101BeaconGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 140, 66, 0.3),
+                0 0 16px rgba(255, 140, 66, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 140, 66, 0.5),
+                0 0 40px rgba(255, 140, 66, 0.25);
+  }
+}
+
+/* ---- Progress bar fill ---- */
+@keyframes gps101ProgressFill {
+  from {
+    width: 0%;
+  }
+}
+
+/* ---- Stage unlock bounce ---- */
+@keyframes gps101StageUnlock {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---- Modal slide in ---- */
+@keyframes gps101ModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- Sub-mission card stagger ---- */
+@keyframes gps101CardStagger {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- Checkmark draw ---- */
+@keyframes gps101CheckDraw {
+  from {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   GPS 101 ANIMATION UTILITY CLASSES
+   ========================================== */
+
+.gps101-animate-page {
+  animation: gps101PageEnter var(--duration-slow, 400ms) var(--ease-out) both;
+}
+
+.gps101-animate-stage {
+  animation: gps101StageReveal var(--duration-slow, 400ms) var(--ease-out) both;
+}
+
+.gps101-animate-pass {
+  animation: gps101CheckpointPass 0.5s var(--ease-out) both;
+}
+
+.gps101-animate-beacon {
+  animation: gps101BeaconGlow 2.5s var(--ease-in-out) infinite;
+}
+
+.gps101-animate-unlock {
+  animation: gps101StageUnlock 0.6s var(--ease-bounce, cubic-bezier(0.68, -0.55, 0.265, 1.55)) both;
+}
+
+.gps101-animate-modal {
+  animation: gps101ModalIn var(--duration-base, 250ms) var(--ease-out) both;
+}
+
+/* Stagger delays for card grids */
+.gps101-stagger-1 { animation-delay: 0ms; }
+.gps101-stagger-2 { animation-delay: 60ms; }
+.gps101-stagger-3 { animation-delay: 120ms; }
+.gps101-stagger-4 { animation-delay: 180ms; }
+.gps101-stagger-5 { animation-delay: 240ms; }
+.gps101-stagger-6 { animation-delay: 300ms; }
+
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ANIMATIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gps101-animate-page,
+  .gps101-animate-stage,
+  .gps101-animate-pass,
+  .gps101-animate-beacon,
+  .gps101-animate-unlock,
+  .gps101-animate-modal {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   GPS 101 KEYFRAME ANIMATIONS
+   ========================================== */
+
+/* Stage unlock reveal */
+@keyframes gps101StageUnlock {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Checkpoint pass burst */
+@keyframes gps101CheckpointPass {
+  0% {
+    box-shadow: 0 0 0 0 rgba(42, 157, 143, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(42, 157, 143, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(42, 157, 143, 0);
+  }
+}
+
+/* Orange Beacon earned celebration */
+@keyframes gps101OrangeBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.6);
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 12px rgba(255, 140, 0, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 24px rgba(255, 140, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+  }
+}
+
+/* Baraka reward count-up shimmer */
+@keyframes gps101BarakaShimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+/* Sub-mission card hover slide */
+@keyframes gps101CardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Progress bar fill */
+@keyframes gps101ProgressFill {
+  from {
+    width: 0%;
+  }
+}
+
+/* Beacon pulse for active GPS 101 session indicator */
+@keyframes gps101BeaconPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.5);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px rgba(0, 212, 255, 0);
+  }
+}
+
+/* ==========================================
+   GPS 101 ANIMATION UTILITY CLASSES
+   ========================================== */
+
+.gps101-stage-unlock {
+  animation: gps101StageUnlock 0.5s var(--ease-out, cubic-bezier(0, 0, 0.2, 1)) both;
+}
+
+.gps101-checkpoint-pass {
+  animation: gps101CheckpointPass 0.6s var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+.gps101-orange-beacon {
+  animation: gps101OrangeBeacon 0.8s var(--ease-out, cubic-bezier(0, 0, 0.2, 1));
+}
+
+.gps101-baraka-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(241, 196, 15, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  animation: gps101BarakaShimmer 1.5s var(--ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+
+.gps101-card-slide-in {
+  animation: gps101CardSlideIn 0.25s var(--ease-out, cubic-bezier(0, 0, 0.2, 1)) both;
+}
+
+.gps101-progress-fill {
+  animation: gps101ProgressFill 0.6s var(--ease-out, cubic-bezier(0, 0, 0.2, 1)) both;
+}
+
+.gps101-beacon-pulse {
+  animation: gps101BeaconPulse 2s var(--ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+
+/* Staggered card delay helpers */
+.gps101-card-slide-in:nth-child(1) { animation-delay: 0ms; }
+.gps101-card-slide-in:nth-child(2) { animation-delay: 50ms; }
+.gps101-card-slide-in:nth-child(3) { animation-delay: 100ms; }
+.gps101-card-slide-in:nth-child(4) { animation-delay: 150ms; }
+.gps101-card-slide-in:nth-child(5) { animation-delay: 200ms; }
+.gps101-card-slide-in:nth-child(6) { animation-delay: 250ms; }
+
+/* ==========================================
+   REDUCED MOTION — GPS 101 OVERRIDES
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gps101-stage-unlock,
+  .gps101-checkpoint-pass,
+  .gps101-orange-beacon,
+  .gps101-baraka-shimmer,
+  .gps101-card-slide-in,
+  .gps101-progress-fill,
+  .gps101-beacon-pulse {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   END OF GPS 101 ANIMATIONS
+   ========================================== */

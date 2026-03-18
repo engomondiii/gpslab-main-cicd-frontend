@@ -311,3 +311,116 @@ body.no-scroll {
 /* ==========================================
    END OF GLOBAL STYLES
    ========================================== */
+/* ==========================================
+   GPS 101 GLOBAL STYLES
+   ========================================== */
+
+/* GPS 101 page root — applied to <body> or page wrapper when on GPS 101 routes */
+body.gps101-active {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* GPS 101 smooth scroll target offset (accounts for sticky header) */
+.gps101-section {
+  scroll-margin-top: calc(64px + 40px + var(--space-4, 16px));
+}
+
+/* GPS 101 bilingual hint text — small Korean sub-label pattern */
+.gps101-bilingual-hint {
+  display: block;
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  font-weight: var(--font-normal, 400);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+/* GPS 101 focus-visible override — uses brand cyan */
+.gps101-focusable:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* GPS 101 no-scroll when modal/briefing is open */
+body.gps101-modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* GPS 101 loading overlay */
+.gps101-loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 17, 23, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-modal, 1000);
+  animation: fadeIn var(--duration-base, 250ms) var(--ease-out);
+}
+
+/* ==========================================
+   END OF GPS 101 GLOBAL STYLES
+   ========================================== */
+
+/* ==========================================
+   GPS 101 GLOBAL STYLES
+   ========================================== */
+
+/* GPS 101 page-level background */
+.page--gps101 {
+  background-color: var(--neutral-100, #f7faff);
+  min-height: 100vh;
+}
+
+/* GPS 101 section divider */
+.gps101-section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.2) 30%,
+    rgba(0, 212, 255, 0.2) 70%,
+    transparent 100%
+  );
+  margin: var(--space-10, 40px) 0;
+  border: none;
+}
+
+/* GPS 101 content max-width wrapper */
+.gps101-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-6, 24px);
+}
+
+@media (max-width: 768px) {
+  .gps101-container {
+    padding: 0 var(--space-4, 16px);
+  }
+}
+
+/* GPS 101 body lock (prevent scroll during enrollment modal) */
+body.gps101-modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* GPS 101 global selection color */
+.page--gps101 ::selection {
+  background-color: rgba(0, 212, 255, 0.2);
+  color: var(--neutral-900, #0d1117);
+}
+
+/* GPS 101 focus style override for checkpoint form textareas */
+.gps101-checkpoint-form textarea:focus-visible {
+  outline: 2px solid var(--gps-primary, #00d4ff);
+  outline-offset: 2px;
+  border-radius: var(--radius-md, 6px);
+}
+
+/* ==========================================
+   END OF GPS 101 GLOBAL STYLES
+   ========================================== */

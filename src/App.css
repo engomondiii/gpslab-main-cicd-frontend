@@ -360,3 +360,102 @@
     transform: none;
   }
 }
+/* ==========================================
+   GPS 101 APP STATE STYLES
+   ========================================== */
+
+/* App-level GPS 101 context class applied to .app
+   when user is on any /gps101/* route */
+.app--gps101 {
+  background-color: var(--neutral-100, #F7FAFC);
+}
+
+/* GPS 101 page transition — slightly slower for reflective content */
+.app--gps101 .route-transition {
+  animation-duration: 0.4s;
+}
+
+/* GPS 101 toast variant — used for checkpoint pass/fail feedback */
+.toast--gps101-passed {
+  border-left: 4px solid var(--success, #2A9D8F);
+  background: rgba(42, 157, 143, 0.06);
+}
+
+.toast--gps101-failed {
+  border-left: 4px solid var(--error, #E74C3C);
+  background: rgba(231, 76, 60, 0.06);
+}
+
+.toast--gps101-baraka {
+  border-left: 4px solid var(--gps101-baraka-color, #F1C40F);
+  background: rgba(241, 196, 15, 0.06);
+}
+
+/* GPS 101 app loading screen variant */
+.app-loading--gps101 .app-loading__subtitle {
+  color: var(--gps-primary, #00D4FF);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .app--gps101 .route-transition {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   END OF GPS 101 APP STYLES
+   ========================================== */
+
+/* =============================================================================
+   GPS 101 APP VARIANT
+   ============================================================================= */
+
+/* GPS 101 pages use a light neutral background */
+.app--gps101 {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* GPS 101 loading screen — uses brand colors, not full dark overlay */
+.app-loading--gps101 {
+  background: linear-gradient(135deg,
+    var(--gps101-hero-bg-from, #0d1b2a) 0%,
+    var(--gps101-hero-bg-to, #1b263b) 100%
+  );
+}
+
+.app-loading--gps101 .app-loading__title {
+  color: var(--neutral-0, #ffffff);
+}
+
+.app-loading--gps101 .app-loading__subtitle {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* GPS 101 spinner uses stage gradient colors */
+.app-loading--gps101 .app-loading__spinner-ring:nth-child(1) {
+  border-top-color: var(--gps-primary, #00d4ff);
+}
+
+.app-loading--gps101 .app-loading__spinner-ring:nth-child(2) {
+  border-top-color: var(--gps101-orange, #ff8c42);
+}
+
+.app-loading--gps101 .app-loading__spinner-ring:nth-child(3) {
+  border-top-color: var(--gps-accent, #2a9d8f);
+}
+
+/* GPS 101 toast positioning — offset below topbar (64px header + 40px topbar) */
+.app--gps101 .toast-container {
+  top: calc(64px + 40px + var(--space-4, 16px));
+}
+
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ADDITIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-loading--gps101 .app-loading__spinner-ring {
+    animation: none;
+  }
+}

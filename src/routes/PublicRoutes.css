@@ -116,3 +116,66 @@
     opacity: 1;
   }
 }
+/* =============================================================================
+   GPS 101 PUBLIC ROUTE STYLES
+   ============================================================================= */
+
+/* GPS 101 enrollment landing placeholder */
+.placeholder-page--gps101 {
+  background: linear-gradient(135deg,
+    var(--neutral-0, #ffffff) 0%,
+    rgba(0, 212, 255, 0.04) 100%
+  );
+}
+
+.placeholder-page--gps101 h1 {
+  color: var(--neutral-900, #0d1117);
+}
+
+.placeholder-page--gps101 p {
+  color: var(--neutral-600, #718096);
+}
+
+/* GPS 101 route loading — matches brand palette */
+.route-loading--gps101 {
+  background: linear-gradient(135deg,
+    var(--gps101-hero-bg-from, #0d1b2a) 0%,
+    var(--gps101-hero-bg-to, #1b263b) 100%
+  );
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(1) {
+  border-top-color: var(--gps-primary, #00d4ff);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(2) {
+  border-top-color: var(--gps101-orange, #ff8c42);
+}
+
+.route-loading--gps101 .route-loading__spinner-ring:nth-child(3) {
+  border-top-color: var(--gps-accent, #2a9d8f);
+}
+
+.route-loading--gps101 .route-loading__text {
+  color: var(--gps-primary, #00d4ff);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  letter-spacing: var(--tracking-wider, 0.05em);
+  text-transform: uppercase;
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ADDITIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loading--gps101 .route-loading__spinner-ring {
+    animation: none;
+  }
+
+  .route-loading--gps101 .route-loading__text {
+    animation: none;
+    opacity: 1;
+  }
+}

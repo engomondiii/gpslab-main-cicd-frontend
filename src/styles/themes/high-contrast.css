@@ -330,3 +330,308 @@
 /* ==========================================
    END OF HIGH CONTRAST THEME
    ========================================== */
+/* ==========================================
+   GPS 101 HIGH CONTRAST OVERRIDES
+   ========================================== */
+
+[data-theme="high-contrast"] .page--gps101 {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+}
+
+/* GPS 101 hero — solid dark background in high contrast */
+[data-theme="high-contrast"] .gps101-hero {
+  background: #000000;
+  color: #ffffff;
+  border: var(--border-thick) solid #ffffff;
+}
+
+[data-theme="high-contrast"] .gps101-hero .hero-title,
+[data-theme="high-contrast"] .gps101-hero .hero-subtitle,
+[data-theme="high-contrast"] .gps101-hero .stat-number,
+[data-theme="high-contrast"] .gps101-hero .stat-label {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* GPS 101 stage cards — high contrast borders */
+[data-theme="high-contrast"] .gps101-stage-card {
+  background-color: var(--neutral-0);
+  border: var(--border-thick) solid var(--neutral-900);
+  box-shadow: none;
+}
+
+[data-theme="high-contrast"] .gps101-stage-card:hover {
+  border-color: var(--gps-primary, #0099CC);
+  border-width: var(--border-thicker);
+}
+
+[data-theme="high-contrast"] .gps101-stage-card--completed {
+  border-color: var(--success, #008800);
+}
+
+[data-theme="high-contrast"] .gps101-stage-card--locked {
+  border-color: var(--neutral-500);
+  opacity: 0.75;
+}
+
+/* GPS 101 checkpoint cards */
+[data-theme="high-contrast"] .gps101-checkpoint-card {
+  background-color: var(--neutral-0);
+  border: var(--border-thick) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-checkpoint-card--passed {
+  border-color: var(--success, #008800);
+}
+
+[data-theme="high-contrast"] .gps101-checkpoint-card--failed {
+  border-color: var(--error, #CC0000);
+}
+
+/* GPS 101 progress bars */
+[data-theme="high-contrast"] .gps101-progress-bar {
+  background-color: var(--neutral-300);
+  border: var(--border-thin) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-progress-fill {
+  background: var(--gps-primary, #0099CC);
+}
+
+[data-theme="high-contrast"] .gps101-beacon-progress {
+  background-color: var(--neutral-300);
+  border: var(--border-thin) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-beacon-fill {
+  background: var(--warning, #CC8800);
+}
+
+/* GPS 101 buttons */
+[data-theme="high-contrast"] .gps101-enroll-button,
+[data-theme="high-contrast"] .gps101-accept-button,
+[data-theme="high-contrast"] .gps101-submit-button {
+  background: var(--gps-primary, #0099CC);
+  color: var(--neutral-0);
+  border: var(--border-thick) solid var(--neutral-900);
+  font-weight: var(--font-bold);
+}
+
+[data-theme="high-contrast"] .gps101-enroll-button:hover,
+[data-theme="high-contrast"] .gps101-accept-button:hover,
+[data-theme="high-contrast"] .gps101-submit-button:hover {
+  background: var(--gps-primary-dark, #007799);
+  border-color: var(--neutral-900);
+}
+
+/* GPS 101 answer textarea */
+[data-theme="high-contrast"] .gps101-answer-textarea {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  border: var(--border-thick) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-answer-textarea:focus {
+  outline: 4px solid var(--gps-primary, #0099CC);
+  outline-offset: 2px;
+  border-color: var(--gps-primary, #0099CC);
+}
+
+/* GPS 101 CTA section */
+[data-theme="high-contrast"] .gps101-cta-section {
+  background: var(--neutral-100);
+  border: var(--border-thick) solid var(--neutral-900);
+}
+
+/* GPS 101 enrollment modal */
+[data-theme="high-contrast"] .gps101-enrollment-modal {
+  background-color: var(--neutral-0);
+  border: var(--border-thicker) solid var(--neutral-900);
+  box-shadow: var(--shadow-xl);
+}
+
+/* GPS 101 status badges — text must be legible */
+[data-theme="high-contrast"] .gps101-status-passed {
+  background: var(--success, #008800);
+  color: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-status-failed {
+  background: var(--error, #CC0000);
+  color: var(--neutral-0);
+  border: var(--border-default) solid var(--neutral-900);
+}
+
+[data-theme="high-contrast"] .gps101-status-locked {
+  background: var(--neutral-300);
+  color: var(--neutral-900);
+  border: var(--border-default) solid var(--neutral-900);
+}
+
+/* ==========================================
+   END OF GPS 101 HIGH CONTRAST
+   ========================================== */
+
+/* ==========================================
+   GPS 101 HIGH CONTRAST OVERRIDES
+   ========================================== */
+
+/* GPS 101 stage cards */
+[data-theme="high-contrast"] .gps101-stage-card,
+[data-theme="high-contrast"] .gps101-mission-card,
+[data-theme="high-contrast"] .gps101-checkpoint-card,
+[data-theme="high-contrast"] .gps101-submission-card {
+  background: var(--neutral-0, #ffffff);
+  border: var(--border-thick, 3px) solid var(--neutral-900, #000000);
+}
+
+[data-theme="high-contrast"] .gps101-stage-card:hover,
+[data-theme="high-contrast"] .gps101-mission-card:hover,
+[data-theme="high-contrast"] .gps101-submission-card:hover {
+  border-color: var(--gps-primary, #0099cc);
+  border-width: var(--border-thicker, 4px);
+}
+
+/* GPS 101 status badges — high contrast */
+[data-theme="high-contrast"] .gps101-status--available {
+  background: transparent;
+  color: var(--gps-primary, #0099cc);
+  border: var(--border-thick, 3px) solid var(--gps-primary, #0099cc);
+}
+
+[data-theme="high-contrast"] .gps101-status--completed,
+[data-theme="high-contrast"] .gps101-status--passed {
+  background: transparent;
+  color: var(--success, #008800);
+  border: var(--border-thick, 3px) solid var(--success, #008800);
+}
+
+[data-theme="high-contrast"] .gps101-status--failed {
+  background: transparent;
+  color: var(--error, #cc0000);
+  border: var(--border-thick, 3px) solid var(--error, #cc0000);
+}
+
+[data-theme="high-contrast"] .gps101-status--locked {
+  background: transparent;
+  color: var(--neutral-600, #333333);
+  border: var(--border-thick, 3px) solid var(--neutral-600, #333333);
+}
+
+[data-theme="high-contrast"] .gps101-status--in-progress {
+  background: transparent;
+  color: var(--warning-dark, #996600);
+  border: var(--border-thick, 3px) solid var(--warning-dark, #996600);
+}
+
+/* GPS 101 answer textarea */
+[data-theme="high-contrast"] .gps101-answer-textarea {
+  background: var(--neutral-0, #ffffff);
+  color: var(--neutral-900, #000000);
+  border: var(--border-thick, 3px) solid var(--neutral-900, #000000);
+}
+
+[data-theme="high-contrast"] .gps101-answer-textarea:focus {
+  outline: 4px solid var(--gps-primary, #0099cc);
+  outline-offset: 2px;
+  border-color: var(--gps-primary, #0099cc);
+}
+
+/* GPS 101 enroll button */
+[data-theme="high-contrast"] .gps101-enroll-btn {
+  background: var(--gps-primary, #0099cc);
+  color: var(--neutral-0, #ffffff);
+  border: var(--border-thick, 3px) solid var(--neutral-900, #000000);
+  font-weight: var(--font-bold, 700);
+}
+
+[data-theme="high-contrast"] .gps101-enroll-btn:hover {
+  background: var(--gps-primary-dark, #007799);
+  box-shadow: none;
+  transform: none;
+}
+
+/* GPS 101 progress bar */
+[data-theme="high-contrast"] .gps101-progress {
+  background: var(--neutral-300, #cccccc);
+  border: var(--border-default, 2px) solid var(--neutral-900, #000000);
+}
+
+[data-theme="high-contrast"] .gps101-progress__fill {
+  background: var(--gps-primary, #0099cc);
+}
+
+/* GPS 101 checkpoint passed/failed borders */
+[data-theme="high-contrast"] .gps101-checkpoint-card--passed {
+  border-color: var(--success, #008800);
+  border-width: var(--border-thick, 3px);
+}
+
+[data-theme="high-contrast"] .gps101-checkpoint-card--failed {
+  border-color: var(--error, #cc0000);
+  border-width: var(--border-thick, 3px);
+}
+
+/* GPS 101 hero section — high contrast keeps readability */
+[data-theme="high-contrast"] .gps101-hero {
+  background: var(--neutral-900, #000000);
+  border-bottom: var(--border-thicker, 4px) solid var(--gps-primary, #0099cc);
+}
+
+/* GPS 101 stage badge */
+[data-theme="high-contrast"] .gps101-stage-badge {
+  background: var(--gps-primary, #0099cc);
+  color: var(--neutral-0, #ffffff);
+  border: var(--border-default, 2px) solid var(--neutral-900, #000000);
+}
+
+/* GPS 101 tag */
+[data-theme="high-contrast"] .gps101-tag {
+  background: transparent;
+  color: var(--gps-primary, #0099cc);
+  border: var(--border-thick, 3px) solid var(--gps-primary, #0099cc);
+  font-weight: var(--font-bold, 700);
+}
+
+/* GPS 101 Baraka display */
+[data-theme="high-contrast"] .gps101-baraka {
+  color: var(--warning-dark, #cc8800);
+  font-weight: var(--font-bold, 700);
+}
+
+/* GPS 101 beacon badge */
+[data-theme="high-contrast"] .gps101-beacon-badge {
+  background: transparent;
+  color: var(--warning-dark, #cc8800);
+  border: var(--border-thick, 3px) solid var(--warning-dark, #cc8800);
+}
+
+/* GPS 101 info rows */
+[data-theme="high-contrast"] .gps101-info-row {
+  background: var(--neutral-100, #f5f5f5);
+  border: var(--border-default, 2px) solid var(--neutral-900, #000000);
+}
+
+[data-theme="high-contrast"] .gps101-info-row__value {
+  color: var(--neutral-900, #000000);
+  font-weight: var(--font-bold, 700);
+}
+
+/* GPS 101 CTA section */
+[data-theme="high-contrast"] .gps101-cta-section {
+  background: var(--neutral-100, #f5f5f5);
+  border: var(--border-thick, 3px) solid var(--gps-primary, #0099cc);
+}
+
+/* GPS 101 Korean bilingual text */
+[data-theme="high-contrast"] .gps101-bilingual-hint,
+[data-theme="high-contrast"] .gps101-ko {
+  color: var(--neutral-700, #1a1a1a);
+  font-weight: var(--font-medium, 500);
+}
+
+/* ==========================================
+   END OF GPS 101 HIGH CONTRAST
+   ========================================== */
