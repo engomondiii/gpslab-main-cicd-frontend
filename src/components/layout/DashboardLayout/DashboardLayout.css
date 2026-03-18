@@ -100,3 +100,97 @@
     transition: none;
   }
 }
+/* =============================================================================
+   GPS 101 DASHBOARD LAYOUT VARIANT
+   ============================================================================= */
+
+.dashboard-layout--gps101 {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+.dashboard-layout--gps101 .dashboard-layout__page-header {
+  background: linear-gradient(135deg,
+    var(--neutral-0, #ffffff) 0%,
+    rgba(0, 212, 255, 0.03) 100%
+  );
+  border-bottom-color: rgba(0, 212, 255, 0.12);
+}
+
+.dashboard-layout--gps101 .dashboard-layout__page-title {
+  background: linear-gradient(135deg, var(--neutral-900, #0d1117), var(--gps-primary-dark, #00a3cc));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* GPS 101 content area with subtle background */
+.dashboard-layout--gps101 .dashboard-layout__content {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+/* GPS 101 breadcrumb row */
+.dashboard-layout__gps101-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  background: var(--neutral-0, #ffffff);
+  border-bottom: 1px solid var(--neutral-200, #f0f4f8);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__gps101-breadcrumb {
+    padding-left: var(--space-8, 32px);
+    padding-right: var(--space-8, 32px);
+  }
+}
+
+.dashboard-layout__gps101-breadcrumb a {
+  color: var(--gps-primary-dark, #00a3cc);
+  text-decoration: none;
+  font-weight: var(--font-medium, 500);
+  transition: color var(--duration-fast, 150ms) var(--ease-out);
+}
+
+.dashboard-layout__gps101-breadcrumb a:hover {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.dashboard-layout__gps101-breadcrumb-sep {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+/* Dark theme */
+[data-theme="dark"] .dashboard-layout--gps101 {
+  background-color: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .dashboard-layout--gps101 .dashboard-layout__page-header {
+  background: linear-gradient(135deg,
+    var(--neutral-800, #0d1b2a) 0%,
+    rgba(0, 212, 255, 0.04) 100%
+  );
+  border-bottom-color: rgba(0, 212, 255, 0.15);
+}
+
+[data-theme="dark"] .dashboard-layout--gps101 .dashboard-layout__page-title {
+  background: linear-gradient(135deg, var(--neutral-100, #f7faff), var(--gps-primary, #00d4ff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .dashboard-layout__gps101-breadcrumb {
+  background: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-layout__gps101-breadcrumb a {
+    transition: none;
+  }
+}

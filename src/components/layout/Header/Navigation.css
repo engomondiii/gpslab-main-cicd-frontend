@@ -304,3 +304,44 @@
     animation: none;
   }
 }
+/* =============================================================================
+   GPS 101 NAVIGATION STYLES
+   ============================================================================= */
+
+.navigation--desktop .navigation__link--gps101 {
+  color: var(--gps-primary-dark, #00a3cc);
+  font-weight: var(--font-semibold, 600);
+}
+
+.navigation--desktop .navigation__link--gps101:hover,
+.navigation--desktop .navigation__link--gps101.navigation__link--active {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  color: var(--gps-primary, #00d4ff);
+}
+
+.navigation__gps101-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-2, 8px);
+  margin-left: var(--space-1, 4px);
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: var(--radius-full, 9999px);
+  font-size: 10px;
+  font-weight: var(--font-bold, 700);
+  color: var(--gps-primary-dark, #00a3cc);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+[data-theme="dark"] .navigation--desktop .navigation__link--gps101 {
+  color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .navigation__gps101-tag {
+  color: var(--gps-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.3);
+}

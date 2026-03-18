@@ -232,3 +232,59 @@
     transition: none;
   }
 }
+/* =============================================================================
+   GPS 101 TOPBAR STYLES
+   ============================================================================= */
+
+/* GPS 101 progress stat */
+.topbar__stat--gps101 .topbar__stat-icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+.topbar__stat--gps101 .topbar__stat-value {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* Orange Beacon stat */
+.topbar__stat--orange-beacon .topbar__stat-icon {
+  color: #ff8c42;
+}
+
+.topbar__stat--orange-beacon .topbar__stat-value {
+  color: #ff8c42;
+}
+
+/* GPS 101 quick link */
+.topbar__link--gps101 {
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.topbar__link--gps101:hover {
+  background-color: rgba(0, 212, 255, 0.1);
+  color: var(--gps-primary-light, #4ce3ff);
+}
+
+/* GPS 101 active session indicator */
+.topbar__gps101-session {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-full, 9999px);
+  font-size: var(--text-xs, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--gps-primary, #00d4ff);
+  font-weight: var(--font-medium, 500);
+}
+
+.topbar__gps101-session-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gps-primary, #00d4ff);
+  border-radius: 50%;
+  animation: beaconPulse 2s ease-in-out infinite;
+}

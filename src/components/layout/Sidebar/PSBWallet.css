@@ -149,3 +149,27 @@
     transform: none;
   }
 }
+/* =============================================================================
+   GPS 101 PSB WALLET VARIANT
+   ============================================================================= */
+
+.psb-wallet--gps101 {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.psb-wallet__gps101-banner {
+  margin-top: var(--space-2, 8px);
+  padding: var(--space-2, 8px);
+  background: rgba(0, 212, 255, 0.06);
+  border-radius: var(--radius-md, 6px);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  font-size: var(--text-xs, 12px);
+  color: var(--gps-primary-dark, #00a3cc);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  text-align: center;
+}
+
+[data-theme="dark"] .psb-wallet__gps101-banner {
+  color: var(--gps-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.08);
+}

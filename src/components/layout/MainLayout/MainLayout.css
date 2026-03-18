@@ -19,3 +19,14 @@
 [data-theme="dark"] .main-layout {
   background-color: var(--neutral-900, #0d1117);
 }
+/* =============================================================================
+   GPS 101 LAYOUT VARIANT
+   ============================================================================= */
+
+.main-layout--gps101 .main-layout__content {
+  background-color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .main-layout--gps101 .main-layout__content {
+  background-color: var(--neutral-900, #0d1117);
+}

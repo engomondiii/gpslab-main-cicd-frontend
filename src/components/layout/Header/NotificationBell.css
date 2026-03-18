@@ -368,3 +368,41 @@
     animation: none;
   }
 }
+/* =============================================================================
+   GPS 101 NOTIFICATION STYLES
+   ============================================================================= */
+
+/* GPS 101-specific notification icon type */
+.notification-bell__item-icon--gps101 {
+  background-color: rgba(0, 212, 255, 0.12);
+  color: var(--gps-primary, #00d4ff);
+}
+
+.notification-bell__item-icon--checkpoint {
+  background-color: rgba(42, 157, 143, 0.12);
+  color: var(--gps-accent, #2a9d8f);
+}
+
+.notification-bell__item-icon--stage {
+  background-color: rgba(255, 140, 66, 0.12);
+  color: #ff8c42;
+}
+
+.notification-bell__item-icon--orange-beacon {
+  background-color: rgba(241, 196, 15, 0.15);
+  color: #f1c40f;
+}
+
+/* GPS 101 unread item variant */
+.notification-bell__item--gps101.notification-bell__item--unread {
+  background-color: rgba(0, 212, 255, 0.04);
+  border-left: 2px solid var(--gps-primary, #00d4ff);
+}
+
+.notification-bell__item--gps101.notification-bell__item--unread:hover {
+  background-color: rgba(0, 212, 255, 0.08);
+}
+
+[data-theme="dark"] .notification-bell__item--gps101.notification-bell__item--unread {
+  background-color: rgba(0, 212, 255, 0.06);
+}

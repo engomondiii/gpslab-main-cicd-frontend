@@ -102,3 +102,57 @@
     transition: none;
   }
 }
+/* =============================================================================
+   GPS 101 BARAKA WALLET VARIANT
+   ============================================================================= */
+
+.baraka-wallet--gps101 {
+  background: linear-gradient(135deg,
+    rgba(241, 196, 15, 0.12),
+    rgba(255, 140, 66, 0.08)
+  );
+  border-color: rgba(241, 196, 15, 0.4);
+}
+
+.baraka-wallet--gps101 .baraka-wallet__label {
+  color: var(--neutral-700, #1b263b);
+}
+
+.baraka-wallet__gps101-progress {
+  margin-top: var(--space-2, 8px);
+  padding-top: var(--space-2, 8px);
+  border-top: 1px solid rgba(241, 196, 15, 0.2);
+}
+
+.baraka-wallet__gps101-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-1, 4px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.baraka-wallet__gps101-progress-bar {
+  height: 4px;
+  background: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.baraka-wallet__gps101-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f1c40f, #ff8c42);
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+[data-theme="dark"] .baraka-wallet--gps101 .baraka-wallet__label {
+  color: var(--neutral-300, #e1e4e8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baraka-wallet__gps101-progress-fill {
+    transition: none;
+  }
+}

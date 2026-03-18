@@ -318,3 +318,72 @@
     animation: none;
   }
 }
+/* =============================================================================
+   GPS 101 USER MENU STYLES
+   ============================================================================= */
+
+/* GPS 101 progress shown in user menu header */
+.user-menu__gps101-progress {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(42, 157, 143, 0.06));
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.user-menu__gps101-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs, 12px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--neutral-500, #8b949e);
+  margin-bottom: var(--space-1, 4px);
+}
+
+.user-menu__gps101-label span:last-child {
+  font-weight: var(--font-semibold, 600);
+  color: var(--gps-primary-dark, #00a3cc);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+
+.user-menu__gps101-bar {
+  height: 4px;
+  background: var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.user-menu__gps101-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--duration-slow, 400ms) var(--ease-out);
+}
+
+/* GPS 101 item in menu */
+.user-menu__item--gps101 {
+  color: var(--gps-primary-dark, #00a3cc);
+  font-weight: var(--font-medium, 500);
+}
+
+.user-menu__item--gps101:hover {
+  background-color: rgba(0, 212, 255, 0.08);
+}
+
+.user-menu__item--gps101 .user-menu__item-icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .user-menu__gps101-progress {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(42, 157, 143, 0.08));
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="dark"] .user-menu__item--gps101 {
+  color: var(--gps-primary, #00d4ff);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-menu__gps101-bar-fill {
+    transition: none;
+  }
+}

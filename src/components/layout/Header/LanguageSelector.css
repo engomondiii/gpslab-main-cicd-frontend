@@ -184,3 +184,20 @@
     animation: none;
   }
 }
+/* =============================================================================
+   GPS 101 LANGUAGE SELECTOR VARIANT
+   ============================================================================= */
+
+.language-selector--gps101 .language-selector__trigger {
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.language-selector--gps101 .language-selector__trigger:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  background-color: rgba(0, 212, 255, 0.06);
+}
+
+/* Korean language highlight — used frequently in GPS 101 bilingual content */
+.language-selector__option--ko .language-selector__option-name {
+  font-weight: var(--font-medium, 500);
+}
