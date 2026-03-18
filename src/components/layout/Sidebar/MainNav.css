@@ -244,54 +244,115 @@
 }
 /* =============================================================================
    GPS 101 FEATURED STYLES
+   FIX: Replaced off-brand #667eea / #764ba2 (purple-blue, not in design system)
+   with proper GPS Lab design tokens: --gps-primary (#00D4FF) and --gps-accent
+   (#2A9D8F). All colours now use CSS variables so they respect theme overrides.
    ============================================================================= */
 
+/* Featured section wrapper — subtle cyan tint to distinguish GPS 101 */
 .main-nav__section--featured {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  background: linear-gradient(
+    135deg,
+    var(--gps-primary-pale, rgba(0, 212, 255, 0.06)),
+    var(--gps-accent-pale, rgba(42, 157, 143, 0.04))
+  );
   border-radius: var(--radius-lg, 8px);
   padding: var(--space-2, 8px);
   margin-bottom: var(--space-4, 16px);
+  border: 1px solid rgba(0, 212, 255, 0.12);
 }
 
+/* Featured link default — left-border accent using brand cyan */
 .main-nav__link--featured {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
-  border-left: 3px solid #667eea;
+  background: transparent;
+  border-left: 3px solid var(--gps-primary, #00d4ff);
+  padding-left: calc(var(--space-3, 12px) - 3px); /* compensate for border */
 }
 
 .main-nav__link--featured:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--neutral-900, #0d1117);
+  border-left-color: var(--gps-primary-dark, #00a3cc);
 }
 
+/* Featured active state — cyan background matching standard active */
 .main-nav__link--featured.main-nav__link--active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15));
-  border-left-color: #764ba2;
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  color: var(--gps-primary-dark, #00a3cc);
+  border-left-color: var(--gps-primary, #00d4ff);
 }
 
+.main-nav__link--featured.main-nav__link--active:hover {
+  background-color: rgba(0, 212, 255, 0.15);
+}
+
+/* Featured icon — cyan to match design system icon colour on active */
 .main-nav__link--featured .main-nav__icon {
-  color: #667eea;
+  color: var(--gps-primary, #00d4ff);
 }
 
-/* GPS 101 Badge Variant */
+.main-nav__link--featured:hover .main-nav__icon,
+.main-nav__link--featured.main-nav__link--active .main-nav__icon {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* GPS 101 badge variant — uses design system pale/dark pair */
 .main-nav__badge--gps101 {
-  background-color: rgba(102, 126, 234, 0.15);
-  color: #667eea;
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.15));
+  color: var(--gps-primary-dark, #00a3cc);
 }
 
-/* Dark Theme GPS 101 */
+/* =============================================================================
+   COLLAPSED ACTIVE STATE
+   FIX: Add visible active indicator when sidebar is collapsed so users can
+   tell which item is selected even when labels are hidden.
+   ============================================================================= */
+
+.main-nav--collapsed .main-nav__link--active {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+  border-radius: var(--radius-lg, 8px);
+}
+
+/* Collapsed GPS 101 featured active — keep cyan border visible */
+.main-nav--collapsed .main-nav__link--featured {
+  border-left: 3px solid var(--gps-primary, #00d4ff);
+  padding-left: calc(var(--space-3, 12px) - 3px);
+}
+
+.main-nav--collapsed .main-nav__link--featured.main-nav__link--active {
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.1));
+}
+
+/* =============================================================================
+   DARK THEME — GPS 101 FEATURED
+   ============================================================================= */
+
 [data-theme="dark"] .main-nav__section--featured {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.08),
+    rgba(42, 157, 143, 0.06)
+  );
+  border-color: rgba(0, 212, 255, 0.18);
 }
 
 [data-theme="dark"] .main-nav__link--featured {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+  border-left-color: var(--gps-primary, #00d4ff);
 }
 
 [data-theme="dark"] .main-nav__link--featured:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15));
+  background-color: rgba(0, 212, 255, 0.12);
+  color: var(--neutral-100, #f7faff);
 }
 
 [data-theme="dark"] .main-nav__link--featured.main-nav__link--active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.2));
+  background-color: rgba(0, 212, 255, 0.15);
+  color: var(--gps-primary, #00d4ff);
+}
+
+[data-theme="dark"] .main-nav__badge--gps101 {
+  background-color: rgba(0, 212, 255, 0.15);
+  color: var(--gps-primary, #00d4ff);
 }
 
 /* =============================================================================

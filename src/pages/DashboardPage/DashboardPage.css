@@ -127,3 +127,87 @@
     transition: none;
   }
 }
+
+/* =============================================================================
+   GPS 101 DASHBOARD INTEGRATION
+   Ensures the view-toggle active state uses design-system cyan, and the
+   GPS 101 overview/map/command panels get the correct background treatment.
+   ============================================================================= */
+
+/* Active view button — explicitly use design-system cyan so it is
+   never overridden by generic neutral colours from other themes */
+.dashboard-page__view-btn--active {
+  color: var(--gps-primary-dark, #00a3cc);
+  background-color: var(--neutral-0, #ffffff);
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-page__view-btn--active svg {
+  color: var(--gps-primary, #00d4ff);
+}
+
+/* GPS 101 overview panel — light neutral background matching dashboard cards */
+.dashboard-page__overview--gps101 {
+  background-color: var(--neutral-100, #f7faff);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-4, 16px);
+}
+
+/* GPS 101 map panel — subtle cyan tint to signal the journey context */
+.dashboard-page__map--gps101 {
+  background: linear-gradient(
+    180deg,
+    var(--gps-primary-pale, rgba(0, 212, 255, 0.04)) 0%,
+    transparent 40%
+  );
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-4, 16px);
+}
+
+/* GPS 101 command center panel */
+.dashboard-page__command--gps101 {
+  background-color: var(--neutral-0, #ffffff);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-6, 24px);
+}
+
+/* View toggle GPS 101 indicator dot — shows next to Journey Map when enrolled */
+.dashboard-page__view-btn--gps101-active::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--gps-primary, #00d4ff);
+  margin-right: var(--space-1, 4px);
+  animation: gps101BeaconPulse 2s var(--ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
+}
+
+@keyframes dashboardBeaconPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* =============================================================================
+   RESPONSIVE — GPS 101 ADDITIONS
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .dashboard-page__overview--gps101,
+  .dashboard-page__map--gps101,
+  .dashboard-page__command--gps101 {
+    padding: var(--space-3, 12px);
+    border-radius: var(--radius-lg, 8px);
+  }
+}
+
+/* =============================================================================
+   REDUCED MOTION — GPS 101 ADDITIONS
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-page__view-btn--gps101-active::before {
+    animation: none;
+  }
+}
