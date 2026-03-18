@@ -1,16 +1,18 @@
 /**
- * GPS 101 Checkpoint Card Styles
+ * GPS Lab Platform - GPS101CheckpointCard Component Styles
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .gps101-checkpoint-card {
   position: relative;
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  background: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-6, 24px);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-all);
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 1px solid var(--neutral-200, #f0f4f8);
   min-height: 220px;
   display: flex;
   flex-direction: column;
@@ -18,107 +20,117 @@
 
 .gps101-checkpoint-card:hover:not(.locked) {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gps-primary, #00d4ff);
 }
 
 .gps101-checkpoint-card.locked {
   opacity: 0.6;
   cursor: not-allowed;
-  background: #f5f5f5;
+  background: var(--neutral-100, #f7faff);
 }
 
 /* Status Color Variants */
 .gps101-checkpoint-card.status-passed {
-  border-color: #4CAF50;
-  background: linear-gradient(to bottom, white, #f1f8f4);
+  border-color: var(--success, #2a9d8f);
+  background: linear-gradient(to bottom, var(--neutral-0, #ffffff), var(--success-pale, rgba(42, 157, 143, 0.05)));
 }
 
 .gps101-checkpoint-card.status-failed {
-  border-color: #f44336;
-  background: linear-gradient(to bottom, white, #ffebee);
+  border-color: var(--error, #e74c3c);
+  background: linear-gradient(to bottom, var(--neutral-0, #ffffff), rgba(231, 76, 60, 0.05));
 }
 
 .gps101-checkpoint-card.status-submitted {
-  border-color: #2196F3;
-  background: linear-gradient(to bottom, white, #e3f2fd);
+  border-color: var(--gps-primary, #00d4ff);
+  background: linear-gradient(to bottom, var(--neutral-0, #ffffff), var(--gps-primary-pale, rgba(0, 212, 255, 0.05)));
 }
 
 .gps101-checkpoint-card.status-progress {
-  border-color: #FFC107;
-  background: linear-gradient(to bottom, white, #fffbf0);
+  border-color: var(--warning, #ffc107);
+  background: linear-gradient(to bottom, var(--neutral-0, #ffffff), rgba(255, 193, 7, 0.05));
 }
 
 .gps101-checkpoint-card.status-available {
-  border-color: #667eea;
+  border-color: var(--gps-primary, #00d4ff);
 }
 
 /* Checkpoint Number Badge */
 .checkpoint-number-badge {
   position: absolute;
   top: -12px;
-  left: 1rem;
+  left: var(--space-4, 16px);
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  color: var(--neutral-900, #0d1117);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.875rem;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-weight: var(--font-bold, 700);
+  font-size: var(--text-sm, 14px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
 }
 
 .gps101-checkpoint-card.status-passed .checkpoint-number-badge {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--success-dark, #238276));
 }
 
 /* Status Badge */
 .checkpoint-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 16px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  margin-bottom: var(--space-4, 16px);
   align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .checkpoint-status.status-passed {
-  background: #e8f5e9;
-  color: #4CAF50;
+  background: var(--success-pale, rgba(42, 157, 143, 0.08));
+  color: var(--success, #2a9d8f);
+  border: 1px solid var(--success, #2a9d8f);
 }
 
 .checkpoint-status.status-failed {
-  background: #ffebee;
-  color: #f44336;
+  background: rgba(231, 76, 60, 0.08);
+  color: var(--error, #e74c3c);
+  border: 1px solid var(--error, #e74c3c);
 }
 
 .checkpoint-status.status-submitted {
-  background: #e3f2fd;
-  color: #2196F3;
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid var(--gps-primary, #00d4ff);
 }
 
 .checkpoint-status.status-progress {
-  background: #fff9e6;
-  color: #FFC107;
+  background: rgba(255, 193, 7, 0.08);
+  color: var(--warning, #ffc107);
+  border: 1px solid var(--warning, #ffc107);
 }
 
 .checkpoint-status.status-available {
-  background: #f0f3ff;
-  color: #667eea;
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid var(--gps-primary, #00d4ff);
 }
 
 .checkpoint-status.status-locked {
-  background: #f5f5f5;
-  color: #999;
+  background: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-500, #8b949e);
 }
 
 .status-icon {
-  font-size: 1rem;
+  font-size: var(--text-base, 16px);
 }
 
 /* Content */
@@ -130,53 +142,59 @@
 
 .checkpoint-type-badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: #f0f0f0;
-  color: #666;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-600, #2d4263);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3, 12px);
   align-self: flex-start;
 }
 
 .checkpoint-question {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
   line-height: 1.4;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4, 16px);
 }
 
 /* Requirements */
 .checkpoint-requirements {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: #f9f9f9;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  background: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-lg, 8px);
+  margin-bottom: var(--space-4, 16px);
+  border: 1px solid var(--neutral-200, #f0f4f8);
 }
 
 .requirements-icon {
-  font-size: 1rem;
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-400, #a8dadc);
   flex-shrink: 0;
 }
 
 .requirements-text {
-  font-size: 0.8125rem;
-  color: #666;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-600, #2d4263);
   line-height: 1.4;
   margin: 0;
+  font-weight: var(--font-regular, 400);
 }
 
 /* Indicators */
 .checkpoint-indicators {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--space-2, 8px);
   flex-wrap: wrap;
   margin-top: auto;
 }
@@ -184,49 +202,54 @@
 .indicator-badge {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  background: #e0e7ff;
-  color: #667eea;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
 }
 
 .indicator-icon {
-  font-size: 0.875rem;
+  font-size: var(--text-sm, 14px);
 }
 
 /* Footer */
 .checkpoint-card-footer {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e0e0e0;
+  margin-top: var(--space-4, 16px);
+  padding-top: var(--space-4, 16px);
+  border-top: 1px solid var(--neutral-200, #f0f4f8);
 }
 
 .checkpoint-action-button {
   width: 100%;
-  padding: 0.75rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  padding: var(--space-3, 12px);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  color: var(--neutral-900, #0d1117);
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: var(--radius-lg, 8px);
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-weight: var(--font-semibold, 600);
+  font-size: var(--text-base, 16px);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
 }
 
 .checkpoint-action-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+  filter: brightness(1.1);
 }
 
 .gps101-checkpoint-card.status-failed .checkpoint-action-button {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  background: linear-gradient(135deg, var(--error, #e74c3c), #c0392b);
 }
 
 .gps101-checkpoint-card.status-passed .checkpoint-action-button {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--success-dark, #238276));
 }
 
 /* Locked Overlay */
@@ -237,33 +260,71 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
+  border-radius: var(--radius-xl, 12px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-2, 8px);
 }
 
 .lock-icon {
-  font-size: 2rem;
+  font-size: var(--text-3xl, 36px);
+  color: var(--neutral-400, #a8dadc);
 }
 
 .lock-text {
-  font-size: 0.875rem;
-  color: #666;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
   text-align: center;
-  font-weight: 600;
+  font-weight: var(--font-semibold, 600);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .gps101-checkpoint-card {
-    padding: 1rem;
+    padding: var(--space-4, 16px);
     min-height: 200px;
   }
 
   .checkpoint-question {
-    font-size: 0.9375rem;
+    font-size: var(--text-sm, 14px);
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .gps101-checkpoint-card {
+  background: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .gps101-checkpoint-card.locked {
+  background: var(--neutral-900, #0d1117);
+}
+
+[data-theme="dark"] .checkpoint-question {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .checkpoint-requirements {
+  background: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+[data-theme="dark"] .locked-overlay {
+  background: rgba(13, 27, 42, 0.95);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .gps101-checkpoint-card,
+  .checkpoint-action-button {
+    transition: none;
+  }
+  
+  .gps101-checkpoint-card:hover:not(.locked),
+  .checkpoint-action-button:hover {
+    transform: none;
   }
 }

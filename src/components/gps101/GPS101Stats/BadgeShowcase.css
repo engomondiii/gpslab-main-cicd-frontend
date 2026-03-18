@@ -1,77 +1,85 @@
 /**
- * Badge Showcase Styles
+ * GPS Lab Platform - BadgeShowcase Component Styles
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .badge-showcase {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--neutral-0, #ffffff);
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-8, 32px);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--neutral-200, #f0f4f8);
 }
 
 /* Header */
 .showcase-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-8, 32px);
 }
 
 .showcase-header h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin-bottom: var(--space-2, 8px);
+  letter-spacing: -0.02em;
 }
 
 .showcase-subtitle {
-  font-size: 1rem;
-  color: #666;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #2d4263);
+  font-weight: var(--font-regular, 400);
 }
 
 /* Badge Section */
 .badge-section {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-12, 48px);
 }
 
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #e0e0e0;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-xl, 24px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin-bottom: var(--space-6, 24px);
+  padding-bottom: var(--space-3, 12px);
+  border-bottom: 2px solid var(--neutral-200, #f0f4f8);
 }
 
 /* Badges Grid */
 .badges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: var(--space-6, 24px);
 }
 
 /* Badge Card */
 .badge-card {
   display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: #f9f9f9;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  gap: var(--space-4, 16px);
+  padding: var(--space-6, 24px);
+  background: var(--neutral-50, #fafbfc);
+  border-radius: var(--radius-xl, 12px);
+  border: 1px solid var(--neutral-200, #f0f4f8);
+  transition: var(--transition-all);
 }
 
 .badge-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .badge-card.earned {
-  background: linear-gradient(to bottom, #f1f8f4, white);
-  border-color: #4CAF50;
+  background: linear-gradient(to bottom, var(--success-pale, rgba(42, 157, 143, 0.05)), var(--neutral-0, #ffffff));
+  border-color: var(--success, #2a9d8f);
 }
 
 .badge-card.available {
-  background: linear-gradient(to bottom, #fffbf0, white);
-  border-color: #FFC107;
+  background: linear-gradient(to bottom, rgba(255, 193, 7, 0.05), var(--neutral-0, #ffffff));
+  border-color: var(--warning, #ffc107);
 }
 
 .badge-card.locked {
@@ -79,8 +87,8 @@
 }
 
 .badge-card.special.earned {
-  background: linear-gradient(135deg, #fff5e6 0%, white 100%);
-  border-color: #FFA500;
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, var(--neutral-0, #ffffff) 100%);
+  border-color: #ff8c42;
 }
 
 /* Badge Icon Wrapper */
@@ -92,42 +100,42 @@
 .badge-icon {
   width: 64px;
   height: 64px;
-  border-radius: 50%;
+  border-radius: var(--radius-full, 9999px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: var(--text-3xl, 36px);
+  background: var(--neutral-0, #ffffff);
+  box-shadow: var(--shadow-sm);
 }
 
 .badge-icon.earned {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, var(--success, #2a9d8f), var(--success-dark, #238276));
+  box-shadow: 0 4px 12px rgba(42, 157, 143, 0.4);
 }
 
 .badge-icon.earned.special {
-  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
-  animation: shimmer 2s ease-in-out infinite;
+  background: linear-gradient(135deg, #ff8c42, #ff6b6b);
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
+  animation: shimmer var(--duration-slower, 2s) ease-in-out infinite;
 }
 
 @keyframes shimmer {
   0%, 100% {
-    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
   }
   50% {
-    box-shadow: 0 4px 20px rgba(255, 165, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 140, 66, 0.6);
   }
 }
 
 .badge-icon.available {
-  background: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+  background: linear-gradient(135deg, var(--warning, #ffc107), #ffb300);
 }
 
 .badge-icon.locked {
-  background: #f5f5f5;
-  color: #999;
+  background: var(--neutral-100, #f7faff);
+  color: var(--neutral-500, #8b949e);
 }
 
 .earned-checkmark {
@@ -136,19 +144,19 @@
   right: -4px;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
-  background: white;
-  color: #4CAF50;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--neutral-0, #ffffff);
+  color: var(--success, #2a9d8f);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  font-weight: 700;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: var(--font-bold, 700);
+  box-shadow: var(--shadow-sm);
 }
 
 .earned-checkmark.special {
-  color: #FFA500;
+  color: #ff8c42;
 }
 
 /* Badge Info */
@@ -159,64 +167,72 @@
 }
 
 .badge-name {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-lg, 20px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin-bottom: var(--space-2, 8px);
 }
 
 .badge-description {
-  font-size: 0.875rem;
-  color: #666;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
   line-height: 1.5;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3, 12px);
+  font-weight: var(--font-regular, 400);
 }
 
 .badge-stage,
 .badge-requirement {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: #e0e7ff;
-  color: #667eea;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  background: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  margin-bottom: var(--space-2, 8px);
   align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .badge-requirement {
-  background: #fff9e6;
-  color: #FFA500;
+  background: rgba(255, 140, 66, 0.08);
+  color: #ff8c42;
 }
 
 .badge-status-text {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
   margin-top: auto;
 }
 
 .badge-status-text.earned {
-  color: #4CAF50;
+  color: var(--success, #2a9d8f);
 }
 
 .badge-status-text.available {
-  color: #FFC107;
+  color: var(--warning, #ffc107);
 }
 
 .badge-status-text.locked {
-  color: #999;
+  color: var(--neutral-500, #8b949e);
 }
 
 /* Progress Summary */
 .badge-progress-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  color: white;
+  gap: var(--space-6, 24px);
+  padding: var(--space-8, 32px);
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-xl, 12px);
+  color: var(--neutral-900, #0d1117);
+  box-shadow: var(--shadow-md);
 }
 
 .progress-stat {
@@ -225,21 +241,25 @@
 
 .progress-label {
   display: block;
-  font-size: 0.875rem;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
   opacity: 0.9;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2, 8px);
+  font-weight: var(--font-medium, 500);
 }
 
 .progress-value {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-2xl, 32px);
+  font-weight: var(--font-bold, 700);
+  letter-spacing: -0.02em;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .badge-showcase {
-    padding: 1rem;
+    padding: var(--space-4, 16px);
   }
 
   .badges-grid {
@@ -248,6 +268,42 @@
 
   .badge-progress-summary {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--space-4, 16px);
+  }
+  
+  .showcase-header h2 {
+    font-size: var(--text-2xl, 32px);
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .badge-showcase {
+  background: var(--neutral-800, #0d1b2a);
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .showcase-header h2,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .badge-name {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .badge-card {
+  background: var(--neutral-700, #1b263b);
+  border-color: var(--neutral-600, #2d4263);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .badge-card {
+    transition: none;
+  }
+  
+  .badge-card:hover {
+    transform: none;
+  }
+  
+  .badge-icon.earned.special {
+    animation: none;
   }
 }

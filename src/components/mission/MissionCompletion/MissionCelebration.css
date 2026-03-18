@@ -1,6 +1,7 @@
 /**
  * GPS Lab Platform - MissionCelebration Component Styles
- * Theme: GPS Lab Light Mode - Beautiful Celebration Animations
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .mission-celebration {
@@ -15,7 +16,7 @@
 .mission-celebration__particle {
   position: absolute;
   top: -20px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm, 4px);
   animation: confettiFall 3s ease-out forwards;
 }
 
@@ -37,7 +38,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   animation: burstIn 0.5s ease-out forwards;
-  filter: drop-shadow(0 8px 30px rgba(241, 196, 15, 0.5));
+  filter: drop-shadow(0 8px 30px rgba(255, 140, 66, 0.5));
 }
 
 @keyframes burstIn {
@@ -58,8 +59,8 @@
 .mission-celebration__star {
   width: 120px;
   height: 120px;
-  color: var(--baraka-base);
-  filter: drop-shadow(0 0 20px rgba(241, 196, 15, 0.6));
+  color: #ff8c42;
+  filter: drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
 }
 
 /* Rings */
@@ -75,8 +76,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 3px solid var(--gps-primary);
-  border-radius: var(--radius-full);
+  border: 3px solid var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
   opacity: 0;
 }
 
@@ -90,14 +91,14 @@
   width: 150px;
   height: 150px;
   animation: ringExpand 1s ease-out 0.2s forwards;
-  border-color: var(--gps-accent);
+  border-color: var(--gps-accent, #2a9d8f);
 }
 
 .mission-celebration__ring--3 {
   width: 200px;
   height: 200px;
   animation: ringExpand 1s ease-out 0.4s forwards;
-  border-color: var(--warning);
+  border-color: #ff8c42;
 }
 
 @keyframes ringExpand {
@@ -125,7 +126,7 @@
     rgba(0, 212, 255, 0.2) 30%,
     transparent 70%
   );
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-full, 9999px);
   animation: lightPulse 1s ease-out forwards;
 }
 
@@ -148,8 +149,8 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: radial-gradient(circle, var(--warning) 0%, transparent 70%);
-  border-radius: var(--radius-full);
+  background: radial-gradient(circle, #ff8c42 0%, transparent 70%);
+  border-radius: var(--radius-full, 9999px);
   animation: sparkleFloat 2s ease-out forwards;
 }
 
@@ -166,12 +167,11 @@
 
 /* GPS 101 Celebration Variant */
 .mission-celebration--gps101 .mission-celebration__particle {
-  /* GPS 101 themed colors */
-  background: linear-gradient(135deg, var(--gps-primary), var(--gps-accent));
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
 }
 
 .mission-celebration--gps101 .mission-celebration__star {
-  color: var(--gps-primary);
+  color: var(--gps-primary, #00d4ff);
   filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
 }
 
@@ -192,18 +192,18 @@
 .mission-celebration--stage-complete .mission-celebration__star {
   width: 150px;
   height: 150px;
-  color: var(--success);
+  color: var(--success, #2a9d8f);
   filter: drop-shadow(0 0 30px rgba(42, 157, 143, 0.8));
 }
 
 /* Orange Beacon Unlock Variant */
 .mission-celebration--orange-beacon .mission-celebration__particle {
-  background: linear-gradient(135deg, var(--warning), var(--warning-dark));
+  background: linear-gradient(135deg, #ff8c42, #ff6b6b);
 }
 
 .mission-celebration--orange-beacon .mission-celebration__burst {
   animation: beaconBurst 1s ease-out forwards;
-  filter: drop-shadow(0 12px 40px rgba(241, 196, 15, 0.8));
+  filter: drop-shadow(0 12px 40px rgba(255, 140, 66, 0.8));
 }
 
 @keyframes beaconBurst {

@@ -219,11 +219,17 @@ const GPS101MissionPage = () => {
             />
 
             {showAcceptModal && (
+              // FIX: isOpen was missing so the modal always returned null
+              // (it defaults to false and has `if (!isOpen) return null`).
+              // onClose is also required for the backdrop click and X button
+              // to dismiss the modal.
               <GPS101MissionAcceptModal
+                isOpen={showAcceptModal}
                 mission={mission}
                 onAccept={handleAcceptMission}
                 onCancel={() => setShowAcceptModal(false)}
-                isAccepting={isStarting}
+                onClose={() => setShowAcceptModal(false)}
+                isLoading={isStarting}
               />
             )}
           </div>

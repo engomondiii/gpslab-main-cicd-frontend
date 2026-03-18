@@ -1,15 +1,17 @@
 /**
  * GPS 101 Briefing Video Component Styles
- * GPS Lab Light Theme
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .gps101-briefing-video {
   position: relative;
-  background: #1a1a1a;
-  border-radius: 12px;
+  background: var(--neutral-900, #0d1117);
+  border-radius: var(--radius-xl, 12px);
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--neutral-700, #1b263b);
 }
 
 .gps101-briefing-video__video {
@@ -27,14 +29,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(26, 26, 26, 0.9);
+  background: rgba(13, 17, 23, 0.95);
 }
 
 .gps101-briefing-video__spinner {
   width: 48px;
   height: 48px;
-  border: 3px solid #333;
-  border-top-color: #667eea;
+  border: 3px solid var(--neutral-700, #1b263b);
+  border-top-color: var(--gps-primary, #00d4ff);
   border-radius: 50%;
   animation: briefingVideoSpin 0.8s linear infinite;
 }
@@ -52,10 +54,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  background: rgba(26, 26, 26, 0.95);
-  color: #f44336;
-  padding: 2rem;
+  gap: var(--space-3, 12px);
+  background: rgba(13, 17, 23, 0.98);
+  color: var(--error, #e74c3c);
+  padding: var(--space-8, 32px);
   text-align: center;
 }
 
@@ -65,8 +67,9 @@
 }
 
 .gps101-briefing-video__error span {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
 /* ==================== PLAY OVERLAY ==================== */
@@ -80,7 +83,7 @@
   background: rgba(0, 0, 0, 0.3);
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: var(--transition-all);
 }
 
 .gps101-briefing-video__play-overlay:hover {
@@ -92,7 +95,7 @@
   height: 80px;
   color: white;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
-  transition: transform 0.3s ease;
+  transition: var(--transition-all);
 }
 
 .gps101-briefing-video__play-overlay:hover svg {
@@ -107,9 +110,9 @@
   left: 0;
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  padding: 2rem 1rem 1rem;
+  padding: var(--space-8, 32px) var(--space-4, 16px) var(--space-4, 16px);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: var(--transition-all);
 }
 
 .gps101-briefing-video__controls--visible,
@@ -120,16 +123,16 @@
 /* Progress Bar */
 .gps101-briefing-video__progress {
   height: 6px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full, 9999px);
   cursor: pointer;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3, 12px);
 }
 
 .gps101-briefing-video__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 3px;
+  background: var(--gps-primary, #00d4ff);
+  border-radius: var(--radius-full, 9999px);
   transition: width 0.1s linear;
 }
 
@@ -144,7 +147,7 @@
 .gps101-briefing-video__controls-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2, 8px);
 }
 
 /* Control Button */
@@ -159,7 +162,7 @@
   color: white;
   cursor: pointer;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: var(--transition-all);
   flex-shrink: 0;
 }
 
@@ -174,10 +177,10 @@
 
 /* Time Display */
 .gps101-briefing-video__time {
-  font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
-  font-size: 0.875rem;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-sm, 14px);
   color: white;
-  margin-left: 8px;
+  margin-left: var(--space-2, 8px);
   white-space: nowrap;
 }
 
@@ -185,14 +188,15 @@
 
 .gps101-briefing-video__title-overlay {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  top: var(--space-4, 16px);
+  left: var(--space-4, 16px);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  font-family: var(--font-body, 'Inter', sans-serif);
   color: white;
-  padding: 6px 12px;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 6px;
+  border-radius: var(--radius-md, 6px);
   backdrop-filter: blur(4px);
 }
 
@@ -201,7 +205,7 @@
 .gps101-briefing-video--fullscreen {
   position: fixed;
   inset: 0;
-  z-index: 1050;
+  z-index: var(--z-modal, 1000);
   border-radius: 0;
   aspect-ratio: auto;
 }
@@ -215,7 +219,7 @@
   }
 
   .gps101-briefing-video__controls {
-    padding: 1.5rem 0.75rem 0.75rem;
+    padding: var(--space-6, 24px) var(--space-3, 12px) var(--space-3, 12px);
   }
 
   .gps101-briefing-video__btn {
@@ -229,12 +233,12 @@
   }
 
   .gps101-briefing-video__time {
-    font-size: 0.75rem;
+    font-size: var(--text-xs, 12px);
   }
 
   .gps101-briefing-video__title-overlay {
-    font-size: 0.75rem;
-    padding: 4px 8px;
+    font-size: var(--text-xs, 12px);
+    padding: var(--space-1, 4px) var(--space-2, 8px);
   }
 }
 
@@ -256,4 +260,11 @@
   .gps101-briefing-video__play-overlay:hover svg {
     transform: none;
   }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+[data-theme="dark"] .gps101-briefing-video {
+  background: var(--neutral-900, #0d1117);
+  border-color: var(--neutral-700, #1b263b);
 }

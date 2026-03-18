@@ -1,59 +1,72 @@
 /**
- * GPS 101 Deliverables Styles
+ * GPS Lab Platform - GPS101Deliverables Component Styles
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .gps101-deliverables {
-  padding: 2rem;
+  padding: var(--space-8, 32px);
 }
 
 .deliverables-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-12, 48px);
 }
 
 .deliverables-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin-bottom: var(--space-2, 8px);
+  letter-spacing: -0.02em;
 }
 
 .deliverables-subtitle {
-  font-size: 1rem;
-  color: #666;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-600, #2d4263);
+  font-weight: var(--font-regular, 400);
 }
 
 .deliverables-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: var(--space-6, 24px);
+  margin-bottom: var(--space-12, 48px);
 }
 
 /* Completion Summary */
 .completion-summary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  color: white;
+  background: linear-gradient(135deg, var(--gps-primary, #00d4ff), var(--gps-accent, #2a9d8f));
+  border-radius: var(--radius-xl, 12px);
+  padding: var(--space-8, 32px);
+  color: var(--neutral-900, #0d1117);
   text-align: center;
+  box-shadow: var(--shadow-lg);
 }
 
 .summary-stat {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4, 16px);
 }
 
 .summary-stat .stat-label {
   display: block;
-  font-size: 0.875rem;
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
   opacity: 0.9;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2, 8px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-semibold, 600);
 }
 
 .summary-stat .stat-value {
   display: block;
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  letter-spacing: -0.02em;
 }
 
 .summary-progress {
@@ -63,21 +76,21 @@
 
 .summary-progress-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  background: rgba(13, 17, 23, 0.3);
+  border-radius: var(--radius-full, 9999px);
   overflow: hidden;
 }
 
 .summary-progress-fill {
   height: 100%;
-  background: white;
-  transition: width 0.3s ease;
+  background: var(--neutral-900, #0d1117);
+  transition: width var(--duration-slow) var(--ease-out);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .gps101-deliverables {
-    padding: 1rem;
+    padding: var(--space-4, 16px);
   }
 
   .deliverables-grid {
@@ -85,6 +98,30 @@
   }
 
   .deliverables-header h2 {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl, 32px);
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .deliverables-header h2 {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .completion-summary {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .summary-progress-bar {
+  background: rgba(247, 250, 255, 0.3);
+}
+
+[data-theme="dark"] .summary-progress-fill {
+  background: var(--neutral-100, #f7faff);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .summary-progress-fill {
+    transition: none;
   }
 }

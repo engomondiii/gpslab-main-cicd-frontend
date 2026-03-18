@@ -1,14 +1,15 @@
 /**
  * GPS Lab Platform - MissionHeader Component Styles
- * Theme: GPS Lab Light Mode - Beautiful & Balanced
+ * Professional design matching dashboard styling
+ * Refined GPS Lab cyan theme with proper hierarchy
  */
 
 .mission-header {
   position: relative;
-  padding: var(--space-12) var(--space-8);
-  border-radius: var(--radius-2xl);
+  padding: var(--space-10, 40px) var(--space-8, 32px);
+  border-radius: var(--radius-2xl, 16px);
   overflow: hidden;
-  border: var(--border-default) solid var(--neutral-300);
+  border: 1px solid var(--neutral-200, #f0f4f8);
 }
 
 /* Background */
@@ -21,27 +22,27 @@
 .mission-header__bg-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--gps-primary-pale) 0%, var(--gps-accent-pale) 100%);
+  background: linear-gradient(135deg, var(--gps-primary-pale, rgba(0, 212, 255, 0.08)) 0%, var(--gps-accent-pale, rgba(42, 157, 143, 0.08)) 100%);
 }
 
 .mission-header--available .mission-header__bg-gradient {
-  background: linear-gradient(135deg, var(--gps-primary-pale), var(--neutral-0));
+  background: linear-gradient(135deg, var(--gps-primary-pale, rgba(0, 212, 255, 0.08)), var(--neutral-0, #ffffff));
 }
 
 .mission-header--in_progress .mission-header__bg-gradient {
-  background: linear-gradient(135deg, var(--warning-pale), var(--neutral-0));
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.08), var(--neutral-0, #ffffff));
 }
 
 .mission-header--completed .mission-header__bg-gradient {
-  background: linear-gradient(135deg, var(--success-pale), var(--neutral-0));
+  background: linear-gradient(135deg, var(--success-pale, rgba(42, 157, 143, 0.08)), var(--neutral-0, #ffffff));
 }
 
 .mission-header__bg-pattern {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
@@ -55,175 +56,175 @@
 .mission-header__back {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) 0;
-  font-family: var(--font-subheading);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--neutral-600);
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) 0;
+  font-family: var(--font-subheading, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--neutral-600, #2d4263);
   background: none;
   border: none;
   cursor: pointer;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-4, 16px);
   transition: var(--transition-colors);
 }
 
 .mission-header__back:hover {
-  color: var(--gps-primary);
+  color: var(--gps-primary, #00d4ff);
 }
 
 .mission-header__back svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 /* Top Section */
 .mission-header__top {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
   flex-wrap: wrap;
 }
 
 .mission-header__type {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  font-family: var(--font-accent);
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  border-radius: var(--radius-lg);
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-lg, 8px);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.05em;
 }
 
 .mission-header__type svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .mission-header__type--standard {
-  background-color: var(--gps-primary-pale);
-  color: var(--gps-primary);
-  border: var(--border-thin) solid var(--gps-primary);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid var(--gps-primary, #00d4ff);
 }
 
 .mission-header__type--boss {
-  background-color: var(--gps-secondary-pale);
-  color: var(--gps-secondary);
-  border: var(--border-thin) solid var(--gps-secondary);
+  background-color: rgba(255, 107, 107, 0.08);
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
 }
 
 .mission-header__type--checkpoint {
-  background-color: var(--warning-pale);
-  color: var(--warning-dark);
-  border: var(--border-thin) solid var(--warning);
+  background-color: rgba(255, 140, 66, 0.08);
+  color: #ff8c42;
+  border: 1px solid #ff8c42;
 }
 
 .mission-header__type--challenge {
-  background-color: rgba(155, 89, 182, 0.15);
+  background-color: rgba(155, 89, 182, 0.08);
   color: #9b59b6;
-  border: var(--border-thin) solid #9b59b6;
+  border: 1px solid #9b59b6;
 }
 
 .mission-header__type--party {
-  background-color: var(--gps-accent-pale);
-  color: var(--gps-accent);
-  border: var(--border-thin) solid var(--gps-accent);
+  background-color: var(--gps-accent-pale, rgba(42, 157, 143, 0.08));
+  color: var(--gps-accent, #2a9d8f);
+  border: 1px solid var(--gps-accent, #2a9d8f);
 }
 
 /* Status Badge */
 .mission-header__status {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
-  font-family: var(--font-accent);
-  font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
-  border-radius: var(--radius-full);
+  gap: var(--space-1, 4px);
+  padding: var(--space-1, 4px) var(--space-3, 12px);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  font-weight: var(--font-semibold, 600);
+  border-radius: var(--radius-full, 9999px);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.05em;
 }
 
 .mission-header__status svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .mission-header__status--locked {
-  background-color: var(--neutral-200);
-  color: var(--neutral-500);
+  background-color: var(--neutral-200, #f0f4f8);
+  color: var(--neutral-500, #8b949e);
 }
 
 .mission-header__status--available {
-  background-color: var(--gps-primary-pale);
-  color: var(--gps-primary);
-  border: var(--border-thin) solid var(--gps-primary);
+  background-color: var(--gps-primary-pale, rgba(0, 212, 255, 0.08));
+  color: var(--gps-primary, #00d4ff);
+  border: 1px solid var(--gps-primary, #00d4ff);
 }
 
 .mission-header__status--in_progress {
-  background-color: var(--warning-pale);
-  color: var(--warning-dark);
-  border: var(--border-thin) solid var(--warning);
+  background-color: rgba(255, 140, 66, 0.08);
+  color: #ff8c42;
+  border: 1px solid #ff8c42;
 }
 
 .mission-header__status--completed {
-  background-color: var(--success-pale);
-  color: var(--success);
-  border: var(--border-thin) solid var(--success);
+  background-color: var(--success-pale, rgba(42, 157, 143, 0.08));
+  color: var(--success, #2a9d8f);
+  border: 1px solid var(--success, #2a9d8f);
 }
 
 /* Number and Title */
 .mission-header__number {
   display: block;
-  font-family: var(--font-accent);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--gps-primary);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-sm, 14px);
+  font-weight: var(--font-medium, 500);
+  color: var(--gps-primary, #00d4ff);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
-  margin-bottom: var(--space-2);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2, 8px);
 }
 
 .mission-header__title {
-  font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: var(--font-bold);
-  color: var(--neutral-900);
-  margin: 0 0 var(--space-4);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-3xl, 36px);
+  font-weight: var(--font-bold, 700);
+  color: var(--neutral-900, #0d1117);
+  margin: 0 0 var(--space-4, 16px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 @media (max-width: 640px) {
   .mission-header__title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl, 32px);
   }
 }
 
 .mission-header__description {
-  font-family: var(--font-body);
-  font-size: var(--text-lg);
-  color: var(--neutral-700);
-  line-height: var(--leading-relaxed);
-  margin: 0 0 var(--space-6);
-  font-weight: var(--font-regular);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-base, 16px);
+  color: var(--neutral-700, #1b263b);
+  line-height: 1.6;
+  margin: 0 0 var(--space-6, 24px);
+  font-weight: var(--font-regular, 400);
 }
 
 /* Meta Section */
 .mission-header__meta {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  padding: var(--space-4);
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px);
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--space-4);
-  border: var(--border-thin) solid var(--neutral-200);
+  border-radius: var(--radius-xl, 12px);
+  margin-bottom: var(--space-4, 16px);
+  border: 1px solid var(--neutral-200, #f0f4f8);
 }
 
 @media (min-width: 640px) {
@@ -235,69 +236,87 @@
 .mission-header__meta-item {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-1, 4px);
 }
 
 .mission-header__meta-label {
-  font-family: var(--font-accent);
-  font-size: var(--text-2xs);
-  color: var(--neutral-600);
+  font-family: var(--font-accent, 'Rajdhani', sans-serif);
+  font-size: var(--text-xs, 12px);
+  color: var(--neutral-600, #2d4263);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
-  font-weight: var(--font-semibold);
+  letter-spacing: 0.05em;
+  font-weight: var(--font-semibold, 600);
 }
 
 .mission-header__meta-value {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
-  font-family: var(--font-heading);
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  color: var(--neutral-900);
+  gap: var(--space-1, 4px);
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: var(--text-base, 16px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--neutral-900, #0d1117);
 }
 
 .mission-header__meta-value svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .mission-header__meta-value--xp {
-  color: var(--gps-accent);
+  color: var(--gps-accent, #2a9d8f);
 }
 
 .mission-header__meta-value--baraka {
-  color: var(--baraka-base);
+  color: #ff8c42;
 }
 
 .mission-header__difficulty--success {
-  color: var(--success);
+  color: var(--success, #2a9d8f);
 }
 
 .mission-header__difficulty--warning {
-  color: var(--warning);
+  color: #ff8c42;
 }
 
 .mission-header__difficulty--error {
-  color: var(--error);
+  color: var(--error, #e74c3c);
 }
 
 .mission-header__difficulty--secondary {
-  color: var(--gps-secondary);
+  color: #ff6b6b;
 }
 
 /* Footer */
 .mission-header__footer {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--neutral-600);
-  font-weight: var(--font-regular);
+  gap: var(--space-4, 16px);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: var(--text-sm, 14px);
+  color: var(--neutral-600, #2d4263);
+  font-weight: var(--font-regular, 400);
 }
 
 .mission-header__author strong {
-  color: var(--neutral-900);
-  font-weight: var(--font-semibold);
+  color: var(--neutral-900, #0d1117);
+  font-weight: var(--font-semibold, 600);
+}
+
+/* Dark Mode */
+[data-theme="dark"] .mission-header {
+  border-color: var(--neutral-700, #1b263b);
+}
+
+[data-theme="dark"] .mission-header__bg-gradient {
+  background: linear-gradient(135deg, var(--neutral-800, #0d1b2a) 0%, var(--neutral-900, #0d1117) 100%);
+}
+
+[data-theme="dark"] .mission-header__title {
+  color: var(--neutral-100, #f7faff);
+}
+
+[data-theme="dark"] .mission-header__meta {
+  background-color: rgba(13, 27, 42, 0.6);
+  border-color: var(--neutral-700, #1b263b);
 }
